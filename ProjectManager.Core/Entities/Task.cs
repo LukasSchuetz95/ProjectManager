@@ -7,10 +7,7 @@ namespace ProjectManager.Core.Entities
 {
     public class Task : EntityObject
     {
-        [ForeignKey(nameof(EmployeeId))]
-        public Employee Employee { get; set; }
-
-        public int EmployeeId { get; set; }
+        public List<EmployeeTask> EmployeeTasks { get; set; }
 
         [ForeignKey(nameof(ProjectId))]
         public Project Project { get; set; }

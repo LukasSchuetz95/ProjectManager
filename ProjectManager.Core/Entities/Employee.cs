@@ -8,7 +8,7 @@ namespace ProjectManager.Core.Entities
     {
         public List<EmployeeQualification> EmployeeQualifications { get; set; }
 
-        public List<Task> Tasks { get; set; }
+        public List<EmployeeTask> EmployeeTasks { get; set; }
 
         public List<Appointment> Appointments { get; set; }
 
