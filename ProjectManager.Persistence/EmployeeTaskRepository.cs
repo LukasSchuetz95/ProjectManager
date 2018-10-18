@@ -5,7 +5,13 @@ using System.Text;
 
 namespace ProjectManager.Persistence
 {
-    class EmployeeTaskRepository : IEmployeeTaskRepository
+    public class EmployeeTaskRepository : IEmployeeTaskRepository
     {
+        private readonly ApplicationDbContext _dbContext;
+
+        public EmployeeTaskRepository(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
     }
 }

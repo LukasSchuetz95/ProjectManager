@@ -14,6 +14,8 @@ namespace ProjectManager.Core.Contracts
 
         IEmployeeRepository Employees { get; }
 
+        IEmployeeTaskRepository EmployeeTasks { get; }
+
         IProjectRepository Projects { get; }
 
         IQualificationRepository Qualifications { get; }

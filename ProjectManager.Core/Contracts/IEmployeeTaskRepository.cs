@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ProjectManager.Core.Contracts
 {
-    interface IEmployeeTaskRepository
+    public interface IEmployeeTaskRepository
     {
     }
 }

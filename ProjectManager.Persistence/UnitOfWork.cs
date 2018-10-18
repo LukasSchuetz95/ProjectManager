@@ -10,14 +10,17 @@ namespace ProjectManager.Persistence
     public class UnitOfWork : IUnitOfWork
     {
         readonly ApplicationDbContext _dbContext;
+        private bool _disposed;
 
         public IAppointmentRepository Appointments { get; }
 
         public IDepartmentRepository Departments { get; }
 
+        public IEmployeeRepository Employees { get; }
+
         public IEmployeeQualificationRepository EmployeeQualifications { get; }
 
-        public IEmployeeRepository Employees { get; }
+        public IEmployeeTaskRepository EmployeeTasks { get; }
 
         public IProjectRepository Projects { get; }
 
@@ -32,8 +35,9 @@ namespace ProjectManager.Persistence
             _dbContext = new ApplicationDbContext();
             Appointments = new AppointmentRepository(_dbContext);
             Departments = new DepartmentRepository(_dbContext);
-            EmployeeQualifications = new EmployeeQualificationRepository(_dbContext);
             Employees = new EmployeeRepository(_dbContext);
+            EmployeeQualifications = new EmployeeQualificationRepository(_dbContext);
+            EmployeeTasks = new EmployeeTaskRepository(_dbContext);
             Projects = new ProjectRepository(_dbContext);
             Qualifications = new QualificationRepository(_dbContext);
             Tasks = new TaskRepository(_dbContext);
@@ -47,7 +51,19 @@ namespace ProjectManager.Persistence
 
         public void Dispose()
         {
-            _dbContext.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    _dbContext.Dispose();
+                }
+            }
         }
 
         public void FillDb()

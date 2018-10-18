@@ -20,6 +20,8 @@ namespace ProjectManager.Persistence
 
         public DbSet<EmployeeQualification> EmployeeQualifications { get; set; }
 
+        public DbSet<EmployeeTask> EmployeeTasks { get; set; }
+
         public DbSet<Project> Projects { get; set; }
 
         public DbSet<Qualification> Qualifications { get; set; }

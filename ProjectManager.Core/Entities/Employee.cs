@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace ProjectManager.Core.Entities
@@ -12,9 +13,15 @@ namespace ProjectManager.Core.Entities
 
         public List<Appointment> Appointments { get; set; }
 
+        [ForeignKey(nameof(DepartmentId))]
         public Department Department { get; set; }
 
+        public int DepartmentId { get; set; }
+
+        [ForeignKey(nameof(UserId))]
         public User User { get; set; }
+
+        public int UserId { get; set; }
 
         public string Firstname { get; set; }
 

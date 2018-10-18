@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectManager.Core.Entities
 {
-    class EmployeeTask : EntityObject
+    public class EmployeeTask : EntityObject
     {
         [ForeignKey(nameof(EmployeeId))]
         public Employee Employee { get; set; }

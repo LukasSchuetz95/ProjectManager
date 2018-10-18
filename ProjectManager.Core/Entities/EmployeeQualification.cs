@@ -17,6 +17,10 @@ namespace ProjectManager.Core.Entities
 
         public int QualificationId { get; set; }
 
+        [ForeignKey(nameof(TaskId))]
+        public Task Task { get; set; }
+
+        public int TaskId { get; set; }
 
         public string Information { get; set; }
 
