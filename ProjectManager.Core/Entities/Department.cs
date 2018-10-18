@@ -10,6 +10,6 @@ namespace ProjectManager.Core.Entities
 
         public string DeptLocation { get; set; }
 
-        public string DeptNamen { get; set; }
+        public string DeptName { get; set; }
     }
 }
