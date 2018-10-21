@@ -8,7 +8,7 @@ namespace ProjectManager.Core.Entities
     {
         public List<Employee> Employees { get; set; }
 
-        public string DeptLocation { get; set; }
+        public string DeptLocati { get; set; }
 
         public string DeptName { get; set; }
     }
