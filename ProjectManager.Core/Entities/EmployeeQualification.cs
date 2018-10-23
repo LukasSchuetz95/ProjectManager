@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
@@ -24,6 +25,7 @@ namespace ProjectManager.Core.Entities
 
         public string Information { get; set; }
 
+        [Display(Name = "Skill-Level")]
         public int SkillLevel { get; set; }
     }
 }

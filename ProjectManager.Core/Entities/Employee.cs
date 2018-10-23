@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
+using System.ComponentModel;
 
 namespace ProjectManager.Core.Entities
 {
@@ -23,30 +25,45 @@ namespace ProjectManager.Core.Entities
 
         public int UserId { get; set; }
 
+        [Required(ErrorMessage = "Dieses Feld wird benötigt")]
+        [Display(Name = "Vorname")]
         public string Firstname { get; set; }
 
-        public string lastname { get; set; }
+        [Required(ErrorMessage = "Dieses Feld wird benötigt")]
+        [Display(Name = "Nachname")]
+        public string Lastname { get; set; }
 
+        [Display(Name = "Job-Name")]
         public string Job { get; set; }
 
+        [Display(Name = "Projekt-Manager")]
         public bool Projectmanager { get; set; }
 
         public string Status { get; set; }
 
-        public int Profilepicture { get; set; }
+        [Display(Name = "Profil-Bild")]
+        public byte[] Profilepicture { get; set; }
 
-        public DateTime Birthdate { get; set; }
+        [Display(Name = "Geburtsdatum")]
+        public DateTime? Birthdate { get; set; }
 
+        [Display(Name = "Straße/Hausnr.")]
         public string Adress { get; set; }
 
+        [Display(Name = "PLZ"), MaxLength(8)]
         public string ZipCode { get; set; }
 
+        [Display(Name = "Wohnort")]
         public string Location { get; set; }
 
-        public DateTime HiringDate { get; set; }
+        [Display(Name = "Anstellungsdatum")]
+        public DateTime? HiringDate { get; set; }
 
+        [Display(Name = "Telefonnummer")]
         public string Phonenumber { get; set; }
 
+        [EmailAddress]
+        [Display(Name = "E-Mail")]
         public string Email { get; set; }
     }
 }
