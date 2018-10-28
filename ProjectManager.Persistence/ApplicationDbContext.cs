@@ -43,6 +43,11 @@ namespace ProjectManager.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Qualification>().HasData(
+                new { Id = 1, QualificationName = "Test1" });
+
+            modelBuilder.Entity<Qualification>().HasData(
+                new { Id = 2, QualificationName = "Test2" });
         }
     }
 }
