@@ -55,6 +55,26 @@ namespace ProjectManager.Web
                     name: "default",
                     template: "{controller=Home}/{action=LoginScreen}/{id?}");
             });
+
+            app.UseMvc(routes => 
+            {
+                routes.MapRoute(name:"EditEmployee", template: "{controller=Home}/{action=EditEmployee}");
+            });
+
+            app.UseMvc(routes=> 
+            {
+                routes.MapRoute(name:"Profil", template:"{controller=Home}/{action=Profil}");
+            });
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(name: "CrateTask", template: "{controller=Home}/{action=CreateTask}");
+            });
+
+            app.UseMvc(routes=>
+            {
+                routes.MapRoute(name:"Feed", template: "{controller=Home}/{action=Feed}");
+            });
         }
     }
 }

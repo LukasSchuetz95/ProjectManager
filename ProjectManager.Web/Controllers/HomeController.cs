@@ -14,15 +14,23 @@ namespace ProjectManager.Web.Controllers
         {
             return View();
         }
-
-        public IActionResult About()
+        
+        public IActionResult EditEmployee()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Profil()
+        {
+            return View();
+        }
+
+        public IActionResult CreateTask()
+        {
+            return View();
+        }
+
+        public IActionResult Feed()
         {
             return View();
         }
