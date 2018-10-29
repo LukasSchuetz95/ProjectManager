@@ -16,7 +16,7 @@ namespace ProjectManager.Core.Entities
 
         [Required(ErrorMessage = "User-Name wird benötigt")]
         [MinLength(5, ErrorMessage = "Die Mindestlänge beträgt 5 Buchstaben")]
-        [MaxLength(15, ErrorMessage = "Die maximale Läge beträgt 15 Buchstaben")]
+        [MaxLength(150, ErrorMessage = "Die maximale Läge beträgt 150 Buchstaben")]
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "Dieses Feld wird benötigt")]

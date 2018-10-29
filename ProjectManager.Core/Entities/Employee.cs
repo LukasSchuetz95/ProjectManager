@@ -48,13 +48,13 @@ namespace ProjectManager.Core.Entities
         public DateTime? Birthdate { get; set; }
 
         [Display(Name = "Straße/Hausnr.")]
-        public string Adress { get; set; }
+        public string StreetNameAndNr { get; set; }
 
         [Display(Name = "PLZ"), MaxLength(8)]
         public string ZipCode { get; set; }
 
         [Display(Name = "Wohnort")]
-        public string Location { get; set; }
+        public string Residence { get; set; }
 
         [Display(Name = "Anstellungsdatum")]
         public DateTime? HiringDate { get; set; }

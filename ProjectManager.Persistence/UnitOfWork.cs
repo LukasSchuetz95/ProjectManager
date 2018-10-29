@@ -68,7 +68,10 @@ namespace ProjectManager.Persistence
 
         public void FillDb()
         {
-            throw new NotImplementedException();
+            this.DeleteDatabase();
+            this.MigrateDatabase();
+
+            Save();
         }
 
         public void MigrateDatabase()

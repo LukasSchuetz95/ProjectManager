@@ -7,7 +7,7 @@ namespace ProjectManager.Core.Entities
 {
     public class Department : EntityObject
     {
-        public List<Employee> Employees { get; set; }
+        //public List<Employee> Employees { get; set; }
 
         [Required(ErrorMessage = "Dieses Feld wird benötigt")]
         [Display(Name = "Firmensitz")]

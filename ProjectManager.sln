@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManager.Persistence"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManager.Web", "ProjectManager.Web\ProjectManager.Web.csproj", "{18646E9C-F5A0-4025-B8F5-CB3885F46AA6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManager.SeedDatabase", "ProjectManager.SeedDatabase\ProjectManager.SeedDatabase.csproj", "{0D7C305C-D918-4487-9E45-EE915AA6886E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{18646E9C-F5A0-4025-B8F5-CB3885F46AA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18646E9C-F5A0-4025-B8F5-CB3885F46AA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18646E9C-F5A0-4025-B8F5-CB3885F46AA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D7C305C-D918-4487-9E45-EE915AA6886E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D7C305C-D918-4487-9E45-EE915AA6886E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D7C305C-D918-4487-9E45-EE915AA6886E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D7C305C-D918-4487-9E45-EE915AA6886E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
