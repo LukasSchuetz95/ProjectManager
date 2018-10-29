@@ -48,6 +48,15 @@ namespace ProjectManager.Persistence
 
             modelBuilder.Entity<Qualification>().HasData(
                 new { Id = 2, QualificationName = "Test2" });
+
+            modelBuilder.Entity<User>().HasData(
+                new User { Id = 1, Admin = false, Password="ibimsbaumi", UserName = "TBaurnberger" });
+
+            modelBuilder.Entity<User>().HasData(
+                new User { Id = 2, Admin = true, Password = "ibimsluki", UserName = "LSchuetz" });
+
+            modelBuilder.Entity<User>().HasData(
+                new User { Id = 3, Admin = false, Password = "ibimsmairinger", UserName = "MMairinger" });
         }
     }
 }
