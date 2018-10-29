@@ -48,6 +48,9 @@ namespace ProjectManager.Persistence
 
             modelBuilder.Entity<Qualification>().HasData(
                 new { Id = 2, QualificationName = "Test2" });
+
+            modelBuilder.Entity<Qualification>().HasData(
+                new { Id = 3, QualificationName = "Test3" });
         }
     }
 }
