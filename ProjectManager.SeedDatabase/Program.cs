@@ -10,8 +10,6 @@ namespace ProjectManager.SeedDatabase
             using (UnitOfWork uow = new UnitOfWork())
             {
                 uow.DeleteDatabase();
-                Console.WriteLine("<Taste drücken>");
-                Console.ReadKey();
             }
         }
     }

@@ -50,7 +50,7 @@ namespace ProjectManager.Core.Entities
         [Display(Name = "Straße/Hausnr.")]
         public string StreetNameAndNr { get; set; }
 
-        [Display(Name = "PLZ"), MaxLength(8)]
+        [Display(Name = "PLZ")]
         public string ZipCode { get; set; }
 
         [Display(Name = "Wohnort")]
