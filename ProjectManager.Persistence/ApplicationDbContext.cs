@@ -116,6 +116,47 @@ namespace ProjectManager.Persistence
                     Projectmanager = true,
                     DepartmentId = 2
                 });
+
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Id = 1,
+                    Admin = true,
+                    EmployeeId = 1,
+                    Password = "lukiluki",
+                    PasswordCode = null,
+                    UserName = "LSchuetz"
+                });
+
+            modelBuilder.Entity<User>().HasData(
+               new User
+               {
+                   Id = 2,
+                   Admin = true,
+                   EmployeeId = 2,
+                   Password = "baumibaumi",
+                   PasswordCode = null,
+                   UserName = "TBaurnberger"
+               });
+
+            modelBuilder.Entity<User>().HasData(
+               new User
+               {
+                   Id = 3,
+                   Admin = true,
+                   EmployeeId = 3,
+                   Password = "mairinger",
+                   PasswordCode = null,
+                   UserName = "MMairinger"
+               });
+
+            //modelBuilder.Entity<>().HasData(
+            //    new
+            //    {
+
+            //    });
+
+
         }
     }
 }
