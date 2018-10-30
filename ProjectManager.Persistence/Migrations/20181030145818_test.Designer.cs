@@ -10,14 +10,14 @@ using ProjectManager.Persistence;
 namespace ProjectManager.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181030111603_test")]
+    [Migration("20181030145818_test")]
     partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -125,9 +125,9 @@ namespace ProjectManager.Persistence.Migrations
                     b.ToTable("Employees");
 
                     b.HasData(
-                        new { Id = 1, Birthdate = new DateTime(2018, 10, 30, 12, 16, 2, 528, DateTimeKind.Local), DepartmentId = 1, Email = "lukas.schuetz1@gmail.com", Firstname = "Lukas", HiringDate = new DateTime(2018, 10, 30, 12, 16, 2, 529, DateTimeKind.Local), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Projectmanager = true, Residence = "Bad Hall", Status = "Beschaeftigt", StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
-                        new { Id = 2, Birthdate = new DateTime(2018, 10, 30, 12, 16, 2, 530, DateTimeKind.Local), DepartmentId = 1, Email = "thomasbaurn@outlook.com", Firstname = "Thomas", HiringDate = new DateTime(2018, 10, 30, 12, 16, 2, 530, DateTimeKind.Local), Job = "Database Developer", Lastname = "Baurnberger", Phonenumber = "0660/ 4878 333", Projectmanager = false, Residence = "Kematen am Innbach", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" },
-                        new { Id = 3, Birthdate = new DateTime(2018, 10, 30, 12, 16, 2, 530, DateTimeKind.Local), DepartmentId = 2, Email = "mairinger-manuel@gmx.at", Firstname = "Manuel", HiringDate = new DateTime(2018, 10, 30, 12, 16, 2, 530, DateTimeKind.Local), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Projectmanager = true, Residence = "Irgendwo", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" }
+                        new { Id = 1, Birthdate = new DateTime(2018, 10, 30, 15, 58, 17, 592, DateTimeKind.Local), DepartmentId = 1, Email = "lukas.schuetz1@gmail.com", Firstname = "Lukas", HiringDate = new DateTime(2018, 10, 30, 15, 58, 17, 593, DateTimeKind.Local), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Projectmanager = true, Residence = "Bad Hall", Status = "Beschaeftigt", StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
+                        new { Id = 2, Birthdate = new DateTime(2018, 10, 30, 15, 58, 17, 594, DateTimeKind.Local), DepartmentId = 1, Email = "thomasbaurn@outlook.com", Firstname = "Thomas", HiringDate = new DateTime(2018, 10, 30, 15, 58, 17, 594, DateTimeKind.Local), Job = "Database Developer", Lastname = "Baurnberger", Phonenumber = "0660/ 4878 333", Projectmanager = false, Residence = "Kematen am Innbach", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" },
+                        new { Id = 3, Birthdate = new DateTime(2018, 10, 30, 15, 58, 17, 594, DateTimeKind.Local), DepartmentId = 2, Email = "mairinger-manuel@gmx.at", Firstname = "Manuel", HiringDate = new DateTime(2018, 10, 30, 15, 58, 17, 594, DateTimeKind.Local), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Projectmanager = true, Residence = "Irgendwo", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" }
                     );
                 });
 
@@ -290,8 +290,7 @@ namespace ProjectManager.Persistence.Migrations
                     b.Property<string>("Password")
                         .IsRequired();
 
-                    b.Property<string>("PasswordCode")
-                        .IsRequired();
+                    b.Property<string>("PasswordCode");
 
                     b.Property<byte[]>("Timestamp")
                         .IsConcurrencyToken()
@@ -306,6 +305,12 @@ namespace ProjectManager.Persistence.Migrations
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new { Id = 1, Admin = true, EmployeeId = 1, Password = "lukiluki", UserName = "LSchuetz" },
+                        new { Id = 2, Admin = true, EmployeeId = 2, Password = "baumibaumi", UserName = "TBaurnberger" },
+                        new { Id = 3, Admin = true, EmployeeId = 3, Password = "mairinger", UserName = "MMairinger" }
+                    );
                 });
 
             modelBuilder.Entity("ProjectManager.Core.Entities.Appointment", b =>

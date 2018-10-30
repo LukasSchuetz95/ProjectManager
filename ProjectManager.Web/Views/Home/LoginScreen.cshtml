@@ -1,12 +1,13 @@
 ﻿@{
     ViewData["Title"] = "LoginScreen";
 }
+
 <!doctype html>
 
 <html lang="de">
 <head>
     <title>Login-....</title>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
 </head>
 <body>
     <header>
@@ -14,14 +15,16 @@
     </header>
     <content>
         <form>
-            Username:
+            <label>Username: </label>
             <input type="text" name="EinName" size="30" maxlength="40" />
-            Passwort:
+            <label>Passwort: </label>
             <input type="password" name="pw" size="30" maxlength="40" />
-            <input type="submit" value="Einloggen" size="15" />
+
+            <a.href asp-controller="Home" asp-action="About" class="btn btn-default">Einloggen</a.href>
         </form>
     </content>
 
     <a href="mailto:thomasbaurn@outlook.com">Passwort vergessen</a>
 </body>
 </html>
+

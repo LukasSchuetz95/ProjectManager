@@ -23,7 +23,6 @@ namespace ProjectManager.Core.Entities
         [Display(Name = "Passwort")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Dieses Feld wird benötigt")]
         [Display(Name = "Code zum zurücksetzen des Passworts")]
         public string PasswordCode { get; set; }
 

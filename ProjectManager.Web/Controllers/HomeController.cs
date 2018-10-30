@@ -4,38 +4,41 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ProjectManager.Core.Contracts;
+using ProjectManager.Core.Entities;
 using ProjectManager.Web.Models;
 
 namespace ProjectManager.Web.Controllers
 {
     public class HomeController : Controller
     {
+        IUnitOfWork _unitOfWork;
+
+        public HomeController(IUnitOfWork unitOfWork)
+        {
+            this._unitOfWork = unitOfWork;
+        }
+
         public IActionResult LoginScreen()
         {
             return View();
         }
-        
-        public IActionResult EditEmployee()
+
+        public IActionResult About()
         {
+            ViewData["Message"] = "Your application description page.";
+
             return View();
         }
 
-        public IActionResult Profil()
+        public IActionResult Contact()
         {
+            ViewData["Message"] = "Your contact page.";
+
             return View();
         }
 
-        public IActionResult CreateTask()
-        {
-            return View();
-        }
-
-        public IActionResult Feed()
-        {
-            return View();
-        }
-
-        public IActionResult ProjektProfil()
+        public IActionResult Privacy()
         {
             return View();
         }
