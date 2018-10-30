@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProjectManager.Core.Contracts;
+using ProjectManager.Persistence;
 
 namespace ProjectManager.Web
 {
@@ -30,6 +32,7 @@ namespace ProjectManager.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -51,9 +54,27 @@ namespace ProjectManager.Web
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=LoginScreen}/{id?}");
+                routes.MapRoute(name: "default", template: "{controller=Home}/{action=LoginScreen}/{id?}");
+            });
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(name: "Edit", template: "{controller=EditEmployee}/{action=Edit}/{id?}");
+            });
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(name: "Feed", template: "{controller=Feed}/{action=EditFeed}/{id?}");
+            });
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(name: "EditProject", template: "{controller=EditProject}/{action=EditProject}/{id?}");
+            });
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(name: "CreateAppointment", template: "{controller=CreateAppointment}/{action=CreateAppointment}/{id?}");
             });
         }
     }
