@@ -2,6 +2,7 @@
 using ProjectManager.Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ProjectManager.Persistence
@@ -17,7 +18,7 @@ namespace ProjectManager.Persistence
 
         public List<Employee> GetAll()
         {
-            return _dbContext.Employees.OrderBy(d => d.DeviceType).ThenBy(d => d.Name).ToList();
+            return _dbContext.Employees.OrderBy(e => e.Lastname).ThenBy(e => e.Firstname).ToList();
         }
     }
 }
