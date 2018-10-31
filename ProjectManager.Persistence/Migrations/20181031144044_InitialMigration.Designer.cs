@@ -10,8 +10,8 @@ using ProjectManager.Persistence;
 namespace ProjectManager.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181030145818_test")]
-    partial class test
+    [Migration("20181031144044_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,6 +50,24 @@ namespace ProjectManager.Persistence.Migrations
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("Appointments");
+
+                    b.HasData(
+                        new { Id = 1, AppoName = "Arztbesuch", AppoType = "Arzt", EmployeeId = 1, Enddate = new DateTime(2020, 10, 30, 8, 0, 0, 0, DateTimeKind.Unspecified), Information = "Muss zum Arzt", Startdate = new DateTime(2020, 10, 30, 6, 30, 0, 0, DateTimeKind.Unspecified) },
+                        new { Id = 2, AppoName = "Meeting", AppoType = "Meeting", EmployeeId = 1, Enddate = new DateTime(2020, 10, 30, 9, 0, 0, 0, DateTimeKind.Unspecified), Information = "Habe ein Meeting", Startdate = new DateTime(2020, 10, 30, 8, 30, 0, 0, DateTimeKind.Unspecified) },
+                        new { Id = 3, AppoName = "test1", AppoType = "test", EmployeeId = 1, Enddate = new DateTime(2020, 10, 30, 11, 30, 0, 0, DateTimeKind.Unspecified), Information = "Das ist ein Test", Startdate = new DateTime(2020, 10, 30, 10, 30, 0, 0, DateTimeKind.Unspecified) },
+                        new { Id = 4, AppoName = "test2", AppoType = "test", EmployeeId = 1, Enddate = new DateTime(2020, 10, 30, 13, 30, 0, 0, DateTimeKind.Unspecified), Information = "Das ist ein Test", Startdate = new DateTime(2020, 10, 30, 12, 30, 0, 0, DateTimeKind.Unspecified) },
+                        new { Id = 5, AppoName = "test3", AppoType = "test", EmployeeId = 1, Enddate = new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "Das ist ein Test", Startdate = new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified) },
+                        new { Id = 6, AppoName = "test4", AppoType = "test", EmployeeId = 2, Enddate = new DateTime(2020, 10, 30, 7, 30, 0, 0, DateTimeKind.Unspecified), Information = "Das ist ein Test", Startdate = new DateTime(2020, 10, 30, 6, 30, 0, 0, DateTimeKind.Unspecified) },
+                        new { Id = 7, AppoName = "test5", AppoType = "test", EmployeeId = 2, Enddate = new DateTime(2020, 10, 30, 9, 30, 0, 0, DateTimeKind.Unspecified), Information = "Das ist ein Test", Startdate = new DateTime(2020, 10, 30, 8, 30, 0, 0, DateTimeKind.Unspecified) },
+                        new { Id = 8, AppoName = "test6", AppoType = "test", EmployeeId = 2, Enddate = new DateTime(2020, 10, 30, 11, 30, 0, 0, DateTimeKind.Unspecified), Information = "Das ist ein Test", Startdate = new DateTime(2020, 10, 30, 10, 30, 0, 0, DateTimeKind.Unspecified) },
+                        new { Id = 9, AppoName = "test7", AppoType = "test", EmployeeId = 2, Enddate = new DateTime(2020, 10, 30, 13, 30, 0, 0, DateTimeKind.Unspecified), Information = "Das ist ein Test", Startdate = new DateTime(2020, 10, 30, 12, 30, 0, 0, DateTimeKind.Unspecified) },
+                        new { Id = 10, AppoName = "test8", AppoType = "test", EmployeeId = 2, Enddate = new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "Das ist ein Test", Startdate = new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified) },
+                        new { Id = 11, AppoName = "test9", AppoType = "test", EmployeeId = 3, Enddate = new DateTime(2020, 10, 30, 7, 30, 0, 0, DateTimeKind.Unspecified), Information = "Das ist ein Test", Startdate = new DateTime(2020, 10, 30, 6, 30, 0, 0, DateTimeKind.Unspecified) },
+                        new { Id = 12, AppoName = "test10", AppoType = "test", EmployeeId = 3, Enddate = new DateTime(2020, 10, 30, 9, 30, 0, 0, DateTimeKind.Unspecified), Information = "Das ist ein Test", Startdate = new DateTime(2020, 10, 30, 8, 30, 0, 0, DateTimeKind.Unspecified) },
+                        new { Id = 13, AppoName = "test11", AppoType = "test", EmployeeId = 3, Enddate = new DateTime(2020, 10, 30, 11, 30, 0, 0, DateTimeKind.Unspecified), Information = "Das ist ein Test", Startdate = new DateTime(2020, 10, 30, 10, 30, 0, 0, DateTimeKind.Unspecified) },
+                        new { Id = 14, AppoName = "test12", AppoType = "test", EmployeeId = 3, Enddate = new DateTime(2020, 10, 30, 13, 30, 0, 0, DateTimeKind.Unspecified), Information = "Das ist ein Test", Startdate = new DateTime(2020, 10, 30, 12, 30, 0, 0, DateTimeKind.Unspecified) },
+                        new { Id = 15, AppoName = "test13", AppoType = "test", EmployeeId = 3, Enddate = new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "Das ist ein Test", Startdate = new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified) }
+                    );
                 });
 
             modelBuilder.Entity("ProjectManager.Core.Entities.Department", b =>
@@ -125,9 +143,9 @@ namespace ProjectManager.Persistence.Migrations
                     b.ToTable("Employees");
 
                     b.HasData(
-                        new { Id = 1, Birthdate = new DateTime(2018, 10, 30, 15, 58, 17, 592, DateTimeKind.Local), DepartmentId = 1, Email = "lukas.schuetz1@gmail.com", Firstname = "Lukas", HiringDate = new DateTime(2018, 10, 30, 15, 58, 17, 593, DateTimeKind.Local), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Projectmanager = true, Residence = "Bad Hall", Status = "Beschaeftigt", StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
-                        new { Id = 2, Birthdate = new DateTime(2018, 10, 30, 15, 58, 17, 594, DateTimeKind.Local), DepartmentId = 1, Email = "thomasbaurn@outlook.com", Firstname = "Thomas", HiringDate = new DateTime(2018, 10, 30, 15, 58, 17, 594, DateTimeKind.Local), Job = "Database Developer", Lastname = "Baurnberger", Phonenumber = "0660/ 4878 333", Projectmanager = false, Residence = "Kematen am Innbach", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" },
-                        new { Id = 3, Birthdate = new DateTime(2018, 10, 30, 15, 58, 17, 594, DateTimeKind.Local), DepartmentId = 2, Email = "mairinger-manuel@gmx.at", Firstname = "Manuel", HiringDate = new DateTime(2018, 10, 30, 15, 58, 17, 594, DateTimeKind.Local), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Projectmanager = true, Residence = "Irgendwo", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" }
+                        new { Id = 1, Birthdate = new DateTime(2018, 10, 31, 15, 40, 44, 57, DateTimeKind.Local), DepartmentId = 1, Email = "lukas.schuetz1@gmail.com", Firstname = "Lukas", HiringDate = new DateTime(2018, 10, 31, 15, 40, 44, 59, DateTimeKind.Local), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Projectmanager = true, Residence = "Bad Hall", Status = "Beschaeftigt", StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
+                        new { Id = 2, Birthdate = new DateTime(2018, 10, 31, 15, 40, 44, 59, DateTimeKind.Local), DepartmentId = 1, Email = "thomasbaurn@outlook.com", Firstname = "Thomas", HiringDate = new DateTime(2018, 10, 31, 15, 40, 44, 59, DateTimeKind.Local), Job = "Database Developer", Lastname = "Baurnberger", Phonenumber = "0660/ 4878 333", Projectmanager = false, Residence = "Kematen am Innbach", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" },
+                        new { Id = 3, Birthdate = new DateTime(2018, 10, 31, 15, 40, 44, 59, DateTimeKind.Local), DepartmentId = 2, Email = "mairinger-manuel@gmx.at", Firstname = "Manuel", HiringDate = new DateTime(2018, 10, 31, 15, 40, 44, 59, DateTimeKind.Local), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Projectmanager = true, Residence = "Irgendwo", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" }
                     );
                 });
 

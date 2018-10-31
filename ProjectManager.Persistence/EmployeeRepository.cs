@@ -1,6 +1,8 @@
 ﻿using ProjectManager.Core.Contracts;
+using ProjectManager.Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ProjectManager.Persistence
@@ -12,6 +14,11 @@ namespace ProjectManager.Persistence
         public EmployeeRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
+        }
+
+        public List<Employee> GetAll()
+        {
+            return _dbContext.Employees.OrderBy(e => e.Lastname).ThenBy(e => e.Firstname).ToList();
         }
     }
 }
