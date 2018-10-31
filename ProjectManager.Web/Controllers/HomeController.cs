@@ -12,12 +12,17 @@ namespace ProjectManager.Web.Controllers
 {
     public class HomeController : Controller
     {
+        IUnitOfWork _unitOfWork;
+
+        public HomeController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
         public IActionResult LoginScreen()
         {
             return View();
         }
-
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
