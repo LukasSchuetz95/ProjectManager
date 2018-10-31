@@ -18,7 +18,7 @@ namespace ProjectManager.Web.Models.LookingForEmployeeModel
         public void LoadData(IUnitOfWork unitOfWork)
         {
             List<Employee> employees = unitOfWork.Employees.GetAll();
-            Devices = new SelectList(devices, nameof(Device.Id), null);
+            Employees = new SelectList(employees, nameof(Employee.Id), null);
         }
     }
 }
