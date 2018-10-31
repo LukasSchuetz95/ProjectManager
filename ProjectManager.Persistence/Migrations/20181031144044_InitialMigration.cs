@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectManager.Persistence.Migrations
 {
-    public partial class test : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -253,32 +253,49 @@ namespace ProjectManager.Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "Id", "Birthdate", "DepartmentId", "Email", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Projectmanager", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
-                values: new object[] { 1, new DateTime(2018, 10, 30, 15, 58, 17, 592, DateTimeKind.Local), 1, "lukas.schuetz1@gmail.com", "Lukas", new DateTime(2018, 10, 30, 15, 58, 17, 593, DateTimeKind.Local), "Software Developer", "Schuetz", "0660/ 4878 299", null, true, "Bad Hall", "Beschaeftigt", "Roemerstr. 41", null, "4540" });
+                values: new object[] { 1, new DateTime(2018, 10, 31, 15, 40, 44, 57, DateTimeKind.Local), 1, "lukas.schuetz1@gmail.com", "Lukas", new DateTime(2018, 10, 31, 15, 40, 44, 59, DateTimeKind.Local), "Software Developer", "Schuetz", "0660/ 4878 299", null, true, "Bad Hall", "Beschaeftigt", "Roemerstr. 41", null, "4540" });
 
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "Id", "Birthdate", "DepartmentId", "Email", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Projectmanager", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
-                values: new object[] { 2, new DateTime(2018, 10, 30, 15, 58, 17, 594, DateTimeKind.Local), 1, "thomasbaurn@outlook.com", "Thomas", new DateTime(2018, 10, 30, 15, 58, 17, 594, DateTimeKind.Local), "Database Developer", "Baurnberger", "0660/ 4878 333", null, false, "Kematen am Innbach", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" });
+                values: new object[] { 2, new DateTime(2018, 10, 31, 15, 40, 44, 59, DateTimeKind.Local), 1, "thomasbaurn@outlook.com", "Thomas", new DateTime(2018, 10, 31, 15, 40, 44, 59, DateTimeKind.Local), "Database Developer", "Baurnberger", "0660/ 4878 333", null, false, "Kematen am Innbach", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" });
 
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "Id", "Birthdate", "DepartmentId", "Email", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Projectmanager", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
-                values: new object[] { 3, new DateTime(2018, 10, 30, 15, 58, 17, 594, DateTimeKind.Local), 2, "mairinger-manuel@gmx.at", "Manuel", new DateTime(2018, 10, 30, 15, 58, 17, 594, DateTimeKind.Local), "Software Developer", "Mairinger", "0660/ 4878 444", null, true, "Irgendwo", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" });
+                values: new object[] { 3, new DateTime(2018, 10, 31, 15, 40, 44, 59, DateTimeKind.Local), 2, "mairinger-manuel@gmx.at", "Manuel", new DateTime(2018, 10, 31, 15, 40, 44, 59, DateTimeKind.Local), "Software Developer", "Mairinger", "0660/ 4878 444", null, true, "Irgendwo", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" });
+
+            migrationBuilder.InsertData(
+                table: "Appointments",
+                columns: new[] { "Id", "AppoName", "AppoType", "EmployeeId", "Enddate", "Information", "Startdate", "Timestamp" },
+                values: new object[,]
+                {
+                    { 1, "Arztbesuch", "Arzt", 1, new DateTime(2020, 10, 30, 8, 0, 0, 0, DateTimeKind.Unspecified), "Muss zum Arzt", new DateTime(2020, 10, 30, 6, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 14, "test12", "test", 3, new DateTime(2020, 10, 30, 13, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 12, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 13, "test11", "test", 3, new DateTime(2020, 10, 30, 11, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 10, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 12, "test10", "test", 3, new DateTime(2020, 10, 30, 9, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 8, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 11, "test9", "test", 3, new DateTime(2020, 10, 30, 7, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 6, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 10, "test8", "test", 2, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 9, "test7", "test", 2, new DateTime(2020, 10, 30, 13, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 12, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 15, "test13", "test", 3, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 8, "test6", "test", 2, new DateTime(2020, 10, 30, 11, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 10, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 6, "test4", "test", 2, new DateTime(2020, 10, 30, 7, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 6, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 5, "test3", "test", 1, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 4, "test2", "test", 1, new DateTime(2020, 10, 30, 13, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 12, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 3, "test1", "test", 1, new DateTime(2020, 10, 30, 11, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 10, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 2, "Meeting", "Meeting", 1, new DateTime(2020, 10, 30, 9, 0, 0, 0, DateTimeKind.Unspecified), "Habe ein Meeting", new DateTime(2020, 10, 30, 8, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 7, "test5", "test", 2, new DateTime(2020, 10, 30, 9, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 8, 30, 0, 0, DateTimeKind.Unspecified), null }
+                });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Admin", "EmployeeId", "Password", "PasswordCode", "Timestamp", "UserName" },
-                values: new object[] { 1, true, 1, "lukiluki", null, null, "LSchuetz" });
-
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "Admin", "EmployeeId", "Password", "PasswordCode", "Timestamp", "UserName" },
-                values: new object[] { 2, true, 2, "baumibaumi", null, null, "TBaurnberger" });
-
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "Admin", "EmployeeId", "Password", "PasswordCode", "Timestamp", "UserName" },
-                values: new object[] { 3, true, 3, "mairinger", null, null, "MMairinger" });
+                values: new object[,]
+                {
+                    { 1, true, 1, "lukiluki", null, null, "LSchuetz" },
+                    { 2, true, 2, "baumibaumi", null, null, "TBaurnberger" },
+                    { 3, true, 3, "mairinger", null, null, "MMairinger" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_EmployeeId",
