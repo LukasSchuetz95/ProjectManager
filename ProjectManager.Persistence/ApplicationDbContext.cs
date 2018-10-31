@@ -143,7 +143,7 @@ namespace ProjectManager.Persistence
                new User
                {
                    Id = 3,
-                   Admin = true,
+                   Admin = false,
                    EmployeeId = 3,
                    Password = "mairinger",
                    PasswordCode = null,
