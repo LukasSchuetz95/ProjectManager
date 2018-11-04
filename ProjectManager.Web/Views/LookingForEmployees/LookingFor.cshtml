@@ -1,4 +1,5 @@
-﻿
+﻿@model ProjectManager.Web.Models.LookingForEmployeeModel
+
 @{
     ViewData["Title"] = "LookingFor";
 }
@@ -14,6 +15,28 @@
     <header>
         <h3>CreateAppointment</h3>
     </header>
+    <form asp-action="Index">
+        <div class="form-group">
+            <label asp-for="Filter"></label>
+            <input asp-for="Filter" class="form-control" />
+            <span asp-validation-for="Filter" class="text-danger"></span>
+        </div>
+        <input type="submit" value="Filtern" class="btn btn-primary" />
+    </form>
+
+    <table class="table">
+        <tr>
+            <th>Vorname</th>
+            <th>Nachname</th>
+        </tr>
+        @foreach (var employee in Model.Employees)
+        {
+            <tr>
+                <td>@employee.Firstname</td>
+                <td>@employee.Lastname</td>
+            </tr>
+        }
+    </table>
 </body>
 </html>
 
