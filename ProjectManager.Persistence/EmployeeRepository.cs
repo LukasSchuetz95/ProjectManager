@@ -16,7 +16,7 @@ namespace ProjectManager.Persistence
             _dbContext = dbContext;
         }
 
-        public List<Employee> GetAll()
+        public List<Employee> GetAll(string Filter)
         {
             return _dbContext.Employees.OrderBy(e => e.Lastname).ThenBy(e => e.Firstname).ToList();
         }

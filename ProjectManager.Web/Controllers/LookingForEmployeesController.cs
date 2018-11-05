@@ -23,5 +23,12 @@ namespace ProjectManager.Web.Controllers
             model.Employees = _unitOfWork.Employees.GetAll();
             return View(model);
         }
+
+        [HttpPost]
+        public IActionResult LookingFor(LookingForEmployeeModel model)
+        {
+            model.Employees = _unitOfWork.Employees.GetAll(model.Filter);
+            return View(model);
+        }
     }
 }

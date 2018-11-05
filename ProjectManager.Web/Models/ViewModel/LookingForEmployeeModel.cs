@@ -15,9 +15,5 @@ namespace ProjectManager.Web.Models
         [Display(Name = "LookingForEmployee")]
         public string Filter { get; set; }
 
-        public void LoadData(IUnitOfWork unitOfWork)
-        {
-            List<Employee> employees = unitOfWork.Employees.GetAll();
-        }
     }
 }
