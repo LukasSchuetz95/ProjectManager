@@ -13,7 +13,7 @@ namespace ProjectManager.Web.Models
     {
         public List<Employee> Employees { get; set; }
         [Display(Name = "LookingForEmployee")]
-        public string Filter { get; set; }
+        public string Filter { get; set; } //Du musst mir sagen welchen Filter du haben willst !! Vorname, Nachname, Id ??
 
     }
 }

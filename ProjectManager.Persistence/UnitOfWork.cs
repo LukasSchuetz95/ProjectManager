@@ -71,6 +71,7 @@ namespace ProjectManager.Persistence
             this.DeleteDatabase();
             this.MigrateDatabase();
             
+            
             Save();
         }
 
