@@ -14,6 +14,40 @@
     <header>
         <h3>CreateAppointment</h3>
     </header>
+
+    <a asp-controller="Appointman" , asp-action="Create" class="btn btn-default pull-left">Create a new Appointment</a>
+    <a asp-controller="Appointman" , asp-action="Create" class="btn btn-default pull-left">Edit the Appointment</a>
+    <a asp-controller="Appointman" , asp-action="Create" class="btn btn-default pull-left">Deleate Appointment</a>
+    <form asp-action="CreatAppointment">
+        <div class="form-group">
+            <select class="form-control"></select>
+        </div>
+
+
+    </form>
+
+    <content>
+        <form>
+            <label>Terminname:</label>
+            <input type="Text" name="TerminName" , size="30" maxlength="50" />
+            <label>Terminart</label>
+
+            <label>Start und Endtermin</label>
+            <input type="datetime" name="StartTermin" , size="30" maxlength="50"/n />
+            <input type="datetime" name="Endtermin" , size="30" maxlength="50" />
+            <label>FirstName</label>
+            <input type="text" name="FirstName" , size="30" maxlength="50" />
+            <label>LastName</label>
+            <input type="text" name="LastName" , size="30" maxlength="50" />
+            <label>Kommentar</label>
+            <input type="text" name="kommentar" , size="30" maxlength="50" />
+
+        </form>
+
+
+
+    </content>
+
 </body>
 </html>
 
