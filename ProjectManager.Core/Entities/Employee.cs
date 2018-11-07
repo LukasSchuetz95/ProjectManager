@@ -20,11 +20,6 @@ namespace ProjectManager.Core.Entities
 
         public int DepartmentId { get; set; }
 
-        //[ForeignKey(nameof(UserId))]
-        //public User User { get; set; }
-
-        //public int UserId { get; set; }
-
         [Required(ErrorMessage = "Dieses Feld wird benötigt")]
         [Display(Name = "Vorname")]
         public string Firstname { get; set; }
