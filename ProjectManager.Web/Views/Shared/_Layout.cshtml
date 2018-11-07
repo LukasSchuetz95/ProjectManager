@@ -25,14 +25,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ProjectManager.Web</a>
+                <a asp-area="" asp-controller="LoginScreen" asp-action="Home" class="navbar-brand">ProjectManager.Web</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="CreateAppointment" asp-action="CreateAppointment">CreateAppointment</a></li>
+                    <li><a asp-area="" asp-controller="EditEmployee" asp-action="Edit">EditEmployee</a></li>
+                    <li><a asp-area="" asp-controller="EditProject" asp-action="EditProject">EditProject</a></li>
+                    <li><a asp-area="" asp-controller="Feed" asp-action="EditFeed">Feed</a></li>
+                    <li><a asp-area="" asp-controller="LookingForEmployees" asp-action="LookingFor">LookingForEmployee</a></li>
                 </ul>
                 <partial name="_LoginPartial" />
             </div>
