@@ -7,9 +7,9 @@ namespace ProjectManager.Persistence
 {
     public class TaskRepository : ITaskRepository
     {
-        private readonly ApplicationDbContext _dbContext;
+        private readonly ApplicationDbContextPersistence _dbContext;
 
-        public TaskRepository(ApplicationDbContext dbContext)
+        public TaskRepository(ApplicationDbContextPersistence dbContext)
         {
             _dbContext = dbContext;
         }

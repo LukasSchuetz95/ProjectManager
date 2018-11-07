@@ -9,7 +9,7 @@ namespace ProjectManager.Persistence
 {
     public class UnitOfWork : IUnitOfWork
     {
-        readonly ApplicationDbContext _dbContext;
+        readonly ApplicationDbContextPersistence _dbContext;
         private bool _disposed;
 
         public IAppointmentRepository Appointments { get; }
@@ -28,11 +28,9 @@ namespace ProjectManager.Persistence
 
         public ITaskRepository Tasks { get; }
 
-        public IUserRepository Users { get; }
-
         public UnitOfWork()
         {
-            _dbContext = new ApplicationDbContext();
+            _dbContext = new ApplicationDbContextPersistence();
             Appointments = new AppointmentRepository(_dbContext);
             Departments = new DepartmentRepository(_dbContext);
             Employees = new EmployeeRepository(_dbContext);
@@ -41,7 +39,6 @@ namespace ProjectManager.Persistence
             Projects = new ProjectRepository(_dbContext);
             Qualifications = new QualificationRepository(_dbContext);
             Tasks = new TaskRepository(_dbContext);
-            Users = new UserRepository(_dbContext);
         }
 
         public void DeleteDatabase()

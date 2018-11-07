@@ -22,8 +22,6 @@ namespace ProjectManager.Core.Contracts
 
         ITaskRepository Tasks { get; }
 
-        IUserRepository Users { get; }
-
 
         void Save();
 

@@ -7,9 +7,9 @@ namespace ProjectManager.Persistence
 {
     public class AppointmentRepository : IAppointmentRepository
     {
-        private readonly ApplicationDbContext _dbContext;
+        private readonly ApplicationDbContextPersistence _dbContext;
 
-        public AppointmentRepository(ApplicationDbContext dbContext)
+        public AppointmentRepository(ApplicationDbContextPersistence dbContext)
         {
             _dbContext = dbContext;
         }

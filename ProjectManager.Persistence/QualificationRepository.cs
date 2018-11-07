@@ -7,9 +7,9 @@ namespace ProjectManager.Persistence
 {
     public class QualificationRepository : IQualificationRepository
     {
-        private readonly ApplicationDbContext _dbContext;
+        private readonly ApplicationDbContextPersistence _dbContext;
 
-        public QualificationRepository(ApplicationDbContext dbContext)
+        public QualificationRepository(ApplicationDbContextPersistence dbContext)
         {
             _dbContext = dbContext;
         }

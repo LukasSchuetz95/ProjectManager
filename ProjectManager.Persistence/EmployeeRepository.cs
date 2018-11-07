@@ -9,9 +9,9 @@ namespace ProjectManager.Persistence
 {
     public class EmployeeRepository : IEmployeeRepository
     {
-        private readonly ApplicationDbContext _dbContext;
+        private readonly ApplicationDbContextPersistence _dbContext;
 
-        public EmployeeRepository(ApplicationDbContext dbContext)
+        public EmployeeRepository(ApplicationDbContextPersistence dbContext)
         {
             _dbContext = dbContext;
         }

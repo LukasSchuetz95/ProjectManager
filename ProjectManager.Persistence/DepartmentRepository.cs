@@ -7,9 +7,9 @@ namespace ProjectManager.Persistence
 {
     public class DepartmentRepository : IDepartmentRepository
     {
-        private readonly ApplicationDbContext _dbContext;
+        private readonly ApplicationDbContextPersistence _dbContext;
 
-        public DepartmentRepository(ApplicationDbContext dbContext)
+        public DepartmentRepository(ApplicationDbContextPersistence dbContext)
         {
             _dbContext = dbContext;
         }

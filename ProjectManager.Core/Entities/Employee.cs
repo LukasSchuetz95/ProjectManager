@@ -61,9 +61,5 @@ namespace ProjectManager.Core.Entities
 
         [Display(Name = "Telefonnummer")]
         public string Phonenumber { get; set; }
-
-        [EmailAddress]
-        [Display(Name = "E-Mail")]
-        public string Email { get; set; }
     }
 }

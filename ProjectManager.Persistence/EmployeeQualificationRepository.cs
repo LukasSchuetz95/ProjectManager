@@ -7,9 +7,9 @@ namespace ProjectManager.Persistence
 {
     public class EmployeeQualificationRepository : IEmployeeQualificationRepository
     {
-        private readonly ApplicationDbContext _dbContext;
+        private readonly ApplicationDbContextPersistence _dbContext;
 
-        public EmployeeQualificationRepository(ApplicationDbContext dbContext)
+        public EmployeeQualificationRepository(ApplicationDbContextPersistence dbContext)
         {
             _dbContext = dbContext;
         }

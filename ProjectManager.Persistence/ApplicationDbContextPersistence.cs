@@ -4,13 +4,11 @@ using ProjectManager.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-
+using System.Text;
 
 namespace ProjectManager.Persistence
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContextPersistence : DbContext
     {
         public DbSet<Appointment> Appointments { get; set; }
 
@@ -27,8 +25,6 @@ namespace ProjectManager.Persistence
         public DbSet<Qualification> Qualifications { get; set; }
 
         public DbSet<Core.Entities.Task> Tasks { get; set; }
-
-        public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -53,7 +49,7 @@ namespace ProjectManager.Persistence
                 new { Id = 3, QualificationName = "Test3" });
 
             modelBuilder.Entity<Department>().HasData(
-                new Department{ Id = 1, DeptLocation = "Wels", DeptName = "Headquarter" });
+                new Department { Id = 1, DeptLocation = "Wels", DeptName = "Headquarter" });
 
             modelBuilder.Entity<Department>().HasData(
                 new Department { Id = 2, DeptLocation = "Wien", DeptName = "Development" });
@@ -117,38 +113,7 @@ namespace ProjectManager.Persistence
                     DepartmentId = 2
                 });
 
-            modelBuilder.Entity<User>().HasData(
-                new User
-                {
-                    Id = 1,
-                    Admin = true,
-                    EmployeeId = 1,
-                    Password = "lukiluki",
-                    PasswordCode = null,
-                    UserName = "LSchuetz"
-                });
 
-            modelBuilder.Entity<User>().HasData(
-               new User
-               {
-                   Id = 2,
-                   Admin = true,
-                   EmployeeId = 2,
-                   Password = "baumibaumi",
-                   PasswordCode = null,
-                   UserName = "TBaurnberger"
-               });
-
-            modelBuilder.Entity<User>().HasData(
-               new User
-               {
-                   Id = 3,
-                   Admin = false,
-                   EmployeeId = 3,
-                   Password = "mairinger",
-                   PasswordCode = null,
-                   UserName = "MMairinger"
-               });
 
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment
@@ -329,11 +294,6 @@ namespace ProjectManager.Persistence
                     Enddate = new DateTime(2020, 10, 30, 15, 30, 0),
                     Information = "Das ist ein Test"
                 });
-
-
-
-
-
 
         }
     }

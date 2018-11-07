@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProjectManager.Core.Contracts;
-using ProjectManager.Core.Entities;
 using ProjectManager.Web.Models;
 
 namespace ProjectManager.Web.Controllers
