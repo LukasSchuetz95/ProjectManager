@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "CreateAppointment";
 }
 
@@ -9,39 +8,51 @@
 <head>
     <title></title>
     <meta charset="utf-8" />
+
 </head>
 <body>
     <header>
-        <h3>CreateAppointment</h3>
+        <h3>Termin erstellen</h3>
     </header>
-
-    <a asp-controller="Appointman" , asp-action="Create" class="btn btn-default pull-left">Create a new Appointment</a>
-    <a asp-controller="Appointman" , asp-action="Create" class="btn btn-default pull-left">Edit the Appointment</a>
-    <a asp-controller="Appointman" , asp-action="Create" class="btn btn-default pull-left">Deleate Appointment</a>
-    <form asp-action="CreatAppointment">
-        <div class="form-group">
-            <select class="form-control"></select>
-        </div>
-
-
-    </form>
-
     <content>
         <form>
-            <label>Terminname:</label>
-            <input type="Text" name="TerminName" , size="30" maxlength="50" />
-            <label>Terminart</label>
-
-            <label>Start und Endtermin</label>
-            <input type="datetime" name="StartTermin" , size="30" maxlength="50"/n />
-            <input type="datetime" name="Endtermin" , size="30" maxlength="50" />
-            <label>FirstName</label>
-            <input type="text" name="FirstName" , size="30" maxlength="50" />
-            <label>LastName</label>
-            <input type="text" name="LastName" , size="30" maxlength="50" />
-            <label>Kommentar</label>
-            <input type="text" name="kommentar" , size="30" maxlength="50" />
-
+            <fieldset>
+                <p>
+                    <label>Terminname:</label>
+                    <input type="Text" name="TerminName" , size="30" maxlength="50" \A />
+                </p>
+                <p>
+                    <div class="form-group">
+                        <label>Terminart:</label>
+                        <select class="form-control">
+                            <option>Arztbesuch</option>
+                            <option>Kunde</option>
+                            <option>Urlaub</option>
+                            <option>Krank</option>
+                            <option>Anderes</option>
+                        </select>
+                    </div>
+                </p>
+                <p>
+                    <label>Starttermin</label>
+                    <input type="datetime" name="StartTermin" , size="30" maxlength="50" \A />
+                    <label>Endtermin</label>
+                    <input type="datetime" name="Endtermin" , size="30" maxlength="50" />
+                </p>
+                <p>
+                    <label>FirstName</label>
+                    <input type="text" name="Vorname" , size="30" maxlength="50" />
+                    <label>LastName</label>
+                    <input type="text" name="Nachname" , size="30" maxlength="50" />
+                </p>
+                <p>
+                    <label>Kommentar</label>
+                    <input type="text" name="Kommentar" , size="150" maxlength="300"/>
+                </p>
+                <p>
+                    <input type="submit" value="Erstellen" class="btn btn-primary" />
+                </p>
+            </fieldset>
         </form>
 
 
@@ -50,4 +61,5 @@
 
 </body>
 </html>
+
 
