@@ -18,7 +18,15 @@ namespace ProjectManager.Persistence
 
         public List<Employee> GetAll(string Filter)
         {
-            return _dbContext.Employees.OrderBy(e => e.Lastname).ThenBy(e => e.Firstname).ToList();
+            if (Filter == null || Filter == "")
+            {
+                return _dbContext.Employees.OrderBy(e => e.Lastname).ThenBy(e => e.Firstname).ToList();
+            }
+            else
+            {
+                return _dbContext.Employees.OrderBy(e => e.Lastname)
+                    .ThenBy(e => e.Firstname).Where(e => e.Lastname.StartsWith(Filter)).ToList();
+            }
         }
     }
 }
