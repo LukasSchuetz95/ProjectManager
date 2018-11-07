@@ -22,13 +22,11 @@ namespace ProjectManager.Persistence
 
             if (Filter == null || Filter == "")
             {
-                return query.ToList(); /*_dbContext.Employees.OrderBy(e => e.Lastname).ThenBy(e => e.Firstname).ToList();*/
+                return query.ToList();
             }
             else
             {
                 return query.Where(e => e.Lastname.StartsWith(Filter)).ToList();
-                //_dbContext.Employees.OrderBy(e => e.Lastname)
-                //.ThenBy(e => e.Firstname).Where(e => e.Lastname.StartsWith(Filter)).ToList();
             }
         }
 
