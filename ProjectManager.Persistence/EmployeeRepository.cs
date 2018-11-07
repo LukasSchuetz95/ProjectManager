@@ -18,14 +18,18 @@ namespace ProjectManager.Persistence
 
         public List<Employee> GetEmployeeByLastname(string Filter)
         {
+            IQueryable<Employee> query = _dbContext.Employees.OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
+
             if (Filter == null || Filter == "")
             {
-                return _dbContext.Employees.OrderBy(e => e.Lastname).ThenBy(e => e.Firstname).ToList();
+                return query.ToList(); /*_dbContext.Employees.OrderBy(e => e.Lastname).ThenBy(e => e.Firstname).ToList();*/
             }
             else
             {
-                return _dbContext.Employees.OrderBy(e => e.Lastname)
-                    .ThenBy(e => e.Firstname).Where(e => e.Lastname.StartsWith(Filter)).ToList();
+                return query.Where(e => e.Lastname.StartsWith(Filter)).ToList();
+
+                //_dbContext.Employees.OrderBy(e => e.Lastname)
+                //.ThenBy(e => e.Firstname).Where(e => e.Lastname.StartsWith(Filter)).ToList();
             }
         }
     }
