@@ -19,15 +19,15 @@ namespace ProjectManager.Web.Controllers
 
         public IActionResult LookingFor()
         {
-            LookingForEmployeeModel model = new LookingForEmployeeModel();
-            model.Employees = _unitOfWork.Employees.GetAll();
+            LookingForEmployeesLookingForModel model = new LookingForEmployeesLookingForModel();
+            model.Employees = _unitOfWork.Employees.GetEmployeeByLastname();
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult LookingFor(LookingForEmployeeModel model)
+        public IActionResult LookingFor(LookingForEmployeesLookingForModel model)
         {
-            model.Employees = _unitOfWork.Employees.GetAll(model.Filter);
+            model.Employees = _unitOfWork.Employees.GetEmployeeByLastname(model.Filter);
             return View(model);
         }
     }

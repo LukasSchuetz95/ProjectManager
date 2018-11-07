@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProjectManager.Web.Models
 {
-    public class LookingForEmployeeModel
+    public class LookingForEmployeesLookingForModel
     {
         public List<Employee> Employees { get; set; }
         [Display(Name = "LookingForEmployee")]

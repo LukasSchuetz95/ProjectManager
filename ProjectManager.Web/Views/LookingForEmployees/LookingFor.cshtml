@@ -1,4 +1,4 @@
-﻿@model ProjectManager.Web.Models.LookingForEmployeeModel
+﻿@model ProjectManager.Web.Models.LookingForEmployeesLookingForModel
 
 @{
     ViewData["Title"] = "LookingFor";
@@ -26,13 +26,14 @@
 
     <table class="table">
         <tr>
-            <th>Vorname</th><th>Nachname</th>
+            <th>Nachname</th>
+            <th>Vorname</th>
         </tr>
         @foreach (var employee in Model.Employees)
         {
             <tr>
-                <td>@employee.Firstname</td>
                 <td>@employee.Lastname</td>
+                <td>@employee.Firstname</td>
             </tr>
         }
     </table>

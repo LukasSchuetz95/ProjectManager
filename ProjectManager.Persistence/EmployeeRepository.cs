@@ -16,7 +16,7 @@ namespace ProjectManager.Persistence
             _dbContext = dbContext;
         }
 
-        public List<Employee> GetAll(string Filter)
+        public List<Employee> GetEmployeeByLastname(string Filter)
         {
             if (Filter == null || Filter == "")
             {
