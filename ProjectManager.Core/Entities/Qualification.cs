@@ -7,7 +7,6 @@ namespace ProjectManager.Core.Entities
 {
     public class Qualification : EntityObject
     {
-        public List<EmployeeQualification> EmployeeQualifications { get; set; }
 
         [Required(ErrorMessage = "Dieses Feld wird benötigt")]
         [Display(Name = "Qualifikation")]

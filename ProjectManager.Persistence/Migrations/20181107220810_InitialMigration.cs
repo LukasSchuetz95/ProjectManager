@@ -152,7 +152,6 @@ namespace ProjectManager.Persistence.Migrations
                     Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
                     EmployeeId = table.Column<int>(nullable: false),
                     QualificationId = table.Column<int>(nullable: false),
-                    TaskId = table.Column<int>(nullable: false),
                     Information = table.Column<string>(nullable: true),
                     SkillLevel = table.Column<int>(nullable: false)
                 },
@@ -169,12 +168,6 @@ namespace ProjectManager.Persistence.Migrations
                         name: "FK_EmployeeQualifications_Qualifications_QualificationId",
                         column: x => x.QualificationId,
                         principalTable: "Qualifications",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_EmployeeQualifications_Tasks_TaskId",
-                        column: x => x.TaskId,
-                        principalTable: "Tasks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -228,17 +221,17 @@ namespace ProjectManager.Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "Id", "Birthdate", "DepartmentId", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Projectmanager", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
-                values: new object[] { 1, new DateTime(2018, 11, 7, 19, 8, 24, 105, DateTimeKind.Local), 1, "Lukas", new DateTime(2018, 11, 7, 19, 8, 24, 106, DateTimeKind.Local), "Software Developer", "Schuetz", "0660/ 4878 299", null, true, "Bad Hall", "Beschaeftigt", "Roemerstr. 41", null, "4540" });
+                values: new object[] { 1, new DateTime(2018, 11, 7, 23, 8, 10, 121, DateTimeKind.Local), 1, "Lukas", new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), "Software Developer", "Schuetz", "0660/ 4878 299", null, true, "Bad Hall", "Beschaeftigt", "Roemerstr. 41", null, "4540" });
 
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "Id", "Birthdate", "DepartmentId", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Projectmanager", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
-                values: new object[] { 2, new DateTime(2018, 11, 7, 19, 8, 24, 107, DateTimeKind.Local), 1, "Thomas", new DateTime(2018, 11, 7, 19, 8, 24, 107, DateTimeKind.Local), "Database Developer", "Baurnberger", "0660/ 4878 333", null, false, "Kematen am Innbach", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" });
+                values: new object[] { 2, new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), 1, "Thomas", new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), "Database Developer", "Baurnberger", "0660/ 4878 333", null, false, "Kematen am Innbach", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" });
 
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "Id", "Birthdate", "DepartmentId", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Projectmanager", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
-                values: new object[] { 3, new DateTime(2018, 11, 7, 19, 8, 24, 107, DateTimeKind.Local), 2, "Manuel", new DateTime(2018, 11, 7, 19, 8, 24, 107, DateTimeKind.Local), "Software Developer", "Mairinger", "0660/ 4878 444", null, true, "Irgendwo", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" });
+                values: new object[] { 3, new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), 2, "Manuel", new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), "Software Developer", "Mairinger", "0660/ 4878 444", null, true, "Irgendwo", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" });
 
             migrationBuilder.InsertData(
                 table: "Appointments",
@@ -276,11 +269,6 @@ namespace ProjectManager.Persistence.Migrations
                 name: "IX_EmployeeQualifications_QualificationId",
                 table: "EmployeeQualifications",
                 column: "QualificationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmployeeQualifications_TaskId",
-                table: "EmployeeQualifications",
-                column: "TaskId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_DepartmentId",

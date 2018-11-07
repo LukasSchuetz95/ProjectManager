@@ -9,15 +9,8 @@ namespace ProjectManager.Core.Entities
 {
     public class Employee : EntityObject
     {
-        public List<EmployeeQualification> EmployeeQualifications { get; set; }
-
-        public List<EmployeeTask> EmployeeTasks { get; set; }
-
-        public List<Appointment> Appointments { get; set; }
-
         [ForeignKey(nameof(DepartmentId))]
         public Department Department { get; set; }
-
         public int DepartmentId { get; set; }
 
         [Required(ErrorMessage = "Dieses Feld wird benötigt")]

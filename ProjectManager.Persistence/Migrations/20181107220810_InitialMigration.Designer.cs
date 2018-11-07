@@ -10,14 +10,14 @@ using ProjectManager.Persistence;
 namespace ProjectManager.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContextPersistence))]
-    [Migration("20181107180824_InitialMigration")]
+    [Migration("20181107220810_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -141,9 +141,9 @@ namespace ProjectManager.Persistence.Migrations
                     b.ToTable("Employees");
 
                     b.HasData(
-                        new { Id = 1, Birthdate = new DateTime(2018, 11, 7, 19, 8, 24, 105, DateTimeKind.Local), DepartmentId = 1, Firstname = "Lukas", HiringDate = new DateTime(2018, 11, 7, 19, 8, 24, 106, DateTimeKind.Local), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Projectmanager = true, Residence = "Bad Hall", Status = "Beschaeftigt", StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
-                        new { Id = 2, Birthdate = new DateTime(2018, 11, 7, 19, 8, 24, 107, DateTimeKind.Local), DepartmentId = 1, Firstname = "Thomas", HiringDate = new DateTime(2018, 11, 7, 19, 8, 24, 107, DateTimeKind.Local), Job = "Database Developer", Lastname = "Baurnberger", Phonenumber = "0660/ 4878 333", Projectmanager = false, Residence = "Kematen am Innbach", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" },
-                        new { Id = 3, Birthdate = new DateTime(2018, 11, 7, 19, 8, 24, 107, DateTimeKind.Local), DepartmentId = 2, Firstname = "Manuel", HiringDate = new DateTime(2018, 11, 7, 19, 8, 24, 107, DateTimeKind.Local), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Projectmanager = true, Residence = "Irgendwo", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" }
+                        new { Id = 1, Birthdate = new DateTime(2018, 11, 7, 23, 8, 10, 121, DateTimeKind.Local), DepartmentId = 1, Firstname = "Lukas", HiringDate = new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Projectmanager = true, Residence = "Bad Hall", Status = "Beschaeftigt", StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
+                        new { Id = 2, Birthdate = new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), DepartmentId = 1, Firstname = "Thomas", HiringDate = new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), Job = "Database Developer", Lastname = "Baurnberger", Phonenumber = "0660/ 4878 333", Projectmanager = false, Residence = "Kematen am Innbach", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" },
+                        new { Id = 3, Birthdate = new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), DepartmentId = 2, Firstname = "Manuel", HiringDate = new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Projectmanager = true, Residence = "Irgendwo", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" }
                     );
                 });
 
@@ -161,8 +161,6 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.Property<int>("SkillLevel");
 
-                    b.Property<int>("TaskId");
-
                     b.Property<byte[]>("Timestamp")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
@@ -172,8 +170,6 @@ namespace ProjectManager.Persistence.Migrations
                     b.HasIndex("EmployeeId");
 
                     b.HasIndex("QualificationId");
-
-                    b.HasIndex("TaskId");
 
                     b.ToTable("EmployeeQualifications");
                 });
@@ -296,7 +292,7 @@ namespace ProjectManager.Persistence.Migrations
             modelBuilder.Entity("ProjectManager.Core.Entities.Appointment", b =>
                 {
                     b.HasOne("ProjectManager.Core.Entities.Employee", "Employee")
-                        .WithMany("Appointments")
+                        .WithMany()
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -312,30 +308,25 @@ namespace ProjectManager.Persistence.Migrations
             modelBuilder.Entity("ProjectManager.Core.Entities.EmployeeQualification", b =>
                 {
                     b.HasOne("ProjectManager.Core.Entities.Employee", "Employee")
-                        .WithMany("EmployeeQualifications")
+                        .WithMany()
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ProjectManager.Core.Entities.Qualification", "Qualification")
-                        .WithMany("EmployeeQualifications")
+                        .WithMany()
                         .HasForeignKey("QualificationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ProjectManager.Core.Entities.Task", "Task")
-                        .WithMany("EmployeeQualifications")
-                        .HasForeignKey("TaskId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("ProjectManager.Core.Entities.EmployeeTask", b =>
                 {
                     b.HasOne("ProjectManager.Core.Entities.Employee", "Employee")
-                        .WithMany("EmployeeTasks")
+                        .WithMany()
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ProjectManager.Core.Entities.Task", "Task")
-                        .WithMany("EmployeeTasks")
+                        .WithMany()
                         .HasForeignKey("TaskId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -343,7 +334,7 @@ namespace ProjectManager.Persistence.Migrations
             modelBuilder.Entity("ProjectManager.Core.Entities.Task", b =>
                 {
                     b.HasOne("ProjectManager.Core.Entities.Project", "Project")
-                        .WithMany("Tasks")
+                        .WithMany()
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

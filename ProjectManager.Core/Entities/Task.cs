@@ -8,9 +8,6 @@ namespace ProjectManager.Core.Entities
 {
     public class Task : EntityObject
     {
-        public List<EmployeeTask> EmployeeTasks { get; set; }
-
-        public List<EmployeeQualification> EmployeeQualifications { get; set; }
 
         [ForeignKey(nameof(ProjectId))]
         public Project Project { get; set; }
