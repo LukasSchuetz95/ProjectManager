@@ -27,9 +27,22 @@ namespace ProjectManager.Persistence
             else
             {
                 return query.Where(e => e.Lastname.StartsWith(Filter)).ToList();
-
                 //_dbContext.Employees.OrderBy(e => e.Lastname)
                 //.ThenBy(e => e.Firstname).Where(e => e.Lastname.StartsWith(Filter)).ToList();
+            }
+        }
+
+        public List<Employee> GetEmployeeByFirstname(string Filter)
+        {
+            IQueryable<Employee> query = _dbContext.Employees.OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
+
+            if (Filter == null || Filter == "")
+            {
+                return query.ToList();
+            }
+            else
+            {
+                return query.Where(e => e.Firstname.StartsWith(Filter)).ToList();
             }
         }
     }

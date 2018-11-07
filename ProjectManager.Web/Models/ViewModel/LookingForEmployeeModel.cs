@@ -13,7 +13,8 @@ namespace ProjectManager.Web.Models
     {
         public List<Employee> Employees { get; set; }
         [Display(Name = "LookingForEmployee")]
-        public string Filter { get; set; }
+        public string FilterLastname { get; set; }
+        public string FilterFirstname { get; set; }
 
         //StandardbennenungController+Actionmodel
     }

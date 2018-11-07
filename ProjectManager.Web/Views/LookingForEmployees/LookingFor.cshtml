@@ -17,13 +17,20 @@
     </header>
     <form asp-action="LookingFor">
         <div class="form-group">
-            <label asp-for="Filter"></label>
-            <input asp-for="Filter" class="form-control" />
-            <span asp-validation-for="Filter" class="text-danger"></span>
+            <label asp-for="FilterLastname"></label>
+            <input asp-for="FilterLastname" class="form-control" />
+            <span asp-validation-for="FilterLastname" class="text-danger"></span>
         </div>
         <input type="submit" value="Filtern" class="btn btn-primary" />
     </form>
-
+    <form asp-action="LookingFor">
+        <div class="form-group">
+            <label asp-for="FilterFirstname"></label>
+            <input asp-for="FilterFirstname" class="form-control" />
+            <span asp-validation-for="FilterFirstname" class="text-danger"></span>
+        </div>
+        <input type="submit" value="Filtern" class="btn btn-primary" />
+    </form>
     <table class="table">
         <tr>
             <th>Nachname</th>

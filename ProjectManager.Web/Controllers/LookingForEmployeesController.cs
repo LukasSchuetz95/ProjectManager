@@ -27,8 +27,17 @@ namespace ProjectManager.Web.Controllers
         [HttpPost]
         public IActionResult LookingFor(LookingForEmployeesLookingForModel model)
         {
-            model.Employees = _unitOfWork.Employees.GetEmployeeByLastname(model.Filter);
-            return View(model);
+            if (model.FilterFirstname == null)
+            {
+                model.Employees = _unitOfWork.Employees.GetEmployeeByLastname(model.FilterLastname);
+                return View(model);
+            }
+            else
+            {
+                model.Employees = _unitOfWork.Employees.GetEmployeeByFirstname(model.FilterFirstname);
+                return View(model);
+            }
+            
         }
     }
 }
