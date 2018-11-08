@@ -28,7 +28,7 @@ namespace ProjectManager.Persistence
 
         public Project GetById(int projectId)
         {
-            return _dbContext.Projects.SingleOrDefault(p => p.Id == projectId);
+            return _dbContext.Projects.Where(p => p.Id == projectId).FirstOrDefault();
         }
     }
 }

@@ -25,6 +25,13 @@ namespace ProjectManager.Web.Controllers
             return View(projects);
         }
 
+        public IActionResult Edit(int projectId)
+        {
+            Project projects = new Project();
+            projects = _unitOfWork.Projects.GetById(projectId);
+            return View(projects);
+        }
+
         public IActionResult Create(int projectId)
         {
             Project projects = new Project();
