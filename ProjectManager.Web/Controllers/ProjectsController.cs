@@ -35,8 +35,8 @@ namespace ProjectManager.Web.Controllers
 
         public IActionResult Edit(int projectId)
         {
-            ProjectsEditViewModel model = new ProjectsEditViewModel();
-            model.LoadData(_unitOfWork, projectId);
+            Project model = new Project();
+            model = _unitOfWork.Projects.GetById(projectId);
             return View(model);
         }
 
