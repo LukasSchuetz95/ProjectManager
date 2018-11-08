@@ -99,7 +99,6 @@ namespace ProjectManager.Persistence
 
         private void ValidateEntity(object entity)
         {
-            throw new NotImplementedException();
         }
 
     }

@@ -292,6 +292,54 @@ namespace ProjectManager.Persistence
                     Information = "Das ist ein Test"
                 });
 
+            modelBuilder.Entity<Project>().HasData(
+                new Project
+                {
+                    Id = 1,
+                    ProjectName = "Diplomarbeit",
+                    Status = "Undefiniert",
+                    Startdate = new DateTime(2020, 10, 30, 14, 30, 0),
+                    Deadline = new DateTime(2020, 10, 30, 15, 30, 0),
+                    ValuedTime = "500",
+                    Information = "Dieses Projekt benötigt noch viel Zuneigung",
+                });
+
+            modelBuilder.Entity<Project>().HasData(
+                new Project
+                {
+                    Id = 2,
+                    ProjectName = "Project1",
+                    Status = "Undefiniert",
+                    Startdate = new DateTime(2021, 10, 30, 14, 30, 0),
+                    Deadline = new DateTime(2022, 10, 30, 15, 30, 0),
+                    ValuedTime = "500",
+                    Information = "Dieses Projekt benötigt noch viel Zuneigung",
+                });
+
+            modelBuilder.Entity<Project>().HasData(
+                new Project
+                {
+                    Id = 3,
+                    ProjectName = "Project2",
+                    Status = "Undefiniert",
+                    Startdate = new DateTime(2023, 10, 30, 14, 30, 0),
+                    Deadline = new DateTime(2024, 10, 30, 15, 30, 0),
+                    ValuedTime = "500",
+                    Information = "Dieses Projekt benötigt noch viel Zuneigung",
+                });
+
+            modelBuilder.Entity<Project>().HasData(
+                new Project
+                {
+                    Id = 4,
+                    ProjectName = "Project3",
+                    Status = "Undefiniert",
+                    Startdate = new DateTime(2025, 10, 30, 14, 30, 0),
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    ValuedTime = "500",
+                    Information = "Dieses Projekt benötigt noch viel Zuneigung",
+                });
+
         }
     }
 }

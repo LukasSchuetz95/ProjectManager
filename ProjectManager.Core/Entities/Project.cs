@@ -16,16 +16,16 @@ namespace ProjectManager.Core.Entities
 
         public string Information { get; set; }
 
-        [Required(ErrorMessage = "Dieses Feld wird benötigt")]
+        //[Required(ErrorMessage = "Dieses Feld wird benötigt")]
         [Display(Name = "Von")]
-        public DateTime Startdate { get; set; }
+        public DateTime? Startdate { get; set; }
 
         [Display(Name = "Bis")]
-        public DateTime Enddate { get; set; }
+        public DateTime? Enddate { get; set; }
 
         [Display(Name = "Geschätzte Zeit")]
         public string ValuedTime { get; set; }
 
-        public DateTime Deadline { get; set; }
+        public DateTime? Deadline { get; set; }
     }
 }

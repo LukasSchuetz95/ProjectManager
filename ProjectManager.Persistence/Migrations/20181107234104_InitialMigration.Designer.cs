@@ -10,7 +10,7 @@ using ProjectManager.Persistence;
 namespace ProjectManager.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContextPersistence))]
-    [Migration("20181107220810_InitialMigration")]
+    [Migration("20181107234104_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -141,9 +141,9 @@ namespace ProjectManager.Persistence.Migrations
                     b.ToTable("Employees");
 
                     b.HasData(
-                        new { Id = 1, Birthdate = new DateTime(2018, 11, 7, 23, 8, 10, 121, DateTimeKind.Local), DepartmentId = 1, Firstname = "Lukas", HiringDate = new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Projectmanager = true, Residence = "Bad Hall", Status = "Beschaeftigt", StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
-                        new { Id = 2, Birthdate = new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), DepartmentId = 1, Firstname = "Thomas", HiringDate = new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), Job = "Database Developer", Lastname = "Baurnberger", Phonenumber = "0660/ 4878 333", Projectmanager = false, Residence = "Kematen am Innbach", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" },
-                        new { Id = 3, Birthdate = new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), DepartmentId = 2, Firstname = "Manuel", HiringDate = new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Projectmanager = true, Residence = "Irgendwo", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" }
+                        new { Id = 1, Birthdate = new DateTime(2018, 11, 8, 0, 41, 4, 404, DateTimeKind.Local), DepartmentId = 1, Firstname = "Lukas", HiringDate = new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Projectmanager = true, Residence = "Bad Hall", Status = "Beschaeftigt", StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
+                        new { Id = 2, Birthdate = new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), DepartmentId = 1, Firstname = "Thomas", HiringDate = new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), Job = "Database Developer", Lastname = "Baurnberger", Phonenumber = "0660/ 4878 333", Projectmanager = false, Residence = "Kematen am Innbach", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" },
+                        new { Id = 3, Birthdate = new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), DepartmentId = 2, Firstname = "Manuel", HiringDate = new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Projectmanager = true, Residence = "Irgendwo", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" }
                     );
                 });
 
@@ -225,6 +225,13 @@ namespace ProjectManager.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Projects");
+
+                    b.HasData(
+                        new { Id = 1, Deadline = new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Information = "Dieses Projekt benötigt noch viel Zuneigung", ProjectName = "Diplomarbeit", Startdate = new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = "Undefiniert", ValuedTime = "500" },
+                        new { Id = 2, Deadline = new DateTime(2022, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Information = "Dieses Projekt benötigt noch viel Zuneigung", ProjectName = "Project1", Startdate = new DateTime(2021, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = "Undefiniert", ValuedTime = "500" },
+                        new { Id = 3, Deadline = new DateTime(2024, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Information = "Dieses Projekt benötigt noch viel Zuneigung", ProjectName = "Project2", Startdate = new DateTime(2023, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = "Undefiniert", ValuedTime = "500" },
+                        new { Id = 4, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Information = "Dieses Projekt benötigt noch viel Zuneigung", ProjectName = "Project3", Startdate = new DateTime(2025, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = "Undefiniert", ValuedTime = "500" }
+                    );
                 });
 
             modelBuilder.Entity("ProjectManager.Core.Entities.Qualification", b =>

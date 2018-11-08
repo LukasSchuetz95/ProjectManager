@@ -209,6 +209,17 @@ namespace ProjectManager.Persistence.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Projects",
+                columns: new[] { "Id", "Deadline", "Enddate", "Information", "ProjectName", "Startdate", "Status", "Timestamp", "ValuedTime" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Dieses Projekt benötigt noch viel Zuneigung", "Diplomarbeit", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" },
+                    { 2, new DateTime(2022, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Dieses Projekt benötigt noch viel Zuneigung", "Project1", new DateTime(2021, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" },
+                    { 3, new DateTime(2024, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Dieses Projekt benötigt noch viel Zuneigung", "Project2", new DateTime(2023, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" },
+                    { 4, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Dieses Projekt benötigt noch viel Zuneigung", "Project3", new DateTime(2025, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Qualifications",
                 columns: new[] { "Id", "QualificationName", "Timestamp" },
                 values: new object[,]
@@ -221,17 +232,17 @@ namespace ProjectManager.Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "Id", "Birthdate", "DepartmentId", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Projectmanager", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
-                values: new object[] { 1, new DateTime(2018, 11, 7, 23, 8, 10, 121, DateTimeKind.Local), 1, "Lukas", new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), "Software Developer", "Schuetz", "0660/ 4878 299", null, true, "Bad Hall", "Beschaeftigt", "Roemerstr. 41", null, "4540" });
+                values: new object[] { 1, new DateTime(2018, 11, 8, 0, 41, 4, 404, DateTimeKind.Local), 1, "Lukas", new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), "Software Developer", "Schuetz", "0660/ 4878 299", null, true, "Bad Hall", "Beschaeftigt", "Roemerstr. 41", null, "4540" });
 
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "Id", "Birthdate", "DepartmentId", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Projectmanager", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
-                values: new object[] { 2, new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), 1, "Thomas", new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), "Database Developer", "Baurnberger", "0660/ 4878 333", null, false, "Kematen am Innbach", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" });
+                values: new object[] { 2, new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), 1, "Thomas", new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), "Database Developer", "Baurnberger", "0660/ 4878 333", null, false, "Kematen am Innbach", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" });
 
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "Id", "Birthdate", "DepartmentId", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Projectmanager", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
-                values: new object[] { 3, new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), 2, "Manuel", new DateTime(2018, 11, 7, 23, 8, 10, 123, DateTimeKind.Local), "Software Developer", "Mairinger", "0660/ 4878 444", null, true, "Irgendwo", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" });
+                values: new object[] { 3, new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), 2, "Manuel", new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), "Software Developer", "Mairinger", "0660/ 4878 444", null, true, "Irgendwo", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" });
 
             migrationBuilder.InsertData(
                 table: "Appointments",

@@ -1,0 +1,59 @@
+﻿@model ProjectManager.Core.Entities.Project
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Project</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProjectName" class="control-label"></label>
+                <input asp-for="ProjectName" class="form-control" />
+                <span asp-validation-for="ProjectName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Startdate" class="control-label"></label>
+                <input asp-for="Startdate" type="date" class="form-control" />
+                <span asp-validation-for="Startdate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enddate" class="control-label"></label>
+                <input asp-for="Enddate" type="date" class="form-control" />
+                <span asp-validation-for="Enddate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValuedTime" class="control-label"></label>
+                <input asp-for="ValuedTime" type="date" class="form-control" />
+                <span asp-validation-for="ValuedTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Deadline" class="control-label"></label>
+                <input asp-for="Deadline" type="date" class="form-control" />
+                <span asp-validation-for="Deadline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Information" class="control-label"></label>
+                <input asp-for="Information" class="form-control" />
+                <span asp-validation-for="Information" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Zurück</a>
+</div>
