@@ -8,17 +8,17 @@ using ProjectManager.Web.Models;
 
 namespace ProjectManager.Web.Controllers
 {
-    public class CreateAppointmentController : Controller
+    public class AppointmentsController : Controller
     {
 
         IUnitOfWork _unitOfWork;
 
-        public CreateAppointmentController(IUnitOfWork unitOfWork)
+        public AppointmentsController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult CreateAppointment()
+        public IActionResult Create()
         {
             return View();
         }

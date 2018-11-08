@@ -7,7 +7,7 @@ namespace ProjectManager.Core.Contracts
 {
     public interface IEmployeeRepository
     {
-        List<Employee> GetEmployeeByLastname(string FilterLastname=null);
-        List<Employee> GetEmployeeByFirstname(string filterFirstname=null);
+        List<Employee> GetEmployeeByLastname(string filter=null);
+        List<Employee> GetEmployeeByFirstname(string filter=null);
     }
 }

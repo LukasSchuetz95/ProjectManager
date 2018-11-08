@@ -1,0 +1,55 @@
+﻿@model ProjectManager.Web.Models.ViewModel.ProjectsEditViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Project</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Project.Id" />
+            <div class="form-group">
+                <label asp-for="Project.ProjectName" class="control-label"></label>
+                <input asp-for="Project.ProjectName" class="form-control" />
+                <span asp-validation-for="Project.ProjectName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Project.Status" class="control-label"></label>
+                <input asp-for="Project.Status" class="form-control" />
+                <span asp-validation-for="Project.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Project.Information" class="control-label"></label>
+                <input asp-for="Project.Information" class="form-control" />
+                <span asp-validation-for="Project.Information" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Project.Enddate" class="control-label"></label>
+                <input asp-for="Project.Enddate" class="form-control" />
+                <span asp-validation-for="Project.Enddate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Project.ValuedTime" class="control-label"></label>
+                <input asp-for="Project.ValuedTime" class="form-control" />
+                <span asp-validation-for="Project.ValuedTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Project.Deadline" class="control-label"></label>
+                <input asp-for="Project.Deadline" class="form-control" />
+                <span asp-validation-for="Project.Deadline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

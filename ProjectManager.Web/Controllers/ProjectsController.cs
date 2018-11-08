@@ -6,30 +6,38 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProjectManager.Core.Contracts;
 using ProjectManager.Core.Entities;
+using ProjectManager.Web.Models.ViewModel;
 
 namespace ProjectManager.Web.Controllers
 {
-    public class ProjectController : Controller
+    public class ProjectsController : Controller
     {
         IUnitOfWork _unitOfWork;
 
-        public ProjectController(IUnitOfWork unitofwork)
+        public ProjectsController(IUnitOfWork unitofwork)
         {
             _unitOfWork = unitofwork;
         }
 
         public IActionResult List()
         {
-            List<Project> projects = new List<Project>();
-            projects = _unitOfWork.Projects.GetAll();
-            return View(projects);
+            ProjectsListViewModel model = new ProjectsListViewModel();
+            model.Projects = _unitOfWork.Projects.GetAll();
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult List(ProjectsListViewModel model)
+        {
+            model.Projects = _unitOfWork.Projects.GetProjectByName(model.FilterProjectName);
+            return View(model);
         }
 
         public IActionResult Edit(int projectId)
         {
-            Project projects = new Project();
-            projects = _unitOfWork.Projects.GetById(projectId);
-            return View(projects);
+            ProjectsEditViewModel model = new ProjectsEditViewModel();
+            model.Project = _unitOfWork.Projects.GetById(projectId);
+            return View(model);
         }
 
         public IActionResult Create(int projectId)

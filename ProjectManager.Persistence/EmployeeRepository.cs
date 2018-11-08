@@ -16,31 +16,31 @@ namespace ProjectManager.Persistence
             _dbContext = dbContext;
         }
 
-        public List<Employee> GetEmployeeByLastname(string Filter)
+        public List<Employee> GetEmployeeByLastname(string filter)
         {
             IQueryable<Employee> query = _dbContext.Employees.OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
 
-            if (Filter == null || Filter == "")
+            if (filter == null || filter == "")
             {
                 return query.ToList();
             }
             else
             {
-                return query.Where(e => e.Lastname.StartsWith(Filter)).ToList();
+                return query.Where(e => e.Lastname.StartsWith(filter)).ToList();
             }
         }
 
-        public List<Employee> GetEmployeeByFirstname(string Filter)
+        public List<Employee> GetEmployeeByFirstname(string filter)
         {
             IQueryable<Employee> query = _dbContext.Employees.OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
 
-            if (Filter == null || Filter == "")
+            if (filter == null || filter == "")
             {
                 return query.ToList();
             }
             else
             {
-                return query.Where(e => e.Firstname.StartsWith(Filter)).ToList();
+                return query.Where(e => e.Firstname.StartsWith(filter)).ToList();
             }
         }
     }

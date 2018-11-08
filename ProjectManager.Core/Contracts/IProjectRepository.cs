@@ -10,5 +10,6 @@ namespace ProjectManager.Core.Contracts
         List<Project> GetAll();
         Project GetById(int projectId);
         void Add(Project model);
+        List<Project> GetProjectByName(string filter=null);
     }
 }

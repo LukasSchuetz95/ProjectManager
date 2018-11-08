@@ -1,0 +1,43 @@
+﻿@model ProjectManager.Web.Models.ViewModel.ProjectsListViewModel
+
+@{
+    ViewData["Title"] = "Projekte";
+}
+
+<h2>Projekte</h2>
+
+<p>
+    <a asp-controller="Projects" asp-action="Create" class="btn btn-default">Create New</a>
+</p>
+<form asp-controller="Projects" asp-action="List">
+    <div class="form-group">
+        <label asp-for="FilterProjectName"></label>
+        <input asp-for="FilterProjectName" class="form-control" />
+        <span asp-validation-for="FilterProjectName" class="text-danger"></span>
+    </div>
+    <input type="submit" value="Filter Projekt Name" class="btn btn-primary" />
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Projekt</th>
+            <th>Deadline</th>
+            <th>Projektnummer</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Projects)
+        {
+            <tr>
+                <td>@item.ProjectName</td>
+                <td>@item.Deadline</td>
+                <td>@item.Id</td>
+                <td>
+                    <a asp-controller="Projects" asp-action="Edit" asp-route-itemId="@item.Id">Edit</a>
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

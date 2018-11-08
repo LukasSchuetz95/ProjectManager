@@ -30,5 +30,19 @@ namespace ProjectManager.Persistence
         {
             return _dbContext.Projects.Where(p => p.Id == projectId).FirstOrDefault();
         }
+
+        public List<Project> GetProjectByName(string filter)
+        {
+            IQueryable<Project> query = _dbContext.Projects.OrderBy(p => p.ProjectName);
+
+            if(filter == null || filter == "")
+            {
+                return query.ToList();
+            }
+            else
+            {
+                return query.Where(p => p.ProjectName.StartsWith(filter)).ToList();
+            }
+        }
     }
 }

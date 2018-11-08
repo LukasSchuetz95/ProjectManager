@@ -74,32 +74,27 @@ namespace ProjectManager.Web
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(name: "Edit", template: "{controller=EditEmployee}/{action=Edit}/{id?}");
+                routes.MapRoute(name: "Edit", template: "{controller=Employees}/{action=Edit}/{id?}");
             });
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(name: "Feed", template: "{controller=Feed}/{action=EditFeed}/{id?}");
+                routes.MapRoute(name: "Feed", template: "{controller=Employees}/{action=Feed}/{id?}");
             });
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(name: "EditProject", template: "{controller=EditProject}/{action=EditProject}/{id?}");
+                routes.MapRoute(name: "CreateAppointment", template: "{controller=Appointments}/{action=Create}/{id?}");
             });
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(name: "CreateAppointment", template: "{controller=CreateAppointment}/{action=CreateAppointment}/{id?}");
+                routes.MapRoute(name: "LookingForEmployees", template: "{controller=Employees}/{action=List}/{id?}");
             });
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(name: "LookingForEmployees", template: "{controller=LookingForEmployees}/{action=LookingFor}/{id?}");
-            });
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(name: "ProjectList", template: "{controller=Project}/{action=List}/{id?}");
+                routes.MapRoute(name: "ProjectList", template: "{controller=Projects}/{action=List}/{id?}");
             });
         }
     }

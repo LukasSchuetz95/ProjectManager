@@ -1,4 +1,4 @@
-﻿@model ProjectManager.Web.Models.LookingForEmployeesLookingForModel
+﻿@model ProjectManager.Web.Models.ViewModel.EmployeesListViewModel
 
 @{
     ViewData["Title"] = "LookingFor";
@@ -15,7 +15,7 @@
     <header>
         <h3>CreateAppointment</h3>
     </header>
-    <form asp-action="LookingFor">
+    <form asp-controller="Employees" asp-action="List">
         <div class="form-group">
             <label asp-for="FilterLastname"></label>
             <input asp-for="FilterLastname" class="form-control" />
@@ -23,7 +23,7 @@
         </div>
         <input type="submit" value="Filtern" class="btn btn-primary" />
     </form>
-    <form asp-action="LookingFor">
+    <form asp-controller="Employees" asp-action="List">
         <div class="form-group">
             <label asp-for="FilterFirstname"></label>
             <input asp-for="FilterFirstname" class="form-control" />
