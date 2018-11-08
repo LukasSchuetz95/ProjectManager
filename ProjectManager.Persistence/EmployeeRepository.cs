@@ -43,5 +43,19 @@ namespace ProjectManager.Persistence
                 return query.Where(e => e.Firstname.StartsWith(filter)).ToList();
             }
         }
+
+        public List<Employee> GetEmployeeByJob(string filter)
+        {
+            IQueryable<Employee> query = _dbContext.Employees.OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
+
+            if (filter == null || filter == "")
+            {
+                return query.ToList();
+            }
+            else
+            {
+                return query.Where(e => e.Job.StartsWith(filter)).ToList();
+            }
+        }
     }
 }

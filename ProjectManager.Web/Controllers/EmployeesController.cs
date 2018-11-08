@@ -37,16 +37,24 @@ namespace ProjectManager.Web.Controllers
         [HttpPost]
         public IActionResult List(EmployeesListViewModel model)
         {
-            if (model.FilterFirstname == null)
+            if (model.FilterFirstname == null && model.FilterJob == null)
             {
                 model.Employees = _unitOfWork.Employees.GetEmployeeByLastname(model.FilterLastname);
                 return View(model);
             }
-            else
+            else if (model.FilterLastname == null && model.FilterJob == null)
             {
                 model.Employees = _unitOfWork.Employees.GetEmployeeByFirstname(model.FilterFirstname);
                 return View(model);
             }
+            else if (model.FilterLastname == null && model.FilterFirstname == null)
+            {
+                model.Employees = _unitOfWork.Employees.GetEmployeeByJob(model.FilterJob);
+                return View(model);
+            }
+            else
+                return NotFound();
+
 
         }
     }
