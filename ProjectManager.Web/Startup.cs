@@ -96,6 +96,11 @@ namespace ProjectManager.Web
             {
                 routes.MapRoute(name: "ProjectList", template: "{controller=Projects}/{action=List}/{id?}");
             });
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(name: "ProjectList", template: "{controller=Projects}/{action=Edit}/{id?}");
+            });
         }
     }
 }
