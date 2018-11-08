@@ -13,6 +13,7 @@ namespace ProjectManager.Web.Models.ViewModel
         [Display(Name = "LookingForEmployee")]
         public string FilterLastname { get; set; }
         public string FilterFirstname { get; set; }
+        public string FilterJob { get; set; }
 
         //StandardbennenungController+Actionmodel
     }
