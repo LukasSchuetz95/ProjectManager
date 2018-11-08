@@ -26,14 +26,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Projects)
+        @foreach (var project in Model.Projects)
         {
             <tr>
-                <td>@item.ProjectName</td>
-                <td>@item.Deadline</td>
-                <td>@item.Id</td>
+                <td>@project.ProjectName</td>
+                <td>@project.Deadline</td>
+                <td>@project.Id</td>
                 <td>
-                    <a asp-controller="Projects" asp-action="Edit" asp-route-itemId="@item.Id">Edit</a>
+                    <a asp-action="Edit" asp-route-id="@project.Id">Edit</a>
                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                 </td>
