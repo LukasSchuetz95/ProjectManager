@@ -10,15 +10,22 @@ namespace ProjectManager.Web.Controllers
 {
     public class TasksController : Controller
     {
-        private IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
+
+        public TasksController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
+
 
         public IActionResult List(int projectId)
         {
-            //ProjectsListViewModel model = new ProjectsListViewModel();
-            //model.LoadData(_unitOfWork, projectId);
-            //return View(model);
+            ProjectsListViewModel model = new ProjectsListViewModel();
+            model.LoadData(_unitOfWork, projectId);
+            return View(model);
 
-            return View();
+            //return View();
         }
 
         public IActionResult Create()

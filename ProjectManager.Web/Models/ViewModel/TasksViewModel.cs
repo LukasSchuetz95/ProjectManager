@@ -10,6 +10,10 @@ namespace ProjectManager.Web.Models.ViewModel
     {
         public List<Task> Tasks { get; set; }
 
-     
+        //public void LoadData(IUnitOfWork uow, int id)
+        //{
+        //    Tasks = uow.Tasks.GetAll();
+        //}
     }
 }
+

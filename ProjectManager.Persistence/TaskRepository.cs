@@ -21,9 +21,10 @@ namespace ProjectManager.Persistence
             _dbContext.Add(model);
         }
 
-        //public List<Task> GetAll()
-        //{
-        //    return _dbContext.Tasks.OrderBy(ord => ord.Project).ToList();
-        //}
+
+        public List<Task> GetAll()
+        {
+            return _dbContext.Tasks.OrderBy(ord => ord.Project).ToList();
+        }
     }
 }

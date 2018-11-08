@@ -7,7 +7,7 @@ namespace ProjectManager.Core.Contracts
 {
     public interface ITaskRepository
     {
-        //List<Task> GetAll();
+        List<Task> GetAll();
         void Add(Task model);
         
     }
