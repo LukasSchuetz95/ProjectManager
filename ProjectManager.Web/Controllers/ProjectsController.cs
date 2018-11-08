@@ -19,10 +19,10 @@ namespace ProjectManager.Web.Controllers
             _unitOfWork = unitofwork;
         }
 
-        public IActionResult List()
+        public IActionResult List(int projectId)
         {
             ProjectsListViewModel model = new ProjectsListViewModel();
-            model.Projects = _unitOfWork.Projects.GetAll();
+            model.LoadData(_unitOfWork, projectId);
             return View(model);
         }
 
@@ -36,7 +36,7 @@ namespace ProjectManager.Web.Controllers
         public IActionResult Edit(int projectId)
         {
             ProjectsEditViewModel model = new ProjectsEditViewModel();
-            model.Project = _unitOfWork.Projects.GetById(projectId);
+            model.LoadData(_unitOfWork, projectId);
             return View(model);
         }
 
