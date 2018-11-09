@@ -28,6 +28,10 @@ namespace ProjectManager.Persistence
 
         public ITaskRepository Tasks { get; }
 
+        public IEmployeeProjectRepository EmployeeProjects { get; }
+
+        public ITaskQualificationRepository TaskQualifications { get; }
+
         public UnitOfWork()
         {
             _dbContext = new ApplicationDbContextPersistence();
@@ -39,6 +43,8 @@ namespace ProjectManager.Persistence
             Projects = new ProjectRepository(_dbContext);
             Qualifications = new QualificationRepository(_dbContext);
             Tasks = new TaskRepository(_dbContext);
+            TaskQualifications = new TaskQualificationRepository(_dbContext);
+            EmployeeProjects = new EmployeeProjectRepository(_dbContext);
         }
 
         public void DeleteDatabase()

@@ -33,9 +33,8 @@
                 <td>@project.Deadline</td>
                 <td>@project.Id</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@project.Id">Edit</a>
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    <a asp-controller="Projects" asp-action="Edit" asp-route-projectId="@project.Id">Edit</a>
+                    <a asp-controller="Projects" asp-action="Details" asp-route-projectId="@project.Id">Details</a>
                 </td>
             </tr>
         }

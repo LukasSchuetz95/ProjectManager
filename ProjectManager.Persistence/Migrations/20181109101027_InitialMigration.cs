@@ -33,10 +33,10 @@ namespace ProjectManager.Persistence.Migrations
                     ProjectName = table.Column<string>(nullable: false),
                     Status = table.Column<string>(nullable: true),
                     Information = table.Column<string>(nullable: true),
-                    Startdate = table.Column<DateTime>(nullable: false),
-                    Enddate = table.Column<DateTime>(nullable: false),
+                    Startdate = table.Column<DateTime>(nullable: true),
+                    Enddate = table.Column<DateTime>(nullable: true),
                     ValuedTime = table.Column<string>(nullable: true),
-                    Deadline = table.Column<DateTime>(nullable: false)
+                    Deadline = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -173,6 +173,33 @@ namespace ProjectManager.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EmployeeProjects",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    EmployeeId = table.Column<int>(nullable: false),
+                    TaskId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeProjects", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EmployeeProjects_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EmployeeProjects_Tasks_TaskId",
+                        column: x => x.TaskId,
+                        principalTable: "Tasks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "EmployeeTasks",
                 columns: table => new
                 {
@@ -199,6 +226,33 @@ namespace ProjectManager.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TaskQualifications",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    TaskId = table.Column<int>(nullable: false),
+                    QualificationId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TaskQualifications", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TaskQualifications_Qualifications_QualificationId",
+                        column: x => x.QualificationId,
+                        principalTable: "Qualifications",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TaskQualifications_Tasks_TaskId",
+                        column: x => x.TaskId,
+                        principalTable: "Tasks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Departments",
                 columns: new[] { "Id", "DeptLocation", "DeptName", "Timestamp" },
@@ -213,10 +267,10 @@ namespace ProjectManager.Persistence.Migrations
                 columns: new[] { "Id", "Deadline", "Enddate", "Information", "ProjectName", "Startdate", "Status", "Timestamp", "ValuedTime" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Dieses Projekt benötigt noch viel Zuneigung", "Diplomarbeit", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" },
-                    { 2, new DateTime(2022, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Dieses Projekt benötigt noch viel Zuneigung", "Project1", new DateTime(2021, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" },
-                    { 3, new DateTime(2024, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Dieses Projekt benötigt noch viel Zuneigung", "Project2", new DateTime(2023, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" },
-                    { 4, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Dieses Projekt benötigt noch viel Zuneigung", "Project3", new DateTime(2025, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" }
+                    { 1, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), null, "Dieses Projekt benötigt noch viel Zuneigung", "Diplomarbeit", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" },
+                    { 2, new DateTime(2022, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), null, "Dieses Projekt benötigt noch viel Zuneigung", "Project1", new DateTime(2021, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" },
+                    { 3, new DateTime(2024, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), null, "Dieses Projekt benötigt noch viel Zuneigung", "Project2", new DateTime(2023, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" },
+                    { 4, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), null, "Dieses Projekt benötigt noch viel Zuneigung", "Project3", new DateTime(2025, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" }
                 });
 
             migrationBuilder.InsertData(
@@ -232,17 +286,17 @@ namespace ProjectManager.Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "Id", "Birthdate", "DepartmentId", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Projectmanager", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
-                values: new object[] { 1, new DateTime(2018, 11, 8, 0, 41, 4, 404, DateTimeKind.Local), 1, "Lukas", new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), "Software Developer", "Schuetz", "0660/ 4878 299", null, true, "Bad Hall", "Beschaeftigt", "Roemerstr. 41", null, "4540" });
+                values: new object[] { 1, new DateTime(2018, 11, 9, 11, 10, 27, 136, DateTimeKind.Local), 1, "Lukas", new DateTime(2018, 11, 9, 11, 10, 27, 137, DateTimeKind.Local), "Software Developer", "Schuetz", "0660/ 4878 299", null, true, "Bad Hall", "Beschaeftigt", "Roemerstr. 41", null, "4540" });
 
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "Id", "Birthdate", "DepartmentId", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Projectmanager", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
-                values: new object[] { 2, new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), 1, "Thomas", new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), "Database Developer", "Baurnberger", "0660/ 4878 333", null, false, "Kematen am Innbach", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" });
+                values: new object[] { 2, new DateTime(2018, 11, 9, 11, 10, 27, 138, DateTimeKind.Local), 1, "Thomas", new DateTime(2018, 11, 9, 11, 10, 27, 138, DateTimeKind.Local), "Database Developer", "Baurnberger", "0660/ 4878 333", null, false, "Kematen am Innbach", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" });
 
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "Id", "Birthdate", "DepartmentId", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Projectmanager", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
-                values: new object[] { 3, new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), 2, "Manuel", new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), "Software Developer", "Mairinger", "0660/ 4878 444", null, true, "Irgendwo", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" });
+                values: new object[] { 3, new DateTime(2018, 11, 9, 11, 10, 27, 138, DateTimeKind.Local), 2, "Manuel", new DateTime(2018, 11, 9, 11, 10, 27, 138, DateTimeKind.Local), "Software Developer", "Mairinger", "0660/ 4878 444", null, true, "Irgendwo", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" });
 
             migrationBuilder.InsertData(
                 table: "Appointments",
@@ -272,6 +326,16 @@ namespace ProjectManager.Persistence.Migrations
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EmployeeProjects_EmployeeId",
+                table: "EmployeeProjects",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeProjects_TaskId",
+                table: "EmployeeProjects",
+                column: "TaskId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_EmployeeQualifications_EmployeeId",
                 table: "EmployeeQualifications",
                 column: "EmployeeId");
@@ -297,6 +361,16 @@ namespace ProjectManager.Persistence.Migrations
                 column: "TaskId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TaskQualifications_QualificationId",
+                table: "TaskQualifications",
+                column: "QualificationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TaskQualifications_TaskId",
+                table: "TaskQualifications",
+                column: "TaskId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Tasks_ProjectId",
                 table: "Tasks",
                 column: "ProjectId");
@@ -308,16 +382,22 @@ namespace ProjectManager.Persistence.Migrations
                 name: "Appointments");
 
             migrationBuilder.DropTable(
+                name: "EmployeeProjects");
+
+            migrationBuilder.DropTable(
                 name: "EmployeeQualifications");
 
             migrationBuilder.DropTable(
                 name: "EmployeeTasks");
 
             migrationBuilder.DropTable(
-                name: "Qualifications");
+                name: "TaskQualifications");
 
             migrationBuilder.DropTable(
                 name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "Qualifications");
 
             migrationBuilder.DropTable(
                 name: "Tasks");

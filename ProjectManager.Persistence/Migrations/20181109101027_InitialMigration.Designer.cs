@@ -10,7 +10,7 @@ using ProjectManager.Persistence;
 namespace ProjectManager.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContextPersistence))]
-    [Migration("20181107234104_InitialMigration")]
+    [Migration("20181109101027_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -141,10 +141,33 @@ namespace ProjectManager.Persistence.Migrations
                     b.ToTable("Employees");
 
                     b.HasData(
-                        new { Id = 1, Birthdate = new DateTime(2018, 11, 8, 0, 41, 4, 404, DateTimeKind.Local), DepartmentId = 1, Firstname = "Lukas", HiringDate = new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Projectmanager = true, Residence = "Bad Hall", Status = "Beschaeftigt", StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
-                        new { Id = 2, Birthdate = new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), DepartmentId = 1, Firstname = "Thomas", HiringDate = new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), Job = "Database Developer", Lastname = "Baurnberger", Phonenumber = "0660/ 4878 333", Projectmanager = false, Residence = "Kematen am Innbach", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" },
-                        new { Id = 3, Birthdate = new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), DepartmentId = 2, Firstname = "Manuel", HiringDate = new DateTime(2018, 11, 8, 0, 41, 4, 406, DateTimeKind.Local), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Projectmanager = true, Residence = "Irgendwo", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" }
+                        new { Id = 1, Birthdate = new DateTime(2018, 11, 9, 11, 10, 27, 136, DateTimeKind.Local), DepartmentId = 1, Firstname = "Lukas", HiringDate = new DateTime(2018, 11, 9, 11, 10, 27, 137, DateTimeKind.Local), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Projectmanager = true, Residence = "Bad Hall", Status = "Beschaeftigt", StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
+                        new { Id = 2, Birthdate = new DateTime(2018, 11, 9, 11, 10, 27, 138, DateTimeKind.Local), DepartmentId = 1, Firstname = "Thomas", HiringDate = new DateTime(2018, 11, 9, 11, 10, 27, 138, DateTimeKind.Local), Job = "Database Developer", Lastname = "Baurnberger", Phonenumber = "0660/ 4878 333", Projectmanager = false, Residence = "Kematen am Innbach", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" },
+                        new { Id = 3, Birthdate = new DateTime(2018, 11, 9, 11, 10, 27, 138, DateTimeKind.Local), DepartmentId = 2, Firstname = "Manuel", HiringDate = new DateTime(2018, 11, 9, 11, 10, 27, 138, DateTimeKind.Local), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Projectmanager = true, Residence = "Irgendwo", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" }
                     );
+                });
+
+            modelBuilder.Entity("ProjectManager.Core.Entities.EmployeeProject", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("EmployeeId");
+
+                    b.Property<int>("TaskId");
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("TaskId");
+
+                    b.ToTable("EmployeeProjects");
                 });
 
             modelBuilder.Entity("ProjectManager.Core.Entities.EmployeeQualification", b =>
@@ -203,16 +226,16 @@ namespace ProjectManager.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Deadline");
+                    b.Property<DateTime?>("Deadline");
 
-                    b.Property<DateTime>("Enddate");
+                    b.Property<DateTime?>("Enddate");
 
                     b.Property<string>("Information");
 
                     b.Property<string>("ProjectName")
                         .IsRequired();
 
-                    b.Property<DateTime>("Startdate");
+                    b.Property<DateTime?>("Startdate");
 
                     b.Property<string>("Status");
 
@@ -227,10 +250,10 @@ namespace ProjectManager.Persistence.Migrations
                     b.ToTable("Projects");
 
                     b.HasData(
-                        new { Id = 1, Deadline = new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Information = "Dieses Projekt benötigt noch viel Zuneigung", ProjectName = "Diplomarbeit", Startdate = new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = "Undefiniert", ValuedTime = "500" },
-                        new { Id = 2, Deadline = new DateTime(2022, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Information = "Dieses Projekt benötigt noch viel Zuneigung", ProjectName = "Project1", Startdate = new DateTime(2021, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = "Undefiniert", ValuedTime = "500" },
-                        new { Id = 3, Deadline = new DateTime(2024, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Information = "Dieses Projekt benötigt noch viel Zuneigung", ProjectName = "Project2", Startdate = new DateTime(2023, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = "Undefiniert", ValuedTime = "500" },
-                        new { Id = 4, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Information = "Dieses Projekt benötigt noch viel Zuneigung", ProjectName = "Project3", Startdate = new DateTime(2025, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = "Undefiniert", ValuedTime = "500" }
+                        new { Id = 1, Deadline = new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "Dieses Projekt benötigt noch viel Zuneigung", ProjectName = "Diplomarbeit", Startdate = new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = "Undefiniert", ValuedTime = "500" },
+                        new { Id = 2, Deadline = new DateTime(2022, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "Dieses Projekt benötigt noch viel Zuneigung", ProjectName = "Project1", Startdate = new DateTime(2021, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = "Undefiniert", ValuedTime = "500" },
+                        new { Id = 3, Deadline = new DateTime(2024, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "Dieses Projekt benötigt noch viel Zuneigung", ProjectName = "Project2", Startdate = new DateTime(2023, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = "Undefiniert", ValuedTime = "500" },
+                        new { Id = 4, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "Dieses Projekt benötigt noch viel Zuneigung", ProjectName = "Project3", Startdate = new DateTime(2025, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = "Undefiniert", ValuedTime = "500" }
                     );
                 });
 
@@ -296,6 +319,29 @@ namespace ProjectManager.Persistence.Migrations
                     b.ToTable("Tasks");
                 });
 
+            modelBuilder.Entity("ProjectManager.Core.Entities.TaskQualification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("QualificationId");
+
+                    b.Property<int>("TaskId");
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QualificationId");
+
+                    b.HasIndex("TaskId");
+
+                    b.ToTable("TaskQualifications");
+                });
+
             modelBuilder.Entity("ProjectManager.Core.Entities.Appointment", b =>
                 {
                     b.HasOne("ProjectManager.Core.Entities.Employee", "Employee")
@@ -309,6 +355,19 @@ namespace ProjectManager.Persistence.Migrations
                     b.HasOne("ProjectManager.Core.Entities.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ProjectManager.Core.Entities.EmployeeProject", b =>
+                {
+                    b.HasOne("ProjectManager.Core.Entities.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ProjectManager.Core.Entities.Task", "Task")
+                        .WithMany()
+                        .HasForeignKey("TaskId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -343,6 +402,19 @@ namespace ProjectManager.Persistence.Migrations
                     b.HasOne("ProjectManager.Core.Entities.Project", "Project")
                         .WithMany()
                         .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ProjectManager.Core.Entities.TaskQualification", b =>
+                {
+                    b.HasOne("ProjectManager.Core.Entities.Qualification", "Qualification")
+                        .WithMany()
+                        .HasForeignKey("QualificationId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ProjectManager.Core.Entities.Task", "Task")
+                        .WithMany()
+                        .HasForeignKey("TaskId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

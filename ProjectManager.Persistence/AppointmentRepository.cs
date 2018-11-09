@@ -1,4 +1,5 @@
 ﻿using ProjectManager.Core.Contracts;
+using ProjectManager.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,5 +14,6 @@ namespace ProjectManager.Persistence
         {
             _dbContext = dbContext;
         }
+
     }
 }
