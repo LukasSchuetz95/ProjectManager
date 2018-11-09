@@ -14,6 +14,7 @@
     <dt>@Html.DisplayNameFor(m => m.Projects.Status)</dt>
     <dd>@Model.Projects.Status</dd>
 </dl>
+<h2>Mitarbeiter</h2>
 <table class="table">
     <thead>
         <tr>
@@ -29,6 +30,7 @@
         }
     </tbody>
 </table>
+<h2>Undefinierte Tasks(Status)</h2>
 <table class="table">
     <thead>
         <tr>
@@ -36,7 +38,23 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var task in Model.Tasks)
+        @foreach (var task in Model.UndefinedTasks)
+        {
+            <tr>
+                <td>@task.TaskName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<h2>Tasks in Bearbeitung(Status)</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Taskname</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model.ProcessingTasks)
         {
             <tr>
                 <td>@task.TaskName</td>
