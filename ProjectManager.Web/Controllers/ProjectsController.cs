@@ -69,6 +69,13 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        public IActionResult Details(int projectId)
+        {
+            ProjectsDetailsViewModel model = new ProjectsDetailsViewModel();
+            model.Project = _unitOfWork.Projects.GetById(projectId);
+            return View(model);
+        }
+
 
     }
 }
