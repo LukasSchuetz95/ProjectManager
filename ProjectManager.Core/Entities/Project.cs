@@ -7,6 +7,7 @@ namespace ProjectManager.Core.Entities
 {
     public class Project : EntityObject
     {
+        public List<Project> Projects { get; set; }
 
         [Required(ErrorMessage = "Dieses Feld wird benötigt")]
         [Display(Name = "Projektname")]

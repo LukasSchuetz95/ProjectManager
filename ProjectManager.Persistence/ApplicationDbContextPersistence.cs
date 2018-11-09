@@ -344,6 +344,534 @@ namespace ProjectManager.Persistence
                     Information = "Dieses Projekt benötigt noch viel Zuneigung",
                 });
 
+            modelBuilder.Entity<EmployeeProject>().HasData(
+                new EmployeeProject
+                {
+                    Id = 1,
+                    EmployeeId = 1,
+                    ProjectId = 1,
+                });
+
+            modelBuilder.Entity<EmployeeProject>().HasData(
+                new EmployeeProject
+                {
+                    Id = 2,
+                    EmployeeId = 1,
+                    ProjectId = 2,
+                });
+
+            modelBuilder.Entity<EmployeeProject>().HasData(
+                new EmployeeProject
+                {
+                    Id = 3,
+                    EmployeeId = 1,
+                    ProjectId = 3,
+                });
+
+            modelBuilder.Entity<EmployeeProject>().HasData(
+                new EmployeeProject
+                {
+                    Id = 4,
+                    EmployeeId = 1,
+                    ProjectId = 4,
+                });
+
+            modelBuilder.Entity<EmployeeProject>().HasData(
+                new EmployeeProject
+                {
+                    Id = 5,
+                    EmployeeId = 2,
+                    ProjectId = 1,
+                });
+
+            modelBuilder.Entity<EmployeeProject>().HasData(
+                new EmployeeProject
+                {
+                    Id = 6,
+                    EmployeeId = 2,
+                    ProjectId = 2,
+                });
+
+            modelBuilder.Entity<EmployeeProject>().HasData(
+                new EmployeeProject
+                {
+                    Id = 7,
+                    EmployeeId = 2,
+                    ProjectId = 3,
+                });
+
+            modelBuilder.Entity<EmployeeProject>().HasData(
+                new EmployeeProject
+                {
+                    Id = 8,
+                    EmployeeId = 3,
+                    ProjectId = 1,
+                });
+
+            modelBuilder.Entity<EmployeeProject>().HasData(
+                new EmployeeProject
+                {
+                    Id = 9,
+                    EmployeeId = 3,
+                    ProjectId = 2,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 1,
+                    ProjectId = 1,
+                    FixedTask = false,
+                    TaskName = "Test1",
+                    Status = "undefiniert",
+                    Information = "Erster Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 2,
+                    ProjectId = 1,
+                    FixedTask = false,
+                    TaskName = "Test2",
+                    Status = "undefiniert",
+                    Information = "Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 3,
+                    ProjectId = 1,
+                    FixedTask = false,
+                    TaskName = "Test3",
+                    Status = "undefiniert",
+                    Information = "Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 4,
+                    ProjectId = 1,
+                    FixedTask = false,
+                    TaskName = "Test4",
+                    Status = "undefiniert",
+                    Information = "Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 5,
+                    ProjectId = 1,
+                    FixedTask = false,
+                    TaskName = "Test5",
+                    Status = "undefiniert",
+                    Information = "Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 6,
+                    ProjectId = 2,
+                    FixedTask = false,
+                    TaskName = "Test6",
+                    Status = "undefiniert",
+                    Information = "Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 7,
+                    ProjectId = 2,
+                    FixedTask = false,
+                    TaskName = "Test7",
+                    Status = "undefiniert",
+                    Information = "Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 8,
+                    ProjectId = 2,
+                    FixedTask = false,
+                    TaskName = "Test8",
+                    Status = "undefiniert",
+                    Information = "Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 9,
+                    ProjectId = 2,
+                    FixedTask = false,
+                    TaskName = "Test9",
+                    Status = "undefiniert",
+                    Information = "Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 10,
+                    ProjectId = 2,
+                    FixedTask = false,
+                    TaskName = "Test10",
+                    Status = "undefiniert",
+                    Information = "Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 11,
+                    ProjectId = 3,
+                    FixedTask = false,
+                    TaskName = "Test11",
+                    Status = "undefiniert",
+                    Information = "Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 12,
+                    ProjectId = 3,
+                    FixedTask = false,
+                    TaskName = "Test12",
+                    Status = "undefiniert",
+                    Information = "Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 13,
+                    ProjectId = 3,
+                    FixedTask = false,
+                    TaskName = "Test13",
+                    Status = "undefiniert",
+                    Information = "Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 14,
+                    ProjectId = 3,
+                    FixedTask = false,
+                    TaskName = "Test14",
+                    Status = "undefiniert",
+                    Information = "Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 15,
+                    ProjectId = 3,
+                    FixedTask = false,
+                    TaskName = "Test15",
+                    Status = "undefiniert",
+                    Information = "Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 16,
+                    ProjectId = 4,
+                    FixedTask = false,
+                    TaskName = "Test16",
+                    Status = "undefiniert",
+                    Information = "Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 17,
+                    ProjectId = 4,
+                    FixedTask = false,
+                    TaskName = "Test17",
+                    Status = "undefiniert",
+                    Information = "Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 18,
+                    ProjectId = 4,
+                    FixedTask = false,
+                    TaskName = "Test18",
+                    Status = "undefiniert",
+                    Information = "Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
+                {
+                    Id = 19,
+                    ProjectId = 4,
+                    FixedTask = false,
+                    TaskName = "Test19",
+                    Status = "undefiniert",
+                    Information = "Task",
+                    ValuedTime = "400",
+                    Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
+                    Priority = 3,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 1,
+                    EmployeeId = 1,
+                    TaskId = 1,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 2,
+                    EmployeeId = 1,
+                    TaskId = 2,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 3,
+                    EmployeeId = 1,
+                    TaskId = 3,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 4,
+                    EmployeeId = 1,
+                    TaskId = 4,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 5,
+                    EmployeeId = 1,
+                    TaskId = 5,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 6,
+                    EmployeeId = 1,
+                    TaskId = 6,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 7,
+                    EmployeeId = 2,
+                    TaskId = 7,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 8,
+                    EmployeeId = 2,
+                    TaskId = 8,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 9,
+                    EmployeeId = 2,
+                    TaskId = 9,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 10,
+                    EmployeeId = 2,
+                    TaskId = 10,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 11,
+                    EmployeeId = 2,
+                    TaskId = 11,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 12,
+                    EmployeeId = 2,
+                    TaskId = 12,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 13,
+                    EmployeeId = 2,
+                    TaskId = 13,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 14,
+                    EmployeeId = 3,
+                    TaskId = 14,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 15,
+                    EmployeeId = 3,
+                    TaskId = 15,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 16,
+                    EmployeeId = 3,
+                    TaskId = 16,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 17,
+                    EmployeeId = 3,
+                    TaskId = 17,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 18,
+                    EmployeeId = 3,
+                    TaskId = 18,
+                });
+
+            modelBuilder.Entity<EmployeeTask>().HasData(
+                new EmployeeTask
+                {
+                    Id = 19,
+                    EmployeeId = 3,
+                    TaskId = 19,
+                });
+
         }
     }
 }
