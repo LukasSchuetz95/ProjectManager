@@ -18,7 +18,7 @@ namespace ProjectManager.Persistence
             _dbContext = dbContext;
         }
 
-        public void Add(Task model)
+        public void Add(System.Threading.Tasks.Task model)
         {
             _dbContext.Add(model);
         }

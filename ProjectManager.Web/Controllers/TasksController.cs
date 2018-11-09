@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -29,9 +30,33 @@ namespace ProjectManager.Web.Controllers
         }
 
         public IActionResult Create()
-        {
+        { 
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Create(Task model )
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _unitOfWork.Tasks.Add(model);
+                    _unitOfWork.Save();
+                    return RedirectToAction("List");
+                }
+                catch (ValidationException validationException)
+                {
+                    ValidationResult valResult = validationException.ValidationResult;
+                    ModelState.AddModelError(nameof(model) + "." + valResult.MemberNames.First(), valResult.ErrorMessage);
+                }
+            }
+
+            return View(model);
+        }
+
+
+
         public IActionResult Edit(int taskId)
         {
             TasksEditViewModel model = new TasksEditViewModel();
