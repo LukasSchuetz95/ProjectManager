@@ -19,10 +19,10 @@ namespace ProjectManager.Web.Controllers
 
 
 
-        public IActionResult List(int projectId)
+        public IActionResult List()
         {
-            ProjectsListViewModel model = new ProjectsListViewModel();
-            model.LoadData(_unitOfWork, projectId);
+            TasksListViewModel model = new TasksListViewModel();
+            model.LoadData(_unitOfWork);
             return View(model);
 
             //return View();

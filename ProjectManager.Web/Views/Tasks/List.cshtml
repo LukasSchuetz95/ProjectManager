@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjectManager.Core.Entities.Task>
+﻿@model ProjectManager.Web.Models.ViewModel.TasksListViewModel
 
 @{
     ViewData["Title"] = "List";
@@ -6,101 +6,64 @@
 
 <h2>List</h2>
 
-@*<p>
-        <a asp-action="Create">Create New</a>
-    </p>*@
-
 
 <li><a asp-area="" asp-controller="Tasks" asp-action="Create" class="btn btn-primary">Task anlegen</a></li>
-<li><a asp-area="" asp-controller="Tasks" asp-action="Edit"  class="btn btn-primary">Task bearbeiten</a></li>
+<li><a asp-area="" asp-controller="Tasks" asp-action="Edit" class="btn btn-primary">Task bearbeiten</a></li>
 
 <table class="table">
     <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ProjectId)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.TaskName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Priority)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Status)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FixedTask)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Information)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Startdate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Enddate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ValuedTime)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Deadline)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Id)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Timestamp)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-        @foreach (var item in Model) {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProjectId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TaskName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Priority)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Status)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FixedTask)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Information)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Startdate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Enddate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ValuedTime)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Deadline)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Timestamp)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                    </td>
-                </tr>
-    }
+        <tr>
+            <th>Taskname</th>
+            <th></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model.Tasks)
+        {
+            <tr>  
+                <td>@task.TaskName</td>
+                <td>@task.Project.ProjectName</td>
+
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.TaskName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Priority)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FixedTask)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Information)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Startdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Enddate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValuedTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Deadline)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Timestamp)
+                </td*@>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
