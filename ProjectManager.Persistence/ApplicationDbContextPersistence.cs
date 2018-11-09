@@ -88,10 +88,10 @@ namespace ProjectManager.Persistence
                     HiringDate = DateTime.Now,
                     Phonenumber = "0660/ 4878 333",
                     Residence = "Kematen am Innbach",
-                    StreetNameAndNr = "Weiss i ned",
-                    ZipCode = "Ka Ahnung",
+                    StreetNameAndNr = "See 44",
+                    ZipCode = "4633",
                     Status = EmployeeStatusType.Beschäftigt,
-                    Job = "Database Developer",
+                    Job = "Web-Developer",
                     Projectmanager = false,
                     DepartmentId = 1,
                     Timestamp = null
