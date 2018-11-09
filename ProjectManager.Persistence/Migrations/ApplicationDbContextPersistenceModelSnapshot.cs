@@ -139,9 +139,9 @@ namespace ProjectManager.Persistence.Migrations
                     b.ToTable("Employees");
 
                     b.HasData(
-                        new { Id = 1, Birthdate = new DateTime(2018, 11, 9, 11, 10, 27, 136, DateTimeKind.Local), DepartmentId = 1, Firstname = "Lukas", HiringDate = new DateTime(2018, 11, 9, 11, 10, 27, 137, DateTimeKind.Local), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Projectmanager = true, Residence = "Bad Hall", Status = "Beschaeftigt", StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
-                        new { Id = 2, Birthdate = new DateTime(2018, 11, 9, 11, 10, 27, 138, DateTimeKind.Local), DepartmentId = 1, Firstname = "Thomas", HiringDate = new DateTime(2018, 11, 9, 11, 10, 27, 138, DateTimeKind.Local), Job = "Database Developer", Lastname = "Baurnberger", Phonenumber = "0660/ 4878 333", Projectmanager = false, Residence = "Kematen am Innbach", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" },
-                        new { Id = 3, Birthdate = new DateTime(2018, 11, 9, 11, 10, 27, 138, DateTimeKind.Local), DepartmentId = 2, Firstname = "Manuel", HiringDate = new DateTime(2018, 11, 9, 11, 10, 27, 138, DateTimeKind.Local), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Projectmanager = true, Residence = "Irgendwo", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" }
+                        new { Id = 1, Birthdate = new DateTime(2018, 11, 9, 12, 24, 11, 292, DateTimeKind.Local), DepartmentId = 1, Firstname = "Lukas", HiringDate = new DateTime(2018, 11, 9, 12, 24, 11, 293, DateTimeKind.Local), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Projectmanager = true, Residence = "Bad Hall", Status = "Beschaeftigt", StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
+                        new { Id = 2, Birthdate = new DateTime(2018, 11, 9, 12, 24, 11, 294, DateTimeKind.Local), DepartmentId = 1, Firstname = "Thomas", HiringDate = new DateTime(2018, 11, 9, 12, 24, 11, 294, DateTimeKind.Local), Job = "Database Developer", Lastname = "Baurnberger", Phonenumber = "0660/ 4878 333", Projectmanager = false, Residence = "Kematen am Innbach", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" },
+                        new { Id = 3, Birthdate = new DateTime(2018, 11, 9, 12, 24, 11, 294, DateTimeKind.Local), DepartmentId = 2, Firstname = "Manuel", HiringDate = new DateTime(2018, 11, 9, 12, 24, 11, 294, DateTimeKind.Local), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Projectmanager = true, Residence = "Irgendwo", Status = "Beschaeftigt", StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" }
                     );
                 });
 
@@ -153,7 +153,7 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.Property<int>("EmployeeId");
 
-                    b.Property<int>("TaskId");
+                    b.Property<int>("ProjectId");
 
                     b.Property<byte[]>("Timestamp")
                         .IsConcurrencyToken()
@@ -163,9 +163,21 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.HasIndex("TaskId");
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("EmployeeProjects");
+
+                    b.HasData(
+                        new { Id = 1, EmployeeId = 1, ProjectId = 1 },
+                        new { Id = 2, EmployeeId = 1, ProjectId = 2 },
+                        new { Id = 3, EmployeeId = 1, ProjectId = 3 },
+                        new { Id = 4, EmployeeId = 1, ProjectId = 4 },
+                        new { Id = 5, EmployeeId = 2, ProjectId = 1 },
+                        new { Id = 6, EmployeeId = 2, ProjectId = 2 },
+                        new { Id = 7, EmployeeId = 2, ProjectId = 3 },
+                        new { Id = 8, EmployeeId = 3, ProjectId = 1 },
+                        new { Id = 9, EmployeeId = 3, ProjectId = 2 }
+                    );
                 });
 
             modelBuilder.Entity("ProjectManager.Core.Entities.EmployeeQualification", b =>
@@ -216,6 +228,28 @@ namespace ProjectManager.Persistence.Migrations
                     b.HasIndex("TaskId");
 
                     b.ToTable("EmployeeTasks");
+
+                    b.HasData(
+                        new { Id = 1, EmployeeId = 1, TaskId = 1 },
+                        new { Id = 2, EmployeeId = 1, TaskId = 2 },
+                        new { Id = 3, EmployeeId = 1, TaskId = 3 },
+                        new { Id = 4, EmployeeId = 1, TaskId = 4 },
+                        new { Id = 5, EmployeeId = 1, TaskId = 5 },
+                        new { Id = 6, EmployeeId = 1, TaskId = 6 },
+                        new { Id = 7, EmployeeId = 2, TaskId = 7 },
+                        new { Id = 8, EmployeeId = 2, TaskId = 8 },
+                        new { Id = 9, EmployeeId = 2, TaskId = 9 },
+                        new { Id = 10, EmployeeId = 2, TaskId = 10 },
+                        new { Id = 11, EmployeeId = 2, TaskId = 11 },
+                        new { Id = 12, EmployeeId = 2, TaskId = 12 },
+                        new { Id = 13, EmployeeId = 2, TaskId = 13 },
+                        new { Id = 14, EmployeeId = 3, TaskId = 14 },
+                        new { Id = 15, EmployeeId = 3, TaskId = 15 },
+                        new { Id = 16, EmployeeId = 3, TaskId = 16 },
+                        new { Id = 17, EmployeeId = 3, TaskId = 17 },
+                        new { Id = 18, EmployeeId = 3, TaskId = 18 },
+                        new { Id = 19, EmployeeId = 3, TaskId = 19 }
+                    );
                 });
 
             modelBuilder.Entity("ProjectManager.Core.Entities.Project", b =>
@@ -229,6 +263,8 @@ namespace ProjectManager.Persistence.Migrations
                     b.Property<DateTime?>("Enddate");
 
                     b.Property<string>("Information");
+
+                    b.Property<int?>("ProjectId");
 
                     b.Property<string>("ProjectName")
                         .IsRequired();
@@ -244,6 +280,8 @@ namespace ProjectManager.Persistence.Migrations
                     b.Property<string>("ValuedTime");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("Projects");
 
@@ -315,6 +353,28 @@ namespace ProjectManager.Persistence.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("Tasks");
+
+                    b.HasData(
+                        new { Id = 1, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Erster Task", Priority = 3, ProjectId = 1, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test1", ValuedTime = "400" },
+                        new { Id = 2, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 3, ProjectId = 1, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test2", ValuedTime = "400" },
+                        new { Id = 3, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 3, ProjectId = 1, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test3", ValuedTime = "400" },
+                        new { Id = 4, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 3, ProjectId = 1, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test4", ValuedTime = "400" },
+                        new { Id = 5, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 3, ProjectId = 1, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test5", ValuedTime = "400" },
+                        new { Id = 6, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 3, ProjectId = 2, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test6", ValuedTime = "400" },
+                        new { Id = 7, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 3, ProjectId = 2, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test7", ValuedTime = "400" },
+                        new { Id = 8, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 3, ProjectId = 2, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test8", ValuedTime = "400" },
+                        new { Id = 9, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 3, ProjectId = 2, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test9", ValuedTime = "400" },
+                        new { Id = 10, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 3, ProjectId = 2, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test10", ValuedTime = "400" },
+                        new { Id = 11, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 3, ProjectId = 3, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test11", ValuedTime = "400" },
+                        new { Id = 12, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 3, ProjectId = 3, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test12", ValuedTime = "400" },
+                        new { Id = 13, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 3, ProjectId = 3, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test13", ValuedTime = "400" },
+                        new { Id = 14, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 3, ProjectId = 3, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test14", ValuedTime = "400" },
+                        new { Id = 15, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 3, ProjectId = 3, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test15", ValuedTime = "400" },
+                        new { Id = 16, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 3, ProjectId = 4, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test16", ValuedTime = "400" },
+                        new { Id = 17, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 3, ProjectId = 4, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test17", ValuedTime = "400" },
+                        new { Id = 18, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 3, ProjectId = 4, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test18", ValuedTime = "400" },
+                        new { Id = 19, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 3, ProjectId = 4, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = "undefiniert", TaskName = "Test19", ValuedTime = "400" }
+                    );
                 });
 
             modelBuilder.Entity("ProjectManager.Core.Entities.TaskQualification", b =>
@@ -363,9 +423,9 @@ namespace ProjectManager.Persistence.Migrations
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("ProjectManager.Core.Entities.Task", "Task")
+                    b.HasOne("ProjectManager.Core.Entities.Project", "Project")
                         .WithMany()
-                        .HasForeignKey("TaskId")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -393,6 +453,13 @@ namespace ProjectManager.Persistence.Migrations
                         .WithMany()
                         .HasForeignKey("TaskId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ProjectManager.Core.Entities.Project", b =>
+                {
+                    b.HasOne("ProjectManager.Core.Entities.Project")
+                        .WithMany("Projects")
+                        .HasForeignKey("ProjectId");
                 });
 
             modelBuilder.Entity("ProjectManager.Core.Entities.Task", b =>

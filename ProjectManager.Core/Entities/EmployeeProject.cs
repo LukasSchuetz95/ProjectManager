@@ -12,8 +12,8 @@ namespace ProjectManager.Core.Entities
         public int EmployeeId { get; set; }
 
 
-        [ForeignKey(nameof(TaskId))]
-        public Task Task { get; set; }
-        public int TaskId { get; set; }
+        [ForeignKey(nameof(ProjectId))]
+        public Project Project { get; set; }
+        public int ProjectId { get; set; }
     }
 }
