@@ -75,7 +75,7 @@ namespace ProjectManager.Persistence
 
         public Employee GetById(int employeeId)
         {
-            return _dbContext.Employees.SingleOrDefault(c => c.Id == employeeId);
+            return _dbContext.Employees.Where(p => p.Id == employeeId).FirstOrDefault();
         }
 
         public List<Employee> GetAll()

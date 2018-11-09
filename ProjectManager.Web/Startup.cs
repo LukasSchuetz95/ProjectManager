@@ -70,37 +70,7 @@ namespace ProjectManager.Web
             app.UseMvc(routes =>
             {
                 routes.MapRoute(name: "default", template: "{controller=Home}/{action=LoginScreen}/{id?}");
-            });
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(name: "Edit", template: "{controller=Employees}/{action=Edit}/{id?}");
-            });
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(name: "Feed", template: "{controller=Employees}/{action=Feed}/{id?}");
-            });
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(name: "CreateAppointment", template: "{controller=Appointments}/{action=Create}/{id?}");
-            });
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(name: "LookingForEmployees", template: "{controller=Employees}/{action=List}/{id?}");
-            });
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(name: "ProjectList", template: "{controller=Projects}/{action=List}/{id?}");
-            });
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(name: "ProjectList", template: "{controller=Projects}/{action=Edit}/{id?}");
-            });
+            });      
         }
     }
 }

@@ -58,8 +58,8 @@
         @foreach (var employee in Model.Employees)
         {
             <tr>
-                <td><a asp-controller="Employee" asp-action="Profil" asp-route-Id="@employee.Id">@employee.Lastname</a></td>
-                <td><a asp-controller="Employee" asp-action="Profil" asp-route-Id="@employee.Id">@employee.Firstname</a></td>
+                <td><a asp-controller="Employees" asp-action="Profil" asp-route-Id="@employee.Id">@employee.Lastname</a></td>
+                <td><a asp-controller="Employees" asp-action="Profil" asp-route-Id="@employee.Id">@employee.Firstname</a></td>
                 <td>@employee.Job</td>
                 <td>@employee.Department.DeptName</td>
             </tr>
