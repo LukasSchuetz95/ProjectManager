@@ -29,7 +29,7 @@ namespace ProjectManager.Persistence
 
         public List<Task> GetAllTasksForProjectWithProcessingStatus(int projectId)
         {
-            return _dbContext.Tasks.Where(p => p.ProjectId == projectId).Where(t => t.Status.ToLower() == "processing").ToList();
+            return _dbContext.Tasks.Where(p => p.ProjectId == projectId).ToList();
         }
     }
 }
