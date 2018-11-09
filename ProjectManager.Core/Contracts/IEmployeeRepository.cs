@@ -12,5 +12,7 @@ namespace ProjectManager.Core.Contracts
         List<Employee> GetEmployeeByJob(string filterJob=null);
         List<Employee> GetEmployeeByDeparmentName(string filterDepartmentName=null);
         Employee GetById(int employeeId);
+        List<Employee> GetEmployeeByJob(string filterJob);
+        List<Employee> GetAll();
     }
 }
