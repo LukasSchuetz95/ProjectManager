@@ -14,6 +14,7 @@ namespace ProjectManager.Web.Models.ViewModel
         public string FilterLastname { get; set; }
         public string FilterFirstname { get; set; }
         public string FilterJob { get; set; }
+        public string FilterDepartmentName { get; set; }
 
         //StandardbennenungController+Actionmodel
     }
