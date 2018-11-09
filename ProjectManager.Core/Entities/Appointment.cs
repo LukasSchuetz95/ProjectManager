@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ProjectManager.Core.Enum;
 
 namespace ProjectManager.Core.Entities
 {
@@ -19,8 +20,8 @@ namespace ProjectManager.Core.Entities
         public string AppoName { get; set; }
 
         [Required(ErrorMessage = "Dieses Feld wird benötigt")]
-        [Display(Name = "Termintyp")]
-        public string AppoType { get; set; }
+        [Display(Name = "Terminart")]
+        public AppointmentType AppoType { get; set; }
 
         public string Information { get; set; }
 

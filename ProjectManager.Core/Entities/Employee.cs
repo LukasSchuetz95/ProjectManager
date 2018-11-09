@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.ComponentModel;
+using ProjectManager.Core.Enum;
 
 namespace ProjectManager.Core.Entities
 {
@@ -27,7 +28,7 @@ namespace ProjectManager.Core.Entities
         [Display(Name = "Projekt-Manager")]
         public bool Projectmanager { get; set; }
 
-        public string Status { get; set; }
+        public EmployeeStatusType Status { get; set; }
 
         [Display(Name = "Profil-Bild")]
         public byte[] Profilepicture { get; set; }

@@ -1,5 +1,6 @@
 ﻿using ProjectManager.Core.Contracts;
 using ProjectManager.Core.Entities;
+using ProjectManager.Core.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,12 +30,12 @@ namespace ProjectManager.Persistence
 
         public List<Task> GetAllTasksForProjectWithProcessingStatus(int projectId)
         {
-            return _dbContext.Tasks.Where(p => (p.ProjectId == projectId) && (p.Status.ToLower() == "processing")).ToList();
+            return _dbContext.Tasks.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Laufend)).ToList();
         }
 
         public List<Task> GetAllTasksForProjectWithUndefinedStatus(int projectId)
         {
-            return _dbContext.Tasks.Where(p => (p.ProjectId == projectId) && (p.Status == "undefiniert")).ToList();
+            return _dbContext.Tasks.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Offen)).ToList();
         }
 
         public void Update(Task task)

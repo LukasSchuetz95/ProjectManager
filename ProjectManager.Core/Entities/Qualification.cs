@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectManager.Core.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -10,6 +11,6 @@ namespace ProjectManager.Core.Entities
 
         [Required(ErrorMessage = "Dieses Feld wird benötigt")]
         [Display(Name = "Qualifikation")]
-        public string QualificationName { get; set; }
+        public QualificationNameType QualificationName { get; set; }
     }
 }

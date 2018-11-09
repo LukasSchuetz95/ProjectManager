@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using ProjectManager.Core.Entities;
+using ProjectManager.Core.Enum;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -44,13 +45,13 @@ namespace ProjectManager.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Qualification>().HasData(
-                new { Id = 1, QualificationName = "Test1" });
+                new { Id = 1, QualificationName = QualificationNameType.Hardware });
 
             modelBuilder.Entity<Qualification>().HasData(
-                new { Id = 2, QualificationName = "Test2" });
+                new { Id = 2, QualificationName = QualificationNameType.Pflichtenheft });
 
             modelBuilder.Entity<Qualification>().HasData(
-                new { Id = 3, QualificationName = "Test3" });
+                new { Id = 3, QualificationName = QualificationNameType.Software });
 
             modelBuilder.Entity<Department>().HasData(
                 new Department { Id = 1, DeptLocation = "Wels", DeptName = "Headquarter" });
@@ -70,7 +71,7 @@ namespace ProjectManager.Persistence
                     Residence = "Bad Hall",
                     StreetNameAndNr = "Roemerstr. 41",
                     ZipCode = "4540",
-                    Status = "Beschaeftigt",
+                    Status = EmployeeStatusType.Auszeit,
                     Job = "Software Developer",
                     Projectmanager = true,
                     DepartmentId = 1,
@@ -89,7 +90,7 @@ namespace ProjectManager.Persistence
                     Residence = "Kematen am Innbach",
                     StreetNameAndNr = "Weiss i ned",
                     ZipCode = "Ka Ahnung",
-                    Status = "Beschaeftigt",
+                    Status = EmployeeStatusType.Beschäftigt,
                     Job = "Database Developer",
                     Projectmanager = false,
                     DepartmentId = 1,
@@ -108,7 +109,7 @@ namespace ProjectManager.Persistence
                     Residence = "Irgendwo",
                     StreetNameAndNr = "Weiss i ned",
                     ZipCode = "Ka Ahnung",
-                    Status = "Beschaeftigt",
+                    Status = EmployeeStatusType.Gekündigt,
                     Job = "Software Developer",
                     Projectmanager = true,
                     DepartmentId = 2
@@ -121,7 +122,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 1,
                     AppoName = "Arztbesuch",
-                    AppoType = "Arzt",
+                    AppoType = AppointmentType.Meeting,
                     EmployeeId = 1,
                     Startdate = new DateTime(2020, 10, 30, 6, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 8, 00, 0),
@@ -133,7 +134,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 2,
                     AppoName = "Meeting",
-                    AppoType = "Meeting",
+                    AppoType = AppointmentType.Werkstatt,
                     EmployeeId = 1,
                     Startdate = new DateTime(2020, 10, 30, 8, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 9, 00, 0),
@@ -145,7 +146,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 3,
                     AppoName = "test1",
-                    AppoType = "test",
+                    AppoType = AppointmentType.Meeting,
                     EmployeeId = 1,
                     Startdate = new DateTime(2020, 10, 30, 10, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 11, 30, 0),
@@ -157,7 +158,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 4,
                     AppoName = "test2",
-                    AppoType = "test",
+                    AppoType = AppointmentType.Arztbesuch,
                     EmployeeId = 1,
                     Startdate = new DateTime(2020, 10, 30, 12, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 13, 30, 0),
@@ -169,7 +170,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 5,
                     AppoName = "test3",
-                    AppoType = "test",
+                    AppoType = AppointmentType.Andere,
                     EmployeeId = 1,
                     Startdate = new DateTime(2020, 10, 30, 14, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 15, 30, 0),
@@ -181,7 +182,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 6,
                     AppoName = "test4",
-                    AppoType = "test",
+                    AppoType = AppointmentType.Werkstatt,
                     EmployeeId = 2,
                     Startdate = new DateTime(2020, 10, 30, 6, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 7, 30, 0),
@@ -193,7 +194,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 7,
                     AppoName = "test5",
-                    AppoType = "test",
+                    AppoType = AppointmentType.Meeting,
                     EmployeeId = 2,
                     Startdate = new DateTime(2020, 10, 30, 8, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 9, 30, 0),
@@ -205,7 +206,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 8,
                     AppoName = "test6",
-                    AppoType = "test",
+                    AppoType = AppointmentType.Arztbesuch,
                     EmployeeId = 2,
                     Startdate = new DateTime(2020, 10, 30, 10, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 11, 30, 0),
@@ -217,7 +218,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 9,
                     AppoName = "test7",
-                    AppoType = "test",
+                    AppoType = AppointmentType.Andere,
                     EmployeeId = 2,
                     Startdate = new DateTime(2020, 10, 30, 12, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 13, 30, 0),
@@ -229,7 +230,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 10,
                     AppoName = "test8",
-                    AppoType = "test",
+                    AppoType = AppointmentType.Andere,
                     EmployeeId = 2,
                     Startdate = new DateTime(2020, 10, 30, 14, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 15, 30, 0),
@@ -241,7 +242,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 11,
                     AppoName = "test9",
-                    AppoType = "test",
+                    AppoType = AppointmentType.Werkstatt,
                     EmployeeId = 3,
                     Startdate = new DateTime(2020, 10, 30, 6, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 7, 30, 0),
@@ -253,7 +254,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 12,
                     AppoName = "test10",
-                    AppoType = "test",
+                    AppoType = AppointmentType.Arztbesuch,
                     EmployeeId = 3,
                     Startdate = new DateTime(2020, 10, 30, 8, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 9, 30, 0),
@@ -265,7 +266,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 13,
                     AppoName = "test11",
-                    AppoType = "test",
+                    AppoType = AppointmentType.Arztbesuch,
                     EmployeeId = 3,
                     Startdate = new DateTime(2020, 10, 30, 10, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 11, 30, 0),
@@ -277,7 +278,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 14,
                     AppoName = "test12",
-                    AppoType = "test",
+                    AppoType = AppointmentType.Arztbesuch,
                     EmployeeId = 3,
                     Startdate = new DateTime(2020, 10, 30, 12, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 13, 30, 0),
@@ -289,7 +290,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 15,
                     AppoName = "test13",
-                    AppoType = "test",
+                    AppoType = AppointmentType.Meeting,
                     EmployeeId = 3,
                     Startdate = new DateTime(2020, 10, 30, 14, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 15, 30, 0),
@@ -301,7 +302,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 1,
                     ProjectName = "Diplomarbeit",
-                    Status = "Undefiniert",
+                    Status = ProjectStatusType.Abgeschlossen,
                     Startdate = new DateTime(2020, 10, 30, 14, 30, 0),
                     Deadline = new DateTime(2020, 10, 30, 15, 30, 0),
                     ValuedTime = "500",
@@ -313,7 +314,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 2,
                     ProjectName = "Project1",
-                    Status = "Undefiniert",
+                    Status = ProjectStatusType.Laufend,
                     Startdate = new DateTime(2021, 10, 30, 14, 30, 0),
                     Deadline = new DateTime(2022, 10, 30, 15, 30, 0),
                     ValuedTime = "500",
@@ -325,7 +326,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 3,
                     ProjectName = "Project2",
-                    Status = "Undefiniert",
+                    Status = ProjectStatusType.Offen,
                     Startdate = new DateTime(2023, 10, 30, 14, 30, 0),
                     Deadline = new DateTime(2024, 10, 30, 15, 30, 0),
                     ValuedTime = "500",
@@ -337,7 +338,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 4,
                     ProjectName = "Project3",
-                    Status = "Undefiniert",
+                    Status = ProjectStatusType.Laufend,
                     Startdate = new DateTime(2025, 10, 30, 14, 30, 0),
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     ValuedTime = "500",
@@ -423,13 +424,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 1,
                     FixedTask = false,
                     TaskName = "Test1",
-                    Status = "Processing",
+                    Status = TaskStatusType.Laufend,
                     Information = "Erster Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Normal,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -439,13 +440,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 1,
                     FixedTask = false,
                     TaskName = "Test2",
-                    Status = "undefiniert",
+                    Status = TaskStatusType.Abgeschlossen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Normal,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -455,13 +456,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 1,
                     FixedTask = false,
                     TaskName = "Test3",
-                    Status = "undefiniert",
+                    Status = TaskStatusType.Offen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Normal,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -471,13 +472,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 1,
                     FixedTask = false,
                     TaskName = "Test4",
-                    Status = "undefiniert",
+                    Status = TaskStatusType.Laufend,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Normal,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -487,13 +488,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 1,
                     FixedTask = false,
                     TaskName = "Test5",
-                    Status = "undefiniert",
+                    Status = TaskStatusType.Offen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Normal,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -503,13 +504,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 2,
                     FixedTask = false,
                     TaskName = "Test6",
-                    Status = "Processing",
+                    Status = TaskStatusType.Abgeschlossen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Normal,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -519,13 +520,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 2,
                     FixedTask = false,
                     TaskName = "Test7",
-                    Status = "undefiniert",
+                    Status = TaskStatusType.Laufend,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Normal,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -535,13 +536,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 2,
                     FixedTask = false,
                     TaskName = "Test8",
-                    Status = "undefiniert",
+                    Status = TaskStatusType.Abgeschlossen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Normal,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -551,13 +552,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 2,
                     FixedTask = false,
                     TaskName = "Test9",
-                    Status = "undefiniert",
+                    Status = TaskStatusType.Laufend,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Normal,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -567,13 +568,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 2,
                     FixedTask = false,
                     TaskName = "Test10",
-                    Status = "undefiniert",
+                    Status = TaskStatusType.Abgeschlossen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Normal,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -583,13 +584,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 3,
                     FixedTask = false,
                     TaskName = "Test11",
-                    Status = "Processing",
+                    Status = TaskStatusType.Offen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Normal,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -599,13 +600,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 3,
                     FixedTask = false,
                     TaskName = "Test12",
-                    Status = "undefiniert",
+                    Status = TaskStatusType.Laufend,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Normal,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -615,13 +616,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 3,
                     FixedTask = false,
                     TaskName = "Test13",
-                    Status = "undefiniert",
+                    Status = TaskStatusType.Offen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Wichtig,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -631,13 +632,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 3,
                     FixedTask = false,
                     TaskName = "Test14",
-                    Status = "undefiniert",
+                    Status = TaskStatusType.Offen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Wichtig,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -647,13 +648,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 3,
                     FixedTask = false,
                     TaskName = "Test15",
-                    Status = "undefiniert",
+                    Status = TaskStatusType.Offen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Wichtig,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -663,13 +664,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 4,
                     FixedTask = false,
                     TaskName = "Test16",
-                    Status = "Processing",
+                    Status = TaskStatusType.Offen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Wichtig,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -679,13 +680,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 4,
                     FixedTask = false,
                     TaskName = "Test17",
-                    Status = "undefiniert",
+                    Status = TaskStatusType.Offen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Wichtig,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -695,13 +696,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 4,
                     FixedTask = false,
                     TaskName = "Test18",
-                    Status = "undefiniert",
+                    Status = TaskStatusType.Offen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Wichtig,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -711,13 +712,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 4,
                     FixedTask = false,
                     TaskName = "Test19",
-                    Status = "undefiniert",
+                    Status = TaskStatusType.Laufend,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = 3,
+                    Priority = PriorityType.Wichtig,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
