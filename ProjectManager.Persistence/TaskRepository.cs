@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProjectManager.Persistence
 {
@@ -25,7 +26,7 @@ namespace ProjectManager.Persistence
 
         public List<Task> GetAll()
         {
-            return _dbContext.Tasks.OrderBy(ord => ord.Project).ToList();
+            return _dbContext.Tasks.Include(ord => ord.Project).OrderBy(ord => ord.Project).ToList();
         }
 
         public List<Task> GetAllTasksForProjectWithProcessingStatus(int projectId)
