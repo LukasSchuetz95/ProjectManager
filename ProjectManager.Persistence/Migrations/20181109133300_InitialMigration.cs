@@ -36,18 +36,11 @@ namespace ProjectManager.Persistence.Migrations
                     Startdate = table.Column<DateTime>(nullable: true),
                     Enddate = table.Column<DateTime>(nullable: true),
                     ValuedTime = table.Column<string>(nullable: true),
-                    Deadline = table.Column<DateTime>(nullable: true),
-                    ProjectId = table.Column<int>(nullable: true)
+                    Deadline = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Projects", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Projects_Projects_ProjectId",
-                        column: x => x.ProjectId,
-                        principalTable: "Projects",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -271,13 +264,13 @@ namespace ProjectManager.Persistence.Migrations
 
             migrationBuilder.InsertData(
                 table: "Projects",
-                columns: new[] { "Id", "Deadline", "Enddate", "Information", "ProjectId", "ProjectName", "Startdate", "Status", "Timestamp", "ValuedTime" },
+                columns: new[] { "Id", "Deadline", "Enddate", "Information", "ProjectName", "Startdate", "Status", "Timestamp", "ValuedTime" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), null, "Dieses Projekt benötigt noch viel Zuneigung", null, "Diplomarbeit", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" },
-                    { 2, new DateTime(2022, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), null, "Dieses Projekt benötigt noch viel Zuneigung", null, "Project1", new DateTime(2021, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" },
-                    { 3, new DateTime(2024, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), null, "Dieses Projekt benötigt noch viel Zuneigung", null, "Project2", new DateTime(2023, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" },
-                    { 4, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), null, "Dieses Projekt benötigt noch viel Zuneigung", null, "Project3", new DateTime(2025, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" }
+                    { 1, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), null, "Dieses Projekt benötigt noch viel Zuneigung", "Diplomarbeit", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" },
+                    { 2, new DateTime(2022, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), null, "Dieses Projekt benötigt noch viel Zuneigung", "Project1", new DateTime(2021, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" },
+                    { 3, new DateTime(2024, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), null, "Dieses Projekt benötigt noch viel Zuneigung", "Project2", new DateTime(2023, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" },
+                    { 4, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), null, "Dieses Projekt benötigt noch viel Zuneigung", "Project3", new DateTime(2025, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), "Undefiniert", null, "500" }
                 });
 
             migrationBuilder.InsertData(
@@ -295,9 +288,9 @@ namespace ProjectManager.Persistence.Migrations
                 columns: new[] { "Id", "Birthdate", "DepartmentId", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Projectmanager", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2018, 11, 9, 12, 24, 11, 292, DateTimeKind.Local), 1, "Lukas", new DateTime(2018, 11, 9, 12, 24, 11, 293, DateTimeKind.Local), "Software Developer", "Schuetz", "0660/ 4878 299", null, true, "Bad Hall", "Beschaeftigt", "Roemerstr. 41", null, "4540" },
-                    { 2, new DateTime(2018, 11, 9, 12, 24, 11, 294, DateTimeKind.Local), 1, "Thomas", new DateTime(2018, 11, 9, 12, 24, 11, 294, DateTimeKind.Local), "Database Developer", "Baurnberger", "0660/ 4878 333", null, false, "Kematen am Innbach", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" },
-                    { 3, new DateTime(2018, 11, 9, 12, 24, 11, 294, DateTimeKind.Local), 2, "Manuel", new DateTime(2018, 11, 9, 12, 24, 11, 294, DateTimeKind.Local), "Software Developer", "Mairinger", "0660/ 4878 444", null, true, "Irgendwo", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" }
+                    { 1, new DateTime(2018, 11, 9, 14, 32, 59, 729, DateTimeKind.Local), 1, "Lukas", new DateTime(2018, 11, 9, 14, 32, 59, 730, DateTimeKind.Local), "Software Developer", "Schuetz", "0660/ 4878 299", null, true, "Bad Hall", "Beschaeftigt", "Roemerstr. 41", null, "4540" },
+                    { 2, new DateTime(2018, 11, 9, 14, 32, 59, 731, DateTimeKind.Local), 1, "Thomas", new DateTime(2018, 11, 9, 14, 32, 59, 731, DateTimeKind.Local), "Database Developer", "Baurnberger", "0660/ 4878 333", null, false, "Kematen am Innbach", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" },
+                    { 3, new DateTime(2018, 11, 9, 14, 32, 59, 731, DateTimeKind.Local), 2, "Manuel", new DateTime(2018, 11, 9, 14, 32, 59, 731, DateTimeKind.Local), "Software Developer", "Mairinger", "0660/ 4878 444", null, true, "Irgendwo", "Beschaeftigt", "Weiss i ned", null, "Ka Ahnung" }
                 });
 
             migrationBuilder.InsertData(
@@ -306,22 +299,22 @@ namespace ProjectManager.Persistence.Migrations
                 values: new object[,]
                 {
                     { 17, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 4, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test17", null, "400" },
-                    { 16, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 4, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test16", null, "400" },
+                    { 16, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 4, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "Processing", "Test16", null, "400" },
                     { 15, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 3, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test15", null, "400" },
                     { 14, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 3, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test14", null, "400" },
                     { 13, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 3, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test13", null, "400" },
                     { 12, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 3, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test12", null, "400" },
-                    { 11, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 3, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test11", null, "400" },
+                    { 11, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 3, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "Processing", "Test11", null, "400" },
                     { 10, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 2, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test10", null, "400" },
                     { 8, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 2, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test8", null, "400" },
                     { 18, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 4, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test18", null, "400" },
                     { 7, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 2, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test7", null, "400" },
-                    { 6, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 2, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test6", null, "400" },
+                    { 6, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 2, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "Processing", "Test6", null, "400" },
                     { 5, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 1, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test5", null, "400" },
                     { 4, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 1, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test4", null, "400" },
                     { 3, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 1, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test3", null, "400" },
                     { 2, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 1, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test2", null, "400" },
-                    { 1, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Erster Task", 3, 1, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test1", null, "400" },
+                    { 1, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Erster Task", 3, 1, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "Processing", "Test1", null, "400" },
                     { 9, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 2, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test9", null, "400" },
                     { 19, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 3, 4, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "undefiniert", "Test19", null, "400" }
                 });
@@ -429,11 +422,6 @@ namespace ProjectManager.Persistence.Migrations
                 name: "IX_EmployeeTasks_TaskId",
                 table: "EmployeeTasks",
                 column: "TaskId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Projects_ProjectId",
-                table: "Projects",
-                column: "ProjectId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TaskQualifications_QualificationId",

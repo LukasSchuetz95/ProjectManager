@@ -27,9 +27,9 @@ namespace ProjectManager.Persistence
             return _dbContext.Tasks.OrderBy(ord => ord.Project).ToList();
         }
 
-        public List<Task> GetAllTasksForProjectWithProcessingStatus(int projectId)
+        public List<Task> GetAllTasksForProjectWithUndefinedStatus(int projectId)
         {
-            return _dbContext.Tasks.Where(p => p.ProjectId == projectId).ToList();
+            return _dbContext.Tasks.Where(p => (p.ProjectId == projectId) && (p.Project.Status == "undefiniert")).ToList();
         }
     }
 }

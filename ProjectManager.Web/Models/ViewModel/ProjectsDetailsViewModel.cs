@@ -17,7 +17,7 @@ namespace ProjectManager.Web.Models.ViewModel
         {
             EmployeeProjects = unitOfWork.EmployeeProjects.GetAllByProjectId(projectId);
             Projects = unitOfWork.Projects.GetById(projectId);
-            Tasks = unitOfWork.Tasks.GetAllTasksForProjectWithProcessingStatus(projectId);
+            Tasks = unitOfWork.Tasks.GetAllTasksForProjectWithUndefinedStatus(projectId);
         }
     }
 }

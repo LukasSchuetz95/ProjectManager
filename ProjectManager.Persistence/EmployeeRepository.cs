@@ -77,5 +77,10 @@ namespace ProjectManager.Persistence
         {
             return _dbContext.Employees.SingleOrDefault(c => c.Id == employeeId);
         }
+
+        public List<Employee> GetAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
