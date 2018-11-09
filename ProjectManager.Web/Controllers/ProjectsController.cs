@@ -54,23 +54,23 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
-        public IActionResult Create(int projectId)
+        public IActionResult Create()
         {
-            Project projects = new Project();
-            projects = _unitOfWork.Projects.GetById(projectId);
-            return View(projects);
+            ProjectsCreateViewModel model = new ProjectsCreateViewModel();
+            model.LoadData(_unitOfWork);
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult Create(Project model)
+        public IActionResult Create(ProjectsCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _unitOfWork.Projects.Add(model);
+                    _unitOfWork.EmployeeProjects.Add(model.EmployeeProject);
                     _unitOfWork.Save();
-                    return RedirectToAction("List");
+                    return RedirectToAction("List", "Projects");
                 }
                 catch (ValidationException validationException)
                 {
@@ -79,7 +79,7 @@ namespace ProjectManager.Web.Controllers
                 }
             }
 
-            model = _unitOfWork.Projects.GetById(model.Id);
+            model.LoadData(_unitOfWork);
             return View(model);
         }
 

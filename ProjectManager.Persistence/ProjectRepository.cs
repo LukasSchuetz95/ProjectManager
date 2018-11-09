@@ -27,6 +27,11 @@ namespace ProjectManager.Persistence
             return _dbContext.Projects.OrderBy(p => p.ProjectName).ToList();
         }
 
+        public List<Project> GetAllStatuses()
+        {
+            return _dbContext.Projects.OrderBy(p => p.Status).ToList();
+        }
+
         public Project GetById(int projectId)
         {
             return _dbContext.Projects.Where(p => p.Id == projectId).FirstOrDefault();

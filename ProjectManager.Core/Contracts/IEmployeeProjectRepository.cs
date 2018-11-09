@@ -9,5 +9,6 @@ namespace ProjectManager.Core.Contracts
     {
         List<EmployeeProject> GetAll();
         List<EmployeeProject> GetAllByProjectId(int projectId);
+        void Add(EmployeeProject model);
     }
 }

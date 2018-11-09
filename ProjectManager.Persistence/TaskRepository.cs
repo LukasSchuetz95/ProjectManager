@@ -29,6 +29,11 @@ namespace ProjectManager.Persistence
             return _dbContext.Tasks.Include(ord => ord.Project).OrderBy(ord => ord.Project).ToList();
         }
 
+        public List<Task> GetAllTasksForProjectWithCompletedStatus(int projectId)
+        {
+            return _dbContext.Tasks.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Abgeschlossen)).ToList();
+        }
+
         public List<Task> GetAllTasksForProjectWithProcessingStatus(int projectId)
         {
             return _dbContext.Tasks.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Laufend)).ToList();

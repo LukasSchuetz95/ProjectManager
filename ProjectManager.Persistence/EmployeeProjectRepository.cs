@@ -17,6 +17,11 @@ namespace ProjectManager.Persistence
             _dbContext = dbContext;
         }
 
+        public void Add(EmployeeProject model)
+        {
+            _dbContext.EmployeeProjects.Add(model);
+        }
+
         public List<EmployeeProject> GetAll()
         {
             return _dbContext.EmployeeProjects.Include(e => e.Employee).Include(p => p.Project).OrderBy(e => e.Id).ToList();

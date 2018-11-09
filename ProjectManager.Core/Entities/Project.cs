@@ -29,5 +29,10 @@ namespace ProjectManager.Core.Entities
         public string ValuedTime { get; set; }
 
         public DateTime? Deadline { get; set; }
+
+        public override string ToString()
+        {
+            return Status.ToString();
+        }
     }
 }

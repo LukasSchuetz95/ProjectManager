@@ -1,4 +1,4 @@
-﻿@model ProjectManager.Core.Entities.Project
+﻿@model ProjectManager.Web.Models.ViewModel.ProjectsCreateViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -13,39 +13,39 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ProjectName" class="control-label"></label>
-                <input asp-for="ProjectName" class="form-control" />
-                <span asp-validation-for="ProjectName" class="text-danger"></span>
+                <label asp-for="EmployeeProject.Project.ProjectName" class="control-label"></label>
+                <input asp-for="EmployeeProject.Project.ProjectName" class="form-control" />
+                <span asp-validation-for="EmployeeProject.Project.ProjectName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
+                <label asp-for="EmployeeProject.ProjectId" class="control-label"></label>
+                <select asp-for="EmployeeProject.ProjectId" asp-items="@Model.Statuses" class="form-control" ></select>
+                <span asp-validation-for="EmployeeProject.ProjectId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Startdate" class="control-label"></label>
-                <input asp-for="Startdate" type="date" class="form-control" />
-                <span asp-validation-for="Startdate" class="text-danger"></span>
+                <label asp-for="EmployeeProject.Project.Startdate" class="control-label"></label>
+                <input asp-for="EmployeeProject.Project.Startdate" type="date" class="form-control" />
+                <span asp-validation-for="EmployeeProject.Project.Startdate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Enddate" class="control-label"></label>
-                <input asp-for="Enddate" type="date" class="form-control" />
-                <span asp-validation-for="Enddate" class="text-danger"></span>
+                <label asp-for="EmployeeProject.Project.Enddate" class="control-label"></label>
+                <input asp-for="EmployeeProject.Project.Enddate" type="date" class="form-control" />
+                <span asp-validation-for="EmployeeProject.Project.Enddate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ValuedTime" class="control-label"></label>
-                <input asp-for="ValuedTime" type="date" class="form-control" />
-                <span asp-validation-for="ValuedTime" class="text-danger"></span>
+                <label asp-for="EmployeeProject.Project.ValuedTime" class="control-label"></label>
+                <input asp-for="EmployeeProject.Project.ValuedTime" class="form-control" />
+                <span asp-validation-for="EmployeeProject.Project.ValuedTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Deadline" class="control-label"></label>
-                <input asp-for="Deadline" type="date" class="form-control" />
-                <span asp-validation-for="Deadline" class="text-danger"></span>
+                <label asp-for="EmployeeProject.Project.Deadline" class="control-label"></label>
+                <input asp-for="EmployeeProject.Project.Deadline" type="date" class="form-control" />
+                <span asp-validation-for="EmployeeProject.Project.Deadline" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Information" class="control-label"></label>
-                <input asp-for="Information" class="form-control" />
-                <span asp-validation-for="Information" class="text-danger"></span>
+                <label asp-for="EmployeeProject.Project.Information" class="control-label"></label>
+                <input asp-for="EmployeeProject.Project.Information" class="form-control" />
+                <span asp-validation-for="EmployeeProject.Project.Information" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

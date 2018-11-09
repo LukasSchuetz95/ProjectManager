@@ -50,5 +50,10 @@ namespace ProjectManager.Core.Entities
 
         [Display(Name = "Telefonnummer")]
         public string Phonenumber { get; set; }
+
+        public override string ToString()
+        {
+            return Lastname + " " + Firstname;
+        }
     }
 }

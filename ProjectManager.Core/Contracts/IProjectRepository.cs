@@ -12,5 +12,6 @@ namespace ProjectManager.Core.Contracts
         void Add(Project model);
         List<Project> GetProjectByName(string filter=null);
         void Update(Project project);
+        List<Project> GetAllStatuses();
     }
 }

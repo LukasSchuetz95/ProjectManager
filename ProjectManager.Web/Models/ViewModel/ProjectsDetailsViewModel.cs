@@ -12,6 +12,7 @@ namespace ProjectManager.Web.Models.ViewModel
         public List<EmployeeProject> EmployeeProjects { get; set; }
         public List<Core.Entities.Task> UndefinedTasks { get; set; }
         public List<Core.Entities.Task> ProcessingTasks { get; set; }
+        public List<Core.Entities.Task> CompletedTasks { get; set; }
         public Project Projects { get; set; }
 
         public void LoadData(IUnitOfWork unitOfWork, int projectId)
@@ -20,6 +21,7 @@ namespace ProjectManager.Web.Models.ViewModel
             Projects = unitOfWork.Projects.GetById(projectId);
             UndefinedTasks = unitOfWork.Tasks.GetAllTasksForProjectWithUndefinedStatus(projectId);
             ProcessingTasks = unitOfWork.Tasks.GetAllTasksForProjectWithProcessingStatus(projectId);
+            CompletedTasks = unitOfWork.Tasks.GetAllTasksForProjectWithCompletedStatus(projectId);
         }
     }
 }

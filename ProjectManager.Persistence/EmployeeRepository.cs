@@ -80,7 +80,7 @@ namespace ProjectManager.Persistence
 
         public List<Employee> GetAll()
         {
-            throw new NotImplementedException();
+            return _dbContext.Employees.OrderBy(e => e.Firstname).ThenBy(e => e.Lastname).ToList();
         }
     }
 }
