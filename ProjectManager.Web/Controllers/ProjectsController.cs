@@ -86,8 +86,8 @@ namespace ProjectManager.Web.Controllers
         public IActionResult Details(int projectId)
         {
             ProjectsDetailsViewModel model = new ProjectsDetailsViewModel();
-            model.Project = _unitOfWork.Projects.GetById(projectId);
-            return View(model);
+            model.LoadData(_unitOfWork, projectId);
+            return View(model);   
         }
 
 

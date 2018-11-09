@@ -1,4 +1,5 @@
-﻿using ProjectManager.Core.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjectManager.Core.Contracts;
 using ProjectManager.Core.Entities;
 using System;
 using System.Collections.Generic;

@@ -57,5 +57,10 @@ namespace ProjectManager.Persistence
                 return query.Where(e => e.Job.StartsWith(filter)).ToList();
             }
         }
+
+        public List<Employee> GetAll()
+        {
+            return _dbContext.Employees.OrderBy(e => e.Firstname).ToList();
+        }
     }
 }

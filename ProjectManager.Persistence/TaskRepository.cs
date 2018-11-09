@@ -26,5 +26,10 @@ namespace ProjectManager.Persistence
         {
             return _dbContext.Tasks.OrderBy(ord => ord.Project).ToList();
         }
+
+        public List<Task> GetAllTasksForProjectWithProcessingStatus(int projectId)
+        {
+            return _dbContext.Tasks.Where(p => p.ProjectId == projectId).Where(t => t.Status.ToLower() == "processing").ToList();
+        }
     }
 }

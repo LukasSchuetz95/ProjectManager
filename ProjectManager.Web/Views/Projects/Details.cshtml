@@ -10,19 +10,50 @@
     <h4>Projekt-Übersicht</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>@Html.DisplayNameFor(m => m.Project.Id)</dt>
-        <dd>@Model.Project.Id</dd>
-        <dt>@Html.DisplayNameFor(m => m.Project.ProjectName)</dt>
-        <dd>@Model.Project.ProjectName</dd>
-        <dt>@Html.DisplayNameFor(m => m.Project.Startdate)</dt>
-        <dd>@Model.Project.Startdate</dd>
-        <dt>@Html.DisplayNameFor(m => m.Project.Enddate)</dt>
-        <dd>@Model.Project.Enddate</dd>
-        <dt>@Html.DisplayNameFor(m => m.Project.Deadline)</dt>
-        <dd>@Model.Project.Deadline</dd>
+        <dt>@Html.DisplayNameFor(m => m.Projects.Id)</dt>
+        <dd>@Model.Projects.Id</dd>
+        <dt>@Html.DisplayNameFor(m => m.Projects.ProjectName)</dt>
+        <dd>@Model.Projects.ProjectName</dd>
+        <dt>@Html.DisplayNameFor(m => m.Projects.Startdate)</dt>
+        <dd>@Model.Projects.Startdate</dd>
+        <dt>@Html.DisplayNameFor(m => m.Projects.Enddate)</dt>
+        <dd>@Model.Projects.Enddate</dd>
+        <dt>@Html.DisplayNameFor(m => m.Projects.Deadline)</dt>
+        <dd>@Model.Projects.Deadline</dd>
     </dl>
 </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Vorname</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model.EmployeeProjects)
+        {
+            <tr>
+                <td>@emp.Employee.Firstname</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Task</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model.Tasks)
+        {
+            <tr>
+                <td>@task.TaskName</td>
+            </tr>
+        }
+    </tbody>
+</table>
 <div>
-    <a asp-controller="Projects" asp-action="Edit" asp-route-projectId="@Model.Project.Id">Edit</a>
+    <a asp-controller="Projects" asp-action="Edit" asp-route-projectId="@Model.Projects.Id">Edit</a>
     <a asp-controller="Projects" asp-action="List">Back to List</a>
 </div>

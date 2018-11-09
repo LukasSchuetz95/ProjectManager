@@ -1,4 +1,5 @@
-﻿using ProjectManager.Core.Entities;
+﻿using ProjectManager.Core.Contracts;
+using ProjectManager.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,15 @@ namespace ProjectManager.Web.Models.ViewModel
 {
     public class ProjectsDetailsViewModel
     {
-        public Project Project { get; set; }
-
+        public List<EmployeeProject> EmployeeProjects { get; set; }
         public List<Core.Entities.Task> Tasks { get; set; }
+        public Project Projects { get; set; }
 
-        public List<Employee> Employees { get; set; }
+        public void LoadData(IUnitOfWork unitOfWork, int projectId)
+        {
+            EmployeeProjects = unitOfWork.EmployeeProjects.GetAllByProjectId(projectId);
+            Projects = unitOfWork.Projects.GetById(projectId);
+            Tasks = unitOfWork.Tasks.GetAllTasksForProjectWithProcessingStatus(projectId);
+        }
     }
 }

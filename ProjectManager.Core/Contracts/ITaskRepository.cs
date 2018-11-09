@@ -9,6 +9,6 @@ namespace ProjectManager.Core.Contracts
     {
         List<Task> GetAll();
         void Add(Task model);
-        
+        List<Task> GetAllTasksForProjectWithProcessingStatus(int projectId);
     }
 }
