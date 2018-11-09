@@ -32,9 +32,18 @@ namespace ProjectManager.Web.Controllers
         {
             return View();
         }
-        public IActionResult Edit()
+        public IActionResult Edit(int taskId)
         {
-            return View();
+            TasksEditViewModel model = new TasksEditViewModel();
+            model.LoadData(_unitOfWork, taskId);
+            return View(model);
+        }
+
+        public IActionResult Details(int taskId)
+        {
+            TasksDetailsViewModel model = new TasksDetailsViewModel();
+            model.LoadData(_unitOfWork, taskId);
+            return View(model);
         }
     }
 }

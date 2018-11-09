@@ -1,0 +1,52 @@
+﻿@model ProjectManager.Web.Models.ViewModel.TasksDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<form>
+    <fieldset>
+        <p>
+            <label>Task Id:</label>
+            <label>@Model.EmployeeTask.TaskId</label>
+        </p>
+        <p>
+            <label>Taskname:</label>
+            <label>@Model.EmployeeTask.Task.TaskName</label>
+        </p>
+        <p>
+            <label>Verantwortlicher:</label>
+            <label>@Model.EmployeeTask.Employee.Lastname</label>
+            <label>@Model.EmployeeTask.Employee.Firstname</label>
+        </p>
+
+        <p>
+            <label>Von:</label>
+            <label>@Model.EmployeeTask.Task.Startdate</label>
+        </p>
+        <p>
+            <label>Bis:</label>
+            <label>@Model.EmployeeTask.Task.Enddate</label>
+        </p>
+        <p>
+            <label>Deadline:</label>
+            <label>@Model.EmployeeTask.Task.Deadline</label>
+        </p>
+        <p>
+            <label>Status:</label>
+            <label>@Model.EmployeeTask.Task.Status</label>
+        </p>
+        <p>
+            <label>Information:</label>
+            <label>@Model.EmployeeTask.Task.Information</label>
+        </p>
+    </fieldset>
+</form>
+@*<p>
+        <label>Projekt:</label>
+        <label>@Model.EmployeeTask.Task.Project.ProjectName</label>
+        @*<label>@Model.EmployeeTask.Task.Project.Id</label>
+    </p>*@
+<a asp-controller="Tasks" asp-action="List">Zurück</a>
