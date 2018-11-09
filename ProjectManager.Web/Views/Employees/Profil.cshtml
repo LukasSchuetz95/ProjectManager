@@ -10,10 +10,32 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Employee.Id" />
             <div class="form-group">
-                <label asp-for="Employee.Lastname" class="control-label"></label>
-                <span asp-validation-for="Employee.Lastname" class="text-danger"></span>
-            </div>            
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(m => m.Employee.Lastname)</dt>
+                    <dd>@Model.Employee.Lastname</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(m => m.Employee.Firstname)</dt>
+                    <dd>@Model.Employee.Firstname</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(m => m.Employee.Job)</dt>
+                    <dd>@Model.Employee.Job</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(m => m.Employee.Birthdate)</dt>
+                    <dd>@Model.Employee.Birthdate</dd>
 
+                    <dt>@Html.DisplayNameFor(m => m.Employee.StreetNameAndNr)</dt>
+                    <dd>@Model.Employee.StreetNameAndNr</dd>
+
+                    <dt>@Html.DisplayNameFor(m => m.Employee.ZipCode)</dt>
+                    <dd>@Model.Employee.ZipCode</dd>
+                </dl>
+            </div>
+            <a asp-controller="Employees" asp-action="Feed">Feed</a>
+            <a asp-controller="Employees" asp-action="Profil bearbeiten">Edit</a>
+            <a asp-controller="Employees" asp-action="MyProjects">Meine Projekte</a>
         </form>
     </div>
 </div>
