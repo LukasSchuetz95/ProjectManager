@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManager.Core", "Proj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManager.Persistence", "ProjectManager.Persistence\ProjectManager.Persistence.csproj", "{FAEC9FBA-76B1-4AB6-932D-A4E0B0170C81}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManager.SeedDatabase", "ProjectManager.SeedDatabase\ProjectManager.SeedDatabase.csproj", "{0D7C305C-D918-4487-9E45-EE915AA6886E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManager.DeleteDatabase", "ProjectManager.SeedDatabase\ProjectManager.DeleteDatabase.csproj", "{0D7C305C-D918-4487-9E45-EE915AA6886E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManager.Web", "ProjectManager.Web\ProjectManager.Web.csproj", "{8DC93DA8-AECA-4322-AA96-78220E1F2D29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManager.Web", "ProjectManager.Web\ProjectManager.Web.csproj", "{8DC93DA8-AECA-4322-AA96-78220E1F2D29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
