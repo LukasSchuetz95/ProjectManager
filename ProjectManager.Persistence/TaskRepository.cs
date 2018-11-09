@@ -37,5 +37,10 @@ namespace ProjectManager.Persistence
         {
             return _dbContext.Tasks.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Offen)).ToList();
         }
+
+        public void Update(Task task)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

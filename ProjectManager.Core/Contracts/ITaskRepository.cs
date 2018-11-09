@@ -11,5 +11,7 @@ namespace ProjectManager.Core.Contracts
         void Add(Task model);
         List<Task> GetAllTasksForProjectWithUndefinedStatus(int projectId);
         List<Task> GetAllTasksForProjectWithProcessingStatus(int projectId);
+
+        void Update(Task task);
     }
 }

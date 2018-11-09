@@ -25,7 +25,7 @@ namespace ProjectManager.Persistence
 
         public DbSet<Qualification> Qualifications { get; set; }
 
-        public DbSet<Core.Entities.Task> Tasks { get; set; }
+        public DbSet<Task> Tasks { get; set; }
 
         public DbSet<TaskQualification> TaskQualifications { get; set; }
 
