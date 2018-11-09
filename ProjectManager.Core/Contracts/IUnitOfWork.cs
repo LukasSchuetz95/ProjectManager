@@ -22,6 +22,10 @@ namespace ProjectManager.Core.Contracts
 
         ITaskRepository Tasks { get; }
 
+        ITaskQualificationRepository TaskQualifications { get; }
+
+        IEmployeeProjectRepository EmployeeProjects { get; }
+
 
         void Save();
 

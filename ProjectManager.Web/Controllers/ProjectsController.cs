@@ -40,6 +40,19 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public IActionResult Edit(ProjectsEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.Projects.Update(model.Project);
+                _unitOfWork.Save();
+                return RedirectToAction(nameof(Details), new { projectId = model.Project.Id });
+            }
+
+            return View(model);
+        }
+
         public IActionResult Create(int projectId)
         {
             Project projects = new Project();

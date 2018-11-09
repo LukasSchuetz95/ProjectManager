@@ -26,6 +26,10 @@ namespace ProjectManager.Persistence
 
         public DbSet<Core.Entities.Task> Tasks { get; set; }
 
+        public DbSet<TaskQualification> TaskQualifications { get; set; }
+
+        public DbSet<EmployeeProject> EmployeeProjects { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var builder = new ConfigurationBuilder()

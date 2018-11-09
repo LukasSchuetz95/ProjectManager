@@ -44,5 +44,10 @@ namespace ProjectManager.Persistence
                 return query.Where(p => p.ProjectName.StartsWith(filter)).ToList();
             }
         }
+
+        public void Update(Project project)
+        {
+            _dbContext.Projects.Update(project);
+        }
     }
 }
