@@ -9,6 +9,8 @@ namespace ProjectManager.Core.Contracts
     {
         List<Employee> GetEmployeeByLastname(string filter=null);
         List<Employee> GetEmployeeByFirstname(string filter=null);
-        List<Employee> GetEmployeeByJob(string filterJob);
+        List<Employee> GetEmployeeByJob(string filterJob=null);
+        List<Employee> GetEmployeeByDeparmentName(string filterDepartmentName=null);
+        Employee GetById(int employeeId);
     }
 }

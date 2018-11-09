@@ -1,0 +1,22 @@
+﻿@model ProjectManager.Web.Models.ViewModel.EmployeesProfilViewModel
+
+@{
+    ViewData["Title"] = "Profil";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" asp-route-projectId="@Model.Employee.Id">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Employee.Id" />
+            <div class="form-group">
+                <label asp-for="Employee.Lastname" class="control-label"></label>
+                <span asp-validation-for="Employee.Lastname" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,4 +1,5 @@
-﻿using ProjectManager.Core.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjectManager.Core.Contracts;
 using ProjectManager.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace ProjectManager.Persistence
 
         public List<Employee> GetEmployeeByLastname(string filter)
         {
-            IQueryable<Employee> query = _dbContext.Employees.OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
+            IQueryable<Employee> query = _dbContext.Employees.Include(e=> e.Department).OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
 
             if (filter == null || filter == "")
             {
@@ -32,7 +33,7 @@ namespace ProjectManager.Persistence
 
         public List<Employee> GetEmployeeByFirstname(string filter)
         {
-            IQueryable<Employee> query = _dbContext.Employees.OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
+            IQueryable<Employee> query = _dbContext.Employees.Include(e => e.Department).OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
 
             if (filter == null || filter == "")
             {
@@ -46,7 +47,7 @@ namespace ProjectManager.Persistence
 
         public List<Employee> GetEmployeeByJob(string filter)
         {
-            IQueryable<Employee> query = _dbContext.Employees.OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
+            IQueryable<Employee> query = _dbContext.Employees.Include(e => e.Department).OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
 
             if (filter == null || filter == "")
             {
@@ -56,6 +57,25 @@ namespace ProjectManager.Persistence
             {
                 return query.Where(e => e.Job.StartsWith(filter)).ToList();
             }
+        }
+
+        public List<Employee> GetEmployeeByDeparmentName(string filter)
+        {
+            IQueryable<Employee> query = _dbContext.Employees.Include(e => e.Department).OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
+
+            if (filter == null || filter == "")
+            {
+                return query.ToList();
+            }
+            else
+            {
+                return query.Where(e => e.Department.DeptName.StartsWith(filter)).ToList();
+            }
+        }
+
+        public Employee GetById(int employeeId)
+        {
+            return _dbContext.Employees.SingleOrDefault(c => c.Id == employeeId);
         }
     }
 }

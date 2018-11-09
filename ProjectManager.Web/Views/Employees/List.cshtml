@@ -21,7 +21,7 @@
             <input asp-for="FilterLastname" class="form-control" />
             <span asp-validation-for="FilterLastname" class="text-danger"></span>
         </div>
-        <input type="submit" value="Filtern" class="btn btn-primary" />
+        <input type="submit" value="Nachname filtern" class="btn btn-primary" />
     </form>
     <form asp-controller="Employees" asp-action="List">
         <div class="form-group">
@@ -29,7 +29,7 @@
             <input asp-for="FilterFirstname" class="form-control" />
             <span asp-validation-for="FilterFirstname" class="text-danger"></span>
         </div>
-        <input type="submit" value="Filtern" class="btn btn-primary" />
+        <input type="submit" value="Vornmae filtern" class="btn btn-primary" size="50"/>
     </form>
     <form asp-controller="Employees" asp-action="List">
         <div class="form-group">
@@ -37,7 +37,15 @@
             <input asp-for="FilterJob" class="form-control" />
             <span asp-validation-for="FilterJob" class="text-danger"></span>
         </div>
-        <input type="submit" value="Filtern" class="btn btn-primary" />
+        <input type="submit" value="Job filtern" class="btn btn-primary" size="50"/>
+    </form>
+    <form asp-controller="Employees" asp-action="List">
+        <div class="form-group">
+            <label asp-for="FilterDepartmentName"></label>
+            <input asp-for="FilterDepartmentName" class="form-control" />
+            <span asp-validation-for="FilterDepartmentName" class="text-danger" size="50"></span>
+        </div>
+        <input type="submit" value="Abteilung filtern" class="btn btn-primary" size="50" />
     </form>
 
     <table class="table">
@@ -45,13 +53,15 @@
             <th>Nachname</th>
             <th>Vorname</th>
             <th>Job</th>
+            <th>Abteilung</th>
         </tr>
         @foreach (var employee in Model.Employees)
         {
             <tr>
-                <td>@employee.Lastname</td>
-                <td>@employee.Firstname</td>
+                <td><a asp-controller="Employee" asp-action="Profil" asp-route-Id="@employee.Id">@employee.Lastname</a></td>
+                <td><a asp-controller="Employee" asp-action="Profil" asp-route-Id="@employee.Id">@employee.Firstname</a></td>
                 <td>@employee.Job</td>
+                <td>@employee.Department.DeptName</td>
             </tr>
         }
     </table>
