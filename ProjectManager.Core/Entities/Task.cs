@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectManager.Core.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,9 +20,9 @@ namespace ProjectManager.Core.Entities
         public string TaskName { get; set; }
 
         [Display(Name = "Priorität")]
-        public int Priority { get; set; }
+        public PriorityType Priority { get; set; }
 
-        public string Status { get; set; }
+        public TaskStatusType Status { get; set; }
 
         [Required(ErrorMessage = "Dieses Feld wird benötigt")]
         [Display(Name = "Fixer Task")]

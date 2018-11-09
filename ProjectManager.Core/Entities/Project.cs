@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectManager.Core.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -13,7 +14,7 @@ namespace ProjectManager.Core.Entities
         [Display(Name = "Projektname")]
         public string ProjectName { get; set; }
 
-        public string Status { get; set; }
+        public ProjectStatusType Status { get; set; }
 
         public string Information { get; set; }
 
