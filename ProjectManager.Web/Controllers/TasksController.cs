@@ -30,20 +30,22 @@ namespace ProjectManager.Web.Controllers
         }
 
         public IActionResult Create()
-        { 
-            return View();
+        {
+            TasksCreateViewModel model = new TasksCreateViewModel();
+            model.LoadData(_unitOfWork);
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult Create(Task model )
+        public IActionResult Create(TasksCreateViewModel model )
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _unitOfWork.Tasks.Add(model);
+                    _unitOfWork.EmployeeTasks.Add(model.EmployeeTask.Task);
                     _unitOfWork.Save();
-                    return RedirectToAction("List");
+                    return RedirectToAction("List", "Tasks");
                 }
                 catch (ValidationException validationException)
                 {

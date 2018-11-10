@@ -31,18 +31,27 @@
             <div class="form-group">
                 <label>Terminart:</label>
                 <select class="form-control">
-                    <option>Frei</option>
-                    <option>In Bearbeitung</option>
+                    <option>Laufend</option>
+                    <option>Abgeschlossen</option>
                     <option>Korrigieren</option>
-                    <option>Fertig</option>
+                    <option>Offen</option>
 
                 </select>
-                @*<label asp-for="EmployeeTas.Task.Status" class="control-label"></label>
-                <input asp-for="EmployeeTask.Task.Status" class="form-control" />
-                <span asp-validation-for="EmployeeTask.Task.Status" class="text-danger"></span>*@
-
             </div>
-      
+            <div>
+                @*<label asp-for="EmployeeTas.Task.Status" class="control-label"></label>
+        <input asp-for="EmployeeTask.Task.Status" class="form-control" />
+        <span asp-validation-for="EmployeeTask.Task.Status" class="text-danger"></span>*@
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+
+
+
+
 
             @*<div class="form-group">
             <label asp-for="EmployeeTask.Task." class="control-label"></label>
