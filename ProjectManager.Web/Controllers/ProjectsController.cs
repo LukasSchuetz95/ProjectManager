@@ -68,7 +68,7 @@ namespace ProjectManager.Web.Controllers
             {
                 try
                 {
-                    _unitOfWork.EmployeeProjects.Add(model.EmployeeProject);
+                    _unitOfWork.Projects.Add(model.Project);
                     _unitOfWork.Save();
                     return RedirectToAction("List", "Projects");
                 }
