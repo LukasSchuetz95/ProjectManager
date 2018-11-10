@@ -25,9 +25,6 @@ namespace ProjectManager.Core.Entities
         [Display(Name = "Job-Name")]
         public string Job { get; set; }
 
-        [Display(Name = "Projekt-Manager")]
-        public bool Projectmanager { get; set; }
-
         public EmployeeStatusType Status { get; set; }
 
         [Display(Name = "Profil-Bild")]

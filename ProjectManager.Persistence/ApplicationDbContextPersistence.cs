@@ -73,7 +73,6 @@ namespace ProjectManager.Persistence
                     ZipCode = "4540",
                     Status = EmployeeStatusType.Auszeit,
                     Job = "Software Developer",
-                    Projectmanager = true,
                     DepartmentId = 1,
                 });
 
@@ -91,7 +90,6 @@ namespace ProjectManager.Persistence
                     ZipCode = "4633",
                     Status = EmployeeStatusType.Beschäftigt,
                     Job = "Web-Developer",
-                    Projectmanager = false,
                     DepartmentId = 1,
                 });
 
@@ -109,7 +107,6 @@ namespace ProjectManager.Persistence
                     ZipCode = "Ka Ahnung",
                     Status = EmployeeStatusType.Gekündigt,
                     Job = "Software Developer",
-                    Projectmanager = true,
                     DepartmentId = 2,
                 });
 
@@ -349,6 +346,7 @@ namespace ProjectManager.Persistence
                     Id = 1246,
                     EmployeeId = 112412,
                     ProjectId = 1246,
+                    Projectmanager = false,
                 });
 
             modelBuilder.Entity<EmployeeProject>().HasData(
@@ -357,6 +355,7 @@ namespace ProjectManager.Persistence
                     Id = 2246,
                     EmployeeId = 112412,
                     ProjectId = 2426,
+                    Projectmanager = false,
                 });
 
             modelBuilder.Entity<EmployeeProject>().HasData(
@@ -365,6 +364,7 @@ namespace ProjectManager.Persistence
                     Id = 3246,
                     EmployeeId = 112412,
                     ProjectId = 3246,
+                    Projectmanager = true,
                 });
 
             modelBuilder.Entity<EmployeeProject>().HasData(
@@ -373,6 +373,7 @@ namespace ProjectManager.Persistence
                     Id = 4246,
                     EmployeeId = 112412,
                     ProjectId = 42456,
+                    Projectmanager = true,
                 });
 
             modelBuilder.Entity<EmployeeProject>().HasData(
@@ -381,6 +382,7 @@ namespace ProjectManager.Persistence
                     Id = 5246,
                     EmployeeId = 2214,
                     ProjectId = 1246,
+                    Projectmanager = false,
                 });
 
             modelBuilder.Entity<EmployeeProject>().HasData(
@@ -389,6 +391,7 @@ namespace ProjectManager.Persistence
                     Id = 6215,
                     EmployeeId = 2214,
                     ProjectId = 2426,
+                    Projectmanager = true,
                 });
 
             modelBuilder.Entity<EmployeeProject>().HasData(
@@ -397,6 +400,7 @@ namespace ProjectManager.Persistence
                     Id = 71234,
                     EmployeeId = 2214,
                     ProjectId = 3246,
+                    Projectmanager = false,
                 });
 
             modelBuilder.Entity<EmployeeProject>().HasData(
@@ -405,6 +409,7 @@ namespace ProjectManager.Persistence
                     Id = 83465,
                     EmployeeId = 3214,
                     ProjectId = 1246,
+                    Projectmanager = true,
                 });
 
             modelBuilder.Entity<EmployeeProject>().HasData(
@@ -413,6 +418,7 @@ namespace ProjectManager.Persistence
                     Id = 9634,
                     EmployeeId = 3214,
                     ProjectId = 2426,
+                    Projectmanager = false,
                 });
 
             modelBuilder.Entity<Task>().HasData(

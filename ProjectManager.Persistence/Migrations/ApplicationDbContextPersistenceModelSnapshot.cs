@@ -117,8 +117,6 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.Property<byte[]>("Profilepicture");
 
-                    b.Property<bool>("Projectmanager");
-
                     b.Property<string>("Residence");
 
                     b.Property<int>("Status");
@@ -138,9 +136,9 @@ namespace ProjectManager.Persistence.Migrations
                     b.ToTable("Employees");
 
                     b.HasData(
-                        new { Id = 112412, Birthdate = new DateTime(2018, 11, 10, 9, 37, 23, 775, DateTimeKind.Local), DepartmentId = 1, Firstname = "Lukas", HiringDate = new DateTime(2018, 11, 10, 9, 37, 23, 777, DateTimeKind.Local), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Projectmanager = true, Residence = "Bad Hall", Status = 1, StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
-                        new { Id = 2214, Birthdate = new DateTime(2018, 11, 10, 9, 37, 23, 777, DateTimeKind.Local), DepartmentId = 1, Firstname = "Thomas", HiringDate = new DateTime(2018, 11, 10, 9, 37, 23, 777, DateTimeKind.Local), Job = "Web-Developer", Lastname = "Baurnberger", Phonenumber = "0660/ 4878 333", Projectmanager = false, Residence = "Kematen am Innbach", Status = 0, StreetNameAndNr = "See 44", ZipCode = "4633" },
-                        new { Id = 3214, Birthdate = new DateTime(2018, 11, 10, 9, 37, 23, 777, DateTimeKind.Local), DepartmentId = 2, Firstname = "Manuel", HiringDate = new DateTime(2018, 11, 10, 9, 37, 23, 777, DateTimeKind.Local), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Projectmanager = true, Residence = "Irgendwo", Status = 2, StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" }
+                        new { Id = 112412, Birthdate = new DateTime(2018, 11, 10, 23, 34, 57, 919, DateTimeKind.Local), DepartmentId = 1, Firstname = "Lukas", HiringDate = new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Residence = "Bad Hall", Status = 1, StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
+                        new { Id = 2214, Birthdate = new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), DepartmentId = 1, Firstname = "Thomas", HiringDate = new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), Job = "Web-Developer", Lastname = "Baurnberger", Phonenumber = "0660/ 4878 333", Residence = "Kematen am Innbach", Status = 0, StreetNameAndNr = "See 44", ZipCode = "4633" },
+                        new { Id = 3214, Birthdate = new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), DepartmentId = 2, Firstname = "Manuel", HiringDate = new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Residence = "Irgendwo", Status = 2, StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" }
                     );
                 });
 
@@ -153,6 +151,8 @@ namespace ProjectManager.Persistence.Migrations
                     b.Property<int>("EmployeeId");
 
                     b.Property<int>("ProjectId");
+
+                    b.Property<bool>("Projectmanager");
 
                     b.Property<byte[]>("Timestamp")
                         .IsConcurrencyToken()
@@ -167,15 +167,15 @@ namespace ProjectManager.Persistence.Migrations
                     b.ToTable("EmployeeProjects");
 
                     b.HasData(
-                        new { Id = 1246, EmployeeId = 112412, ProjectId = 1246 },
-                        new { Id = 2246, EmployeeId = 112412, ProjectId = 2426 },
-                        new { Id = 3246, EmployeeId = 112412, ProjectId = 3246 },
-                        new { Id = 4246, EmployeeId = 112412, ProjectId = 42456 },
-                        new { Id = 5246, EmployeeId = 2214, ProjectId = 1246 },
-                        new { Id = 6215, EmployeeId = 2214, ProjectId = 2426 },
-                        new { Id = 71234, EmployeeId = 2214, ProjectId = 3246 },
-                        new { Id = 83465, EmployeeId = 3214, ProjectId = 1246 },
-                        new { Id = 9634, EmployeeId = 3214, ProjectId = 2426 }
+                        new { Id = 1246, EmployeeId = 112412, ProjectId = 1246, Projectmanager = false },
+                        new { Id = 2246, EmployeeId = 112412, ProjectId = 2426, Projectmanager = false },
+                        new { Id = 3246, EmployeeId = 112412, ProjectId = 3246, Projectmanager = true },
+                        new { Id = 4246, EmployeeId = 112412, ProjectId = 42456, Projectmanager = true },
+                        new { Id = 5246, EmployeeId = 2214, ProjectId = 1246, Projectmanager = false },
+                        new { Id = 6215, EmployeeId = 2214, ProjectId = 2426, Projectmanager = true },
+                        new { Id = 71234, EmployeeId = 2214, ProjectId = 3246, Projectmanager = false },
+                        new { Id = 83465, EmployeeId = 3214, ProjectId = 1246, Projectmanager = true },
+                        new { Id = 9634, EmployeeId = 3214, ProjectId = 2426, Projectmanager = false }
                     );
                 });
 

@@ -1,0 +1,46 @@
+﻿@model ProjectManager.Web.Models.ViewModel.EmployeeProjectsCreateViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Mitarbeiter zum Projekt hinzufügen</h2>
+
+@*<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(m => m.EmployeeProject.Project.Id)</dt>
+    <dd>@Model.EmployeeProject.Project.Id</dd>
+    <dt>@Html.DisplayNameFor(m => m.EmployeeProject.Project.ProjectName)</dt>
+    <dd>@Model.EmployeeProject.Project.ProjectName</dd>
+    <dt>@Html.DisplayNameFor(m => m.EmployeeProject.Project.Status)</dt>
+    <dd>@Model.EmployeeProject.Project.Status</dd>
+    <dt>@Html.DisplayNameFor(m => m.EmployeeProject.Project.Startdate)</dt>
+    <dd>@Model.EmployeeProject.Project.Startdate</dd>
+    <dt>@Html.DisplayNameFor(m => m.EmployeeProject.Project.Enddate)</dt>
+    <dd>@Model.EmployeeProject.Project.Enddate</dd>
+    <dt>@Html.DisplayNameFor(m => m.EmployeeProject.Project.Deadline)</dt>
+    <dd>@Model.EmployeeProject.Project.Deadline</dd>
+    <dt>@Html.DisplayNameFor(m => m.EmployeeProject.Project.ValuedTime)</dt>
+    <dd>@Model.EmployeeProject.Project.ValuedTime Stunden</dd>
+    <dt>@Html.DisplayNameFor(m => m.EmployeeProject.Project.Information)</dt>
+    <dd>@Model.EmployeeProject.Project.Information</dd>
+</dl>*@
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Projects" asp-action="Create">Zurück</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

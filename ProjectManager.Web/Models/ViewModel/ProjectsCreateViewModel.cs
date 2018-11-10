@@ -10,13 +10,14 @@ namespace ProjectManager.Web.Models.ViewModel
 {
     public class ProjectsCreateViewModel
     {
-        public Project Project { get; set; }
-        public SelectList Statuses { get; set; }
+        public EmployeeProject EmployeeProject { get; set; }
+
+        public SelectList Employees { get; set; }
 
         public void LoadData(IUnitOfWork unitOfWork)
         {
-            var statuses = unitOfWork.Projects.GetAllStatuses();
-            Statuses = new SelectList(statuses, nameof(Project.Status), null);
+            var employees = unitOfWork.Employees.GetAll();
+            Employees = new SelectList(employees, nameof(Employee.Id), null);
         }
     }
 }

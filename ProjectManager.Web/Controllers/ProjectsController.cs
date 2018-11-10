@@ -68,9 +68,10 @@ namespace ProjectManager.Web.Controllers
             {
                 try
                 {
-                    _unitOfWork.Projects.Add(model.Project);
+                    model.EmployeeProject.Projectmanager = true;
+                    _unitOfWork.EmployeeProjects.Add(model.EmployeeProject);
                     _unitOfWork.Save();
-                    return RedirectToAction("List", "Projects");
+                    return RedirectToAction("Create", "EmployeeProjects", model.EmployeeProject.ProjectId);
                 }
                 catch (ValidationException validationException)
                 {
@@ -79,7 +80,6 @@ namespace ProjectManager.Web.Controllers
                 }
             }
 
-            model.LoadData(_unitOfWork);
             return View(model);
         }
 

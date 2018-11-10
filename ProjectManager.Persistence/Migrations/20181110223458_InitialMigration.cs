@@ -68,7 +68,6 @@ namespace ProjectManager.Persistence.Migrations
                     Firstname = table.Column<string>(nullable: false),
                     Lastname = table.Column<string>(nullable: false),
                     Job = table.Column<string>(nullable: true),
-                    Projectmanager = table.Column<bool>(nullable: false),
                     Status = table.Column<int>(nullable: false),
                     Profilepicture = table.Column<byte[]>(nullable: true),
                     Birthdate = table.Column<DateTime>(nullable: true),
@@ -151,7 +150,8 @@ namespace ProjectManager.Persistence.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
                     EmployeeId = table.Column<int>(nullable: false),
-                    ProjectId = table.Column<int>(nullable: false)
+                    ProjectId = table.Column<int>(nullable: false),
+                    Projectmanager = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -285,12 +285,12 @@ namespace ProjectManager.Persistence.Migrations
 
             migrationBuilder.InsertData(
                 table: "Employees",
-                columns: new[] { "Id", "Birthdate", "DepartmentId", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Projectmanager", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
+                columns: new[] { "Id", "Birthdate", "DepartmentId", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
                 values: new object[,]
                 {
-                    { 112412, new DateTime(2018, 11, 10, 9, 37, 23, 775, DateTimeKind.Local), 1, "Lukas", new DateTime(2018, 11, 10, 9, 37, 23, 777, DateTimeKind.Local), "Software Developer", "Schuetz", "0660/ 4878 299", null, true, "Bad Hall", 1, "Roemerstr. 41", null, "4540" },
-                    { 2214, new DateTime(2018, 11, 10, 9, 37, 23, 777, DateTimeKind.Local), 1, "Thomas", new DateTime(2018, 11, 10, 9, 37, 23, 777, DateTimeKind.Local), "Web-Developer", "Baurnberger", "0660/ 4878 333", null, false, "Kematen am Innbach", 0, "See 44", null, "4633" },
-                    { 3214, new DateTime(2018, 11, 10, 9, 37, 23, 777, DateTimeKind.Local), 2, "Manuel", new DateTime(2018, 11, 10, 9, 37, 23, 777, DateTimeKind.Local), "Software Developer", "Mairinger", "0660/ 4878 444", null, true, "Irgendwo", 2, "Weiss i ned", null, "Ka Ahnung" }
+                    { 112412, new DateTime(2018, 11, 10, 23, 34, 57, 919, DateTimeKind.Local), 1, "Lukas", new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), "Software Developer", "Schuetz", "0660/ 4878 299", null, "Bad Hall", 1, "Roemerstr. 41", null, "4540" },
+                    { 2214, new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), 1, "Thomas", new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), "Web-Developer", "Baurnberger", "0660/ 4878 333", null, "Kematen am Innbach", 0, "See 44", null, "4633" },
+                    { 3214, new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), 2, "Manuel", new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), "Software Developer", "Mairinger", "0660/ 4878 444", null, "Irgendwo", 2, "Weiss i ned", null, "Ka Ahnung" }
                 });
 
             migrationBuilder.InsertData(
@@ -343,18 +343,18 @@ namespace ProjectManager.Persistence.Migrations
 
             migrationBuilder.InsertData(
                 table: "EmployeeProjects",
-                columns: new[] { "Id", "EmployeeId", "ProjectId", "Timestamp" },
+                columns: new[] { "Id", "EmployeeId", "ProjectId", "Projectmanager", "Timestamp" },
                 values: new object[,]
                 {
-                    { 9634, 3214, 2426, null },
-                    { 83465, 3214, 1246, null },
-                    { 4246, 112412, 42456, null },
-                    { 6215, 2214, 2426, null },
-                    { 5246, 2214, 1246, null },
-                    { 1246, 112412, 1246, null },
-                    { 2246, 112412, 2426, null },
-                    { 3246, 112412, 3246, null },
-                    { 71234, 2214, 3246, null }
+                    { 9634, 3214, 2426, false, null },
+                    { 83465, 3214, 1246, true, null },
+                    { 4246, 112412, 42456, true, null },
+                    { 6215, 2214, 2426, true, null },
+                    { 5246, 2214, 1246, false, null },
+                    { 1246, 112412, 1246, false, null },
+                    { 2246, 112412, 2426, false, null },
+                    { 3246, 112412, 3246, true, null },
+                    { 71234, 2214, 3246, false, null }
                 });
 
             migrationBuilder.InsertData(
