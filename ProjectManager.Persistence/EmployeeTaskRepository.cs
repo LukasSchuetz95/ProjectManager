@@ -17,16 +17,16 @@ namespace ProjectManager.Persistence
             _dbContext = dbContext;
         }
 
-        public void Add(Task model)
+        public void Add(EmployeeTask model)
         {
             _dbContext.Add(model);
         }
 
-        public List<EmployeeTask> GetAllStatuses()
+        public List<EmployeeTask> GetAll()
         {
             return _dbContext.EmployeeTasks.Include(e => e.Employee).Include(t => t.Task).OrderBy(p => p.Task.Status).ToList();     
 
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public EmployeeTask GetEmployeeTaskByTaskId(int taskId)
@@ -34,7 +34,7 @@ namespace ProjectManager.Persistence
             return _dbContext.EmployeeTasks.Include(e => e.Employee).Include(t => t.Task).Where(t => t.TaskId == taskId).SingleOrDefault();
         }
 
-        public void update(Task model)
+        public void update(EmployeeTask model)
         {
             _dbContext.Update(model);
         }

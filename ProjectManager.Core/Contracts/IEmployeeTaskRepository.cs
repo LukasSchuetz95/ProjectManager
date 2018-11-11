@@ -8,10 +8,10 @@ namespace ProjectManager.Core.Contracts
     public interface IEmployeeTaskRepository
     {
         EmployeeTask GetEmployeeTaskByTaskId(int taskId);
-        List<EmployeeTask> GetAllStatuses();
-        void Add(Task model);
+        List<EmployeeTask> GetAll();
+        void Add(EmployeeTask model);
 
-        void update(Task model);
+        void update(EmployeeTask model);
     
 
     }

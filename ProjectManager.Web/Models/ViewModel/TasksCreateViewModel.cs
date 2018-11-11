@@ -18,7 +18,7 @@ namespace ProjectManager.Web.Models.ViewModel
 
         public void LoadData(IUnitOfWork uow)
         {
-            var list = uow.EmployeeTasks.GetAllStatuses();
+            var list = uow.EmployeeTasks.GetAll();
             List = new SelectList(list, nameof(EmployeeTask.Task.Status), null);
         }
  

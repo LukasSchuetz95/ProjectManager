@@ -43,7 +43,7 @@ namespace ProjectManager.Web.Controllers
             {
                 try
                 {
-                    _unitOfWork.EmployeeTasks.Add(model.EmployeeTask.Task);
+                    _unitOfWork.EmployeeTasks.Add(model.EmployeeTask);
                     _unitOfWork.Save();
                     return RedirectToAction("List", "Tasks");
                 }
