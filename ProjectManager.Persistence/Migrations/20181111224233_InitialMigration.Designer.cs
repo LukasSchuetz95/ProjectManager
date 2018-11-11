@@ -10,14 +10,14 @@ using ProjectManager.Persistence;
 namespace ProjectManager.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContextPersistence))]
-    [Migration("20181110223458_InitialMigration")]
+    [Migration("20181111224233_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -138,9 +138,9 @@ namespace ProjectManager.Persistence.Migrations
                     b.ToTable("Employees");
 
                     b.HasData(
-                        new { Id = 112412, Birthdate = new DateTime(2018, 11, 10, 23, 34, 57, 919, DateTimeKind.Local), DepartmentId = 1, Firstname = "Lukas", HiringDate = new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Residence = "Bad Hall", Status = 1, StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
-                        new { Id = 2214, Birthdate = new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), DepartmentId = 1, Firstname = "Thomas", HiringDate = new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), Job = "Web-Developer", Lastname = "Baurnberger", Phonenumber = "0660/ 4878 333", Residence = "Kematen am Innbach", Status = 0, StreetNameAndNr = "See 44", ZipCode = "4633" },
-                        new { Id = 3214, Birthdate = new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), DepartmentId = 2, Firstname = "Manuel", HiringDate = new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Residence = "Irgendwo", Status = 2, StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" }
+                        new { Id = 112412, Birthdate = new DateTime(1995, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 1, Firstname = "Lukas", HiringDate = new DateTime(2011, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Residence = "Bad Hall", Status = 1, StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
+                        new { Id = 2214, Birthdate = new DateTime(1994, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 1, Firstname = "Thomas", HiringDate = new DateTime(2012, 9, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Web-Developer", Lastname = "Baurnberger", Phonenumber = "0660/ 4878 333", Residence = "Kematen am Innbach", Status = 0, StreetNameAndNr = "See 44", ZipCode = "4633" },
+                        new { Id = 3214, Birthdate = new DateTime(1990, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 2, Firstname = "Manuel", HiringDate = new DateTime(2010, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Residence = "Irgendwo", Status = 2, StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" }
                     );
                 });
 

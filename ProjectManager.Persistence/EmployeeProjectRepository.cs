@@ -39,7 +39,7 @@ namespace ProjectManager.Persistence
 
         public List<EmployeeProject> GetProjectsByEmployeeId(int employeeId)
         {
-            return _dbContext.EmployeeProjects.Where(p => p.EmployeeId == employeeId).ToList();
+            return _dbContext.EmployeeProjects.Include(e => e.Employee).Include(p => p.Project).Where(p => p.EmployeeId == employeeId).ToList();
         }
     }
 }

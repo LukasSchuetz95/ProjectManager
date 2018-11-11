@@ -288,9 +288,9 @@ namespace ProjectManager.Persistence.Migrations
                 columns: new[] { "Id", "Birthdate", "DepartmentId", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
                 values: new object[,]
                 {
-                    { 112412, new DateTime(2018, 11, 10, 23, 34, 57, 919, DateTimeKind.Local), 1, "Lukas", new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), "Software Developer", "Schuetz", "0660/ 4878 299", null, "Bad Hall", 1, "Roemerstr. 41", null, "4540" },
-                    { 2214, new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), 1, "Thomas", new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), "Web-Developer", "Baurnberger", "0660/ 4878 333", null, "Kematen am Innbach", 0, "See 44", null, "4633" },
-                    { 3214, new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), 2, "Manuel", new DateTime(2018, 11, 10, 23, 34, 57, 921, DateTimeKind.Local), "Software Developer", "Mairinger", "0660/ 4878 444", null, "Irgendwo", 2, "Weiss i ned", null, "Ka Ahnung" }
+                    { 112412, new DateTime(1995, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Lukas", new DateTime(2011, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Schuetz", "0660/ 4878 299", null, "Bad Hall", 1, "Roemerstr. 41", null, "4540" },
+                    { 2214, new DateTime(1994, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Thomas", new DateTime(2012, 9, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web-Developer", "Baurnberger", "0660/ 4878 333", null, "Kematen am Innbach", 0, "See 44", null, "4633" },
+                    { 3214, new DateTime(1990, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Manuel", new DateTime(2010, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Mairinger", "0660/ 4878 444", null, "Irgendwo", 2, "Weiss i ned", null, "Ka Ahnung" }
                 });
 
             migrationBuilder.InsertData(
