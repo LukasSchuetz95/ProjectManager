@@ -5,18 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProjectManager.Web.Models.ViewModel
+namespace ProjectManager.Web.Models
 {
-    public class EmployeesProfilViewModel
+    public class EmployeesEditProfilViewModel
     {
         public Employee Employee { get; set; }
-
-        public List<EmployeeProject> projectOfEmployee { get; set; }
 
         public void LoadData(IUnitOfWork unitOfWork, int employeeId)
         {
             Employee = unitOfWork.Employees.GetById(employeeId);
-            projectOfEmployee = unitOfWork.EmployeeProjects.GetProjectsByEmployeeId(employeeId);
+
         }
     }
 }

@@ -36,5 +36,10 @@ namespace ProjectManager.Persistence
         {
             return _dbContext.EmployeeProjects.Where(p => p.ProjectId == id).FirstOrDefault();
         }
+
+        public List<EmployeeProject> GetProjectsByEmployeeId(int employeeId)
+        {
+            return _dbContext.EmployeeProjects.Where(p => p.EmployeeId == employeeId).ToList();
+        }
     }
 }

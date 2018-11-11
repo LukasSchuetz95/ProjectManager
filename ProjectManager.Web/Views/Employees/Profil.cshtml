@@ -32,10 +32,28 @@
                     <dt>@Html.DisplayNameFor(m => m.Employee.ZipCode)</dt>
                     <dd>@Model.Employee.ZipCode</dd>
                 </dl>
+                <dl class="media-middle">
+                    <dt><a asp-controller="Employees" asp-action="Feed" class="btn btn-default">Feed</a></dt>
+                    <dt><a asp-controller="Employees" asp-action="EditProfil" class="btn btn-default">Bearbeiten</a></dt>
+                </dl>
             </div>
-            <a asp-controller="Employees" asp-action="Feed">Feed</a>
-            <a asp-controller="Employees" asp-action="Profil bearbeiten">Edit</a>
-            <a asp-controller="Employees" asp-action="MyProjects">Meine Projekte</a>
+            <table class="table">
+                <tr>
+                    <th>Projektname</th>
+                    <th>Status</th>
+                    <th>Startdatum</th>
+                    <th>Deadline</th>
+                </tr>
+                @foreach (var ob in Model.projectOfEmployee)
+                {
+                <tr>
+                    <td>@ob.Project.ProjectName</td>
+                    <td>@ob.Project.Status</td>
+                    <td>@ob.Project.Startdate</td>
+                    <td>@ob.Project.Deadline</td>
+                </tr>
+                }
+            </table>
         </form>
     </div>
 </div>

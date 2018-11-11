@@ -1,0 +1,31 @@
+﻿@*@model ProjectManager.Web.Models.ViewModel.EmployeesEditProfilViewModel
+
+@{
+    ViewData["Title"] = "EditProfil";
+}
+
+<h2>Edit</h2>
+
+<h4>Project</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditProfil" asp-route-employeeId="@Model.Employee.Id">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Employee.Id" />
+            <div class="form-group">
+                <label asp-for="Project.ProjectName" class="control-label"></label>
+                <input asp-for="Project.ProjectName" class="form-control" />
+                <span asp-validation-for="Project.ProjectName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Employees" asp-action="Profil" class=" btn btn-default">Back to Profil</a>
+</div>*@
+

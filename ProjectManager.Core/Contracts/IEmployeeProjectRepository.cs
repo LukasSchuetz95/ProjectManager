@@ -11,5 +11,6 @@ namespace ProjectManager.Core.Contracts
         List<EmployeeProject> GetAllByProjectId(int projectId);
         void Add(EmployeeProject model);
         EmployeeProject GetByProjectId(int id);
+        List<EmployeeProject> GetProjectsByEmployeeId(int employeeId);
     }
 }
