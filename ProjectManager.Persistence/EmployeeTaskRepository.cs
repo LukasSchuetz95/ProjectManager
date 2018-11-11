@@ -34,7 +34,7 @@ namespace ProjectManager.Persistence
             return _dbContext.EmployeeTasks.Include(e => e.Employee).Include(t => t.Task).Where(t => t.TaskId == taskId).SingleOrDefault();
         }
 
-        public void update(EmployeeTask model)
+        public void Update(EmployeeTask model)
         {
             _dbContext.Update(model);
         }

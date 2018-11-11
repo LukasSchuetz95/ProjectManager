@@ -11,7 +11,7 @@ namespace ProjectManager.Core.Contracts
         List<EmployeeTask> GetAll();
         void Add(EmployeeTask model);
 
-        void update(EmployeeTask model);
+        void Update(EmployeeTask model);
     
 
     }
