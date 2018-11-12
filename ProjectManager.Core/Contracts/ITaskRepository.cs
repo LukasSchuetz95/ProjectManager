@@ -17,5 +17,6 @@ namespace ProjectManager.Core.Contracts
         void Update(Task task);
         void Add(System.Threading.Tasks.Task model);
         List<Task> GetAllTasksForProjectWithCompletedStatus(int projectId);
+        void Add(Task task);
     }
 }

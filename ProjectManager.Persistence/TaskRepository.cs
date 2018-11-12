@@ -23,6 +23,10 @@ namespace ProjectManager.Persistence
             _dbContext.Add(model);
         }
 
+        public void Add(Task task)
+        {
+            _dbContext.Tasks.Add(task);
+        }
 
         public List<Task> GetAll()
         {
@@ -46,7 +50,7 @@ namespace ProjectManager.Persistence
 
         public void Update(Task task)
         {
-            _dbContext.Update(task);
+            _dbContext.Tasks.Update(task);
 
            // throw new NotImplementedException();
         }

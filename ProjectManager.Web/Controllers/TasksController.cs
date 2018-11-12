@@ -36,14 +36,35 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        //[HttpPost]
+        //public IActionResult Create(TasksCreateViewModel model )
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            _unitOfWork.EmployeeTasks.Add(model.EmployeeTask);
+        //            _unitOfWork.Save();
+        //            return RedirectToAction("List", "Tasks");
+        //        }
+        //        catch (ValidationException validationException)
+        //        {
+        //            ValidationResult valResult = validationException.ValidationResult;
+        //            ModelState.AddModelError(nameof(model) + "." + valResult.MemberNames.First(), valResult.ErrorMessage);
+        //        }
+        //    }
+
+        //    return View(model);
+        //}
+
         [HttpPost]
-        public IActionResult Create(TasksCreateViewModel model )
+        public IActionResult Create(TasksCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _unitOfWork.EmployeeTasks.Add(model.EmployeeTask);
+                    _unitOfWork.Tasks.Add(model.EmployeeTask.Task);
                     _unitOfWork.Save();
                     return RedirectToAction("List", "Tasks");
                 }
@@ -56,7 +77,6 @@ namespace ProjectManager.Web.Controllers
 
             return View(model);
         }
-
 
 
         public IActionResult Edit(int taskId)
