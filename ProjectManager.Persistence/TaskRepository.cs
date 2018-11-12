@@ -46,7 +46,9 @@ namespace ProjectManager.Persistence
 
         public void Update(Task task)
         {
-            throw new NotImplementedException();
+            _dbContext.Update(task);
+
+           // throw new NotImplementedException();
         }
     }
 }
