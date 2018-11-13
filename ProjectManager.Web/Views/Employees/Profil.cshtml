@@ -54,7 +54,7 @@
                 @foreach (var ob in Model.projectOfEmployee)
                 {
                 <tr>
-                    <td>@ob.Project.ProjectName</td>
+                    <td><a asp-controller="Projects" asp-action="Details" asp-route-projectId="@ob.Project.Id">@ob.Project.ProjectName </a></td>
                     <td>@ob.Project.Status</td>
                     <td>@ob.Project.Startdate</td>
                     <td>@ob.Project.Deadline</td>

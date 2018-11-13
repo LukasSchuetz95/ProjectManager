@@ -1,31 +1,51 @@
-﻿@*@model ProjectManager.Web.Models.ViewModel.EmployeesEditProfilViewModel
+﻿@model ProjectManager.Web.Models.EmployeesEditProfilViewModel
 
 @{
     ViewData["Title"] = "EditProfil";
 }
 
 <h2>Edit</h2>
-
-<h4>Project</h4>
-<hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="EditProfil" asp-route-employeeId="@Model.Employee.Id">
+        <form asp-action="Profil" asp-route-projectId="@Model.Employee.Id">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Employee.Id" />
             <div class="form-group">
-                <label asp-for="Project.ProjectName" class="control-label"></label>
-                <input asp-for="Project.ProjectName" class="form-control" />
-                <span asp-validation-for="Project.ProjectName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(m => m.Employee.Lastname)</dt>
+                    <dt>@Model.Employee.Lastname</dt>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(m => m.Employee.Firstname)</dt>
+                    <dd>@Model.Employee.Firstname</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(m => m.Employee.Job)</dt>
+                    <dd>@Model.Employee.Job</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(m => m.Employee.Birthdate)</dt>
+                    <dd>@Model.Employee.Birthdate</dd>
+
+                    <dt>@Html.DisplayNameFor(m => m.Employee.StreetNameAndNr)</dt>
+                    <dt>@Model.Employee.StreetNameAndNr</dt>
+
+                    <dt>@Html.DisplayNameFor(m => m.Employee.ZipCode)</dt>
+                    <dd>@Model.Employee.ZipCode</dd>
+
+                    <dt>@Html.DisplayNameFor(m => m.Employee.Residence)</dt>
+                    <dd>@Model.Employee.Residence</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(m => m.Employee.Phonenumber)</dt>
+                    <dd>@Model.Employee.Phonenumber</dd>
+                </dl>
+                <dl class="media-middle">
+                    <dt><a asp-controller="Employees" asp-action="Feed" class="btn btn-default">Feed</a></dt>
+                    <dt><a asp-controller="Employees" asp-action="EditProfil" class="btn btn-default">Bearbeiten</a></dt>
+                </dl>
             </div>
         </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-controller="Employees" asp-action="Profil" class=" btn btn-default">Back to Profil</a>
-</div>*@
 

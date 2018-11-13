@@ -15,7 +15,7 @@ namespace ProjectManager.Web.Controllers
 
         public EmployeesController(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = unitOfWork;
+            _unitOfWork=unitOfWork;
         }
 
         public IActionResult List()
