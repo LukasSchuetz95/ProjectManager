@@ -74,6 +74,11 @@
                 <span asp-validation-for="EmployeeTask.Employee.Lastname" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="EmployeeTask.Task.ProjectId" class="control-label"></label>
+                <input asp-for="EmployeeTask.Task.ProjectId" class="form-control" />
+                <span asp-validation-for="EmployeeTask.Task.ProjectId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Task anlegen" class="btn btn-default" />
             </div>
         </form>

@@ -12,14 +12,14 @@ namespace ProjectManager.Web.Models.ViewModel
     {
         public EmployeeTask EmployeeTask { get; set; }
 
-        public SelectList List { get; set; }
+        //public SelectList List { get; set; }
 
         
 
         public void LoadData(IUnitOfWork uow)
         {
             var list = uow.EmployeeTasks.GetAll();
-            List = new SelectList(list, nameof(EmployeeTask.Task.Id), null);
+           // List = new SelectList(list, nameof(EmployeeTask.Task.Id), null);
         }
  
 
