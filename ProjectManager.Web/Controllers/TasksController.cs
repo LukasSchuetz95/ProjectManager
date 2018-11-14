@@ -86,6 +86,21 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public IActionResult Edit(TasksEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.EmployeeTasks.Update(model.EmployeeTask);
+                _unitOfWork.Save();
+                return RedirectToAction(nameof(Details), new { taskÍd = model.EmployeeTask.Id });
+            }
+
+            return View(model);
+        }
+
+
+
         public IActionResult Details(int taskId)
         {
             TasksDetailsViewModel model = new TasksDetailsViewModel();
