@@ -36,7 +36,33 @@
         </form>
     </div>
 </div>
+<h2>Mitglieder vom Projekt</h2>
 
+<h2>Keine Mitglieder vom Projekt</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Job</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model.Employees)
+        {
+            <tr>
+                <td>@emp.ToString()</td>
+                <td>@emp.Status</td>
+                <td>@emp.Job</td>
+                <td>
+                    @*<a asp-controller="Projects" asp-action="Edit" asp-route-projectId="@emp.Id">Edit</a>
+                    <a asp-controller="Projects" asp-action="Details" asp-route-projectId="@emp.Id">Details</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 <div>
     <a asp-controller="Projects" asp-action="Create">Zurück</a>
 </div>
