@@ -10,14 +10,14 @@ using ProjectManager.Persistence;
 namespace ProjectManager.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContextPersistence))]
-    [Migration("20181111224233_InitialMigration")]
+    [Migration("20181114123520_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -206,6 +206,18 @@ namespace ProjectManager.Persistence.Migrations
                     b.HasIndex("QualificationId");
 
                     b.ToTable("EmployeeQualifications");
+
+                    b.HasData(
+                        new { Id = 1111, EmployeeId = 112412, Information = "Sehr guter Projekt Manager", QualificationId = 1111, SkillLevel = 0 },
+                        new { Id = 2222, EmployeeId = 112412, Information = "Test", QualificationId = 2222, SkillLevel = 1 },
+                        new { Id = 3333, EmployeeId = 112412, Information = "Test", QualificationId = 3333, SkillLevel = 2 },
+                        new { Id = 4444, EmployeeId = 112412, Information = "Test", QualificationId = 4444, SkillLevel = 3 },
+                        new { Id = 5555, EmployeeId = 2214, Information = "Test", QualificationId = 1111, SkillLevel = 4 },
+                        new { Id = 6666, EmployeeId = 2214, Information = "Test", QualificationId = 3333, SkillLevel = 1 },
+                        new { Id = 7777, EmployeeId = 2214, Information = "Test", QualificationId = 4444, SkillLevel = 3 },
+                        new { Id = 8888, EmployeeId = 3214, Information = "Test", QualificationId = 3333, SkillLevel = 2 },
+                        new { Id = 9999, EmployeeId = 3214, Information = "Test", QualificationId = 4444, SkillLevel = 0 }
+                    );
                 });
 
             modelBuilder.Entity("ProjectManager.Core.Entities.EmployeeTask", b =>
@@ -296,7 +308,8 @@ namespace ProjectManager.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("QualificationName");
+                    b.Property<string>("QualificationName")
+                        .IsRequired();
 
                     b.Property<byte[]>("Timestamp")
                         .IsConcurrencyToken()
@@ -307,9 +320,10 @@ namespace ProjectManager.Persistence.Migrations
                     b.ToTable("Qualifications");
 
                     b.HasData(
-                        new { Id = 1, QualificationName = 1 },
-                        new { Id = 2, QualificationName = 5 },
-                        new { Id = 3, QualificationName = 0 }
+                        new { Id = 1111, QualificationName = "Projekt Manager" },
+                        new { Id = 2222, QualificationName = "CSharp" },
+                        new { Id = 3333, QualificationName = "Html" },
+                        new { Id = 4444, QualificationName = "Pflichtenheft" }
                     );
                 });
 

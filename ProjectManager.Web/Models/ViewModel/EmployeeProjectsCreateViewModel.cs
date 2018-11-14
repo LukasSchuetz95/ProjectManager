@@ -11,9 +11,13 @@ namespace ProjectManager.Web.Models.ViewModel
     {
         public EmployeeProject EmployeeProject { get; set; }
 
+        public List<Employee> Employees { get; set; }
+
         public void LoadData(IUnitOfWork unitOfWork, int projectId)
         {
             EmployeeProject = unitOfWork.EmployeeProjects.GetByProjectId(projectId);
+
+            Employees = unitOfWork.Employees.GetAll();
         }
     }
 }

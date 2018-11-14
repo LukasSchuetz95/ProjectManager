@@ -44,15 +44,6 @@ namespace ProjectManager.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Qualification>().HasData(
-                new { Id = 1, QualificationName = QualificationNameType.Hardware });
-
-            modelBuilder.Entity<Qualification>().HasData(
-                new { Id = 2, QualificationName = QualificationNameType.Pflichtenheft });
-
-            modelBuilder.Entity<Qualification>().HasData(
-                new { Id = 3, QualificationName = QualificationNameType.Software });
-
             modelBuilder.Entity<Department>().HasData(
                 new Department { Id = 1, DeptLocation = "Wels", DeptName = "Headquarter" });
 
@@ -875,6 +866,124 @@ namespace ProjectManager.Persistence
                     Id = 19324,
                     EmployeeId = 3214,
                     TaskId = 19999,
+                });
+
+            modelBuilder.Entity<Qualification>().HasData(
+                new Qualification
+                {
+                    Id = 1111,
+                    QualificationName = "Projekt Manager",
+                });
+
+            modelBuilder.Entity<Qualification>().HasData(
+                new Qualification
+                {
+                    Id = 2222,
+                    QualificationName = "CSharp",
+                });
+
+            modelBuilder.Entity<Qualification>().HasData(
+                new Qualification
+                {
+                    Id = 3333,
+                    QualificationName = "Html",
+                });
+
+            modelBuilder.Entity<Qualification>().HasData(
+                new Qualification
+                {
+                    Id = 4444,
+                    QualificationName = "Pflichtenheft",
+                });
+
+            modelBuilder.Entity<EmployeeQualification>().HasData(
+                new EmployeeQualification
+                {
+                    Id = 1111,
+                    QualificationId = 1111,
+                    EmployeeId = 112412,
+                    Information = "Sehr guter Projekt Manager",
+                    SkillLevel = SkillLevelType.Sehrgut,
+                });
+
+            modelBuilder.Entity<EmployeeQualification>().HasData(
+                new EmployeeQualification
+                {
+                    Id = 2222,
+                    QualificationId = 2222,
+                    EmployeeId = 112412,
+                    Information = "Test",
+                    SkillLevel = SkillLevelType.Gut,
+                });
+
+            modelBuilder.Entity<EmployeeQualification>().HasData(
+                new EmployeeQualification
+                {
+                    Id = 3333,
+                    QualificationId = 3333,
+                    EmployeeId = 112412,
+                    Information = "Test",
+                    SkillLevel = SkillLevelType.Befriedigend,
+                });
+
+            modelBuilder.Entity<EmployeeQualification>().HasData(
+                new EmployeeQualification
+                {
+                    Id = 4444,
+                    QualificationId = 4444,
+                    EmployeeId = 112412,
+                    Information = "Test",
+                    SkillLevel = SkillLevelType.Genügend,
+                });
+
+            modelBuilder.Entity<EmployeeQualification>().HasData(
+                new EmployeeQualification
+                {
+                    Id = 5555,
+                    QualificationId = 1111,
+                    EmployeeId = 2214,
+                    Information = "Test",
+                    SkillLevel = SkillLevelType.NichtGenügend,
+                });
+
+            modelBuilder.Entity<EmployeeQualification>().HasData(
+                 new EmployeeQualification
+                 {
+                     Id = 6666,
+                     QualificationId = 3333,
+                     EmployeeId = 2214,
+                     Information = "Test",
+                     SkillLevel = SkillLevelType.Gut,
+                 });
+
+            modelBuilder.Entity<EmployeeQualification>().HasData(
+                new EmployeeQualification
+                {
+                    Id = 7777,
+                    QualificationId = 4444,
+                    EmployeeId = 2214,
+                    Information = "Test",
+                    SkillLevel = SkillLevelType.Genügend,
+                });
+
+            modelBuilder.Entity<EmployeeQualification>().HasData(
+                new EmployeeQualification
+                {
+                    Id = 8888,
+                    QualificationId = 3333,
+                    EmployeeId = 3214,
+                    Information = "Test",
+                    SkillLevel = SkillLevelType.Befriedigend,
+                });
+
+            modelBuilder.Entity<EmployeeQualification>().HasData(
+                new EmployeeQualification
+                {
+                    Id = 9999,
+                    QualificationId = 4444,
+                    EmployeeId = 3214,
+                    Information = "Test",
+                    SkillLevel = SkillLevelType.Sehrgut,
                 });
 
         }

@@ -11,6 +11,6 @@ namespace ProjectManager.Core.Entities
 
         [Required(ErrorMessage = "Dieses Feld wird benötigt")]
         [Display(Name = "Qualifikation")]
-        public QualificationNameType QualificationName { get; set; }
+        public string QualificationName { get; set; }
     }
 }

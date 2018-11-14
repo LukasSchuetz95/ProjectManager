@@ -12,12 +12,12 @@ namespace ProjectManager.Web.Models.ViewModel
     {
         public EmployeeProject EmployeeProject { get; set; }
 
-        public SelectList Employees { get; set; }
+        public SelectList ProjectManagers { get; set; }
 
         public void LoadData(IUnitOfWork unitOfWork)
         {
-            var employees = unitOfWork.Employees.GetAll();
-            Employees = new SelectList(employees, nameof(Employee.Id), null);
+            List<EmployeeQualification> projectmanagers = unitOfWork.EmployeeQualifications.GetAllProjectManagers();
+            ProjectManagers = new SelectList(projectmanagers, nameof(EmployeeQualification.Employee.Id), null);
         }
     }
 }

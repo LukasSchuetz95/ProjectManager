@@ -1,6 +1,10 @@
-﻿using ProjectManager.Core.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjectManager.Core.Contracts;
+using ProjectManager.Core.Entities;
+using ProjectManager.Core.Enum;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ProjectManager.Persistence
@@ -12,6 +16,11 @@ namespace ProjectManager.Persistence
         public EmployeeQualificationRepository(ApplicationDbContextPersistence dbContext)
         {
             _dbContext = dbContext;
+        }
+
+        public List<EmployeeQualification> GetAllProjectManagers()
+        {
+            return _dbContext.EmployeeQualifications.Include(e => e.Employee).Include(q => q.Qualification).Where(e => e.Qualification.QualificationName == "Projekt Manager").ToList();
         }
     }
 }

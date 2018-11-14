@@ -50,7 +50,7 @@ namespace ProjectManager.Persistence.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    QualificationName = table.Column<int>(nullable: false)
+                    QualificationName = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -278,9 +278,10 @@ namespace ProjectManager.Persistence.Migrations
                 columns: new[] { "Id", "QualificationName", "Timestamp" },
                 values: new object[,]
                 {
-                    { 1, 1, null },
-                    { 2, 5, null },
-                    { 3, 0, null }
+                    { 1111, "Projekt Manager", null },
+                    { 2222, "CSharp", null },
+                    { 3333, "Html", null },
+                    { 4444, "Pflichtenheft", null }
                 });
 
             migrationBuilder.InsertData(
@@ -325,20 +326,20 @@ namespace ProjectManager.Persistence.Migrations
                 values: new object[,]
                 {
                     { 1214, "Arztbesuch", 2, 112412, new DateTime(2020, 10, 30, 8, 0, 0, 0, DateTimeKind.Unspecified), "Muss zum Arzt", new DateTime(2020, 10, 30, 6, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 15426, "test13", 2, 3214, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 142456, "test12", 0, 3214, new DateTime(2020, 10, 30, 13, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 12, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 13246, "test11", 0, 3214, new DateTime(2020, 10, 30, 11, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 10, 30, 0, 0, DateTimeKind.Unspecified), null },
-                    { 12246, "test10", 0, 3214, new DateTime(2020, 10, 30, 9, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 8, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 11246, "test9", 1, 3214, new DateTime(2020, 10, 30, 7, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 6, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 1026246, "test8", 3, 2214, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 965747, "test7", 3, 2214, new DateTime(2020, 10, 30, 13, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 12, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 8246, "test6", 0, 2214, new DateTime(2020, 10, 30, 11, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 10, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 7246, "test5", 2, 2214, new DateTime(2020, 10, 30, 9, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 8, 30, 0, 0, DateTimeKind.Unspecified), null },
-                    { 15426, "test13", 2, 3214, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), null },
-                    { 224234, "Meeting", 1, 112412, new DateTime(2020, 10, 30, 9, 0, 0, 0, DateTimeKind.Unspecified), "Habe ein Meeting", new DateTime(2020, 10, 30, 8, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 64256, "test4", 1, 2214, new DateTime(2020, 10, 30, 7, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 6, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 12246, "test10", 0, 3214, new DateTime(2020, 10, 30, 9, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 8, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 224234, "Meeting", 1, 112412, new DateTime(2020, 10, 30, 9, 0, 0, 0, DateTimeKind.Unspecified), "Habe ein Meeting", new DateTime(2020, 10, 30, 8, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 5246, "test3", 3, 112412, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 323423, "test1", 2, 112412, new DateTime(2020, 10, 30, 11, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 10, 30, 0, 0, DateTimeKind.Unspecified), null },
-                    { 44356, "test2", 0, 112412, new DateTime(2020, 10, 30, 13, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 12, 30, 0, 0, DateTimeKind.Unspecified), null },
-                    { 5246, "test3", 3, 112412, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), null }
+                    { 44356, "test2", 0, 112412, new DateTime(2020, 10, 30, 13, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 12, 30, 0, 0, DateTimeKind.Unspecified), null }
                 });
 
             migrationBuilder.InsertData(
@@ -346,15 +347,31 @@ namespace ProjectManager.Persistence.Migrations
                 columns: new[] { "Id", "EmployeeId", "ProjectId", "Projectmanager", "Timestamp" },
                 values: new object[,]
                 {
-                    { 9634, 3214, 2426, false, null },
-                    { 83465, 3214, 1246, true, null },
                     { 4246, 112412, 42456, true, null },
-                    { 6215, 2214, 2426, true, null },
-                    { 5246, 2214, 1246, false, null },
-                    { 1246, 112412, 1246, false, null },
-                    { 2246, 112412, 2426, false, null },
                     { 3246, 112412, 3246, true, null },
-                    { 71234, 2214, 3246, false, null }
+                    { 2246, 112412, 2426, false, null },
+                    { 1246, 112412, 1246, false, null },
+                    { 5246, 2214, 1246, false, null },
+                    { 6215, 2214, 2426, true, null },
+                    { 71234, 2214, 3246, false, null },
+                    { 9634, 3214, 2426, false, null },
+                    { 83465, 3214, 1246, true, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "EmployeeQualifications",
+                columns: new[] { "Id", "EmployeeId", "Information", "QualificationId", "SkillLevel", "Timestamp" },
+                values: new object[,]
+                {
+                    { 3333, 112412, "Test", 3333, 2, null },
+                    { 9999, 3214, "Test", 4444, 0, null },
+                    { 2222, 112412, "Test", 2222, 1, null },
+                    { 8888, 3214, "Test", 3333, 2, null },
+                    { 7777, 2214, "Test", 4444, 3, null },
+                    { 6666, 2214, "Test", 3333, 1, null },
+                    { 5555, 2214, "Test", 1111, 4, null },
+                    { 1111, 112412, "Sehr guter Projekt Manager", 1111, 0, null },
+                    { 4444, 112412, "Test", 4444, 3, null }
                 });
 
             migrationBuilder.InsertData(
@@ -362,23 +379,23 @@ namespace ProjectManager.Persistence.Migrations
                 columns: new[] { "Id", "EmployeeId", "TaskId", "Timestamp" },
                 values: new object[,]
                 {
-                    { 54664, 2214, 11111, null },
                     { 32534, 3214, 17777, null },
                     { 57868, 3214, 16666, null },
                     { 96767, 3214, 15555, null },
                     { 21434, 3214, 14444, null },
                     { 23532, 2214, 13333, null },
                     { 34543, 2214, 12222, null },
+                    { 54664, 2214, 11111, null },
                     { 12433, 2214, 10000, null },
-                    { 1435, 112412, 3333, null },
-                    { 3445, 2214, 8888, null },
                     { 3435, 2214, 7777, null },
+                    { 3445, 2214, 8888, null },
+                    { 324556, 3214, 18888, null },
                     { 4567, 112412, 6666, null },
                     { 7475, 112412, 5555, null },
                     { 8678, 112412, 4444, null },
+                    { 1435, 112412, 3333, null },
                     { 2242, 112412, 2222, null },
                     { 1968, 112412, 1111, null },
-                    { 324556, 3214, 18888, null },
                     { 3254, 2214, 9999, null },
                     { 19324, 3214, 19999, null }
                 });
