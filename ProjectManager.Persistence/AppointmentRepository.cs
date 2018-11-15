@@ -2,6 +2,7 @@
 using ProjectManager.Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ProjectManager.Persistence
@@ -10,6 +11,8 @@ namespace ProjectManager.Persistence
     {
         private readonly ApplicationDbContextPersistence _dbContext;
 
+
+
         public AppointmentRepository(ApplicationDbContextPersistence dbContext)
         {
             _dbContext = dbContext;
@@ -17,7 +20,7 @@ namespace ProjectManager.Persistence
 
         public List<Appointment> GetAll()
         {
-            throw new NotImplementedException();
+            throw new Exception();
         }
     }
 }

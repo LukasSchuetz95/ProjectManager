@@ -17,27 +17,29 @@
             <th>Priorität</th>
             <th>Von</th>
             <th>Bis</th>
+            <th>Deadline</th>
             <th>Status</th>
-            
+
         </tr>
     </thead>
     <tbody>
         @foreach (var task in Model.Tasks)
         {
-            <tr>  
-                <td>@task.TaskName</td>
-                <td>@task.Project.ProjectName</td>
-                <td>@task.Priority</td>
-                <td>@task.Startdate</td>
-                <td>@task.Enddate</td>
-                <td>@task.Status</td>
+        <tr>
+            <td>@task.TaskName</td>
+            <td>@task.Project.ProjectName</td>
+            <td>@task.Priority</td>
+            <td>@task.Startdate</td>
+            <td>@task.Enddate</td>
+            <td>@task.Deadline</td>
+            <td>@task.Status</td>
 
-                <td>
-                    <a asp-controller="Tasks" asp-action="Edit" asp-route-taskId="@task.Id">Edit</a>
-                    <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a>
+            <td>
+                <a asp-controller="Tasks" asp-action="Edit" asp-route-taskId="@task.Id">Edit</a>
+                <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a>
 
-                </td>
-            </tr>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
