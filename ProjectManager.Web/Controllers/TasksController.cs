@@ -18,8 +18,6 @@ namespace ProjectManager.Web.Controllers
             _unitOfWork = unitOfWork;
         }
 
-
-
         public IActionResult List()
         {
             TasksListViewModel model = new TasksListViewModel();
@@ -35,27 +33,6 @@ namespace ProjectManager.Web.Controllers
             model.LoadData(_unitOfWork);
             return View(model);
         }
-
-        //[HttpPost]
-        //public IActionResult Create(TasksCreateViewModel model )
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _unitOfWork.EmployeeTasks.Add(model.EmployeeTask);
-        //            _unitOfWork.Save();
-        //            return RedirectToAction("List", "Tasks");
-        //        }
-        //        catch (ValidationException validationException)
-        //        {
-        //            ValidationResult valResult = validationException.ValidationResult;
-        //            ModelState.AddModelError(nameof(model) + "." + valResult.MemberNames.First(), valResult.ErrorMessage);
-        //        }
-        //    }
-
-        //    return View(model);
-        //}
 
         [HttpPost]
         public IActionResult Create(TasksCreateViewModel model)
@@ -78,7 +55,6 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
-
         public IActionResult Edit(int taskId)
         {
             TasksEditViewModel model = new TasksEditViewModel();
@@ -93,13 +69,11 @@ namespace ProjectManager.Web.Controllers
             {
                 _unitOfWork.EmployeeTasks.Update(model.EmployeeTask);
                 _unitOfWork.Save();
-                return RedirectToAction(nameof(Details), new { taskÍd = model.EmployeeTask.Id });
+                //return RedirectToAction(nameof(Details), new { taskId = model.EmployeeTask.TaskId });
             }
 
             return View(model);
         }
-
-
 
         public IActionResult Details(int taskId)
         {

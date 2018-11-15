@@ -12,7 +12,7 @@ namespace ProjectManager.Core.Contracts
         void Add(EmployeeTask model);
 
         void Update(EmployeeTask model);
-    
 
+   
     }
 }

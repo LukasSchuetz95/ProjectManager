@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Task = ProjectManager.Core.Entities.Task;
 
 namespace ProjectManager.Web.Models.ViewModel
 {
@@ -12,14 +13,19 @@ namespace ProjectManager.Web.Models.ViewModel
     {
         public EmployeeTask EmployeeTask { get; set; }
 
-        //public SelectList List { get; set; }
+        public SelectList Employees { get; set; }
 
-        
+        public SelectList Project { get; set; }
+
 
         public void LoadData(IUnitOfWork uow)
         {
-            var list = uow.EmployeeTasks.GetAll();
-           // List = new SelectList(list, nameof(EmployeeTask.Task.Id), null);
+            var employees = uow.Employees.GetAll();
+            Employees = new SelectList(employees, nameof(Employee.Id), null);
+
+            var project = uow.Projects.GetAll();
+            Project = new SelectList(project, nameof(Task.ProjectId), null);
+           
         }
  
 

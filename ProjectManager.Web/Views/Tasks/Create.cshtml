@@ -17,6 +17,21 @@
                 <span asp-validation-for="EmployeeTask.Task.TaskName" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="EmployeeTask.Task.Project" class="control-label"></label>
+                <input asp-for="EmployeeTask.Task.Project" class="form-control" />
+                <span asp-validation-for="EmployeeTask.Task.Project" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="EmployeeTask.Task.ProjectId" class="control-label"></label>
+                <select asp-for="EmployeeTask.Task.ProjectId" asp-items="@Model.Project" class="form-control" />
+                <span asp-validation-for="EmployeeTask.Task.ProjectId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="EmployeeTask.Task.ProjectId" class="control-label"></label>
+                <input asp-for="EmployeeTask.Task.ProjectId" class="form-control" />
+                <span asp-validation-for="EmployeeTask.Task.ProjectId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="EmployeeTask.Task.Priority" class="control-label"></label>
                 <select asp-for="EmployeeTask.Task.Priority" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.PriorityType>()" class="form-control"></select>
                 <span asp-validation-for="EmployeeTask.Task.Priority" class="text-danger"></span>
@@ -42,22 +57,17 @@
                 <span asp-validation-for="EmployeeTask.Task.Enddate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmployeeTask.Task.ValuedTime" class="control-label"></label>
-                <input asp-for="EmployeeTask.Task.ValuedTime" class="form-control" />
-                <span asp-validation-for="EmployeeTask.Task.ValuedTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="EmployeeTask.Task.Deadline" class="control-label"></label>
                 <input asp-for="EmployeeTask.Task.Deadline" type="date" class="form-control" />
                 <span asp-validation-for="EmployeeTask.Task.Deadline" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmployeeTask.Task.Project" class="control-label"></label>
-                <input asp-for="EmployeeTask.Task.Project" class="form-control" />
-                <span asp-validation-for="EmployeeTask.Task.Project" class="text-danger"></span>
+                <label asp-for="EmployeeTask.Task.ValuedTime" class="control-label"></label>
+                <input asp-for="EmployeeTask.Task.ValuedTime" class="form-control" />
+                <span asp-validation-for="EmployeeTask.Task.ValuedTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmployeeTask.Employee.Firstname" class="control-label"></label>
+                <label asp-for="EmployeeTask.Employee.Firstname" asp-item="@Model.Employees" class="control-label"></label>
                 <input asp-for="EmployeeTask.Employee.Firstname" class="form-control" />
                 <span asp-validation-for="EmployeeTask.Employee.Firstname" class="text-danger"></span>
             </div>
@@ -66,11 +76,8 @@
                 <input asp-for="EmployeeTask.Employee.Lastname" class="form-control" />
                 <span asp-validation-for="EmployeeTask.Employee.Lastname" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="EmployeeTask.Task.ProjectId" class="control-label"></label>
-                <input asp-for="EmployeeTask.Task.ProjectId" class="form-control" />
-                <span asp-validation-for="EmployeeTask.Task.ProjectId" class="text-danger"></span>
-            </div>
+
+
             <div class="form-group">
                 <input type="submit" value="Task anlegen" class="btn btn-default" />
             </div>

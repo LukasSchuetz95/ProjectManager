@@ -19,7 +19,7 @@ namespace ProjectManager.Persistence
 
         public void Add(EmployeeTask model)
         {
-            _dbContext.Add(model);
+            _dbContext.EmployeeTasks.Add(model);
         }
 
         public List<EmployeeTask> GetAll()
@@ -36,7 +36,7 @@ namespace ProjectManager.Persistence
 
         public void Update(EmployeeTask model)
         {
-            _dbContext.Update(model);
+            _dbContext.EmployeeTasks.Update(model);
         }
     }
 }

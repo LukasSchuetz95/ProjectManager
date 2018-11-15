@@ -15,5 +15,9 @@ namespace ProjectManager.Persistence
             _dbContext = dbContext;
         }
 
+        public List<Appointment> GetAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
