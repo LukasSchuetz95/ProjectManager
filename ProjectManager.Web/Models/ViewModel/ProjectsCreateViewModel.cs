@@ -16,8 +16,8 @@ namespace ProjectManager.Web.Models.ViewModel
 
         public void LoadData(IUnitOfWork unitOfWork)
         {
-            List<EmployeeQualification> projectmanagers = unitOfWork.EmployeeQualifications.GetAllProjectManagers();
-            ProjectManagers = new SelectList(projectmanagers, nameof(EmployeeQualification.Employee.Id), null);
+            List<Employee> projectmanagers = unitOfWork.Employees.GetAll(); //unitOfWork.EmployeeQualifications.GetAllProjectManagers();
+            ProjectManagers = new SelectList(projectmanagers, nameof(Employee.Id), null);
         }
     }
 }

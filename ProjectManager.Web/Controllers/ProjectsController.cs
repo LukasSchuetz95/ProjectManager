@@ -71,7 +71,8 @@ namespace ProjectManager.Web.Controllers
                     model.EmployeeProject.Projectmanager = true;
                     _unitOfWork.EmployeeProjects.Add(model.EmployeeProject);
                     _unitOfWork.Save();
-                    return RedirectToAction("Create", "EmployeeProjects", model.EmployeeProject.ProjectId);
+                    return RedirectToAction("List", "Projects");
+                    //return RedirectToAction("Create", "EmployeeProjects", model.EmployeeProject.ProjectId);
                 }
                 catch (ValidationException validationException)
                 {
