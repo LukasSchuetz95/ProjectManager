@@ -7,8 +7,9 @@ namespace ProjectManager.Core.Enum
     public enum AppointmentType
     {
         Arztbesuch,
-        Werkstatt,
         Meeting,
+        Zeitausgleich,
+        Urlaub,
         Andere,
     }
 }

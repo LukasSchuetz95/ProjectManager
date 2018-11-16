@@ -6,8 +6,9 @@ namespace ProjectManager.Core.Enum
 {
     public enum TaskStatusType
     {
-        Abgeschlossen,
-        Laufend,
-        Offen,
+        NichtBegonnen,
+        InArbeit,
+        Erledigt,
+
     }
 }
