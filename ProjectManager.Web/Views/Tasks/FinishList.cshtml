@@ -1,0 +1,39 @@
+﻿@model ProjectManager.Web.Models.ViewModel.TasksListViewModel
+
+@{
+    ViewData["Title"] = "FinishList";
+}
+
+<h2>FinishList</h2>
+
+<h3>Abgeschlossene Tasks</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Taskname</th>
+            <th>Projekt</th>
+            <th>Priorität</th>
+            <th>Von</th>
+            <th>Bis</th>
+            <th>Deadline</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model.CompletedTasks)
+        {
+            <tr>
+                <td>@task.TaskName</td>
+                <td>@task.Project.ProjectName</td>
+                <td>@task.Priority</td>
+                <td>@task.Startdate</td>
+                <td>@task.Enddate</td>
+                <td>@task.Deadline</td>
+                <td>
+                    <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

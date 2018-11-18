@@ -18,5 +18,8 @@ namespace ProjectManager.Core.Contracts
         void Add(System.Threading.Tasks.Task model);
         List<Task> GetAllTasksForProjectWithCompletedStatus(int projectId);
         void Add(Task task);
+        List<Task> GetAllTasksForProjectWithUndefinedStatus();
+        List<Task> GetAllTasksForProjectWithProcessingStatus();
+        List<Task> GetAllTasksForProjectWithCompletedStatus();
     }
 }
