@@ -35,17 +35,17 @@ namespace ProjectManager.Persistence
 
         public List<Task> GetAllTasksForProjectWithCompletedStatus(int projectId)
         {
-            return _dbContext.Tasks.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Abgeschlossen)).ToList();
+            return _dbContext.Tasks.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Erledigt)).ToList();
         }
 
         public List<Task> GetAllTasksForProjectWithProcessingStatus(int projectId)
         {
-            return _dbContext.Tasks.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Laufend)).ToList();
+            return _dbContext.Tasks.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.InArbeit)).ToList();
         }
 
         public List<Task> GetAllTasksForProjectWithUndefinedStatus(int projectId)
         {
-            return _dbContext.Tasks.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Offen)).ToList();
+            return _dbContext.Tasks.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.InArbeit)).ToList();
         }
 
         public void Update(Task task)

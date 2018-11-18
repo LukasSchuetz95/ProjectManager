@@ -120,7 +120,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 224234,
                     AppoName = "Meeting",
-                    AppoType = AppointmentType.Werkstatt,
+                    AppoType = AppointmentType.Urlaub,
                     EmployeeId = 112412,
                     Startdate = new DateTime(2020, 10, 30, 8, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 9, 00, 0),
@@ -168,7 +168,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 64256,
                     AppoName = "test4",
-                    AppoType = AppointmentType.Werkstatt,
+                    AppoType = AppointmentType.Zeitausgleich,
                     EmployeeId = 2214,
                     Startdate = new DateTime(2020, 10, 30, 6, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 7, 30, 0),
@@ -228,7 +228,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 11246,
                     AppoName = "test9",
-                    AppoType = AppointmentType.Werkstatt,
+                    AppoType = AppointmentType.Zeitausgleich,
                     EmployeeId = 3214,
                     Startdate = new DateTime(2020, 10, 30, 6, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 7, 30, 0),
@@ -312,7 +312,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 3246,
                     ProjectName = "Project2",
-                    Status = ProjectStatusType.Offen,
+                    Status = ProjectStatusType.Planung,
                     Startdate = new DateTime(2023, 10, 30, 14, 30, 0),
                     Deadline = new DateTime(2024, 10, 30, 15, 30, 0),
                     ValuedTime = "500",
@@ -419,13 +419,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 1246,
                     FixedTask = false,
                     TaskName = "Test1",
-                    Status = TaskStatusType.Laufend,
+                    Status = TaskStatusType.InArbeit,
                     Information = "Erster Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Normal,
+                    Priority = PriorityType.Mittel,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -435,13 +435,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 1246,
                     FixedTask = false,
                     TaskName = "Test2",
-                    Status = TaskStatusType.Abgeschlossen,
+                    Status = TaskStatusType.Erledigt,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Normal,
+                    Priority = PriorityType.Mittel,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -451,13 +451,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 1246,
                     FixedTask = false,
                     TaskName = "Test3",
-                    Status = TaskStatusType.Offen,
+                    Status = TaskStatusType.NichtBegonnen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Normal,
+                    Priority = PriorityType.Mittel,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -467,13 +467,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 1246,
                     FixedTask = false,
                     TaskName = "Test4",
-                    Status = TaskStatusType.Laufend,
+                    Status = TaskStatusType.InArbeit,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Normal,
+                    Priority = PriorityType.Mittel,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -483,13 +483,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 1246,
                     FixedTask = false,
                     TaskName = "Test5",
-                    Status = TaskStatusType.Offen,
+                    Status = TaskStatusType.NichtBegonnen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Normal,
+                    Priority = PriorityType.Mittel,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -499,13 +499,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 2426,
                     FixedTask = false,
                     TaskName = "Test6",
-                    Status = TaskStatusType.Abgeschlossen,
+                    Status = TaskStatusType.InArbeit,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Normal,
+                    Priority = PriorityType.Mittel,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -515,13 +515,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 2426,
                     FixedTask = false,
                     TaskName = "Test7",
-                    Status = TaskStatusType.Laufend,
+                    Status = TaskStatusType.InArbeit,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Normal,
+                    Priority = PriorityType.Mittel,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -531,13 +531,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 2426,
                     FixedTask = false,
                     TaskName = "Test8",
-                    Status = TaskStatusType.Abgeschlossen,
+                    Status = TaskStatusType.Erledigt,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Normal,
+                    Priority = PriorityType.Niedrig,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -547,13 +547,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 2426,
                     FixedTask = false,
                     TaskName = "Test9",
-                    Status = TaskStatusType.Laufend,
+                    Status = TaskStatusType.InArbeit,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Normal,
+                    Priority = PriorityType.Niedrig,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -563,13 +563,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 2426,
                     FixedTask = false,
                     TaskName = "Test10",
-                    Status = TaskStatusType.Abgeschlossen,
+                    Status = TaskStatusType.InArbeit,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Normal,
+                    Priority = PriorityType.Niedrig,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -579,13 +579,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 3246,
                     FixedTask = false,
                     TaskName = "Test11",
-                    Status = TaskStatusType.Offen,
+                    Status = TaskStatusType.InArbeit,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Normal,
+                    Priority = PriorityType.Mittel,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -595,13 +595,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 3246,
                     FixedTask = false,
                     TaskName = "Test12",
-                    Status = TaskStatusType.Laufend,
+                    Status = TaskStatusType.InArbeit,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Normal,
+                    Priority = PriorityType.Mittel,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -611,13 +611,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 3246,
                     FixedTask = false,
                     TaskName = "Test13",
-                    Status = TaskStatusType.Offen,
+                    Status = TaskStatusType.NichtBegonnen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Wichtig,
+                    Priority = PriorityType.Hoch,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -627,13 +627,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 3246,
                     FixedTask = false,
                     TaskName = "Test14",
-                    Status = TaskStatusType.Offen,
+                    Status = TaskStatusType.NichtBegonnen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Wichtig,
+                    Priority = PriorityType.Hoch,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -643,13 +643,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 3246,
                     FixedTask = false,
                     TaskName = "Test15",
-                    Status = TaskStatusType.Offen,
+                    Status = TaskStatusType.NichtBegonnen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Wichtig,
+                    Priority = PriorityType.Hoch,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -659,13 +659,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 42456,
                     FixedTask = false,
                     TaskName = "Test16",
-                    Status = TaskStatusType.Offen,
+                    Status = TaskStatusType.NichtBegonnen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Wichtig,
+                    Priority = PriorityType.Hoch,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -675,13 +675,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 42456,
                     FixedTask = false,
                     TaskName = "Test17",
-                    Status = TaskStatusType.Offen,
+                    Status = TaskStatusType.NichtBegonnen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Wichtig,
+                    Priority = PriorityType.Hoch,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -691,13 +691,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 42456,
                     FixedTask = false,
                     TaskName = "Test18",
-                    Status = TaskStatusType.Offen,
+                    Status = TaskStatusType.NichtBegonnen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Wichtig,
+                    Priority = PriorityType.Hoch,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -707,13 +707,13 @@ namespace ProjectManager.Persistence
                     ProjectId = 42456,
                     FixedTask = false,
                     TaskName = "Test19",
-                    Status = TaskStatusType.Laufend,
+                    Status = TaskStatusType.NichtBegonnen,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
                     Enddate = new DateTime(2026, 10, 30, 15, 30, 0),
                     Startdate = new DateTime(2026, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Wichtig,
+                    Priority = PriorityType.Hoch,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
