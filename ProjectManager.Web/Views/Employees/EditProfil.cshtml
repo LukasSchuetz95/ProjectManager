@@ -13,7 +13,7 @@
             <div class="form-group">
                 <dl class="dl-horizontal">
                     <dt>@Html.DisplayNameFor(m => m.Employee.Lastname)</dt>
-                    <dt>@Model.Employee.Lastname</dt>
+                    <dd>@Model.Employee.Lastname</dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt>@Html.DisplayNameFor(m => m.Employee.Firstname)</dt>
@@ -23,26 +23,22 @@
                     <dt>@Html.DisplayNameFor(m => m.Employee.Job)</dt>
                     <dd>@Model.Employee.Job</dd>
                 </dl>
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(m => m.Employee.Birthdate)</dt>
-                    <dd>@Model.Employee.Birthdate</dd>
+                <div class="dl-horizontal">
+                    <label>@Html.DisplayNameFor(m => m.Employee.Birthdate)</label>
+                    <input>@Model.Employee.Birthdate</>
 
-                    <dt>@Html.DisplayNameFor(m => m.Employee.StreetNameAndNr)</dt>
-                    <dt>@Model.Employee.StreetNameAndNr</dt>
+                    <label>@Html.DisplayNameFor(m => m.Employee.StreetNameAndNr)</label>
+                    <input>@Model.Employee.StreetNameAndNr</>
 
-                    <dt>@Html.DisplayNameFor(m => m.Employee.ZipCode)</dt>
-                    <dd>@Model.Employee.ZipCode</dd>
+                    <label>@Html.DisplayNameFor(m => m.Employee.ZipCode)</label>
+                    <input>@Model.Employee.ZipCode</>
 
-                    <dt>@Html.DisplayNameFor(m => m.Employee.Residence)</dt>
-                    <dd>@Model.Employee.Residence</dd>
-                </dl>
+                    <label>@Html.DisplayNameFor(m => m.Employee.Residence)</label>
+                    <input>@Model.Employee.Residence</>
+                </div>
                 <dl class="dl-horizontal">
                     <dt>@Html.DisplayNameFor(m => m.Employee.Phonenumber)</dt>
                     <dd>@Model.Employee.Phonenumber</dd>
-                </dl>
-                <dl class="media-middle">
-                    <dt><a asp-controller="Employees" asp-action="Feed" class="btn btn-default">Feed</a></dt>
-                    <dt><a asp-controller="Employees" asp-action="EditProfil" class="btn btn-default">Bearbeiten</a></dt>
                 </dl>
             </div>
         </form>

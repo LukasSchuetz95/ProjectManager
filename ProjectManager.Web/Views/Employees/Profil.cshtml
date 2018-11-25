@@ -41,7 +41,7 @@
                 </dl>
                 <dl class="media-middle">
                     <dt><a asp-controller="Employees" asp-action="Feed" class="btn btn-default">Feed</a></dt>
-                    <dt><a asp-controller="Employees" asp-action="EditProfil" class="btn btn-default">Bearbeiten</a></dt>
+                    <dt><a asp-controller="Employees" asp-action="EditProfil" asp-route-employeeId="@Model.Employee.Id" class="btn btn-default">Bearbeiten</a></dt>
                 </dl>
             </div>
             <table class="table">

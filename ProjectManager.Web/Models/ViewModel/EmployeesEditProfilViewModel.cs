@@ -14,7 +14,6 @@ namespace ProjectManager.Web.Models
         public void LoadData(IUnitOfWork unitOfWork, int employeeId)
         {
             Employee = unitOfWork.Employees.GetById(employeeId);
-
         }
     }
 }
