@@ -22,7 +22,7 @@ namespace ProjectManager.Core.Entities
         [Required(ErrorMessage = "Dieses Feld wird benötigt")]
         [Display(Name = "Terminart")]
         public AppointmentType AppoType { get; set; }
-
+        
         public string Information { get; set; }
 
         [Required(ErrorMessage = "Dieses Feld wird benötigt")]
