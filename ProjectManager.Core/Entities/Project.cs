@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ProjectManager.Core.Entities
 {
-    public class Project : EntityObject
+    public class Project : EntityObject, IValidatableObject
     {
         [Required(ErrorMessage = "Dieses Feld wird benötigt")]
         [Display(Name = "Projektname")]
@@ -31,6 +31,21 @@ namespace ProjectManager.Core.Entities
         public override string ToString()
         {
             return Status.ToString();
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if((this.Startdate!=null) && (this.Enddate!=null))
+            {
+                if(this.Startdate > this.Enddate)
+                {
+                    yield return new ValidationResult("Startdatum muss vor Enddatum liegen !", new List<string>() { nameof(this.Startdate), nameof(this.Enddate) });
+                }
+                if (this.Startdate < DateTime.Now)
+                {
+                    yield return new ValidationResult("Startdatum muss vor aktuellem Datum liegen !", new List<string>() { nameof(this.Startdate) });
+                }
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ using ProjectManager.Core.Enum;
 
 namespace ProjectManager.Core.Entities
 {
-    public class Appointment : EntityObject
+    public class Appointment : EntityObject, IValidatableObject
     {
         [ForeignKey(nameof(EmployeeId))]
         public Employee Employee { get; set; }
@@ -32,5 +32,9 @@ namespace ProjectManager.Core.Entities
         [Display(Name = "Bis")]
         public DateTime Enddate { get; set; }
 
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

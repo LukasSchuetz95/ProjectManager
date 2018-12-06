@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ProjectManager.Core.Entities
 {
-    public class Task : EntityObject
+    public class Task : EntityObject, IValidatableObject
     {
 
         [ForeignKey(nameof(ProjectId))]
@@ -41,5 +41,10 @@ namespace ProjectManager.Core.Entities
         public string ValuedTime { get; set; }
 
         public DateTime Deadline { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

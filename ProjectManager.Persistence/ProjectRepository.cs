@@ -47,7 +47,7 @@ namespace ProjectManager.Persistence
             }
             else
             {
-                return query.Where(p => p.ProjectName.StartsWith(filter)).ToList();
+                return query.Where(p => p.ProjectName.Contains(filter)).ToList();
             }
         }
 

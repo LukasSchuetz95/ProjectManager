@@ -20,7 +20,7 @@ namespace ProjectManager.Web.Controllers
         public IActionResult Create(int projectId)
         {
             EmployeeProjectsCreateViewModel model = new EmployeeProjectsCreateViewModel();
-            model.LoadData(_unitOfWork, projectId);
+            //model.LoadData(_unitOfWork, projectId);
             return View(model);
         }
     }

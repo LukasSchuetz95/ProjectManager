@@ -8,7 +8,7 @@ using ProjectManager.Core.Enum;
 
 namespace ProjectManager.Core.Entities
 {
-    public class Employee : EntityObject
+    public class Employee : EntityObject, IValidatableObject
     {
         [ForeignKey(nameof(DepartmentId))]
         public Department Department { get; set; }
@@ -51,6 +51,11 @@ namespace ProjectManager.Core.Entities
         public override string ToString()
         {
             return Lastname + " " + Firstname;
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            throw new NotImplementedException();
         }
     }
 }
