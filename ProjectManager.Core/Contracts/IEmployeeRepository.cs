@@ -13,5 +13,6 @@ namespace ProjectManager.Core.Contracts
         List<Employee> GetEmployeeByDeparmentName(string filterDepartmentName=null);
         Employee GetById(int employeeId);
         List<Employee> GetAll();
+        
     }
 }

@@ -13,5 +13,6 @@ namespace ProjectManager.Core.Contracts
         List<Project> GetProjectByName(string filter=null);
         void Update(Project project);
         List<Project> GetAllStatuses();
+        void Delete(Project model);
     }
 }

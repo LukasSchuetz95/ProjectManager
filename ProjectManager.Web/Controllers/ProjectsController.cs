@@ -64,6 +64,8 @@ namespace ProjectManager.Web.Controllers
         [HttpPost]
         public IActionResult Create(ProjectsCreateViewModel model)
         {
+            
+
             if (ModelState.IsValid)
             {
                 try
@@ -71,8 +73,7 @@ namespace ProjectManager.Web.Controllers
                     model.EmployeeProject.Projectmanager = true;
                     _unitOfWork.EmployeeProjects.Add(model.EmployeeProject);
                     _unitOfWork.Save();
-                    //return RedirectToAction("List", "Projects");
-                    return RedirectToAction("Create", "EmployeeProjects", model.EmployeeProject.Id);
+                    return RedirectToAction("Create", "EmployeeProjects", new { projectId = model.EmployeeProject.ProjectId });
                 }
                 catch (ValidationException validationException)
                 {
@@ -89,6 +90,32 @@ namespace ProjectManager.Web.Controllers
             ProjectsDetailsViewModel model = new ProjectsDetailsViewModel();
             model.LoadData(_unitOfWork, projectId);
             return View(model);   
+        }
+
+        public IActionResult Delete(int projectId)
+        {
+            Project model = _unitOfWork.Projects.GetById(projectId);
+
+            if(model == null)
+            {
+                return NotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteConfirm(int projectId)
+        {
+            Project model = _unitOfWork.Projects.GetById(projectId);
+
+            if(model == null)
+            {
+                return NotFound();
+            }
+            _unitOfWork.Projects.Delete(model);
+            _unitOfWork.Save();
+            return RedirectToAction(nameof(List));
         }
 
 

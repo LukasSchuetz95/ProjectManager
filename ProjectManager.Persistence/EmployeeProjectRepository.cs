@@ -22,6 +22,11 @@ namespace ProjectManager.Persistence
             _dbContext.EmployeeProjects.Add(model);
         }
 
+        public void Delete(EmployeeProject model)
+        {
+            _dbContext.EmployeeProjects.Remove(model);
+        }
+
         public List<EmployeeProject> GetAll()
         {
             return _dbContext.EmployeeProjects.Include(e => e.Employee).Include(p => p.Project).OrderBy(e => e.Id).ToList();
@@ -29,7 +34,19 @@ namespace ProjectManager.Persistence
 
         public List<EmployeeProject> GetAllByProjectId(int projectId)
         {
-            return _dbContext.EmployeeProjects.Include(e => e.Employee).Include(p => p.Project).Where(p => p.Project.Id == projectId).OrderBy(e => e.Id).ToList();
+            return _dbContext.EmployeeProjects.Include(e => e.Employee).Include(p => p.Project)
+                .Where(p => p.ProjectId == projectId).OrderBy(e => e.Id).ToList();
+        }
+
+        public List<EmployeeProject> GetAllNotPartOfProject(int projectId)
+        {
+            return _dbContext.EmployeeProjects.Include(e => e.Employee).Include(p => p.Project)
+                .Where(p => p.ProjectId != projectId).OrderBy(e => e.Id).ToList();
+        }
+
+        public EmployeeProject GetById(int empProId)
+        {
+            return _dbContext.EmployeeProjects.SingleOrDefault(e => e.Id == empProId);
         }
 
         public EmployeeProject GetByProjectId(int id)

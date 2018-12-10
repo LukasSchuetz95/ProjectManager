@@ -11,13 +11,17 @@ namespace ProjectManager.Web.Models.ViewModel
     {
         public EmployeeProject EmployeeProject { get; set; }
 
-        public List<Employee> Employees { get; set; }
+        public List<EmployeeProject> EmployeesInProject { get; set; }
+
+        public List<EmployeeProject> EmployeesNotInProject { get; set; }
 
         public void LoadData(IUnitOfWork unitOfWork, int projectId)
         {
             EmployeeProject = unitOfWork.EmployeeProjects.GetByProjectId(projectId);
 
-            Employees = unitOfWork.Employees.GetAll();
+            EmployeesInProject = unitOfWork.EmployeeProjects.GetAllByProjectId(projectId);
+
+            EmployeesNotInProject = unitOfWork.EmployeeProjects.GetAllNotPartOfProject(projectId);
         }
     }
 }

@@ -20,8 +20,22 @@ namespace ProjectManager.Web.Controllers
         public IActionResult Create(int projectId)
         {
             EmployeeProjectsCreateViewModel model = new EmployeeProjectsCreateViewModel();
-            //model.LoadData(_unitOfWork, projectId);
+            model.LoadData(_unitOfWork, projectId);
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int empProId)
+        {
+            EmployeeProject model = _unitOfWork.EmployeeProjects.GetById(empProId);
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+            _unitOfWork.EmployeeProjects.Delete(model);
+            _unitOfWork.Save();
+            return RedirectToAction(nameof(Create), new { projectId = model.ProjectId });
         }
     }
 }

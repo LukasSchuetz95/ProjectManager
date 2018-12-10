@@ -22,6 +22,11 @@ namespace ProjectManager.Persistence
             _dbContext.Projects.Add(model);
         }
 
+        public void Delete(Project model)
+        {
+            _dbContext.Projects.Remove(model);
+        }
+
         public List<Project> GetAll()
         {
             return _dbContext.Projects.OrderBy(p => p.ProjectName).ToList();

@@ -33,9 +33,11 @@
                 <td>@project.Deadline</td>
                 <td>@project.Id</td>
                 <td>
-                    <a asp-controller="Projects" asp-action="Edit" asp-route-projectId="@project.Id">Edit</a>
-                    <a asp-controller="Projects" asp-action="Details" asp-route-projectId="@project.Id">Details</a>
-                    <a asp-controller="Projects" asp-action="Delete" asp-route-projectId="@project.Id">Löschen</a>
+                    <a asp-controller="Projects" asp-action="Edit" asp-route-projectId="@project.Id">Edit</a> |
+                    <a asp-controller="Projects" asp-action="Details" asp-route-projectId="@project.Id">Details</a> |
+                    <a asp-controller="Projects" asp-action="Delete" asp-route-projectId="@project.Id">Projekt Löschen</a> |
+                    <a asp-controller="EmployeeProjects" asp-action="Create" asp-route-projectId="@project.Id">Mitarbeiter hinzufügen/löschen</a>
+
                 </td>
             </tr>
         }
