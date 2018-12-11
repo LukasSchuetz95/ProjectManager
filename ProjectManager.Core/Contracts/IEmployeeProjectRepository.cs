@@ -15,5 +15,7 @@ namespace ProjectManager.Core.Contracts
         List<Employee> GetAllNotPartOfProject(int projectId);
         EmployeeProject GetById(int empProId);
         void Delete(EmployeeProject model);
+        void Update(EmployeeProject employeeProject);
+        EmployeeProject GetProjectManagerByProjectId(int projectId);
     }
 }

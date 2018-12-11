@@ -70,9 +70,19 @@ namespace ProjectManager.Persistence
             return _dbContext.EmployeeProjects.Where(p => p.ProjectId == id).FirstOrDefault();
         }
 
+        public EmployeeProject GetProjectManagerByProjectId(int projectId)
+        {
+            return _dbContext.EmployeeProjects.Include(e => e.Employee).Include(pr => pr.Project).Where(p => p.ProjectId == projectId && p.Projectmanager == true).SingleOrDefault();
+        }
+
         public List<EmployeeProject> GetProjectsByEmployeeId(int employeeId)
         {
             return _dbContext.EmployeeProjects.Include(e => e.Employee).Include(p => p.Project).Where(p => p.EmployeeId == employeeId).ToList();
+        }
+
+        public void Update(EmployeeProject employeeProject)
+        {
+            _dbContext.EmployeeProjects.Update(employeeProject);
         }
     }
 }

@@ -35,20 +35,20 @@ namespace ProjectManager.Web.Controllers
 
         public IActionResult Edit(int projectId)
         {
-            ProjectsEditViewModel model = new ProjectsEditViewModel();            
-            model.Project = _unitOfWork.Projects.GetById(projectId);
+            ProjectsEditViewModel model = new ProjectsEditViewModel();
+            model.LoadData(_unitOfWork, projectId);
 
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Edit(ProjectsEditViewModel model)
+        public IActionResult Edit(int id, [Bind("EmployeeProject, ProjectManagers")]ProjectsEditViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Projects.Update(model.Project);
+                _unitOfWork.EmployeeProjects.Update(model.EmployeeProject);
                 _unitOfWork.Save();
-                return RedirectToAction(nameof(Details), new { projectId = model.Project.Id });
+                return RedirectToAction(nameof(Details), new { projectId = model.EmployeeProject.ProjectId });
             }
 
             return View(model);

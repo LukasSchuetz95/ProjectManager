@@ -61,7 +61,7 @@
                     <td>@emp.Employee.Status</td>
                     <td>@emp.Employee.Job</td>
                     <td>
-                        <form asp-action="Delete" asp-route-empProId="@Model.EmployeeProject.Id">
+                        <form asp-action="Delete" asp-route-empProId="@emp.Id">
                             <input type="submit" value="Löschen" class="btn btn-danger" />
                         </form>
                         @*<a asp-controller="Projects" asp-action="Edit" >Entfernen</a>*@
