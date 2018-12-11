@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,29 @@ namespace ProjectManager.Web.Controllers
         {
             EmployeeProjectsCreateViewModel model = new EmployeeProjectsCreateViewModel();
             model.LoadData(_unitOfWork, projectId);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Create(EmployeeProjectsCreateViewModel model)
+        {
+
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _unitOfWork.EmployeeProjects.Add(model.EmployeeProject);
+                    _unitOfWork.Save();
+                    return RedirectToAction("Create", new { projectId = model.EmployeeProject.ProjectId });
+                }
+                catch (ValidationException validationException)
+                {
+                    ValidationResult valResult = validationException.ValidationResult;
+                    ModelState.AddModelError(nameof(model) + "." + valResult.MemberNames.First(), valResult.ErrorMessage);
+                }
+            }
+
             return View(model);
         }
 

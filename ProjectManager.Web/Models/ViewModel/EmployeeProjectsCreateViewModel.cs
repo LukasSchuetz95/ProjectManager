@@ -13,7 +13,7 @@ namespace ProjectManager.Web.Models.ViewModel
 
         public List<EmployeeProject> EmployeesInProject { get; set; }
 
-        public List<EmployeeProject> EmployeesNotInProject { get; set; }
+        public List<Employee> EmployeesNotInProject { get; set; }
 
         public void LoadData(IUnitOfWork unitOfWork, int projectId)
         {

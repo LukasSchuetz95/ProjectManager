@@ -69,7 +69,7 @@
             <td>@task.Enddate</td>
             <td>@task.Deadline</td>
             <td>
-                <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a>
+                <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id" class="btn btn-info">Details</a>
             </td>
         </tr>
         }
@@ -100,7 +100,7 @@
             <td>@task.Enddate</td>
             <td>@task.Deadline</td>
             <td>
-                <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a>
+                <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id" class="btn btn-info">Details</a>
             </td>
         </tr>
         }
@@ -131,12 +131,12 @@
             <td>@task.Enddate</td>
             <td>@task.Deadline</td>
             <td>
-                <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a>
+                <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id" class="btn btn-info">Details</a>
             </td>
         </tr>
         }
     </tbody>
 </table>
 <div>
-    <a asp-controller="Projects" asp-action="List">Back to List</a>
+    <a asp-controller="Projects" asp-action="List" class="btn btn-default">Zur Übersicht</a>
 </div>

@@ -38,10 +38,26 @@ namespace ProjectManager.Persistence
                 .Where(p => p.ProjectId == projectId).OrderBy(e => e.Id).ToList();
         }
 
-        public List<EmployeeProject> GetAllNotPartOfProject(int projectId)
+        public List<Employee> GetAllNotPartOfProject(int projectId)
         {
-            return _dbContext.EmployeeProjects.Include(e => e.Employee).Include(p => p.Project)
-                .Where(p => p.ProjectId != projectId).OrderBy(e => e.Id).ToList();
+            List<EmployeeProject> list = GetAllByProjectId(projectId);
+
+            List<Employee> employees = _dbContext.Employees.ToList();
+
+            List<Employee> newemployees = _dbContext.Employees.ToList();
+
+            foreach (var i in list)
+            {
+                foreach (var j in employees)
+                {
+                    if (i.EmployeeId == j.Id)
+                    {
+                        newemployees.Remove(j);
+                    }
+                }
+            }
+
+            return newemployees;
         }
 
         public EmployeeProject GetById(int empProId)

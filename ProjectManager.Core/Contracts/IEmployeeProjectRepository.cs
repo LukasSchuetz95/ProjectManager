@@ -12,7 +12,7 @@ namespace ProjectManager.Core.Contracts
         void Add(EmployeeProject model);
         EmployeeProject GetByProjectId(int id);
         List<EmployeeProject> GetProjectsByEmployeeId(int employeeId);
-        List<EmployeeProject> GetAllNotPartOfProject(int projectId);
+        List<Employee> GetAllNotPartOfProject(int projectId);
         EmployeeProject GetById(int empProId);
         void Delete(EmployeeProject model);
     }
