@@ -26,17 +26,18 @@ namespace ProjectManager.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(EmployeeProjectsCreateViewModel model)
+        public IActionResult Create(int employeeId, int projectId)
         {
 
+            EmployeeProject model = new EmployeeProject { EmployeeId = employeeId, ProjectId = projectId, Projectmanager = false };
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _unitOfWork.EmployeeProjects.Add(model.EmployeeProject);
+                    _unitOfWork.EmployeeProjects.Add(model);
                     _unitOfWork.Save();
-                    return RedirectToAction("Create", new { projectId = model.EmployeeProject.ProjectId });
+                    return RedirectToAction("Create", new { projectId = model.ProjectId });
                 }
                 catch (ValidationException validationException)
                 {

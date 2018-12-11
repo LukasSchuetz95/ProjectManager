@@ -90,7 +90,7 @@
                 <td>@emp.Status</td>
                 <td>@emp.Job</td>
                 <td>
-                    <form asp-action="Create" asp-controller="EmployeeProjects" asp-route-model="@Model">
+                    <form asp-action="Create" asp-controller="EmployeeProjects" asp-route-employeeId="@emp.Id" asp-route-projectId="@Model.EmployeeProject.ProjectId">
                         <input type="submit" value="Mitarbeiter hinzufügen" class="btn btn-success" />
                     </form>
                     @*<div class="form-group">

@@ -12,7 +12,6 @@
     <div class="col-md-4">
         <form asp-action="Edit" asp-route-projectId="@Model.Project.Id">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Project.Id" />
             <div class="form-group">
                 <label asp-for="Project.ProjectName" class="control-label"></label>
                 <input asp-for="Project.ProjectName" class="form-control" />
@@ -43,6 +42,9 @@
                 <input asp-for="Project.Deadline" class="form-control" />
                 <span asp-validation-for="Project.Deadline" class="text-danger"></span>
             </div>
+            <input type="hidden" asp-for="Project.Timestamp" />
+            <input type="hidden" asp-for="Project.Id" />
+            <input type="hidden" asp-for="Project.Startdate" />
             <div class="form-group">
                 <input type="submit" value="Speichern" class="btn btn-success" />
             </div>

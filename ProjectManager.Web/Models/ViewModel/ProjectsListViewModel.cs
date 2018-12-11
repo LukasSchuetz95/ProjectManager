@@ -13,7 +13,7 @@ namespace ProjectManager.Web.Models.ViewModel
 
         public string FilterProjectName { get; set; }
 
-        public void LoadData(IUnitOfWork uow, int id)
+        public void LoadData(IUnitOfWork uow)
         {
             Projects = uow.Projects.GetAll();
         }
