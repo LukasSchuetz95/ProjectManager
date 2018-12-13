@@ -29,8 +29,8 @@ namespace ProjectManager.Web.Models.ViewModel
 
             EditEmployee = unitOfWork.EmployeeProjects.GetProjectManagerByProjectId(projectId).Employee;
 
-            List<Employee> projectmanagers = unitOfWork.Employees.GetAllProjectManagersAndProjectMembers(projectId);
-            ProjectManagersAndMembers = new SelectList(projectmanagers, nameof(Employee.Id), nameof(Employee.ToString));
+            List<EmployeeQualification> projectmanagers = unitOfWork.Employees.GetAllProjectManagersAndProjectMembers(projectId);
+            ProjectManagersAndMembers = new SelectList(projectmanagers, nameof(EmployeeQualification.EmployeeId), nameof(EmployeeQualification.Employee));
         }
     }
 }
