@@ -17,16 +17,20 @@ namespace ProjectManager.Web.Models.ViewModel
         //    Project = uow.Projects.GetById(id);
         //}
 
-        public EmployeeProject EmployeeProject { get; set; }
+        public Project Project { get; set; }
 
-        public SelectList ProjectManagers { get; set; }
+        public Employee EditEmployee { get; set; }
+
+        public SelectList ProjectManagersAndMembers { get; set; }
 
         public void LoadData(IUnitOfWork unitOfWork, int projectId)
         {
-            EmployeeProject = unitOfWork.EmployeeProjects.GetProjectManagerByProjectId(projectId);
+            Project = unitOfWork.Projects.GetById(projectId);
 
-            List<EmployeeQualification> projectmanagers = unitOfWork.EmployeeQualifications.GetAllProjectManagers();
-            ProjectManagers = new SelectList(projectmanagers, nameof(EmployeeQualification.EmployeeId), nameof(EmployeeQualification.Employee));
+            EditEmployee = unitOfWork.EmployeeProjects.GetProjectManagerByProjectId(projectId).Employee;
+
+            List<Employee> projectmanagers = unitOfWork.Employees.GetAllProjectManagersAndProjectMembers(projectId);
+            ProjectManagersAndMembers = new SelectList(projectmanagers, nameof(Employee.Id), nameof(Employee.ToString));
         }
     }
 }

@@ -17,5 +17,7 @@ namespace ProjectManager.Core.Contracts
         void Delete(EmployeeProject model);
         void Update(EmployeeProject employeeProject);
         EmployeeProject GetProjectManagerByProjectId(int projectId);
+        EmployeeProject GetByEmployeeIdAndProjectId(int id1, int id2);
+        void SetAllProjectManagersToFalse(int id);
     }
 }

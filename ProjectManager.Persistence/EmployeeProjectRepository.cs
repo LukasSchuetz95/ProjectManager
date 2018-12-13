@@ -60,6 +60,11 @@ namespace ProjectManager.Persistence
             return newemployees;
         }
 
+        public EmployeeProject GetByEmployeeIdAndProjectId(int projectId, int empId)
+        {
+            return _dbContext.EmployeeProjects.SingleOrDefault(p => p.EmployeeId == empId && p.ProjectId == projectId);
+        }
+
         public EmployeeProject GetById(int empProId)
         {
             return _dbContext.EmployeeProjects.SingleOrDefault(e => e.Id == empProId);
@@ -78,6 +83,11 @@ namespace ProjectManager.Persistence
         public List<EmployeeProject> GetProjectsByEmployeeId(int employeeId)
         {
             return _dbContext.EmployeeProjects.Include(e => e.Employee).Include(p => p.Project).Where(p => p.EmployeeId == employeeId).ToList();
+        }
+
+        public void SetAllProjectManagersToFalse(int projectId)
+        {
+            _dbContext.EmployeeProjects.Where(p => p.ProjectId == projectId).ToList().ForEach(pp => pp.Projectmanager = false);
         }
 
         public void Update(EmployeeProject employeeProject)

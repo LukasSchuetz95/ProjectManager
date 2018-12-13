@@ -42,13 +42,22 @@ namespace ProjectManager.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, [Bind("EmployeeProject, ProjectManagers")]ProjectsEditViewModel model)
+        public IActionResult Edit(ProjectsEditViewModel model)
         {
+            Employee employee = _unitOfWork.Employees.GetById(model.EditEmployee.Id);
+
+            _unitOfWork.EmployeeProjects.SetAllProjectManagersToFalse(model.Project.Id);
+
+            EmployeeProject employeeProject = _unitOfWork.EmployeeProjects.GetByEmployeeIdAndProjectId(model.Project.Id, model.EditEmployee.Id);
+
+            employeeProject.Projectmanager = true;
+
             if (ModelState.IsValid)
             {
-                _unitOfWork.EmployeeProjects.Update(model.EmployeeProject);
+                _unitOfWork.Projects.Update(model.Project);
+                _unitOfWork.EmployeeProjects.Update(employeeProject);
                 _unitOfWork.Save();
-                return RedirectToAction(nameof(Details), new { projectId = model.EmployeeProject.ProjectId });
+                return RedirectToAction(nameof(Details), new { projectId = model.Project.Id });
             }
 
             return View(model);

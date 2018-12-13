@@ -13,45 +13,57 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="EmployeeProject.Project.ProjectName" class="control-label"></label>
-                <input asp-for="EmployeeProject.Project.ProjectName" class="form-control" />
-                <span asp-validation-for="EmployeeProject.Project.ProjectName" class="text-danger"></span>
+                <label asp-for="Project.ProjectName" class="control-label"></label>
+                <input asp-for="Project.ProjectName" class="form-control" />
+                <span asp-validation-for="Project.ProjectName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Projekt-Manager</label>
-                <select asp-for="EmployeeProject.EmployeeId" asp-items="@Model.ProjectManagers" class="form-control"></select>
-                <span asp-validation-for="EmployeeProject.EmployeeId" class="text-danger"></span>
+                <select asp-for="EditEmployee.Id" asp-items="@Model.ProjectManagersAndMembers" class="form-control"></select>
+                <span asp-validation-for="EditEmployee.Id" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmployeeProject.Project.Status" class="control-label"></label>
-                <select asp-for="EmployeeProject.Project.Status" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.ProjectStatusType>()" class="form-control"></select>
-                <span asp-validation-for="EmployeeProject.Project.Status" class="text-danger"></span>
+                <label asp-for="Project.Status" class="control-label"></label>
+                <select asp-for="Project.Status" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.ProjectStatusType>()" class="form-control"></select>
+                <span asp-validation-for="Project.Status" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmployeeProject.Project.Information" class="control-label"></label>
-                <input asp-for="EmployeeProject.Project.Information" class="form-control" />
-                <span asp-validation-for="EmployeeProject.Project.Information" class="text-danger"></span>
+                <label asp-for="Project.Information" class="control-label"></label>
+                <input asp-for="Project.Information" class="form-control" />
+                <span asp-validation-for="Project.Information" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmployeeProject.Project.Enddate" class="control-label"></label>
-                <input asp-for="EmployeeProject.Project.Enddate" class="form-control" />
-                <span asp-validation-for="EmployeeProject.Project.Enddate" class="text-danger"></span>
+                <label asp-for="Project.Enddate" class="control-label"></label>
+                <input asp-for="Project.Enddate" class="form-control" />
+                <span asp-validation-for="Project.Enddate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmployeeProject.Project.ValuedTime" class="control-label"></label>
-                <input asp-for="EmployeeProject.Project.ValuedTime" class="form-control" />
-                <span asp-validation-for="EmployeeProject.Project.ValuedTime" class="text-danger"></span>
+                <label asp-for="Project.ValuedTime" class="control-label"></label>
+                <input asp-for="Project.ValuedTime" class="form-control" />
+                <span asp-validation-for="Project.ValuedTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmployeeProject.Project.Deadline" class="control-label"></label>
-                <input asp-for="EmployeeProject.Project.Deadline" class="form-control" />
-                <span asp-validation-for="EmployeeProject.Project.Deadline" class="text-danger"></span>
+                <label asp-for="Project.Deadline" class="control-label"></label>
+                <input asp-for="Project.Deadline" class="form-control" />
+                <span asp-validation-for="Project.Deadline" class="text-danger"></span>
             </div>
-            <input type="hidden" asp-for="EmployeeProject.Timestamp" />
-            <input type="hidden" asp-for="EmployeeProject.Id" />
-            <input type="hidden" asp-for="EmployeeProject.ProjectId" />
-            <input type="hidden" asp-for="EmployeeProject.Employee" />
-            <input type="hidden" asp-for="EmployeeProject.Projectmanager" />
+            <input type="hidden" asp-for="EditEmployee.Birthdate" />
+            <input type="hidden" asp-for="EditEmployee.Department" />
+            <input type="hidden" asp-for="EditEmployee.DepartmentId" />
+            <input type="hidden" asp-for="EditEmployee.Firstname" />
+            <input type="hidden" asp-for="EditEmployee.HiringDate" />
+            <input type="hidden" asp-for="EditEmployee.Job" />
+            <input type="hidden" asp-for="EditEmployee.Lastname" />
+            <input type="hidden" asp-for="EditEmployee.Phonenumber" />
+            <input type="hidden" asp-for="EditEmployee.Profilepicture" />
+            <input type="hidden" asp-for="EditEmployee.Residence" />
+            <input type="hidden" asp-for="EditEmployee.Status" />
+            <input type="hidden" asp-for="EditEmployee.StreetNameAndNr" />
+            <input type="hidden" asp-for="EditEmployee.Timestamp" />
+            <input type="hidden" asp-for="EditEmployee.ZipCode" />
+            <input type="hidden" asp-for="Project.Timestamp" />
+            <input type="hidden" asp-for="Project.Startdate" />
+            <input type="hidden" asp-for="Project.Id" />
             <div class="form-group">
                 <input type="submit" value="Speichern" class="btn btn-success" />
             </div>
