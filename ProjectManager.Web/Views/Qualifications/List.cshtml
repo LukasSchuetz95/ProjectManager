@@ -28,16 +28,30 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Qualifications) {
-        <tr>
-            <td>
-                @item.QualificationName
-            </td>
-            <td>
-                <a asp-controller="Qualifications" asp-action="Edit" asp-route-qualId="@item.Id">Edit</a> |
-                <a asp-controller="Qualifications" asp-action="Delete" asp-route-qualId="@item.Id">Löschen</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Qualifications)
+        {
+            @if (item.QualificationName == "Projekt Manager")
+            {
+                <tr>
+                    <td>
+                        @item.QualificationName
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        @item.QualificationName
+                    </td>
+                    <td>
+                        <a asp-controller="Qualifications" asp-action="Edit" asp-route-qualId="@item.Id">Edit</a> |
+                        <a asp-controller="Qualifications" asp-action="Delete" asp-route-qualId="@item.Id">Löschen</a>
+                    </td>
+                </tr>
+
+            }
+
+        }
     </tbody>
 </table>
