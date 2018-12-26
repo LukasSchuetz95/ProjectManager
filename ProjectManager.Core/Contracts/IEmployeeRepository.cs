@@ -14,5 +14,6 @@ namespace ProjectManager.Core.Contracts
         Employee GetById(int employeeId);
         List<Employee> GetAll();
         List<EmployeeQualification> GetAllProjectManagersAndProjectMembers(int projectId);
+
     }
 }

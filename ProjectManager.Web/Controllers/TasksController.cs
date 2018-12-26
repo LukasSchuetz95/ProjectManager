@@ -5,7 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProjectManager.Core.Contracts;
+using ProjectManager.Core.Entities;
 using ProjectManager.Web.Models.ViewModel;
+using Task = ProjectManager.Core.Entities.Task;
 
 namespace ProjectManager.Web.Controllers
 {
@@ -81,5 +83,33 @@ namespace ProjectManager.Web.Controllers
             model.LoadData(_unitOfWork, taskId);
             return View(model);
         }
+
+        public IActionResult Delete(int tasikId)
+        {
+           Task model = _unitOfWork.Tasks.GetById(tasikId);
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteConfirm(int projectId)
+        {
+            Task model = _unitOfWork.Tasks.GetById(projectId);
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+            _unitOfWork.Tasks.Delete(model);
+            _unitOfWork.Save();
+            return RedirectToAction(nameof(List));
+        }
     }
 }
+
+

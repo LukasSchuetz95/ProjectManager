@@ -17,21 +17,6 @@
                 <span asp-validation-for="EmployeeTask.Task.TaskName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmployeeTask.Task.Project" class="control-label"></label>
-                <input asp-for="EmployeeTask.Task.Project" class="form-control" />
-                <span asp-validation-for="EmployeeTask.Task.Project" class="text-danger"></span>
-            </div>
-            @*<div class="form-group">
-                <label asp-for="EmployeeTask.Task.ProjectId" class="control-label"></label>
-                <select asp-for="EmployeeTask.Task.ProjectId" asp-items="@Model.Project" class="form-control" />
-                <span asp-validation-for="EmployeeTask.Task.ProjectId" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="EmployeeTask.Task.ProjectId" class="control-label"></label>
-                <input asp-for="EmployeeTask.Task.ProjectId" class="form-control" />
-                <span asp-validation-for="EmployeeTask.Task.ProjectId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="EmployeeTask.Task.Priority" class="control-label"></label>
                 <select asp-for="EmployeeTask.Task.Priority" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.PriorityType>()" class="form-control"></select>
                 <span asp-validation-for="EmployeeTask.Task.Priority" class="text-danger"></span>
@@ -66,20 +51,28 @@
                 <input asp-for="EmployeeTask.Task.ValuedTime" class="form-control" />
                 <span asp-validation-for="EmployeeTask.Task.ValuedTime" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="EmployeeTask.Employee.Firstname" asp-item="@Model.Employees" class="control-label"></label>
-                <input asp-for="EmployeeTask.Employee.Firstname" class="form-control" />
-                <span asp-validation-for="EmployeeTask.Employee.Firstname" class="text-danger"></span>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Job</th>
+                    </tr>
+                </thead>
+
+            </table>
+            <div>
+                <a asp-area="" asp-controller="Projects" asp-action="List" class="btn btn-default">Zur Übersicht</a>
+            </div>
+            <div>
+                <a asp-area="" asp-controller="TasksEmployee" asp-action="Create" class="btn btn-sucess">  Mitarbeiter anlegen</a>
             </div>
             <div class="form-group">
-                <label asp-for="EmployeeTask.Employee.Lastname" class="control-label"></label>
-                <input asp-for="EmployeeTask.Employee.Lastname" class="form-control" />
-                <span asp-validation-for="EmployeeTask.Employee.Lastname" class="text-danger"></span>
+                <input type="submit" value="Task anlegen" class="btn btn-sucess" />
             </div>
-
-
             <div class="form-group">
-                <input type="submit" value="Task anlegen" class="btn btn-default" />
+                <input type="submit" value="Mitarbeiter hinzufügen" class="btn btn-success" />
             </div>
         </form>
     </div>
@@ -87,3 +80,21 @@
 
 <li><a asp-area="" asp-controller="Tasks" asp-action="List" class="btn btn-primary">Zurück</a></li>
 
+@*<tbody>
+        @foreach (var emp in Model.EmployeeTask)
+        {
+            <tr>
+                <td>@emp.()</td>
+                <td>@emp.na</td>
+                <td>@</td>
+                <td>
+                    <form asp-action="Create" asp-controller="EmployeeProjects" asp-route-employeeId="@emp.Id" asp-route-projectId="@Model.EmployeeProject.ProjectId">
+                        <input type="submit" value="Mitarbeiter hinzufügen" class="btn btn-success" />
+                    </form>
+                    <div class="form-group">
+                    <input type="submit" value="Mitarbeiter hinzufügen" class="btn btn-success" />
+                </div>
+               *</td>
+            </tr>
+        }
+    </tbody>*@

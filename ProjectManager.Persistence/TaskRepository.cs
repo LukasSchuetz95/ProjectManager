@@ -18,14 +18,14 @@ namespace ProjectManager.Persistence
             _dbContext = dbContext;
         }
 
-        public void Add(System.Threading.Tasks.Task model)
-        {
-            _dbContext.Add(model);
-        }
-
         public void Add(Task task)
         {
             _dbContext.Tasks.Add(task);
+        }
+
+        public void Delete(Task model)
+        {
+            _dbContext.Tasks.Remove(model);
         }
 
         public List<Task> GetAll()
@@ -61,6 +61,11 @@ namespace ProjectManager.Persistence
         public List<Task> GetAllTasksForProjectWithUndefinedStatus()
         {
             return _dbContext.Tasks.Where(p => p.Status == TaskStatusType.NichtBegonnen).ToList();
+        }
+
+        public Task GetById(int tasikId)
+        {
+            return _dbContext.Tasks.Where(t => t.Id == tasikId).FirstOrDefault();
         }
 
         public void Update(Task task)

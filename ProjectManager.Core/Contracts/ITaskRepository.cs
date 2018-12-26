@@ -15,11 +15,12 @@ namespace ProjectManager.Core.Contracts
         List<Task> GetAllTasksForProjectWithProcessingStatus(int projectId);
 
         void Update(Task task);
-        void Add(System.Threading.Tasks.Task model);
+        void Add(Task model);
         List<Task> GetAllTasksForProjectWithCompletedStatus(int projectId);
-        void Add(Task task);
         List<Task> GetAllTasksForProjectWithUndefinedStatus();
         List<Task> GetAllTasksForProjectWithProcessingStatus();
         List<Task> GetAllTasksForProjectWithCompletedStatus();
+        Task GetById(int tasikId);
+        void Delete(Task model);
     }
 }

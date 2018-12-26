@@ -22,11 +22,31 @@ namespace ProjectManager.Persistence
             _dbContext.EmployeeTasks.Add(model);
         }
 
+        public void Delete(EmployeeTask model)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<EmployeeTask> GetAll()
         {
             return _dbContext.EmployeeTasks.Include(e => e.Employee).Include(t => t.Task).OrderBy(p => p.Task.Status).ToList();     
 
             //throw new NotImplementedException();
+        }
+
+        public EmployeeTask GetById(int empProId)
+        {
+            return _dbContext.EmployeeTasks.Where(p => p.Id == empProId).FirstOrDefault();
+        }
+
+        public EmployeeTask GetByProjectId(int projectId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public EmployeeTask GetByTaskId(int taskId)
+        {
+            throw new NotImplementedException();
         }
 
         public EmployeeTask GetEmployeeTaskByTaskId(int taskId)
