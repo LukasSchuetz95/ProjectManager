@@ -34,6 +34,11 @@ namespace ProjectManager.Persistence
             //throw new NotImplementedException();
         }
 
+        public EmployeeTask GetByEmployeeIdAndTaskId(int taskId, int empId)
+        {
+            return _dbContext.EmployeeTasks.SingleOrDefault(p => p.EmployeeId == empId && p.TaskId == taskId);
+        }
+
         public EmployeeTask GetById(int empProId)
         {
             return _dbContext.EmployeeTasks.Where(p => p.Id == empProId).FirstOrDefault();
@@ -46,7 +51,7 @@ namespace ProjectManager.Persistence
 
         public EmployeeTask GetByTaskId(int taskId)
         {
-            throw new NotImplementedException();
+            return _dbContext.EmployeeTasks.SingleOrDefault(e => e.Id == taskId);
         }
 
         public EmployeeTask GetEmployeeTaskByTaskId(int taskId)

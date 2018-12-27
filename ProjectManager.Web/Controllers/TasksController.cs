@@ -56,10 +56,10 @@ namespace ProjectManager.Web.Controllers
         }
 
 
-        public IActionResult Create()
+        public IActionResult Create(int projectId)
         {
             TasksCreateViewModel model = new TasksCreateViewModel();
-            model.LoadData(_unitOfWork);
+            model.LoadData(_unitOfWork, projectId);
             return View(model);
         }
 
@@ -70,9 +70,9 @@ namespace ProjectManager.Web.Controllers
             {
                 try
                 {
-                    _unitOfWork.Tasks.Add(model.EmployeeTask.Task);
+                    _unitOfWork.EmployeeTasks.Add(model.EmployeeTask);
                     _unitOfWork.Save();
-                    return RedirectToAction("List", "Tasks");
+                    return RedirectToAction("Create", "EmployeeTasks", new { taskId = model.EmployeeTask.TaskId });
                 }
                 catch (ValidationException validationException)
                 {
@@ -94,15 +94,21 @@ namespace ProjectManager.Web.Controllers
         [HttpPost]
         public IActionResult Edit(TasksEditViewModel model)
         {
+           // EmployeeTask employeeTask = _unitOfWork.EmployeeTasks.GetByEmployeeIdAndTaskId(model.Tasks.Id, model.EditEmployee.Id);
+
             if (ModelState.IsValid)
             {
-                _unitOfWork.EmployeeTasks.Update(model.EmployeeTask);
+                _unitOfWork.Tasks.Update(model.Tasks);
+              //  _unitOfWork.EmployeeTasks.Update(employeeTask);
                 _unitOfWork.Save();
-                //return RedirectToAction(nameof(Details), new { taskId = model.EmployeeTask.TaskId });
+                 return RedirectToAction(nameof(Details), new { taskId = model.Tasks.Id });
             }
 
             return View(model);
         }
+
+
+
 
         public IActionResult Details(int taskId)
         {
@@ -113,7 +119,7 @@ namespace ProjectManager.Web.Controllers
 
         public IActionResult Delete(int tasikId)
         {
-           Task model = _unitOfWork.Tasks.GetById(tasikId);
+            Task model = _unitOfWork.Tasks.GetById(tasikId);
 
             if (model == null)
             {
@@ -124,9 +130,9 @@ namespace ProjectManager.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteConfirm(int projectId)
+        public IActionResult DeleteConfirm(int taskId)
         {
-            Task model = _unitOfWork.Tasks.GetById(projectId);
+            Task model = _unitOfWork.Tasks.GetById(taskId);
 
             if (model == null)
             {

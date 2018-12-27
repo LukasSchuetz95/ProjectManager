@@ -17,15 +17,18 @@ namespace ProjectManager.Web.Models.ViewModel
 
         public SelectList Project { get; set; }
 
+        public List<EmployeeProject> EmployeeProject { get; set; }
 
-        public void LoadData(IUnitOfWork uow)
+
+        public void LoadData(IUnitOfWork uow, int projectId)
         {
             var employees = uow.Employees.GetAll();
             Employees = new SelectList(employees, nameof(Employee.Id), null);
 
             var project = uow.Projects.GetAll();
             Project = new SelectList(project, nameof(Task.ProjectId), null);
-           
+
+            EmployeeProject = uow.EmployeeProjects.GetAllByProjectId(projectId);
         }
  
 

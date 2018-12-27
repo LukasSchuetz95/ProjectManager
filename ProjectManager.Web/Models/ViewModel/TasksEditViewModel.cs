@@ -11,14 +11,17 @@ namespace ProjectManager.Web.Models.ViewModel
     public class TasksEditViewModel
     {
         public EmployeeTask EmployeeTask { get; set; }
-        public List<Employee> TaskMembers { get;  set; }
-        public object EditEmployee { get; internal set; }
+        public SelectList TaskMembers { get;  set; }
+        public Core.Entities.Task Tasks { get; set; }
+        public Employee EditEmployee { get; internal set; }
 
         public void LoadData(IUnitOfWork uow, int taskId)
         {
             EmployeeTask = uow.EmployeeTasks.GetEmployeeTaskByTaskId(taskId);
 
-            TaskMembers = uow.Employees.GetAll();
+            TaskMembers= new SelectList( nameof(EmployeeQualification.EmployeeId), nameof(EmployeeQualification.Employee));
+
+            Tasks = uow.Tasks.GetById(taskId);
         }
 
        
