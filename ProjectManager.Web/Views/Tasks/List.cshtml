@@ -8,93 +8,13 @@
 
 <a asp-controller="Tasks" asp-action="Create" class="btn btn-primary">Task anlegen</a>
 
-<h3>Offene Tasks</h3>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Taskname</th>
-            <th>Projekt</th>
-            <th>Priorität</th>
-            <th>Von</th>
-            <th>Bis</th>
-            <th>Deadline</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var task in Model.UndefinedTasks)
-        {
-            <tr>
-                <td>@task.TaskName</td>
-                <td>@task.Project.ProjectName</td>
-                <td>@task.Priority</td>
-                <td>@task.Startdate</td>
-                <td>@task.Enddate</td>
-                <td>@task.Deadline</td>
-                <td>
-                    <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a>
-                    <a asp-controller="Tasks" asp-action="Edit" asp-route-taskId="@task.Id">Edit</a>
-                    <a asp-controller="Tasks" asp-action="Delete" asp-route-projectId="@task.Id">Projekt Löschen</a> |
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 
-<h3>Tasks in Arbeit</h3>
+<h3>Tasks Übersicht</h3>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Taskname</th>
-            <th>Projekt</th>
-            <th>Priorität</th>
-            <th>Von</th>
-            <th>Bis</th>
-            <th>Deadline</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var task in Model.ProcessingTasks)
-        {
-            <tr>
-                <td>@task.TaskName</td>
-                <td>@task.Project.ProjectName</td>
-                <td>@task.Priority</td>
-                <td>@task.Startdate</td>
-                <td>@task.Enddate</td>
-                <td>@task.Deadline</td>
-                <td>
-                    <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a>
-                    <a asp-controller="Tasks" asp-action="Edit" asp-route-taskId="@task.Id">Edit</a>
-                    <a asp-controller="Tasks" asp-action="Delete" asp-route-projectId="@task.Id">Projekt Löschen</a> |
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<a asp-area="" asp-controller="Tasks" asp-action="FinishList" class="btn btn-primary">Abgeschlossene Tasks</a>
+<a asp-area="" asp-controller="Tasks" asp-action="OpenList" class="btn btn-primary">Offene Tasks</a>
+<a asp-area="" asp-controller="Tasks" asp-action="InProgressList" class="btn btn-primary"> Tasks in Bearbeitung</a>
 
-<h3>Abgeschlossene Tasks</h3>
+ 
 
-<a asp-controller="Tasks" asp-action="FinishList" class="btn btn-primary">Abgeschlossene Tasks</a>
-
-@*<tbody>
-        @foreach (var task in Model.Tasks)
-        {
-            <tr>
-                <td>@task.TaskName</td>
-                <td>@task.Project.ProjectName</td>
-                <td>@task.Priority</td>
-                <td>@task.Startdate</td>
-                <td>@task.Enddate</td>
-                <td>@task.Deadline</td>
-                <td>@task.Status</td>
-
-                <td>
-                    <a asp-controller="Tasks" asp-action="Edit" asp-route-taskId="@task.Id">Edit</a>
-                    <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a>
-
-                </td>
-            </tr>
-        }
-    </tbody>*@

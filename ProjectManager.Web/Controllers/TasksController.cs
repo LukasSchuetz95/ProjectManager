@@ -29,6 +29,33 @@ namespace ProjectManager.Web.Controllers
             //return View();
         }
 
+        public IActionResult FinishList()
+        {
+            TasksListViewModel model = new TasksListViewModel();
+            model.LoadData(_unitOfWork);
+            return View(model);
+
+            //return View();
+        }
+
+        public IActionResult OpenList()
+        {
+            TasksListViewModel model = new TasksListViewModel();
+            model.LoadData(_unitOfWork);
+            return View(model);
+
+            //return View();
+        }
+        public IActionResult InProgressList()
+        {
+            TasksListViewModel model = new TasksListViewModel();
+            model.LoadData(_unitOfWork);
+            return View(model);
+
+            //return View();
+        }
+
+
         public IActionResult Create()
         {
             TasksCreateViewModel model = new TasksCreateViewModel();
