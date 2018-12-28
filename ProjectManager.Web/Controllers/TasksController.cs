@@ -117,9 +117,9 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
-        public IActionResult Delete(int tasikId)
+        public IActionResult Delete(int taskId)
         {
-            Task model = _unitOfWork.Tasks.GetById(tasikId);
+            Task model = _unitOfWork.Tasks.GetById(taskId);
 
             if (model == null)
             {
