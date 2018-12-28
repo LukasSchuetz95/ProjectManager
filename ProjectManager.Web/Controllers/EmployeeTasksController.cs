@@ -20,10 +20,10 @@ namespace ProjectManager.Web.Controllers
         }
 
      
-        public IActionResult Create(int taskId)
+        public IActionResult Create(int taskId, int projectId)
         {
             EmployeeTasksCreateViewModel model = new EmployeeTasksCreateViewModel();
-            model.LoadData(_unitOfWork, taskId);
+            model.LoadData(_unitOfWork, taskId, projectId);
             return View(model);
         }
 

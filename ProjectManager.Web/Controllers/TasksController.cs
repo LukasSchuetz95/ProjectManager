@@ -84,10 +84,10 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
-        public IActionResult Edit(int taskId)
+        public IActionResult Edit(int taskId, int projectId)
         {
             TasksEditViewModel model = new TasksEditViewModel();
-            model.LoadData(_unitOfWork, taskId);
+            model.LoadData(_unitOfWork, taskId, projectId);
             return View(model);
         }
 

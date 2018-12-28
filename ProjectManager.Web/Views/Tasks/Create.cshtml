@@ -51,58 +51,16 @@
                 <input asp-for="EmployeeTask.Task.ValuedTime" class="form-control" />
                 <span asp-validation-for="EmployeeTask.Task.ValuedTime" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label class="control-label">Mitarbeiter</label>
+                <select asp-for="EmployeeTask.Employee" asp-items="@Model.Employees" class="form-control"></select>
+                <span asp-validation-for="EmployeeTask.Employee" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Task anlegen" class="btn btn-sucess" />
+            </div>
         </form>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Status</th>
-                    <th>Job</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var emp in Model.EmployeeProject)
-                {
-                    <tr>
-                        <td>@emp.Employee.ToString()</td>
-                        <td>@emp.Employee.Status</td>
-                        <td>@emp.Employee.Job</td>
-                        <td>
-                            <form asp-action="Delete" asp-route-empProId="@emp.Id">
-                                <input type="submit" value="Löschen" class="btn btn-danger" />
-                            </form>
-                            @*<a asp-controller="Projects" asp-action="Edit" >Entfernen</a>*@
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-        <div class="form-group">
-            <input type="submit" value="Mitarbeiter hinzufügen" class="btn btn-success" />
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Task anlegen" class="btn btn-sucess" />
-        </div>
     </div>
 </div>
 
 <li><a asp-area="" asp-controller="Tasks" asp-action="List" class="btn btn-primary">Zurück</a></li>
-
-@*<tbody>
-        @foreach (var emp in Model.EmployeeTask)
-        {
-            <tr>
-                <td>@emp.()</td>
-                <td>@emp.na</td>
-                <td>@</td>
-                <td>
-                    <form asp-action="Create" asp-controller="EmployeeProjects" asp-route-employeeId="@emp.Id" asp-route-projectId="@Model.EmployeeProject.ProjectId">
-                        <input type="submit" value="Mitarbeiter hinzufügen" class="btn btn-success" />
-                    </form>
-                    <div class="form-group">
-                    <input type="submit" value="Mitarbeiter hinzufügen" class="btn btn-success" />
-                </div>
-               *</td>
-            </tr>
-        }
-    </tbody>*@

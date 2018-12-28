@@ -24,7 +24,7 @@ namespace ProjectManager.Persistence
 
         public void Delete(EmployeeTask model)
         {
-            throw new NotImplementedException();
+            _dbContext.EmployeeTasks.Remove(model);
         }
 
         public List<EmployeeTask> GetAll()
@@ -44,9 +44,9 @@ namespace ProjectManager.Persistence
             return _dbContext.EmployeeTasks.Where(p => p.Id == empProId).FirstOrDefault();
         }
 
-        public EmployeeTask GetByProjectId(int projectId)
+        public EmployeeTask GetByProjectId(int projectId) 
         {
-            throw new NotImplementedException();
+            return _dbContext.EmployeeTasks.SingleOrDefault(e => e.Task.ProjectId == projectId);
         }
 
         public EmployeeTask GetByTaskId(int taskId)

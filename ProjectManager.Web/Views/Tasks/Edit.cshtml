@@ -18,16 +18,6 @@
                 <input asp-for="EmployeeTask.Task.Information" class="form-control" />
                 <span asp-validation-for="EmployeeTask.Task.Information" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="EmployeeTask.Employee.Firstname" class="control-label"></label>
-                <input asp-for="EmployeeTask.Employee.Firstname" class="form-control" />
-                <span asp-validation-for="EmployeeTask.Employee.Firstname" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmployeeTask.Employee.Lastname" class="control-label"></label>
-                <input asp-for="EmployeeTask.Employee.Lastname" class="form-control" />
-                <span asp-validation-for="EmployeeTask.Employee.Lastname" class="text-danger"></span>
-            </div>*@
             <div class="form-group">
                 <label asp-for="EmployeeTask.Task.Status" class="control-label"></label>
                 <select asp-for="EmployeeTask.Task.Status" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.TaskStatusType>()" class="form-control"></select>
@@ -37,6 +27,11 @@
                 <label asp-for="EmployeeTask.Task.Priority" class="control-label"></label>
                 <select asp-for="EmployeeTask.Task.Priority" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.PriorityType>()" class="form-control"></select>
                 <span asp-validation-for="EmployeeTask.Task.Priority" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Mitarbeiter</label>
+                <select asp-for="EmployeeTask.Employee" asp-items="@Model.Employees" class="form-control"></select>
+                <span asp-validation-for="EmployeeTask.Employee" class="text-danger"></span>
             </div>
 
             <div class="form-group">

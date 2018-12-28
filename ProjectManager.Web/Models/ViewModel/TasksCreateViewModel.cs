@@ -15,7 +15,7 @@ namespace ProjectManager.Web.Models.ViewModel
 
         public SelectList Employees { get; set; }
 
-        public SelectList Project { get; set; }
+        public Project Project { get; set; }
 
         public List<EmployeeProject> EmployeeProject { get; set; }
 
@@ -25,12 +25,12 @@ namespace ProjectManager.Web.Models.ViewModel
             var employees = uow.Employees.GetAll();
             Employees = new SelectList(employees, nameof(Employee.Id), null);
 
-            var project = uow.Projects.GetAll();
-            Project = new SelectList(project, nameof(Task.ProjectId), null);
+            //var project = uow.Projects.GetAll();
+            //Project = new SelectList(project, nameof(Task.ProjectId), null);
+
+            Project = uow.Projects.GetById(projectId);
 
             EmployeeProject = uow.EmployeeProjects.GetAllByProjectId(projectId);
         }
- 
-
     }
 }
