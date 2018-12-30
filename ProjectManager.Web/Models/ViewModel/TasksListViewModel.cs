@@ -13,6 +13,7 @@ namespace ProjectManager.Web.Models.ViewModel
         public List<Core.Entities.Task> UndefinedTasks { get; private set; }
         public List<Core.Entities.Task> ProcessingTasks { get; private set; }
         public List<Core.Entities.Task> CompletedTasks { get; private set; }
+        public string FilterTaskName { get; set; }
 
         internal void LoadData(IUnitOfWork unitOfWork)
         {

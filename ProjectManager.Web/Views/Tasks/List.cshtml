@@ -6,7 +6,7 @@
 
 <h2>List</h2>
 
-<a asp-controller="Tasks" asp-action="Create" class="btn btn-primary">Task anlegen</a>
+<a asp-area="" asp-controller="Tasks" asp-action="Create" class="btn btn-primary">Task anlegen</a>
 
 
 
@@ -16,5 +16,39 @@
 <a asp-area="" asp-controller="Tasks" asp-action="OpenList" class="btn btn-primary">Offene Tasks</a>
 <a asp-area="" asp-controller="Tasks" asp-action="InProgressList" class="btn btn-primary"> Tasks in Bearbeitung</a>
 
- 
 
+
+<form asp-controller="Tasks" asp-action="List">
+    <div class="form-group">
+        <input asp-for="FilterTaskName" class="form-control" />
+        <span asp-validation-for="FilterTaskName" class="text-danger"></span>
+    </div>
+    <input type="submit" value="Filter Projekt Name" class="btn btn-primary" />
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Task</th>
+            <th>Deadline</th>
+            <th>Taskname</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.FilterTaskName != null)
+        {
+            @foreach (var task in Model.Tasks)
+            {
+                <tr>
+                    <td>@task.TaskName</td>
+                    <td>@task.Deadline</td>
+                    <td>@task.TaskName</td>
+                    <td>
+                        <a asp-controller="Tasks" asp-action="Details" asp-route-projectId="@task.Id">Details</a> |
+                    </td>
+                </tr>
+
+            }
+        }
+        </tbody>
+    </table>

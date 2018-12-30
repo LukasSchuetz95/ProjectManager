@@ -45,4 +45,5 @@
     </fieldset>
 </form>
 <a asp-area="" asp-controller="Tasks" asp-action="Edit" class="btn btn-primary"> Bearbeiten</a>
-<a asp-controller="Tasks" asp-action="List">Zurück</a>
+<a asp-area="" asp-controller="Tasks" asp-action="Delete" asp-route-taskId="@Model.EmployeeTask.TaskId" class="btn btn-primary">Task Löschen</a> |
+<a asp-area="" asp-controller="Tasks" asp-action="List">Zurück</a>

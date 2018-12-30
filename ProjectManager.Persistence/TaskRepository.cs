@@ -68,6 +68,20 @@ namespace ProjectManager.Persistence
             return _dbContext.Tasks.Where(t => t.Id == tasikId).FirstOrDefault();
         }
 
+        public List<Task> GetTaskByName(string filter)
+        {
+            IQueryable<Task> query = _dbContext.Tasks.OrderBy(p => p.TaskName);
+
+            if (filter == null || filter == "")
+            {
+                return query.ToList();
+            }
+            else
+            {
+                return query.Where(p => p.TaskName.Contains(filter)).ToList();
+            }
+        }
+
         public void Update(Task task)
         {
             _dbContext.Tasks.Update(task);

@@ -25,8 +25,13 @@ namespace ProjectManager.Web.Controllers
             TasksListViewModel model = new TasksListViewModel();
             model.LoadData(_unitOfWork);
             return View(model);
+        }
 
-            //return View();
+        [HttpPost]
+        public IActionResult List(TasksListViewModel model)
+        {
+            model.Tasks = _unitOfWork.Tasks.GetTaskByName(model.FilterTaskName);
+            return View(model);
         }
 
         public IActionResult FinishList()
@@ -35,7 +40,6 @@ namespace ProjectManager.Web.Controllers
             model.LoadData(_unitOfWork);
             return View(model);
 
-            //return View();
         }
 
         public IActionResult OpenList()
