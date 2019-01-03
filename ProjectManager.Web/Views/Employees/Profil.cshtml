@@ -23,6 +23,18 @@
                     <dd>@Model.Employee.Job</dd>
                 </dl>
                 <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(m => m.Employee.Status)</dt>
+                    <dd>@Model.Employee.Status</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(m => m.Employee.Department.DeptName)</dt>
+                    <dd>@Model.Employee.Department.DeptName</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(m => m.Employee.Department.DeptLocation)</dt>
+                    <dd>@Model.Employee.Department.DeptLocation</dd>
+                </dl>
+                <dl class="dl-horizontal">
                     <dt>@Html.DisplayNameFor(m => m.Employee.Birthdate)</dt>
                     <dd>@Model.Employee.Birthdate</dd>
 
@@ -38,6 +50,10 @@
                 <dl class="dl-horizontal">
                     <dt>@Html.DisplayNameFor(m => m.Employee.Phonenumber)</dt>
                     <dd>@Model.Employee.Phonenumber</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(m => m.Employee.HiringDate)</dt>
+                    <dd>@Model.Employee.HiringDate</dd>
                 </dl>
                 <dl class="media-middle">
                     <dt><a asp-controller="Employees" asp-action="Feed" class="btn btn-default">Feed</a></dt>

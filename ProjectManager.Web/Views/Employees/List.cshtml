@@ -16,7 +16,7 @@
         <h3>CreateAppointment</h3>
     </header>
     <form asp-controller="Employees" asp-action="List">
-        <div class="form-group">
+        <div class="dropdown-menu-left">
             <label asp-for="FilterLastname"></label>
             <input asp-for="FilterLastname" class="form-control" />
             <span asp-validation-for="FilterLastname" class="text-danger"></span>
@@ -24,7 +24,7 @@
         <input type="submit" value="Nachname filtern" class="btn btn-primary" />
     </form>
     <form asp-controller="Employees" asp-action="List">
-        <div class="form-group">
+        <div class="dropdown-menu-left">
             <label asp-for="FilterFirstname"></label>
             <input asp-for="FilterFirstname" class="form-control" />
             <span asp-validation-for="FilterFirstname" class="text-danger"></span>
@@ -32,7 +32,7 @@
         <input type="submit" value="Vorname filtern" class="btn btn-primary" size="50"/>
     </form>
     <form asp-controller="Employees" asp-action="List">
-        <div class="form-group">
+        <div class="dropdown-menu-left">
             <label asp-for="FilterJob"></label>
             <input asp-for="FilterJob" class="form-control" />
             <span asp-validation-for="FilterJob" class="text-danger"></span>
@@ -40,7 +40,7 @@
         <input type="submit" value="Job filtern" class="btn btn-primary" size="50"/>
     </form>
     <form asp-controller="Employees" asp-action="List">
-        <div class="form-group">
+        <div class="dropdown-menu-left">
             <label asp-for="FilterDepartmentName"></label>
             <input asp-for="FilterDepartmentName" class="form-control" />
             <span asp-validation-for="FilterDepartmentName" class="text-danger" size="50"></span>

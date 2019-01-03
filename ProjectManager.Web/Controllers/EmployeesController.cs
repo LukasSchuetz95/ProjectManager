@@ -18,36 +18,13 @@ namespace ProjectManager.Web.Controllers
             _unitOfWork=unitOfWork;
         }
 
+        #region List
+
         public IActionResult List()
         {
             EmployeesListViewModel model = new EmployeesListViewModel();
             model.Employees = _unitOfWork.Employees.GetEmployeeByLastname();
             return View(model);
-        }
-
-        public IActionResult Profil(int employeeId)
-        {
-            EmployeesProfilViewModel model = new EmployeesProfilViewModel();
-            model.LoadData(_unitOfWork, employeeId);
-            if (model.Employee == null)
-                return NotFound();
-
-            return View(model);
-        }
-
-        public IActionResult EditProfil(int employeeId)
-        {
-            EmployeesEditProfilViewModel model = new EmployeesEditProfilViewModel();
-            model.LoadData(_unitOfWork, employeeId);
-            if (model.Employee == null)
-                return NotFound();
-
-            return View(model);
-        }
-
-        public IActionResult Feed()
-        {
-            return View();
         }
 
         [HttpPost]
@@ -76,5 +53,63 @@ namespace ProjectManager.Web.Controllers
             else
                 return NotFound();
         }
+
+        #endregion
+
+        #region Profil
+
+        public IActionResult Profil(int employeeId)
+        {
+            EmployeesProfilViewModel model = new EmployeesProfilViewModel();
+            model.LoadData(_unitOfWork, employeeId);
+            if (model.Employee == null)
+                return NotFound();
+
+            return View(model);
+        }
+
+
+
+        public IActionResult EditProfil(int employeeId)
+        {
+            EmployeesEditProfilViewModel model = new EmployeesEditProfilViewModel();
+            model.LoadData(_unitOfWork, employeeId);
+            if (model.Employee == null)
+                return NotFound();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditProfil(EmployeesEditProfilViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.Employees.Update(model.Employee);
+                _unitOfWork.Save();
+                return RedirectToAction("Profil");
+            }
+            else
+            {
+                model.LoadData(_unitOfWork, model.Employee.Id);
+                return View(model);
+            }
+        }
+        #endregion
+
+        #region Create
+
+        public IActionResult CreateEmployee()
+        {
+            return View();
+        }
+
+        #endregion
+
+        public IActionResult Feed()
+        {
+            return View();
+        }
+
     }
 }

@@ -17,6 +17,11 @@ namespace ProjectManager.Persistence
             _dbContext = dbContext;
         }
 
+        public void Update(Employee employee)
+        {
+            _dbContext.Employees.Update(employee);
+        }
+
         public List<Employee> GetEmployeeByLastname(string filter)
         {
             IQueryable<Employee> query = _dbContext.Employees.Include(e=> e.Department).OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);

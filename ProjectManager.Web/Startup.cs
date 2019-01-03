@@ -69,7 +69,7 @@ namespace ProjectManager.Web
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(name: "default", template: "{controller=Home}/{action=LoginScreen}/{id?}");
+                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Welcome}/{id?}");
             });      
         }
     }

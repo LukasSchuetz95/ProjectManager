@@ -4,43 +4,54 @@
     ViewData["Title"] = "EditProfil";
 }
 
-<h2>Edit</h2>
+<h2>EditProfil</h2>
+<hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Profil" asp-route-projectId="@Model.Employee.Id">
+        <form asp-action="EditProfil">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Employee.Id" />
             <div class="form-group">
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(m => m.Employee.Lastname)</dt>
-                    <dd>@Model.Employee.Lastname</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(m => m.Employee.Firstname)</dt>
-                    <dd>@Model.Employee.Firstname</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(m => m.Employee.Job)</dt>
-                    <dd>@Model.Employee.Job</dd>
-                </dl>
-                <div class="dl-horizontal">
-                    <label>@Html.DisplayNameFor(m => m.Employee.Birthdate)</label>
-                    <input size="30" value="@Model.Employee.Birthdate"></>
-
-                    <label>@Html.DisplayNameFor(m => m.Employee.StreetNameAndNr)</label>
-                    <input size="30" value="@Model.Employee.StreetNameAndNr"></>
-
-                    <label>@Html.DisplayNameFor(m => m.Employee.ZipCode)</label>
-                    <input size="30" value="@Model.Employee.ZipCode"></>
-
-                    <label>@Html.DisplayNameFor(m => m.Employee.Residence)</label>
-                    <input size="30" value="@Model.Employee.Residence"></>
-                </div>                
-                    <label>@Html.DisplayNameFor(m => m.Employee.Phonenumber)</label>
-                    <input size="30" value="@Model.Employee.Phonenumber"></>
-                
+                <label asp-for="Employee.StreetNameAndNr" class="control-label"></label>
+                <input asp-for="Employee.StreetNameAndNr" class="form-control" />
+                <span asp-validation-for="Employee.StreetNameAndNr" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Employee.ZipCode" class="control-label"></label>
+                <input asp-for="Employee.ZipCode" class="form-control" />
+                <span asp-validation-for="Employee.ZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.Residence" class="control-label"></label>
+                <input asp-for="Employee.Residence" class="form-control" />
+                <span asp-validation-for="Employee.Residence" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.Phonenumber" class="control-label"></label>
+                <input asp-for="Employee.Phonenumber" class="form-control" />
+                <span asp-validation-for="Employee.Phonenumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+
+            <input type="hidden" asp-form="Employee.Department" />
+            <input type="hidden" asp-form="Employee.DepartmentId" />
+            <input type="hidden" asp-form="Employee.Firstname" />
+            <input type="hidden" asp-form="Employee.Lastname" />
+            <input type="hidden" asp-form="Employee.Job" />
+            <input type="hidden" asp-form="Emplyee.Status" />
+            <input type="hidden" asp-form="Emplyee.Profilpicture" />
+            <input type="hidden" asp-form="Emplyee.Birthdate" />
+            <input type="hidden" asp-form="Emplyee.HiringDate" />
         </form>
-        </div>
     </div>
+</div>
+
+@*<div>
+    <a asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@Model.Employee.Id" class="btn btn-default">Zurück zum Profil</a>
+</div>*@
+
+
+
 
