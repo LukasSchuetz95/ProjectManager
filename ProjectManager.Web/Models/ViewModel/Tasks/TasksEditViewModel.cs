@@ -21,10 +21,9 @@ namespace ProjectManager.Web.Models.ViewModel
             EmployeeTask = uow.EmployeeTasks.GetEmployeeTaskByTaskId(taskId);
 
             var employees = uow.Employees.GetAll();
+
             Employees = new SelectList(employees, nameof(Employee.Id), null);
-
             Tasks = uow.Tasks.GetById(taskId);
-
             EmployeeProject = uow.EmployeeProjects.GetAllByProjectId(projectId);
         }
 

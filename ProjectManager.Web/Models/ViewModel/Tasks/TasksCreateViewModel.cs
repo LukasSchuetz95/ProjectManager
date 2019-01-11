@@ -23,13 +23,9 @@ namespace ProjectManager.Web.Models.ViewModel
         public void LoadData(IUnitOfWork uow, int projectId)
         {
             var employees = uow.Employees.GetAll();
+
             Employees = new SelectList(employees, nameof(Employee.Id), null);
-
-            //var project = uow.Projects.GetAll();
-            //Project = new SelectList(project, nameof(Task.ProjectId), null);
-
             Project = uow.Projects.GetById(projectId);
-
             EmployeeProject = uow.EmployeeProjects.GetAllByProjectId(projectId);
         }
     }

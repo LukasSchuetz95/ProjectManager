@@ -63,6 +63,7 @@ namespace ProjectManager.Web.Controllers
         public IActionResult Create(int projectId)
         {
             TasksCreateViewModel model = new TasksCreateViewModel();
+           // model.Project.Id = projectId;
             model.LoadData(_unitOfWork, projectId);
             return View(model);
         }
@@ -76,7 +77,7 @@ namespace ProjectManager.Web.Controllers
                 {
                     _unitOfWork.EmployeeTasks.Add(model.EmployeeTask);
                     _unitOfWork.Save();
-                    return RedirectToAction("Create", "EmployeeTasks", new { taskId = model.EmployeeTask.TaskId });
+                  //  return RedirectToAction("Create", "EmployeeTasks", new { taskId = model.EmployeeTask.TaskId });
                 }
                 catch (ValidationException validationException)
                 {
