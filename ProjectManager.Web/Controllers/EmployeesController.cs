@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProjectManager.Core.Contracts;
 using ProjectManager.Web.Models;
 using ProjectManager.Web.Models.ViewModel;
+using ProjectManager.Web.Models.ViewModel.Employees;
 
 namespace ProjectManager.Web.Controllers
 {
@@ -106,9 +107,16 @@ namespace ProjectManager.Web.Controllers
 
         #endregion
 
-        public IActionResult Feed()
+        public IActionResult Feed(int employeeId)
         {
-            return View();
+            EmployeesFeedViewModel model = new EmployeesFeedViewModel();
+
+            model.EmployeeProject = _unitOfWork.EmployeeProjects.GetProjectsByEmployeeId(employeeId);
+
+            if (model == null)
+                return NotFound();
+
+            return View(model);
         }
 
     }

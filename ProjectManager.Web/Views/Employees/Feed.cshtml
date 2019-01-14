@@ -1,4 +1,5 @@
-﻿
+﻿@model ProjectManager.Web.Models.ViewModel.Employees.EmployeesFeedViewModel
+
 @{
     ViewData["Title"] = "EditView";
 }
@@ -15,9 +16,17 @@
         <h1>Der Feed</h1>
         <p>Your personal Overview</p>
     </div>
-    <div id="sidebar">
-        <p>something on the side</p>
-    </div>
+    <table class="table">
+        <tr>
+            <th>Projects</th>
+        </tr>
+        @foreach (var obj in Model.EmployeeProject)
+        {
+            <tr>
+                <td>@obj.Project</td>               
+            </tr>
+        }
+    </table>
 </body>
 </html>
 
