@@ -1,0 +1,43 @@
+﻿@model TelerikAspNetCoreApp1.Models.ProjectsListViewModel
+@{
+    ViewData["Title"] = "Projekte";
+}
+
+<h2>Projekte</h2>
+
+<p>
+    <a asp-controller="Projects" asp-action="Create" class="btn btn-default">Neues Projekt erstellen</a>
+</p>
+<form asp-controller="Projects" asp-action="List">
+    <div class="form-group">
+        <input asp-for="FilterProjectName" class="form-control" />
+        <span asp-validation-for="FilterProjectName" class="text-danger"></span>
+    </div>
+    <input type="submit" value="Filter Projekt Name" class="btn btn-primary" />
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Projekt</th>
+            <th>Deadline</th>
+            <th>Projektnummer</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var project in Model.Projects)
+        {
+            <tr>
+                <td>@project.ProjectName</td>
+                <td>@project.Deadline</td>
+                <td>@project.Id</td>
+                <td>
+                    <a asp-controller="Projects" asp-action="Edit" asp-route-projectId="@project.Id">Edit</a> |
+                    <a asp-controller="Projects" asp-action="Details" asp-route-projectId="@project.Id">Details</a> |
+                    <a asp-controller="Projects" asp-action="Delete" asp-route-projectId="@project.Id">Projekt Löschen</a> |
+                    <a asp-controller="EmployeeProjects" asp-action="Create" asp-route-projectId="@project.Id">Mitarbeiter hinzufügen/löschen</a> |
+                    <a asp-controller="Tasks" asp-action="Create" asp-route-projectId="@project.Id">Task hinzufügen</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
