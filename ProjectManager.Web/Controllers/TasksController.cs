@@ -77,7 +77,8 @@ namespace ProjectManager.Web.Controllers
                 {
                     _unitOfWork.EmployeeTasks.Add(model.EmployeeTask);
                     _unitOfWork.Save();
-                  //  return RedirectToAction("Create", "EmployeeTasks", new { taskId = model.EmployeeTask.TaskId });
+                    //  return RedirectToAction("Create", "EmployeeTasks", new { taskId = model.EmployeeTask.TaskId });
+                    return RedirectToAction("List", "Projects");
                 }
                 catch (ValidationException validationException)
                 {
@@ -86,7 +87,7 @@ namespace ProjectManager.Web.Controllers
                 }
             }
 
-            return View(model);
+            return View(model);      
         }
 
         public IActionResult Edit(int taskId, int projectId)
