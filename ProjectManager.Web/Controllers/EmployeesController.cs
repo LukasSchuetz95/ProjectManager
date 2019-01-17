@@ -27,32 +27,36 @@ namespace ProjectManager.Web.Controllers
             model.Employees = _unitOfWork.Employees.GetEmployeeByLastname();
             return View(model);
         }
-
+       
         [HttpPost]
         public IActionResult List(EmployeesListViewModel model)
         {
-            if (model.FilterFirstname == null && model.FilterJob == null && model.FilterDepartmentName == null)
+            if (model.LastnameFilter != null)
             {
-                model.Employees = _unitOfWork.Employees.GetEmployeeByLastname(model.FilterLastname);
-                return View(model);
+                model.Employees = _unitOfWork.Employees.GetEmployeeByLastname(model.Filter);
+                model = SetFilterFalse(model);
             }
-            else if (model.FilterLastname == null && model.FilterJob == null && model.FilterDepartmentName == null)
+            else if (model.FirstnameFilter != null)
             {
-                model.Employees = _unitOfWork.Employees.GetEmployeeByFirstname(model.FilterFirstname);
-                return View(model);
+                model.Employees = _unitOfWork.Employees.GetEmployeeByFirstname(model.Filter);
+                model = SetFilterFalse(model);
             }
-            else if (model.FilterLastname == null && model.FilterFirstname == null && model.FilterDepartmentName == null)
+            else if (model.JobFilter != null)
             {
-                model.Employees = _unitOfWork.Employees.GetEmployeeByJob(model.FilterJob);
-                return View(model);
+                model.Employees = _unitOfWork.Employees.GetEmployeeByJob(model.Filter);
+                model = SetFilterFalse(model);
             }
-            else if (model.FilterLastname == null && model.FilterFirstname == null && model.FilterJob == null)
+            else if (model.DepartmentFilter != null)
             {
-                model.Employees = _unitOfWork.Employees.GetEmployeeByDeparmentName(model.FilterDepartmentName);
-                return View(model);
+                model.Employees = _unitOfWork.Employees.GetEmployeeByDeparmentName(model.Filter);
+                model = SetFilterFalse(model);
             }
             else
+            {
                 return NotFound();
+            }
+
+            return View(model);
         }
 
         #endregion
@@ -118,6 +122,19 @@ namespace ProjectManager.Web.Controllers
 
             return View(model);
         }
+
+        #region Methods
+        private EmployeesListViewModel SetFilterFalse(EmployeesListViewModel model)
+        {
+            model.LastnameFilter = null;
+            model.FirstnameFilter = null;
+            model.JobFilter = null;
+            model.DepartmentFilter = null;
+
+            return model;
+        }
+
+        #endregion
 
     }
 }

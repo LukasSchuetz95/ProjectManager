@@ -11,9 +11,10 @@ namespace ProjectManager.Web.Models.ViewModel
     {
         public List<Employee> Employees { get; set; }
         [Display(Name = "LookingForEmployee")]
-        public string FilterLastname { get; set; }
-        public string FilterFirstname { get; set; }
-        public string FilterJob { get; set; }
-        public string FilterDepartmentName { get; set; }
+        public string Filter { get; set; }
+        public string LastnameFilter { get; set; }
+        public string FirstnameFilter { get; set; }
+        public string JobFilter { get; set; }
+        public string DepartmentFilter { get; set; }
     }
 }

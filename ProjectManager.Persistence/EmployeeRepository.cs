@@ -110,5 +110,12 @@ namespace ProjectManager.Persistence
 
             return employees;
         }
+
+        public List<Employee> GetEmployeeByDepartmentId(int id)
+        {
+            List<Employee> empList = _dbContext.Employees.Where(e => e.DepartmentId == id).OrderBy(e =>e.Lastname).ThenBy(e => e.Firstname).ToList();
+
+            return empList;
+        }
     }
 }

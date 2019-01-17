@@ -5,79 +5,77 @@
 }
 
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Profil" asp-route-projectId="@Model.Employee.Id">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Employee.Id" />
-            <div class="form-group">
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(m => m.Employee.Lastname)</dt>
-                    <dd>@Model.Employee.Lastname</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(m => m.Employee.Firstname)</dt>
-                    <dd>@Model.Employee.Firstname</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(m => m.Employee.Job)</dt>
-                    <dd>@Model.Employee.Job</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(m => m.Employee.Status)</dt>
-                    <dd>@Model.Employee.Status</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(m => m.Employee.Department.DeptName)</dt>
-                    <dd>@Model.Employee.Department.DeptName</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(m => m.Employee.Department.DeptLocation)</dt>
-                    <dd>@Model.Employee.Department.DeptLocation</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(m => m.Employee.Birthdate)</dt>
-                    <dd>@Model.Employee.Birthdate</dd>
+    <form asp-action="Profil" asp-route-employeeId="@Model.Employee.Id">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Employee.Id" />
+        <div class="form-group">
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(m => m.Employee.Lastname)</dt>
+                <dd>@Model.Employee.Lastname</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(m => m.Employee.Firstname)</dt>
+                <dd>@Model.Employee.Firstname</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(m => m.Employee.Job)</dt>
+                <dd>@Model.Employee.Job</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(m => m.Employee.Status)</dt>
+                <dd>@Model.Employee.Status</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(m => m.Employee.Department.DeptName)</dt>
+                <dd>@Model.Employee.Department.DeptName</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(m => m.Employee.Department.DeptLocation)</dt>
+                <dd>@Model.Employee.Department.DeptLocation</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(m => m.Employee.Birthdate)</dt>
+                <dd>@Model.Employee.Birthdate</dd>
 
-                    <dt>@Html.DisplayNameFor(m => m.Employee.StreetNameAndNr)</dt>
-                    <dd>@Model.Employee.StreetNameAndNr</dd>
+                <dt>@Html.DisplayNameFor(m => m.Employee.StreetNameAndNr)</dt>
+                <dd>@Model.Employee.StreetNameAndNr</dd>
 
-                    <dt>@Html.DisplayNameFor(m => m.Employee.ZipCode)</dt>
-                    <dd>@Model.Employee.ZipCode</dd>
+                <dt>@Html.DisplayNameFor(m => m.Employee.ZipCode)</dt>
+                <dd>@Model.Employee.ZipCode</dd>
 
-                    <dt>@Html.DisplayNameFor(m => m.Employee.Residence)</dt>
-                    <dd>@Model.Employee.Residence</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(m => m.Employee.Phonenumber)</dt>
-                    <dd>@Model.Employee.Phonenumber</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(m => m.Employee.HiringDate)</dt>
-                    <dd>@Model.Employee.HiringDate</dd>
-                </dl>
-                <dl class="media-middle">
-                    <dt><a asp-controller="Employees" asp-action="Feed" class="btn btn-default">Feed</a></dt>
-                    <dt><a asp-controller="Employees" asp-action="EditProfil" asp-route-employeeId="@Model.Employee.Id" class="btn btn-default">Bearbeiten</a></dt>
-                </dl>
-            </div>
-            <table class="table">
-                <tr>
-                    <th>Projektname</th>
-                    <th>Status</th>
-                    <th>Startdatum</th>
-                    <th>Deadline</th>
-                </tr>
-                @foreach (var ob in Model.projectOfEmployee)
-                {
-                <tr>
-                    <td><a asp-controller="Projects" asp-action="Details" asp-route-projectId="@ob.Project.Id">@ob.Project.ProjectName </a></td>
-                    <td>@ob.Project.Status</td>
-                    <td>@ob.Project.Startdate</td>
-                    <td>@ob.Project.Deadline</td>
-                </tr>
-                }
-            </table>
-        </form>
-    </div>
+                <dt>@Html.DisplayNameFor(m => m.Employee.Residence)</dt>
+                <dd>@Model.Employee.Residence</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(m => m.Employee.Phonenumber)</dt>
+                <dd>@Model.Employee.Phonenumber</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(m => m.Employee.HiringDate)</dt>
+                <dd>@Model.Employee.HiringDate</dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-controller="Employees" asp-action="Feed" asp-route-employeeId="@Model.Employee.Id" style="width:200px" class="btn btn-primary">Dashboard</a>
+            <a asp-controller="Employees" asp-action="EditProfil" asp-route-employeeId="@Model.Employee.Id" style="width:200px" class="btn btn-primary">Profil bearbeiten</a>
+        </div>
+    </form>
 </div>
+<table class="table" style="width:800px">
+    <tr>
+        <th>Projektname</th>
+        <th>Status</th>
+        <th>Startdatum</th>
+        <th>Deadline</th>
+    </tr>
+    @foreach (var ob in Model.projectOfEmployee)
+    {
+        <tr>
+            <td title="Hier geht es zu den Details des Projekts"><a asp-controller="Projects" asp-action="Details" asp-route-projectId="@ob.Project.Id">@ob.Project.ProjectName </a></td>
+            <td>@ob.Project.Status</td>
+            <td>@ob.Project.Startdate</td>
+            <td>@ob.Project.Deadline</td>
+        </tr>
+    }
+</table>
 
