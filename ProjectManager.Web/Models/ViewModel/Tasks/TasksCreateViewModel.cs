@@ -12,21 +12,21 @@ namespace ProjectManager.Web.Models.ViewModel
     public class TasksCreateViewModel
     {
         public EmployeeTask EmployeeTask { get; set; }
-
         public SelectList Employees { get; set; }
-
         public Project Project { get; set; }
-
         public List<EmployeeProject> EmployeeProject { get; set; }
 
+        public SelectList AllEmployees { get; set; }
 
         public void LoadData(IUnitOfWork uow, int projectId)
         {
-            var employees = uow.Employees.GetAll();
+            List<Employee> allEmployees = uow.Employees.GetAll();
+            List<EmployeeProject> employees = uow.EmployeeProjects.GetAllByProjectId(projectId);
 
-            Employees = new SelectList(employees, nameof(Employee.Id), null);
+            Employees = new SelectList(employees, nameof(Employee.Id), nameof(Project.Id));
             Project = uow.Projects.GetById(projectId);
-            EmployeeProject = uow.EmployeeProjects.GetAllByProjectId(projectId);
+            EmployeeProject = uow.EmployeeProjects.GetAllByProjectId(projectId);         
+            AllEmployees = new SelectList(allEmployees, nameof(Employee.Id), null);
         }
     }
 }
