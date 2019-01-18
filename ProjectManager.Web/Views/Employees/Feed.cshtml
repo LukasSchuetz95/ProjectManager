@@ -16,17 +16,36 @@
         <h1>Der Feed</h1>
         <p>Your personal Overview</p>
     </div>
-    <table class="table">
-        <tr>
-            <th>Projects</th>
-        </tr>
-        @foreach (var obj in Model.EmployeeProject)
-        {
-            <tr>
-                <td>@obj.Project</td>               
-            </tr>
-        }
-    </table>
+    <div>
+        <div>
+            <table class="table" style="width:400px">
+                <tr>
+                    <th>Taskname</th>
+                    <th>Priorität</th>
+                </tr>
+                @foreach (var obj in Model.EmployeeTaskList)
+                {
+                    <tr>
+                        <td>@obj.Task.TaskName</td>
+                        <td>@obj.Task.Priority</td>
+                    </tr>
+                }
+            </table>
+            <table class="table" style="width:400px">
+                <tr>
+                    <th>Taskname</th>
+                    <th>Priorität</th>
+                </tr>
+                @foreach (var obj in Model.EmployeeTaskList)
+                {
+                    <tr>
+                        <td>@obj.Task.TaskName</td>
+                        <td>@obj.Task.Priority</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
 </body>
 </html>
 

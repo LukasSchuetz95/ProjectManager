@@ -12,12 +12,16 @@ namespace ProjectManager.Web.Controllers
 {
     public class EmployeesController : Controller
     {
+        #region UnitOfWork
+
         IUnitOfWork _unitOfWork;
 
         public EmployeesController(IUnitOfWork unitOfWork)
         {
             _unitOfWork=unitOfWork;
         }
+
+        #endregion
 
         #region List
 
@@ -115,7 +119,9 @@ namespace ProjectManager.Web.Controllers
         {
             EmployeesFeedViewModel model = new EmployeesFeedViewModel();
 
-            model.EmployeeProject = _unitOfWork.EmployeeProjects.GetProjectsByEmployeeId(employeeId);
+            model.EmployeeTaskList = _unitOfWork.EmployeeTasks.GetByEmployeeId(employeeId);
+
+            model.TaskList = _unitOfWork.Tasks.GetAll();
 
             if (model == null)
                 return NotFound();

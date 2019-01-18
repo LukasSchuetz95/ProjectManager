@@ -38,6 +38,7 @@
 
     <table class="table" style="width:812px">
         <tr>
+            <th></th>
             <th>Nachname</th>
             <th>Vorname</th>
             <th>Job</th>
@@ -45,12 +46,13 @@
         </tr>
         @foreach (var employee in Model.Employees)
         {
-            <tr>
-                <td title="Klicken Sie hier um auf das Profil zu gelangen"><a asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@employee.Id">@employee.Lastname</a></td>
-                <td title="Klicken Sie hier um auf das Profil zu gelangen"><a asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@employee.Id">@employee.Firstname</a></td>
-                <td>@employee.Job</td>
-                <td>@employee.Department.DeptName</td>
-            </tr>
+        <tr>
+            <td class="icon-bar" title="Klicken Sie hier um auf das Profil zu gelangen"><a class="active" asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@employee.Id"><i class="glyphicon glyphicon-user"></i></a></td>
+            <td>@employee.Lastname</td>
+            <td>@employee.Firstname</td>
+            <td>@employee.Job</td>
+            <td>@employee.Department.DeptName</td>
+        </tr>
         }
     </table>  
 </body>
