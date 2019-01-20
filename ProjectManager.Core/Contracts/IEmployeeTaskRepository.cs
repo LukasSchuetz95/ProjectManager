@@ -17,6 +17,6 @@ namespace ProjectManager.Core.Contracts
         void Delete(EmployeeTask model);
         EmployeeTask GetById(int empProId);
         EmployeeTask GetByEmployeeIdAndTaskId(int id1, int id2);
-        List<EmployeeTask> GetByEmployeeId(int employeeId);
+        List<EmployeeTask> GetTasksByEmployeeId(int employeeId);
     }
 }

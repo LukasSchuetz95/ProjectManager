@@ -119,16 +119,14 @@ namespace ProjectManager.Web.Controllers
         {
             EmployeesFeedViewModel model = new EmployeesFeedViewModel();
 
-            model.EmployeeTaskList = _unitOfWork.EmployeeTasks.GetByEmployeeId(employeeId);
-
-            model.TaskList = _unitOfWork.Tasks.GetAll();
+            model.LoadFeedData(employeeId, _unitOfWork);
 
             if (model == null)
                 return NotFound();
 
             return View(model);
         }
-
+       
         #region Methods
         private EmployeesListViewModel SetFilterFalse(EmployeesListViewModel model)
         {

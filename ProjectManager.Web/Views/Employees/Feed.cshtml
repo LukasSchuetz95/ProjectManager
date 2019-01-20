@@ -33,14 +33,15 @@
             </table>
             <table class="table" style="width:400px">
                 <tr>
+                    <th>Qualificationname</th>
+                    <th>Nachname</th>
                     <th>Taskname</th>
-                    <th>Priorität</th>
                 </tr>
-                @foreach (var obj in Model.EmployeeTaskList)
+                @foreach (var obj in Model.EmployeeQualificationList)
                 {
                     <tr>
-                        <td>@obj.Task.TaskName</td>
-                        <td>@obj.Task.Priority</td>
+                        <td>@obj.Qualification.QualificationName</td>
+                        <td>@obj.Employee.Lastname</td>
                     </tr>
                 }
             </table>

@@ -15,5 +15,13 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
         public List<EmployeeQualification> EmployeeQualificationList { get; set; }
         public List<Task> TaskList { get; set; }
 
+        public void LoadFeedData(int employeeId, IUnitOfWork unitOfWork)
+        {
+            EmployeeTaskList = unitOfWork.EmployeeTasks.GetTasksByEmployeeId(employeeId);
+
+            EmployeeQualificationList = unitOfWork.EmployeeQualifications.GetQualificationsByEmployeeId(employeeId);
+
+            TaskList = unitOfWork.Tasks.GetAll();
+        }
     }
 }

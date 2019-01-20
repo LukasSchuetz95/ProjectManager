@@ -9,6 +9,8 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
 {
     public class EmployeesCreateEmployeeViewModel
     {
+        public Employee Employee { get; set; }
+
         public void LoadData(IUnitOfWork unitOfWork)
         {
         }

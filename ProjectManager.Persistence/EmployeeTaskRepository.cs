@@ -64,7 +64,7 @@ namespace ProjectManager.Persistence
             _dbContext.EmployeeTasks.Update(model);
         }
 
-        public List<EmployeeTask> GetByEmployeeId(int employeeId)
+        public List<EmployeeTask> GetTasksByEmployeeId(int employeeId)
         {
             return _dbContext.EmployeeTasks.Where(p => p.EmployeeId == employeeId).OrderBy(p => p.Employee.Lastname).ThenBy(p => p.Employee.Firstname).ToList();
         }
