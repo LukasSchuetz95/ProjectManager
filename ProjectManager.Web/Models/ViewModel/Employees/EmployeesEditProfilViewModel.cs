@@ -10,10 +10,10 @@ namespace ProjectManager.Web.Models
     public class EmployeesEditProfilViewModel
     {
         public Employee Employee { get; set; }
-
-        public void LoadData(IUnitOfWork unitOfWork, int employeeId)
+        public bool Success { get; set; }
+        public void LoadEditProfilData(IUnitOfWork unitOfWork, int employeeId)
         {
             Employee = unitOfWork.Employees.GetById(employeeId);
-        }
+        }        
     }
 }

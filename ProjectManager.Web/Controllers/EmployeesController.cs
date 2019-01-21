@@ -70,7 +70,7 @@ namespace ProjectManager.Web.Controllers
         public IActionResult Profil(int employeeId)
         {
             EmployeesProfilViewModel model = new EmployeesProfilViewModel();
-            model.LoadData(_unitOfWork, employeeId);
+            model.LoadProfilData(_unitOfWork, employeeId);
             if (model.Employee == null)
                 return NotFound();
 
@@ -82,7 +82,7 @@ namespace ProjectManager.Web.Controllers
         public IActionResult EditProfil(int employeeId)
         {
             EmployeesEditProfilViewModel model = new EmployeesEditProfilViewModel();
-            model.LoadData(_unitOfWork, employeeId);
+            model.LoadEditProfilData(_unitOfWork, employeeId);
             if (model.Employee == null)
                 return NotFound();
 
@@ -96,13 +96,16 @@ namespace ProjectManager.Web.Controllers
             {
                 _unitOfWork.Employees.Update(model.Employee);
                 _unitOfWork.Save();
-                return RedirectToAction("Profil");
+                //return RedirectToAction(nameof(Profil), new { employeeId = model.Employee.Id });
+                model.Success = true;
             }
             else
             {
-                model.LoadData(_unitOfWork, model.Employee.Id);
-                return View(model);
+                model.LoadEditProfilData(_unitOfWork, model.Employee.Id);
+                //return View(model);
+                model.Success = false;
             }
+            return View(model);
         }
         #endregion
 
@@ -126,7 +129,7 @@ namespace ProjectManager.Web.Controllers
 
             return View(model);
         }
-       
+
         #region Methods
         private EmployeesListViewModel SetFilterFalse(EmployeesListViewModel model)
         {
@@ -137,7 +140,6 @@ namespace ProjectManager.Web.Controllers
 
             return model;
         }
-
         #endregion
 
     }

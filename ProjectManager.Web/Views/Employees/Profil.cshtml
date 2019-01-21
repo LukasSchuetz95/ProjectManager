@@ -4,10 +4,14 @@
     ViewData["Title"] = "Profil";
 }
 
-<div class="row">
-    <form asp-action="Profil" asp-route-employeeId="@Model.Employee.Id">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="Employee.Id" />
+<form asp-action="Profil" asp-route-employeeId="@Model.Employee.Id">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Employee.Id" />
+    <div>
+        @*<label asp-for="Employee.Profilepicture" class="control-label"></label>
+        <input asp-for="Employee.Profilepicture" class="form-control" />
+        <span asp-validation-for="Employee.Profilepicture" class="text-danger"></span>*@
+
         <div class="form-group">
             <dl class="dl-horizontal">
                 <dt>@Html.DisplayNameFor(m => m.Employee.Lastname)</dt>
@@ -60,8 +64,9 @@
             <a asp-controller="Employees" asp-action="EditProfil" asp-route-employeeId="@Model.Employee.Id" style="width:200px" class="btn btn-primary">Profil bearbeiten</a>
             <a asp-controller="Employees" asp-action="CreateEmployee" style="width:200px" class="btn btn-primary">Mitarbeiter anlegen</a>
         </div>
-    </form>
-</div>
+    </div>
+</form>
+
 <table class="table" style="width:800px">
     <tr>
         <th>Projektname</th>

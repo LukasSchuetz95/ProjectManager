@@ -15,7 +15,7 @@ namespace ProjectManager.Web.Models.ViewModel
 
         public List<EmployeeProject> projectOfEmployee { get; set; }
 
-        public void LoadData(IUnitOfWork unitOfWork, int employeeId)
+        public void LoadProfilData(IUnitOfWork unitOfWork, int employeeId)
         {
             Employee = unitOfWork.Employees.GetById(employeeId);
             unitOfWork.Departments.GetAll();
