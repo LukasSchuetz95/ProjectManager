@@ -17,7 +17,7 @@
         <p>Your personal Overview</p>
     </div>
     <div>
-        <div>
+        <div class="col-sm-9">
             <table class="table" style="width:400px">
                 <tr>
                     <th>Taskname</th>
@@ -31,17 +31,31 @@
                     </tr>
                 }
             </table>
+        </div>
+        <div class="col-sm-3">
             <table class="table" style="width:400px">
                 <tr>
-                    <th>Qualificationname</th>
-                    <th>Nachname</th>
-                    <th>Taskname</th>
+                    <th>
+                        <button class="btn btn-primary" style="width:100px">Project</button>
+                    </th>
+                    <th>
+                        <button class="btn btn-primary" style="width:100px">All</button>
+                    </th>
+                    <th>
+                        <button class="btn btn-primary">@Model.EmployeeTaskList.Count()</button>
+                    </th>
                 </tr>
-                @foreach (var obj in Model.EmployeeQualificationList)
+                <tr>
+                    <th>Taskname</th>
+                    <th>Priority</th>
+                    <th></th>
+                </tr>
+                @foreach (var obj in Model.EmployeeTaskList)
                 {
                     <tr>
-                        <td>@obj.Qualification.QualificationName</td>
-                        <td>@obj.Employee.Lastname</td>
+                        <td>@obj.Task.TaskName</td>
+                        <td>@obj.Task.Priority</td>
+                        <td><input asp-for="ChoosenTask" type="submit" value="Add" class="btn btn-primary"/></td>
                     </tr>
                 }
             </table>

@@ -29,7 +29,7 @@ namespace ProjectManager.Persistence
 
         public List<EmployeeTask> GetAll()
         {
-            return _dbContext.EmployeeTasks.Include(e => e.Employee).Include(t => t.Task).OrderBy(p => p.Task.Status).ToList();     
+            return _dbContext.EmployeeTasks.Include(e => e.Employee).Include(t => t.Task).OrderBy(p => p.Task.Status).ToList();
 
             //throw new NotImplementedException();
         }
@@ -44,7 +44,7 @@ namespace ProjectManager.Persistence
             return _dbContext.EmployeeTasks.Where(p => p.Id == empProId).FirstOrDefault();
         }
 
-        public EmployeeTask GetByProjectId(int projectId) 
+        public EmployeeTask GetByProjectId(int projectId)
         {
             return _dbContext.EmployeeTasks.SingleOrDefault(e => e.Task.ProjectId == projectId);
         }
@@ -64,9 +64,42 @@ namespace ProjectManager.Persistence
             _dbContext.EmployeeTasks.Update(model);
         }
 
-        public List<EmployeeTask> GetTasksByEmployeeId(int employeeId)
+        public List<EmployeeTask> GetTasksByEmployeeIdAndQualifications(int employeeId, List<EmployeeQualification> employeeQualifications)
         {
-            return _dbContext.EmployeeTasks.Where(p => p.EmployeeId == employeeId).OrderBy(p => p.Employee.Lastname).ThenBy(p => p.Employee.Firstname).ToList();
+            List<Task> taskList = _dbContext.Tasks.ToList();
+
+            List<TaskQualification> taskQualificationList = _dbContext.TaskQualifications.ToList();
+
+            List<EmployeeTask> employeeTask = new List<EmployeeTask>();
+
+            foreach (var tra in taskList)
+            {
+                //if (taskQualificationList.Count() != 0)
+                //{
+                    foreach (var luf in taskQualificationList)
+                    {
+                        if (tra.Id == luf.TaskId)
+                        {
+                            foreach (var kid in employeeQualifications)
+                            {
+                                if (luf.QualificationId == kid.QualificationId)
+                                {
+                                    EmployeeTask newTask = new EmployeeTask();
+                                    newTask.EmployeeId = kid.EmployeeId;
+                                    newTask.TaskId = luf.TaskId;
+                                    employeeTask.Add(newTask);
+                                }
+                            }
+                        }
+                    }
+                //}
+                //else
+                //{
+
+                //}
+            }
+
+            return employeeTask;
         }
     }
 }

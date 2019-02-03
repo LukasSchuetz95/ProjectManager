@@ -130,6 +130,17 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        //[HttpPost]
+        //public IActionResult Feed(EmployeesFeedViewModel model)
+        //{
+        //    if (model.ChoosenTask != null)
+        //    {
+
+        //    }
+
+        //    return View(model);
+        //}
+
         #region Methods
         private EmployeesListViewModel SetFilterFalse(EmployeesListViewModel model)
         {

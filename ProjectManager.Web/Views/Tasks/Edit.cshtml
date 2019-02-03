@@ -14,19 +14,20 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="EmployeeTask.Task.Information" class="control-label"></label>
+                <label asp-for="Task.Information" class="control-label"></label>
                 <input asp-for="EmployeeTask.Task.Information" class="form-control" />
                 <span asp-validation-for="EmployeeTask.Task.Information" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmployeeTask.Task.Status" class="control-label"></label>
-                <select asp-for="EmployeeTask.Task.Status" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.TaskStatusType>()" class="form-control"></select>
-                <span asp-validation-for="EmployeeTask.Task.Status" class="text-danger"></span>
+                <label asp-for="Task.Status" class="control-label"></label>
+                <select asp-for="Task.Status" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.TaskStatusType>()" class="form-control"></select>
+                <span asp-validation-for="Task.Status" class="text-danger"></span>
             </div>
+            @*Qualifikationen hinzufügen über eigene View*@
             <div class="form-group">
-                <label asp-for="EmployeeTask.Task.Priority" class="control-label"></label>
-                <select asp-for="EmployeeTask.Task.Priority" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.PriorityType>()" class="form-control"></select>
-                <span asp-validation-for="EmployeeTask.Task.Priority" class="text-danger"></span>
+                <label asp-for="Task.Priority" class="control-label"></label>
+                <select asp-for="Task.Priority" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.PriorityType>()" class="form-control"></select>
+                <span asp-validation-for="Task.Priority" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Mitarbeiter</label>
@@ -34,8 +35,17 @@
                 <span asp-validation-for="EmployeeTask.Employee" class="text-danger"></span>
             </div>
 
+            <input type="hidden" asp-for="Task.Project" />
+            <input type="hidden" asp-for="Task.ProjectId" />
+            <input type="hidden" asp-for="Task.TaskName" />
+            <input type="hidden" asp-for="Task.FixedTask" />
+            <input type="hidden" asp-for="Task.Startdate" />
+            <input type="hidden" asp-for="Task.Enddate" />
+            <input type="hidden" asp-for="Task.ValuedTime" />
+            <input type="hidden" asp-for="Task.Deadline" />
+
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-success" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>

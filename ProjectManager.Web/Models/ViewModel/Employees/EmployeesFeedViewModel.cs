@@ -11,17 +11,17 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
     public class EmployeesFeedViewModel
     {
         public EmployeeProject EmployeeProject { get; set; }
-        public List<EmployeeTask> EmployeeTaskList { get; set; }
         public List<EmployeeQualification> EmployeeQualificationList { get; set; }
-        public List<Task> TaskList { get; set; }
+        public List<TaskQualification> TaskQualificationList { get; set; }
+        public List<EmployeeTask> EmployeeTaskList { get; set; }
+        public string ChoosenTask { get; set; }
+        public List<Task> WorkingTasks { get; set; }
 
         public void LoadFeedData(int employeeId, IUnitOfWork unitOfWork)
         {
-            EmployeeTaskList = unitOfWork.EmployeeTasks.GetTasksByEmployeeId(employeeId);
-
             EmployeeQualificationList = unitOfWork.EmployeeQualifications.GetQualificationsByEmployeeId(employeeId);
 
-            TaskList = unitOfWork.Tasks.GetAll();
+            EmployeeTaskList = unitOfWork.EmployeeTasks.GetTasksByEmployeeIdAndQualifications(employeeId, EmployeeQualificationList);
         }
     }
 }
