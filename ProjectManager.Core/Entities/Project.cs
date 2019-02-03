@@ -41,7 +41,7 @@ namespace ProjectManager.Core.Entities
                 {
                     yield return new ValidationResult("Startdatum muss vor Enddatum liegen !", new List<string>() { nameof(this.Startdate), nameof(this.Enddate) });
                 }
-                if (this.Startdate < DateTime.Now)
+                if (this.Startdate >= DateTime.Now)
                 {
                     yield return new ValidationResult("Startdatum muss vor aktuellem Datum liegen !", new List<string>() { nameof(this.Startdate) });
                 }
