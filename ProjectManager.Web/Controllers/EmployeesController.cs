@@ -38,22 +38,22 @@ namespace ProjectManager.Web.Controllers
             if (model.LastnameFilter != null)
             {
                 model.Employees = _unitOfWork.Employees.GetEmployeeByLastname(model.Filter);
-                model = SetFilterFalse(model);
+                model = SetListFilterFalse(model);
             }
             else if (model.FirstnameFilter != null)
             {
                 model.Employees = _unitOfWork.Employees.GetEmployeeByFirstname(model.Filter);
-                model = SetFilterFalse(model);
+                model = SetListFilterFalse(model);
             }
             else if (model.JobFilter != null)
             {
                 model.Employees = _unitOfWork.Employees.GetEmployeeByJob(model.Filter);
-                model = SetFilterFalse(model);
+                model = SetListFilterFalse(model);
             }
             else if (model.DepartmentFilter != null)
             {
                 model.Employees = _unitOfWork.Employees.GetEmployeeByDeparmentName(model.Filter);
-                model = SetFilterFalse(model);
+                model = SetListFilterFalse(model);
             }
             else
             {
@@ -122,7 +122,9 @@ namespace ProjectManager.Web.Controllers
         {
             EmployeesFeedViewModel model = new EmployeesFeedViewModel();
 
-            model.LoadFeedData(employeeId, _unitOfWork);
+            model.LoadFeedData(employeeId, _unitOfWork);            
+            model.LoadWorkTasks();
+            
 
             if (model == null)
                 return NotFound();
@@ -130,24 +132,66 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
-        //[HttpPost]
-        //public IActionResult Feed(EmployeesFeedViewModel model)
-        //{
-        //    if (model.ChoosenTask != null)
-        //    {
+        [HttpPost]
+        public IActionResult AddTo(int taskId, EmployeesFeedViewModel model)
+        {
+            model.ChoosenTask = _unitOfWork.Tasks.GetById(taskId);
 
-        //    }
+            model.WorkTasks.Add(model.ChoosenTask);
 
-        //    return View(model);
-        //}
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Feed(EmployeesFeedViewModel model)
+        {
+            if (model.ProjectFilter != null)
+            {
+                model.EmployeeTaskList = _unitOfWork.EmployeeTasks.GetAll();               
+                model.LoadWorkTasks();
+                
+                model = SetFeedFilterFalse(model);
+            }
+            else if (model.GeneralFilter != null)
+            {
+                model.EmployeeTaskList = _unitOfWork.EmployeeTasks.GetAll();
+                
+                    model.LoadWorkTasks();
+                
+                model = SetFeedFilterFalse(model);
+            }
+            else if (model.PriorityFilter != null)
+            {
+                model.EmployeeTaskList = _unitOfWork.EmployeeTasks.GetAll();
+                
+                    model.LoadWorkTasks();
+                
+                model = SetFeedFilterFalse(model);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+            return View(model);
+        }
 
         #region Methods
-        private EmployeesListViewModel SetFilterFalse(EmployeesListViewModel model)
+        private EmployeesListViewModel SetListFilterFalse(EmployeesListViewModel model)
         {
             model.LastnameFilter = null;
             model.FirstnameFilter = null;
             model.JobFilter = null;
             model.DepartmentFilter = null;
+
+            return model;
+        }
+
+        private EmployeesFeedViewModel SetFeedFilterFalse(EmployeesFeedViewModel model)
+        {
+            model.ProjectFilter = null;
+            model.PriorityFilter = null;
+            model.GeneralFilter = null;
 
             return model;
         }

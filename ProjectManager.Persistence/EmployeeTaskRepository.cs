@@ -74,8 +74,8 @@ namespace ProjectManager.Persistence
 
             foreach (var tra in taskList)
             {
-                //if (taskQualificationList.Count() != 0)
-                //{
+                if (taskQualificationList.Count() != 0)
+                {
                     foreach (var luf in taskQualificationList)
                     {
                         if (tra.Id == luf.TaskId)
@@ -92,11 +92,11 @@ namespace ProjectManager.Persistence
                             }
                         }
                     }
-                //}
-                //else
-                //{
+                }
+                else
+                {
 
-                //}
+                }
             }
 
             return employeeTask;

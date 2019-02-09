@@ -86,6 +86,5 @@ namespace ProjectManager.Persistence
         {
             _dbContext.Tasks.Update(task);
         }
-
     }
 }

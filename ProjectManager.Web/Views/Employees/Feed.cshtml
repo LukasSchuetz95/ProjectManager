@@ -23,26 +23,47 @@
                     <th>Taskname</th>
                     <th>Priorität</th>
                 </tr>
-                @foreach (var obj in Model.EmployeeTaskList)
+                @foreach (var obj in Model.WorkTasks)
                 {
                     <tr>
-                        <td>@obj.Task.TaskName</td>
-                        <td>@obj.Task.Priority</td>
+                        <td>@obj.TaskName</td>
+                        <td>@obj.Priority</td>
                     </tr>
                 }
             </table>
         </div>
+
         <div class="col-sm-3">
             <table class="table" style="width:400px">
+
                 <tr>
                     <th>
-                        <button class="btn btn-primary" style="width:100px">Project</button>
+                        <form asp-controller="Employees" asp-action="Feed">
+                            <input asp-for="ProjectFilter" type="submit" value="Projekt" class="btn btn-primary" style="width:100px" />
+                            <span asp-validation-for="ProjectFilter" class="text-danger"></span>
+                        </form>
                     </th>
                     <th>
-                        <button class="btn btn-primary" style="width:100px">All</button>
+                        <form asp-controller="Employees" asp-action="Feed">
+                            <input asp-for="GeneralFilter" type="submit" value="Allgemein" class="btn btn-primary" style="width:100px" />
+                            <span asp-validation-for="GeneralFilter" class="text-danger"></span>
+                        </form>
                     </th>
                     <th>
-                        <button class="btn btn-primary">@Model.EmployeeTaskList.Count()</button>
+                        @if (Model.EmployeeTaskList.Count() == 0)
+                        {
+                            <form asp-controller="Employees" asp-action="Feed">
+                                <input asp-for="PriorityFilter" type="submit" value="@Model.EmployeeTaskList.Count()" class="btn btn-primary" style="width:100px" />
+                                <span asp-validation-for="PriorityFilter" class="text-danger"></span>
+                            </form>
+                        }
+                        else
+                        {
+                            <form asp-controller="Employees" asp-action="Feed">
+                                <input asp-for="PriorityFilter" type="submit" value="@Model.EmployeeTaskList.Count()" class="btn btn-danger" style="width:100px" />
+                                <span asp-validation-for="PriorityFilter" class="text-danger"></span>
+                            </form>
+                        }
                     </th>
                 </tr>
                 <tr>
@@ -55,7 +76,11 @@
                     <tr>
                         <td>@obj.Task.TaskName</td>
                         <td>@obj.Task.Priority</td>
-                        <td><input asp-for="ChoosenTask" type="submit" value="Add" class="btn btn-primary"/></td>
+                        <td>
+                            <form asp-controller="Employees" asp-action="AddTo" asp-route-taskId="@obj.Id">
+                                <input type="button" value="Add" class="btn btn-primary" />
+                            </form>
+                        </td>
                     </tr>
                 }
             </table>
