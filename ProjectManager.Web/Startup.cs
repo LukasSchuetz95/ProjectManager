@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ProjectManager.Core.Contracts;
 using ProjectManager.Persistence;
+using Newtonsoft.Json.Serialization;
 
 namespace ProjectManager.Web
 {
@@ -45,6 +46,13 @@ namespace ProjectManager.Web
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services
+                .AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddJsonOptions(options =>
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+
+            services.AddKendo();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,7 +78,9 @@ namespace ProjectManager.Web
             app.UseMvc(routes =>
             {
                 routes.MapRoute(name: "default", template: "{controller=Home}/{action=Welcome}/{id?}");
-            });      
+            });
+
+            app.UseKendo(env);
         }
     }
 }

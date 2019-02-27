@@ -10,6 +10,7 @@
 <h2>Projekte</h2>
 
 <p>
+    <kendo-button name="Button" tag="span" class="textButton">Button</kendo-button>
     <a asp-controller="Projects" asp-action="Create" class="btn btn-default">Neues Projekt erstellen</a>
 </p>
 <form asp-controller="Projects" asp-action="List">
@@ -30,18 +31,16 @@
     <tbody>
         @foreach (var project in Model.Projects)
         {
-            <tr>
-                <td>@project.ProjectName</td>
-                <td >@project.Deadline</td>
-                <td>@project.Id</td>
-                <td>
-                    <a asp-controller="Projects" asp-action="Edit" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-edit"></i></a>
-                    <a asp-controller="Projects" asp-action="Details" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-zoom-in"></i></a>
-                    <a asp-controller="Projects" asp-action="Delete" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-remove-circle"></i></a>
-                    <a asp-controller="EmployeeProjects" asp-action="Create" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-th"></i></a> 
-                    <a asp-controller="Tasks" asp-action="Create" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-tasks"></i></a>
-                </td>
-            </tr>
+        <tr>
+            <td>@project.ProjectName</td>
+            <td>@project.Deadline</td>
+            <td>@project.Id</td>
+            <td title="Bearbeiten"><a asp-controller="Projects" asp-action="Edit" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-edit"></i></a></td>
+            <td title="Details"><a asp-controller="Projects" asp-action="Details" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-zoom-in"></i></a></td>
+            <td title="Projekt löschen"><a asp-controller="Projects" asp-action="Delete" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-remove-circle"></i></a></td>
+            <td title="Mitarbeiter hinzufügen"><a asp-controller="EmployeeProjects" asp-action="Create" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-th"></i></a></td>
+            <td title="Task erstellen"><a asp-controller="Tasks" asp-action="Create" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-tasks"></i></a></td>
+        </tr>
         }
     </tbody>
 </table>
