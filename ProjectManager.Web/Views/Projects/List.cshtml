@@ -3,7 +3,10 @@
 @{
     ViewData["Title"] = "Projekte";
 }
-
+<head>
+    
+</head>
+<link rel="stylesheet" href="https://unpkg.com/envoy.css@1.6.15/css/envoy.min.css">
 <h2>Projekte</h2>
 
 <p>
@@ -32,11 +35,11 @@
                 <td >@project.Deadline</td>
                 <td>@project.Id</td>
                 <td>
-                    <a asp-controller="Projects" asp-action="Edit" asp-route-projectId="@project.Id">Edit</a> |
-                    <a asp-controller="Projects" asp-action="Details" asp-route-projectId="@project.Id">Details</a> |
-                    <a asp-controller="Projects" asp-action="Delete" asp-route-projectId="@project.Id">Projekt Löschen</a> |
-                    <a asp-controller="EmployeeProjects" asp-action="Create" asp-route-projectId="@project.Id">Mitarbeiter hinzufügen/löschen</a> |
-                    <a asp-controller="Tasks" asp-action="Create" asp-route-projectId="@project.Id">Task hinzufügen</a>
+                    <a asp-controller="Projects" asp-action="Edit" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-edit"></i></a>
+                    <a asp-controller="Projects" asp-action="Details" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-zoom-in"></i></a>
+                    <a asp-controller="Projects" asp-action="Delete" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                    <a asp-controller="EmployeeProjects" asp-action="Create" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-th"></i></a> 
+                    <a asp-controller="Tasks" asp-action="Create" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-tasks"></i></a>
                 </td>
             </tr>
         }
