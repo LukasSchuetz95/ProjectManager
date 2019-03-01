@@ -57,7 +57,7 @@ namespace ProjectManager.Web.Controllers
                 _unitOfWork.Projects.Update(model.Project);
                 _unitOfWork.EmployeeProjects.Update(employeeProject);
                 _unitOfWork.Save();
-                return RedirectToAction(nameof(Details), new { projectId = model.Project.Id });
+                return RedirectToAction(nameof(List));
             }
 
             return View(model);
@@ -80,6 +80,7 @@ namespace ProjectManager.Web.Controllers
                 try
                 {
                     model.EmployeeProject.Projectmanager = true;
+                    _unitOfWork.Projects.Add(model.EmployeeProject.Project);
                     _unitOfWork.EmployeeProjects.Add(model.EmployeeProject);
                     _unitOfWork.Save();
                     return RedirectToAction("Create", "EmployeeProjects", new { projectId = model.EmployeeProject.ProjectId });

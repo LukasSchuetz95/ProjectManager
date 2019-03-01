@@ -19,7 +19,7 @@ namespace ProjectManager.Web.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Welcome()
+        public IActionResult Index()
         {
             return View();
         }

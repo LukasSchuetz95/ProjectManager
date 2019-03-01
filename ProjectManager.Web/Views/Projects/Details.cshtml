@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Details";
 }
-//Im in the Identity branch
+
 <h2>Details</h2>
 
 <dl class="dl-horizontal">
@@ -36,11 +36,15 @@
     <tbody>
         @foreach (var emp in Model.EmployeeProjects)
         {
-            <tr>
-                <td>@emp.Employee.ToString()</td>
-                <td>@emp.Employee.Job</td>
-                <td>@emp.Projectmanager</td>
-            </tr>
+        <tr>
+            <td>@emp.Employee.ToString()</td>
+            <td>@emp.Employee.Job</td>
+
+            @if (emp.Projectmanager)
+            {
+                <td><i class="glyphicon glyphicon-star"></i></td>
+            }
+        </tr>
         }
     </tbody>
 </table>

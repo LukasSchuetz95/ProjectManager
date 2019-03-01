@@ -53,6 +53,8 @@ namespace ProjectManager.Web
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
             services.AddKendo();
+
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,10 +79,10 @@ namespace ProjectManager.Web
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Welcome}/{id?}");
+                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.UseKendo(env);
+            //app.UseKendo(env);
         }
     }
 }
