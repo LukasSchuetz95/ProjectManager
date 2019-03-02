@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ProjectManager.Core.Contracts;
 using ProjectManager.Persistence;
 using Newtonsoft.Json.Serialization;
+using ProjectManager.Web.Areas.Identity.Data;
 
 namespace ProjectManager.Web
 {
