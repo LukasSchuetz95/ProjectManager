@@ -12,18 +12,19 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account.Manage
 {
     public class ChangePasswordModel : PageModel
     {
-        private readonly UserManager<ProjectManagerWebUser> _userManager;
-        private readonly SignInManager<ProjectManagerWebUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<ChangePasswordModel> _logger;
 
         public ChangePasswordModel(
-            UserManager<ProjectManagerWebUser> userManager,
-            SignInManager<ProjectManagerWebUser> signInManager,
-            ILogger<ChangePasswordModel> logger)
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+
+
         }
 
         [BindProperty]
