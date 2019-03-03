@@ -117,5 +117,10 @@ namespace ProjectManager.Persistence
 
             return empList;
         }
+
+        public void Add(Employee employee)
+        {
+            _dbContext.Employees.Add(employee);
+        }
     }
 }

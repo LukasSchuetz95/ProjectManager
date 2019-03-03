@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectManager.Web.Data;
 
 namespace ProjectManager.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190303160526_ExtendedUserManager")]
+    partial class ExtendedUserManager
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,9 +107,69 @@ namespace ProjectManager.Web.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-          
+            modelBuilder.Entity("ProjectManager.Core.Entities.Department", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            
+                    b.Property<string>("DeptLocation")
+                        .IsRequired();
+
+                    b.Property<string>("DeptName")
+                        .IsRequired();
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Department");
+                });
+
+            modelBuilder.Entity("ProjectManager.Core.Entities.Employee", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("Birthdate");
+
+                    b.Property<int>("DepartmentId");
+
+                    b.Property<string>("Firstname")
+                        .IsRequired();
+
+                    b.Property<DateTime?>("HiringDate");
+
+                    b.Property<string>("Job");
+
+                    b.Property<string>("Lastname")
+                        .IsRequired();
+
+                    b.Property<string>("Phonenumber");
+
+                    b.Property<byte[]>("Profilepicture");
+
+                    b.Property<string>("Residence");
+
+                    b.Property<int>("Status");
+
+                    b.Property<string>("StreetNameAndNr");
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<string>("ZipCode");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.ToTable("Employee");
+                });
 
             modelBuilder.Entity("ProjectManager.Web.Models.ApplicationRole", b =>
                 {
@@ -233,10 +295,17 @@ namespace ProjectManager.Web.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("ProjectManager.Core.Entities.Employee", b =>
+                {
+                    b.HasOne("ProjectManager.Core.Entities.Department", "Department")
+                        .WithMany()
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
 
             modelBuilder.Entity("ProjectManager.Web.Models.ApplicationUser", b =>
                 {
-                    b.HasOne("ProjectManager.Core.Entities.Employee", "Employees")
+                    b.HasOne("ProjectManager.Core.Entities.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade);

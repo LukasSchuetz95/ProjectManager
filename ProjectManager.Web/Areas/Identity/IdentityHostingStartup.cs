@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ProjectManager.Web.Data;
+using ProjectManager.Web.Models;
 
 [assembly: HostingStartup(typeof(ProjectManager.Web.Areas.Identity.IdentityHostingStartup))]
 namespace ProjectManager.Web.Areas.Identity

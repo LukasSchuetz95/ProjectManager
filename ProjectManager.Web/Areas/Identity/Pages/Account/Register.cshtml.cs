@@ -8,22 +8,28 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using ProjectManager.Web.Areas.Identity.Data;
+using ProjectManager.Core.Contracts;
+using ProjectManager.Core.Entities;
+using ProjectManager.Persistence;
+using ProjectManager.Web.Models;
 
 namespace ProjectManager.Web.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<ProjectManagerWebUser> _signInManager;
-        private readonly UserManager<ProjectManagerWebUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IUnitOfWork unitOfWork = new UnitOfWork();
+        private readonly List<Department> departments;
 
         public RegisterModel(
-            UserManager<ProjectManagerWebUser> userManager,
-            SignInManager<ProjectManagerWebUser> signInManager,
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -31,6 +37,7 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            departments = unitOfWork.Departments.GetAll();
         }
 
         [BindProperty]
@@ -55,6 +62,13 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            public string FirstName { get; set; }
+
+            public string LastName { get; set; }
+
+            public string Job { get; set; }
+
         }
 
         public void OnGet(string returnUrl = null)
@@ -67,8 +81,29 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new ProjectManagerWebUser { UserName = Input.Email, Email = Input.Email };
+                Employee employee = new Employee
+                {
+                    Firstname = Input.FirstName,
+                    Lastname = Input.LastName,
+                    Job = Input.Job,
+                    DepartmentId = 1,
+                };
+
+                using(IUnitOfWork uow = new UnitOfWork())
+                {
+                    uow.Employees.Add(employee);
+                }
+
+                //var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email};
+                var user = new ApplicationUser
+                {
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    EmployeeId = employee.Id,
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
+                _userManager.AddToRoleAsync(user, "Member").GetAwaiter().GetResult();
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");

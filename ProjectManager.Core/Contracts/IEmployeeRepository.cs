@@ -16,5 +16,6 @@ namespace ProjectManager.Core.Contracts
         List<EmployeeQualification> GetAllProjectManagersAndProjectMembers(int projectId);
         void Update(Employee employee);
         List<Employee> GetEmployeeByDepartmentId(int id);
+        void Add(Employee employee);
     }
 }
