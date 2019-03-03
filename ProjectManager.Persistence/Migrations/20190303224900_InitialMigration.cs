@@ -259,7 +259,10 @@ namespace ProjectManager.Persistence.Migrations
                 values: new object[,]
                 {
                     { 1, "Wels", "Headquarter", null },
-                    { 2, "Wien", "Development", null }
+                    { 2, "Wien", "Development", null },
+                    { 3, "Linz", "Testdepartment", null },
+                    { 4, "Salzburg", "Werbekompanie", null },
+                    { 5, "Prag", "Labor", null }
                 });
 
             migrationBuilder.InsertData(
@@ -290,8 +293,15 @@ namespace ProjectManager.Persistence.Migrations
                 values: new object[,]
                 {
                     { 112412, new DateTime(1995, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Lukas", new DateTime(2011, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Schuetz", "0660/ 4878 299", null, "Bad Hall", 1, "Roemerstr. 41", null, "4540" },
+                    { 9, new DateTime(1993, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "Raimond", new DateTime(2012, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Hoad", "90445343454", null, "Department 99", 0, "Brooklyn street", null, "Ka Ahnung" },
+                    { 7, new DateTime(1993, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "Amy", new DateTime(2012, 2, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web-Developer", "Santiago", "90445343454", null, "Department 99", 1, "Brooklyn street", null, "Ka Ahnung" },
+                    { 6, new DateTime(1990, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "Jack", new DateTime(2017, 12, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web-Developer", "Peralta", "6784352363465", null, "Department 99", 2, "Brooklyn street", null, "Ka Ahnung" },
+                    { 5, new DateTime(1950, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Rick", new DateTime(2017, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web-Developer", "Sanchez", "039454646453", null, "Interdimensional", 0, "streetytreetstreet", null, "Ka Ahnung" },
+                    { 8, new DateTime(1993, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "Rosa", new DateTime(2012, 8, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Diaz", "90445343454", null, "Department 99", 0, "Brooklyn street", null, "Ka Ahnung" },
+                    { 3, new DateTime(1990, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Todd", new DateTime(2010, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Sharvez", "0660/ 4878 444", null, "Hollywoo", 1, "Beachstreet", null, "0000" },
+                    { 3214, new DateTime(1990, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Manuel", new DateTime(2010, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Mairinger", "0660/ 4878 444", null, "Irgendwo", 2, "Weiss i ned", null, "Ka Ahnung" },
                     { 2214, new DateTime(1994, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Thomas", new DateTime(2012, 9, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web-Developer", "Baurnberger", "0660/ 4878 333", null, "Kematen am Innbach", 0, "See 44", null, "4633" },
-                    { 3214, new DateTime(1990, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Manuel", new DateTime(2010, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Mairinger", "0660/ 4878 444", null, "Irgendwo", 2, "Weiss i ned", null, "Ka Ahnung" }
+                    { 4, new DateTime(1960, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Bojack", new DateTime(2014, 7, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Horseman", "0676/9876534", null, "Hollywoo", 0, "Beachstreet 5", null, "Ka Ahnung" }
                 });
 
             migrationBuilder.InsertData(
@@ -299,19 +309,19 @@ namespace ProjectManager.Persistence.Migrations
                 columns: new[] { "Id", "Deadline", "Enddate", "FixedTask", "Information", "Priority", "ProjectId", "Startdate", "Status", "TaskName", "Timestamp", "ValuedTime" },
                 values: new object[,]
                 {
+                    { 11111, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 1, 3246, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 1, "Test11", null, "400" },
                     { 17777, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 0, 42456, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 0, "Test17", null, "400" },
                     { 16666, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 0, 42456, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 0, "Test16", null, "400" },
                     { 15555, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 0, 3246, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 0, "Test15", null, "400" },
                     { 14444, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 0, 3246, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 0, "Test14", null, "400" },
                     { 13333, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 0, 3246, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 0, "Test13", null, "400" },
                     { 12222, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 1, 3246, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 1, "Test12", null, "400" },
-                    { 11111, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 1, 3246, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 1, "Test11", null, "400" },
                     { 10000, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 2, 2426, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 1, "Test10", null, "400" },
+                    { 5555, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 1, 1246, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 0, "Test5", null, "400" },
                     { 8888, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 2, 2426, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 2, "Test8", null, "400" },
-                    { 18888, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 0, 42456, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 0, "Test18", null, "400" },
                     { 7777, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 1, 2426, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 1, "Test7", null, "400" },
                     { 6666, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 1, 2426, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 1, "Test6", null, "400" },
-                    { 5555, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 1, 1246, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 0, "Test5", null, "400" },
+                    { 18888, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 0, 42456, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 0, "Test18", null, "400" },
                     { 4444, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 1, 1246, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 1, "Test4", null, "400" },
                     { 3333, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 1, 1246, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 0, "Test3", null, "400" },
                     { 2222, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), false, "Task", 1, 1246, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), 2, "Test2", null, "400" },
@@ -326,20 +336,20 @@ namespace ProjectManager.Persistence.Migrations
                 values: new object[,]
                 {
                     { 1214, "Arztbesuch", 1, 112412, new DateTime(2020, 10, 30, 8, 0, 0, 0, DateTimeKind.Unspecified), "Muss zum Arzt", new DateTime(2020, 10, 30, 6, 30, 0, 0, DateTimeKind.Unspecified), null },
-                    { 15426, "test13", 1, 3214, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 142456, "test12", 0, 3214, new DateTime(2020, 10, 30, 13, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 12, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 13246, "test11", 0, 3214, new DateTime(2020, 10, 30, 11, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 10, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 12246, "test10", 0, 3214, new DateTime(2020, 10, 30, 9, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 8, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 11246, "test9", 2, 3214, new DateTime(2020, 10, 30, 7, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 6, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 1026246, "test8", 4, 2214, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 965747, "test7", 4, 2214, new DateTime(2020, 10, 30, 13, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 12, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 8246, "test6", 0, 2214, new DateTime(2020, 10, 30, 11, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 10, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 7246, "test5", 1, 2214, new DateTime(2020, 10, 30, 9, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 8, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 64256, "test4", 2, 2214, new DateTime(2020, 10, 30, 7, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 6, 30, 0, 0, DateTimeKind.Unspecified), null },
-                    { 12246, "test10", 0, 3214, new DateTime(2020, 10, 30, 9, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 8, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 15426, "test13", 1, 3214, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 224234, "Meeting", 3, 112412, new DateTime(2020, 10, 30, 9, 0, 0, 0, DateTimeKind.Unspecified), "Habe ein Meeting", new DateTime(2020, 10, 30, 8, 30, 0, 0, DateTimeKind.Unspecified), null },
-                    { 5246, "test3", 4, 112412, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), null },
                     { 323423, "test1", 1, 112412, new DateTime(2020, 10, 30, 11, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 10, 30, 0, 0, DateTimeKind.Unspecified), null },
-                    { 44356, "test2", 0, 112412, new DateTime(2020, 10, 30, 13, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 12, 30, 0, 0, DateTimeKind.Unspecified), null }
+                    { 44356, "test2", 0, 112412, new DateTime(2020, 10, 30, 13, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 12, 30, 0, 0, DateTimeKind.Unspecified), null },
+                    { 5246, "test3", 4, 112412, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), "Das ist ein Test", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), null }
                 });
 
             migrationBuilder.InsertData(
@@ -347,14 +357,14 @@ namespace ProjectManager.Persistence.Migrations
                 columns: new[] { "Id", "EmployeeId", "ProjectId", "Projectmanager", "Timestamp" },
                 values: new object[,]
                 {
-                    { 4246, 112412, 42456, true, null },
-                    { 3246, 112412, 3246, true, null },
-                    { 2246, 112412, 2426, false, null },
-                    { 1246, 112412, 1246, false, null },
-                    { 5246, 2214, 1246, false, null },
-                    { 6215, 2214, 2426, true, null },
                     { 71234, 2214, 3246, false, null },
                     { 9634, 3214, 2426, false, null },
+                    { 5246, 2214, 1246, false, null },
+                    { 6215, 2214, 2426, true, null },
+                    { 2246, 112412, 2426, false, null },
+                    { 3246, 112412, 3246, true, null },
+                    { 4246, 112412, 42456, true, null },
+                    { 1246, 112412, 1246, false, null },
                     { 83465, 3214, 1246, true, null }
                 });
 
@@ -363,13 +373,13 @@ namespace ProjectManager.Persistence.Migrations
                 columns: new[] { "Id", "EmployeeId", "Information", "QualificationId", "SkillLevel", "Timestamp" },
                 values: new object[,]
                 {
-                    { 3333, 112412, "Test", 3333, 2, null },
+                    { 8888, 3214, "Test", 3333, 2, null },
+                    { 5555, 3214, "Test", 1111, 4, null },
                     { 9999, 3214, "Test", 4444, 0, null },
                     { 2222, 112412, "Test", 2222, 1, null },
-                    { 8888, 3214, "Test", 3333, 2, null },
+                    { 3333, 112412, "Test", 3333, 2, null },
                     { 7777, 2214, "Test", 4444, 3, null },
                     { 6666, 2214, "Test", 3333, 1, null },
-                    { 5555, 2214, "Test", 1111, 4, null },
                     { 1111, 112412, "Sehr guter Projekt Manager", 1111, 0, null },
                     { 4444, 112412, "Test", 4444, 3, null }
                 });
@@ -379,25 +389,36 @@ namespace ProjectManager.Persistence.Migrations
                 columns: new[] { "Id", "EmployeeId", "TaskId", "Timestamp" },
                 values: new object[,]
                 {
+                    { 34543, 2214, 12222, null },
+                    { 324556, 3214, 18888, null },
                     { 32534, 3214, 17777, null },
                     { 57868, 3214, 16666, null },
                     { 96767, 3214, 15555, null },
                     { 21434, 3214, 14444, null },
                     { 23532, 2214, 13333, null },
-                    { 34543, 2214, 12222, null },
+                    { 19324, 3214, 19999, null },
                     { 54664, 2214, 11111, null },
-                    { 12433, 2214, 10000, null },
-                    { 3435, 2214, 7777, null },
+                    { 1968, 112412, 1111, null },
+                    { 3254, 2214, 9999, null },
                     { 3445, 2214, 8888, null },
-                    { 324556, 3214, 18888, null },
+                    { 3435, 2214, 7777, null },
                     { 4567, 112412, 6666, null },
                     { 7475, 112412, 5555, null },
                     { 8678, 112412, 4444, null },
                     { 1435, 112412, 3333, null },
                     { 2242, 112412, 2222, null },
-                    { 1968, 112412, 1111, null },
-                    { 3254, 2214, 9999, null },
-                    { 19324, 3214, 19999, null }
+                    { 12433, 2214, 10000, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TaskQualifications",
+                columns: new[] { "Id", "QualificationId", "TaskId", "Timestamp" },
+                values: new object[,]
+                {
+                    { 4, 1111, 17777, null },
+                    { 3, 1111, 18888, null },
+                    { 1, 2222, 19999, null },
+                    { 2, 1111, 19999, null }
                 });
 
             migrationBuilder.CreateIndex(
