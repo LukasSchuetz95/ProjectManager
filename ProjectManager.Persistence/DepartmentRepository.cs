@@ -18,7 +18,7 @@ namespace ProjectManager.Persistence
 
         public List<Department> GetAll()
         {
-            return _dbContext.Departments.OrderBy(p=>p.DeptName).ToList();
+            return _dbContext.Department.OrderBy(p=>p.DeptName).ToList();
         }
     }
 }

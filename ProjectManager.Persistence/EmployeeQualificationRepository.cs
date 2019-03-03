@@ -20,12 +20,12 @@ namespace ProjectManager.Persistence
 
         public List<EmployeeQualification> GetAllProjectManagers()
         {
-            return _dbContext.EmployeeQualifications.Include(e => e.Employee).Include(q => q.Qualification).Where(e => e.Qualification.QualificationName == "Projekt Manager").ToList();
+            return _dbContext.EmployeeQualification.Include(e => e.Employee).Include(q => q.Qualification).Where(e => e.Qualification.QualificationName == "Projekt Manager").ToList();
         }
 
         public List<EmployeeQualification> GetQualificationsByEmployeeId(int employeeId)
         {
-            return _dbContext.EmployeeQualifications.Where(e => e.EmployeeId == employeeId).ToList();
+            return _dbContext.EmployeeQualification.Where(e => e.EmployeeId == employeeId).ToList();
         }
     }
 }

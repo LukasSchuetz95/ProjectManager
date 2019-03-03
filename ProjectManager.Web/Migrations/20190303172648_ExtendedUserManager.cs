@@ -22,6 +22,20 @@ namespace ProjectManager.Web.Migrations
                     table.PrimaryKey("PK_AspNetRoles", x => x.Id);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Department",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    DeptLocation = table.Column<string>(nullable: false),
+                    DeptName = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Department", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
@@ -40,6 +54,37 @@ namespace ProjectManager.Web.Migrations
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Employee",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    DepartmentId = table.Column<int>(nullable: false),
+                    Firstname = table.Column<string>(nullable: false),
+                    Lastname = table.Column<string>(nullable: false),
+                    Job = table.Column<string>(nullable: true),
+                    Status = table.Column<int>(nullable: false),
+                    Profilepicture = table.Column<byte[]>(nullable: true),
+                    Birthdate = table.Column<DateTime>(nullable: true),
+                    StreetNameAndNr = table.Column<string>(nullable: true),
+                    ZipCode = table.Column<string>(nullable: true),
+                    Residence = table.Column<string>(nullable: true),
+                    HiringDate = table.Column<DateTime>(nullable: true),
+                    Phonenumber = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employee", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Employee_Department_DepartmentId",
+                        column: x => x.DepartmentId,
+                        principalTable: "Department",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -69,9 +114,9 @@ namespace ProjectManager.Web.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_Employees_EmployeeId",
+                        name: "FK_AspNetUsers_Employee_EmployeeId",
                         column: x => x.EmployeeId,
-                        principalTable: "Employees",
+                        principalTable: "Employee",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -205,6 +250,10 @@ namespace ProjectManager.Web.Migrations
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
 
+            migrationBuilder.CreateIndex(
+                name: "IX_Employee_DepartmentId",
+                table: "Employee",
+                column: "DepartmentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -229,7 +278,12 @@ namespace ProjectManager.Web.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-            
+
+            migrationBuilder.DropTable(
+                name: "Employee");
+
+            migrationBuilder.DropTable(
+                name: "Department");
         }
     }
 }

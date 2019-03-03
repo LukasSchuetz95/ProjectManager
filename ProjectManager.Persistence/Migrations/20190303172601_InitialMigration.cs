@@ -9,7 +9,7 @@ namespace ProjectManager.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Departments",
+                name: "Department",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -20,11 +20,11 @@ namespace ProjectManager.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Departments", x => x.Id);
+                    table.PrimaryKey("PK_Department", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Projects",
+                name: "Project",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -40,11 +40,11 @@ namespace ProjectManager.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Projects", x => x.Id);
+                    table.PrimaryKey("PK_Project", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Qualifications",
+                name: "Qualification",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -54,11 +54,11 @@ namespace ProjectManager.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Qualifications", x => x.Id);
+                    table.PrimaryKey("PK_Qualification", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Employees",
+                name: "Employee",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -79,17 +79,17 @@ namespace ProjectManager.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees", x => x.Id);
+                    table.PrimaryKey("PK_Employee", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Employees_Departments_DepartmentId",
+                        name: "FK_Employee_Department_DepartmentId",
                         column: x => x.DepartmentId,
-                        principalTable: "Departments",
+                        principalTable: "Department",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tasks",
+                name: "Task",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -108,17 +108,17 @@ namespace ProjectManager.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tasks", x => x.Id);
+                    table.PrimaryKey("PK_Task", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tasks_Projects_ProjectId",
+                        name: "FK_Task_Project_ProjectId",
                         column: x => x.ProjectId,
-                        principalTable: "Projects",
+                        principalTable: "Project",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Appointments",
+                name: "Appointment",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -133,17 +133,17 @@ namespace ProjectManager.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Appointments", x => x.Id);
+                    table.PrimaryKey("PK_Appointment", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Appointments_Employees_EmployeeId",
+                        name: "FK_Appointment_Employee_EmployeeId",
                         column: x => x.EmployeeId,
-                        principalTable: "Employees",
+                        principalTable: "Employee",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EmployeeProjects",
+                name: "EmployeeProject",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -155,23 +155,23 @@ namespace ProjectManager.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeeProjects", x => x.Id);
+                    table.PrimaryKey("PK_EmployeeProject", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EmployeeProjects_Employees_EmployeeId",
+                        name: "FK_EmployeeProject_Employee_EmployeeId",
                         column: x => x.EmployeeId,
-                        principalTable: "Employees",
+                        principalTable: "Employee",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EmployeeProjects_Projects_ProjectId",
+                        name: "FK_EmployeeProject_Project_ProjectId",
                         column: x => x.ProjectId,
-                        principalTable: "Projects",
+                        principalTable: "Project",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EmployeeQualifications",
+                name: "EmployeeQualification",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -184,23 +184,23 @@ namespace ProjectManager.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeeQualifications", x => x.Id);
+                    table.PrimaryKey("PK_EmployeeQualification", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EmployeeQualifications_Employees_EmployeeId",
+                        name: "FK_EmployeeQualification_Employee_EmployeeId",
                         column: x => x.EmployeeId,
-                        principalTable: "Employees",
+                        principalTable: "Employee",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EmployeeQualifications_Qualifications_QualificationId",
+                        name: "FK_EmployeeQualification_Qualification_QualificationId",
                         column: x => x.QualificationId,
-                        principalTable: "Qualifications",
+                        principalTable: "Qualification",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EmployeeTasks",
+                name: "EmployeeTask",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -211,23 +211,23 @@ namespace ProjectManager.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeeTasks", x => x.Id);
+                    table.PrimaryKey("PK_EmployeeTask", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EmployeeTasks_Employees_EmployeeId",
+                        name: "FK_EmployeeTask_Employee_EmployeeId",
                         column: x => x.EmployeeId,
-                        principalTable: "Employees",
+                        principalTable: "Employee",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EmployeeTasks_Tasks_TaskId",
+                        name: "FK_EmployeeTask_Task_TaskId",
                         column: x => x.TaskId,
-                        principalTable: "Tasks",
+                        principalTable: "Task",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "TaskQualifications",
+                name: "TaskQualification",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -238,23 +238,23 @@ namespace ProjectManager.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TaskQualifications", x => x.Id);
+                    table.PrimaryKey("PK_TaskQualification", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TaskQualifications_Qualifications_QualificationId",
+                        name: "FK_TaskQualification_Qualification_QualificationId",
                         column: x => x.QualificationId,
-                        principalTable: "Qualifications",
+                        principalTable: "Qualification",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TaskQualifications_Tasks_TaskId",
+                        name: "FK_TaskQualification_Task_TaskId",
                         column: x => x.TaskId,
-                        principalTable: "Tasks",
+                        principalTable: "Task",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "Departments",
+                table: "Department",
                 columns: new[] { "Id", "DeptLocation", "DeptName", "Timestamp" },
                 values: new object[,]
                 {
@@ -263,7 +263,7 @@ namespace ProjectManager.Persistence.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Projects",
+                table: "Project",
                 columns: new[] { "Id", "Deadline", "Enddate", "Information", "ProjectName", "Startdate", "Status", "Timestamp", "ValuedTime" },
                 values: new object[,]
                 {
@@ -274,7 +274,7 @@ namespace ProjectManager.Persistence.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Qualifications",
+                table: "Qualification",
                 columns: new[] { "Id", "QualificationName", "Timestamp" },
                 values: new object[,]
                 {
@@ -285,7 +285,7 @@ namespace ProjectManager.Persistence.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Employees",
+                table: "Employee",
                 columns: new[] { "Id", "Birthdate", "DepartmentId", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
                 values: new object[,]
                 {
@@ -295,7 +295,7 @@ namespace ProjectManager.Persistence.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Tasks",
+                table: "Task",
                 columns: new[] { "Id", "Deadline", "Enddate", "FixedTask", "Information", "Priority", "ProjectId", "Startdate", "Status", "TaskName", "Timestamp", "ValuedTime" },
                 values: new object[,]
                 {
@@ -321,7 +321,7 @@ namespace ProjectManager.Persistence.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Appointments",
+                table: "Appointment",
                 columns: new[] { "Id", "AppoName", "AppoType", "EmployeeId", "Enddate", "Information", "Startdate", "Timestamp" },
                 values: new object[,]
                 {
@@ -343,7 +343,7 @@ namespace ProjectManager.Persistence.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "EmployeeProjects",
+                table: "EmployeeProject",
                 columns: new[] { "Id", "EmployeeId", "ProjectId", "Projectmanager", "Timestamp" },
                 values: new object[,]
                 {
@@ -359,7 +359,7 @@ namespace ProjectManager.Persistence.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "EmployeeQualifications",
+                table: "EmployeeQualification",
                 columns: new[] { "Id", "EmployeeId", "Information", "QualificationId", "SkillLevel", "Timestamp" },
                 values: new object[,]
                 {
@@ -375,7 +375,7 @@ namespace ProjectManager.Persistence.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "EmployeeTasks",
+                table: "EmployeeTask",
                 columns: new[] { "Id", "EmployeeId", "TaskId", "Timestamp" },
                 values: new object[,]
                 {
@@ -401,92 +401,92 @@ namespace ProjectManager.Persistence.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Appointments_EmployeeId",
-                table: "Appointments",
+                name: "IX_Appointment_EmployeeId",
+                table: "Appointment",
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeProjects_EmployeeId",
-                table: "EmployeeProjects",
-                column: "EmployeeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmployeeProjects_ProjectId",
-                table: "EmployeeProjects",
-                column: "ProjectId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmployeeQualifications_EmployeeId",
-                table: "EmployeeQualifications",
-                column: "EmployeeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmployeeQualifications_QualificationId",
-                table: "EmployeeQualifications",
-                column: "QualificationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Employees_DepartmentId",
-                table: "Employees",
+                name: "IX_Employee_DepartmentId",
+                table: "Employee",
                 column: "DepartmentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeTasks_EmployeeId",
-                table: "EmployeeTasks",
+                name: "IX_EmployeeProject_EmployeeId",
+                table: "EmployeeProject",
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeTasks_TaskId",
-                table: "EmployeeTasks",
-                column: "TaskId");
+                name: "IX_EmployeeProject_ProjectId",
+                table: "EmployeeProject",
+                column: "ProjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TaskQualifications_QualificationId",
-                table: "TaskQualifications",
+                name: "IX_EmployeeQualification_EmployeeId",
+                table: "EmployeeQualification",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeQualification_QualificationId",
+                table: "EmployeeQualification",
                 column: "QualificationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TaskQualifications_TaskId",
-                table: "TaskQualifications",
+                name: "IX_EmployeeTask_EmployeeId",
+                table: "EmployeeTask",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeTask_TaskId",
+                table: "EmployeeTask",
                 column: "TaskId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tasks_ProjectId",
-                table: "Tasks",
+                name: "IX_Task_ProjectId",
+                table: "Task",
                 column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TaskQualification_QualificationId",
+                table: "TaskQualification",
+                column: "QualificationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TaskQualification_TaskId",
+                table: "TaskQualification",
+                column: "TaskId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Appointments");
+                name: "Appointment");
 
             migrationBuilder.DropTable(
-                name: "EmployeeProjects");
+                name: "EmployeeProject");
 
             migrationBuilder.DropTable(
-                name: "EmployeeQualifications");
+                name: "EmployeeQualification");
 
             migrationBuilder.DropTable(
-                name: "EmployeeTasks");
+                name: "EmployeeTask");
 
             migrationBuilder.DropTable(
-                name: "TaskQualifications");
+                name: "TaskQualification");
 
             migrationBuilder.DropTable(
-                name: "Employees");
+                name: "Employee");
 
             migrationBuilder.DropTable(
-                name: "Qualifications");
+                name: "Qualification");
 
             migrationBuilder.DropTable(
-                name: "Tasks");
+                name: "Task");
 
             migrationBuilder.DropTable(
-                name: "Departments");
+                name: "Department");
 
             migrationBuilder.DropTable(
-                name: "Projects");
+                name: "Project");
         }
     }
 }

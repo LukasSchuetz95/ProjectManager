@@ -11,25 +11,25 @@ namespace ProjectManager.Persistence
 {
     public class ApplicationDbContextPersistence : DbContext
     {
-        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Appointment> Appointment { get; set; }
 
-        public DbSet<Department> Departments { get; set; }
+        public DbSet<Department> Department { get; set; }
 
-        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Employee> Employee { get; set; }
 
-        public DbSet<EmployeeQualification> EmployeeQualifications { get; set; }
+        public DbSet<EmployeeQualification> EmployeeQualification { get; set; }
 
-        public DbSet<EmployeeTask> EmployeeTasks { get; set; }
+        public DbSet<EmployeeTask> EmployeeTask { get; set; }
 
-        public DbSet<Project> Projects { get; set; }
+        public DbSet<Project> Project { get; set; }
 
-        public DbSet<Qualification> Qualifications { get; set; }
+        public DbSet<Qualification> Qualification { get; set; }
 
-        public DbSet<Task> Tasks { get; set; }
+        public DbSet<Task> Task { get; set; }
 
-        public DbSet<TaskQualification> TaskQualifications { get; set; }
+        public DbSet<TaskQualification> TaskQualification { get; set; }
 
-        public DbSet<EmployeeProject> EmployeeProjects { get; set; }
+        public DbSet<EmployeeProject> EmployeeProject { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

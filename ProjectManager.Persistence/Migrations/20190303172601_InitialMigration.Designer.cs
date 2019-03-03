@@ -10,7 +10,7 @@ using ProjectManager.Persistence;
 namespace ProjectManager.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContextPersistence))]
-    [Migration("20190303170439_InitialMigration")]
+    [Migration("20190303172601_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,7 +48,7 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("Appointments");
+                    b.ToTable("Appointment");
 
                     b.HasData(
                         new { Id = 1214, AppoName = "Arztbesuch", AppoType = 1, EmployeeId = 112412, Enddate = new DateTime(2020, 10, 30, 8, 0, 0, 0, DateTimeKind.Unspecified), Information = "Muss zum Arzt", Startdate = new DateTime(2020, 10, 30, 6, 30, 0, 0, DateTimeKind.Unspecified) },
@@ -87,7 +87,7 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Departments");
+                    b.ToTable("Department");
 
                     b.HasData(
                         new { Id = 1, DeptLocation = "Wels", DeptName = "Headquarter" },
@@ -135,7 +135,7 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employee");
 
                     b.HasData(
                         new { Id = 112412, Birthdate = new DateTime(1995, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 1, Firstname = "Lukas", HiringDate = new DateTime(2011, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Residence = "Bad Hall", Status = 1, StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
@@ -166,7 +166,7 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("EmployeeProjects");
+                    b.ToTable("EmployeeProject");
 
                     b.HasData(
                         new { Id = 1246, EmployeeId = 112412, ProjectId = 1246, Projectmanager = false },
@@ -205,7 +205,7 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.HasIndex("QualificationId");
 
-                    b.ToTable("EmployeeQualifications");
+                    b.ToTable("EmployeeQualification");
 
                     b.HasData(
                         new { Id = 1111, EmployeeId = 112412, Information = "Sehr guter Projekt Manager", QualificationId = 1111, SkillLevel = 0 },
@@ -240,7 +240,7 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.HasIndex("TaskId");
 
-                    b.ToTable("EmployeeTasks");
+                    b.ToTable("EmployeeTask");
 
                     b.HasData(
                         new { Id = 1968, EmployeeId = 112412, TaskId = 1111 },
@@ -292,7 +292,7 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Projects");
+                    b.ToTable("Project");
 
                     b.HasData(
                         new { Id = 1246, Deadline = new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "Dieses Projekt benötigt noch viel Zuneigung", ProjectName = "Diplomarbeit", Startdate = new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = 2, ValuedTime = "500" },
@@ -317,7 +317,7 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Qualifications");
+                    b.ToTable("Qualification");
 
                     b.HasData(
                         new { Id = 1111, QualificationName = "Projekt Manager" },
@@ -362,7 +362,7 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("Tasks");
+                    b.ToTable("Task");
 
                     b.HasData(
                         new { Id = 1111, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Erster Task", Priority = 1, ProjectId = 1246, Startdate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Status = 1, TaskName = "Test1", ValuedTime = "400" },
@@ -407,7 +407,7 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.HasIndex("TaskId");
 
-                    b.ToTable("TaskQualifications");
+                    b.ToTable("TaskQualification");
                 });
 
             modelBuilder.Entity("ProjectManager.Core.Entities.Appointment", b =>

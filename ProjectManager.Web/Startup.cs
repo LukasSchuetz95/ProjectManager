@@ -47,7 +47,18 @@ namespace ProjectManager.Web
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
 
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings.
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+            });
+
+                services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
