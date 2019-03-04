@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectManager.Web.Migrations
 {
-    public partial class ExtendedUserManager : Migration
+    public partial class ExtendedUserIdentity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

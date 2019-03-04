@@ -10,8 +10,8 @@ using ProjectManager.Web.Data;
 namespace ProjectManager.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190303172648_ExtendedUserManager")]
-    partial class ExtendedUserManager
+    [Migration("20190304172351_ExtendedUserIdentity")]
+    partial class ExtendedUserIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
