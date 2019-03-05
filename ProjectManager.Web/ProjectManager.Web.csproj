@@ -19,6 +19,8 @@
     <Compile Remove="Migrations\20190303115128_ExtendedUserManager.Designer.cs" />
     <Compile Remove="Migrations\20190303172648_ExtendedUserManager.cs" />
     <Compile Remove="Migrations\20190303172648_ExtendedUserManager.Designer.cs" />
+    <Compile Remove="Migrations\20190304172351_ExtendedUserIdentity.cs" />
+    <Compile Remove="Migrations\20190304172351_ExtendedUserIdentity.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

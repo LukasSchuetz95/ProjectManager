@@ -15,15 +15,16 @@ namespace ProjectManager.Web.Models
 
         }
 
-        //[ForeignKey(nameof(EmployeeId))]
-        //public virtual Employee Employee { get; set; }
-        //public int EmployeeId { get; set; }
+        [ForeignKey(nameof(EmployeeId))]
+        [NotMapped]
+        public virtual Employee Employee { get; set; }
+        public int EmployeeId { get; set; }
 
-        UserManager<IdentityUser> userManager; // DI injected
+        //UserManager<IdentityUser> userManager; // DI injected
 
-        var user = await userManager.Users
-            .Include(x => x.Employee)
-            .SingleAsync(x => x.NormalizedEmail == email);
+        //var user = await userManager.Users
+        //    .Include(x => x.Employee)
+        //    .SingleAsync(x => x.NormalizedEmail == email);
 
     }
 }

@@ -53,7 +53,7 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Employee>().HasData(
                 new Employee
                 {
-                    Id = 112412,
+                    Id = 1,
                     Firstname = "Lukas",
                     Lastname = "Schuetz",
                     Birthdate = new DateTime(1995, 4, 22),
@@ -70,7 +70,7 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Employee>().HasData(
                 new Employee
                 {
-                    Id = 2214,
+                    Id = 2,
                     Firstname = "Thomas",
                     Lastname = "Baurnberger",
                     Birthdate = new DateTime(1994, 11, 22),
@@ -87,7 +87,7 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Employee>().HasData(
                 new Employee
                 {
-                    Id = 3214,
+                    Id = 3,
                     Firstname = "Manuel",
                     Lastname = "Mairinger",
                     Birthdate = new DateTime(1990, 10, 5),

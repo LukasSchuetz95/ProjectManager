@@ -13,12 +13,12 @@ namespace ProjectManager.Web.Data
         {
             context.Database.EnsureCreated();
 
-            String adminId1 = "";
+            //String adminId1 = "";
 
             string role1 = "Admin";
             string role2 = "Member";
 
-            string password = "NewVision2019!";
+            //string password = "NewVision2019!";
 
             if(await roleManager.FindByNameAsync(role1) == null)
             {

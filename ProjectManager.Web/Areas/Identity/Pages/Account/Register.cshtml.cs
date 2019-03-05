@@ -87,6 +87,7 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
                     Lastname = Input.LastName,
                     Job = Input.Job,
                     DepartmentId = 1,
+                    Status = Core.Enum.EmployeeStatusType.Beschäftigt
                 };
 
                 using(IUnitOfWork uow = new UnitOfWork())
@@ -94,12 +95,12 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
                     uow.Employees.Add(employee);
                 }
 
-                //var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email};
+                //var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
                 var user = new ApplicationUser
                 {
                     UserName = Input.Email,
                     Email = Input.Email,
-                    EmployeeId = employee.Id,
+                    EmployeeId = employee.Id
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 _userManager.AddToRoleAsync(user, "Member").GetAwaiter().GetResult();
@@ -119,6 +120,7 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
+                    RedirectToAction("CreateEmployee", "Employees");
                     return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)

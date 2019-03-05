@@ -17,6 +17,10 @@ namespace ProjectManager.Persistence
             _dbContext = dbContext;
         }
 
+        public void Add(Employee employee)
+        {
+            _dbContext.Employee.Add(employee);
+        }
         public void Update(Employee employee)
         {
             _dbContext.Employee.Update(employee);
@@ -118,9 +122,6 @@ namespace ProjectManager.Persistence
             return empList;
         }
 
-        public void Add(Employee employee)
-        {
-            _dbContext.Employee.Add(employee);
-        }
+        
     }
 }
