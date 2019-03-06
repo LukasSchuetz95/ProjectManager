@@ -9,25 +9,25 @@ namespace ProjectManager.Persistence
 {
     public class ApplicationDbContextPersistence : DbContext
     {
-        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Appointment> Appointment { get; set; }
 
-        public DbSet<Department> Departments { get; set; }
+        public DbSet<Department> Department { get; set; }
 
-        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Employee> Employee { get; set; }
 
-        public DbSet<EmployeeQualification> EmployeeQualifications { get; set; }
+        public DbSet<EmployeeQualification> EmployeeQualification { get; set; }
 
-        public DbSet<EmployeeTask> EmployeeTasks { get; set; }
+        public DbSet<EmployeeTask> EmployeeTask { get; set; }
 
-        public DbSet<Project> Projects { get; set; }
+        public DbSet<Project> Project { get; set; }
 
-        public DbSet<Qualification> Qualifications { get; set; }
+        public DbSet<Qualification> Qualification { get; set; }
 
-        public DbSet<Task> Tasks { get; set; }
+        public DbSet<Task> Task { get; set; }
 
-        public DbSet<TaskQualification> TaskQualifications { get; set; }
+        public DbSet<TaskQualification> TaskQualification { get; set; }
 
-        public DbSet<EmployeeProject> EmployeeProjects { get; set; }
+        public DbSet<EmployeeProject> EmployeeProject { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -60,7 +60,7 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Employee>().HasData(
                 new Employee
                 {
-                    Id = 112412,
+                    Id = 1,
                     Firstname = "Lukas",
                     Lastname = "Schuetz",
                     Birthdate = new DateTime(1995, 4, 22),
@@ -77,7 +77,7 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Employee>().HasData(
                 new Employee
                 {
-                    Id = 2214,
+                    Id = 2,
                     Firstname = "Thomas",
                     Lastname = "Baurnberger",
                     Birthdate = new DateTime(1994, 11, 22),
@@ -94,7 +94,7 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Employee>().HasData(
                 new Employee
                 {
-                    Id = 3214,
+                    Id = 3,
                     Firstname = "Manuel",
                     Lastname = "Mairinger",
                     Birthdate = new DateTime(1990, 10, 5),
@@ -1141,6 +1141,7 @@ namespace ProjectManager.Persistence
                     Information = "Test",
                     SkillLevel = SkillLevelType.Sehrgut,
                 });
+
 
         }
     }

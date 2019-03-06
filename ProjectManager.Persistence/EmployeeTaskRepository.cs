@@ -19,56 +19,56 @@ namespace ProjectManager.Persistence
 
         public void Add(EmployeeTask model)
         {
-            _dbContext.EmployeeTasks.Add(model);
+            _dbContext.EmployeeTask.Add(model);
         }
 
         public void Delete(EmployeeTask model)
         {
-            _dbContext.EmployeeTasks.Remove(model);
+            _dbContext.EmployeeTask.Remove(model);
         }
 
         public List<EmployeeTask> GetAll()
         {
-            return _dbContext.EmployeeTasks.Include(e => e.Employee).Include(t => t.Task).OrderBy(p => p.Task.Status).ToList();
+            return _dbContext.EmployeeTask.Include(e => e.Employee).Include(t => t.Task).OrderBy(p => p.Task.Status).ToList();
 
             //throw new NotImplementedException();
         }
 
         public EmployeeTask GetByEmployeeIdAndTaskId(int taskId, int empId)
         {
-            return _dbContext.EmployeeTasks.SingleOrDefault(p => p.EmployeeId == empId && p.TaskId == taskId);
+            return _dbContext.EmployeeTask.SingleOrDefault(p => p.EmployeeId == empId && p.TaskId == taskId);
         }
 
         public EmployeeTask GetById(int empProId)
         {
-            return _dbContext.EmployeeTasks.Where(p => p.Id == empProId).FirstOrDefault();
+            return _dbContext.EmployeeTask.Where(p => p.Id == empProId).FirstOrDefault();
         }
 
         public EmployeeTask GetByProjectId(int projectId)
         {
-            return _dbContext.EmployeeTasks.SingleOrDefault(e => e.Task.ProjectId == projectId);
+            return _dbContext.EmployeeTask.SingleOrDefault(e => e.Task.ProjectId == projectId);
         }
 
         public EmployeeTask GetByTaskId(int taskId)
         {
-            return _dbContext.EmployeeTasks.SingleOrDefault(e => e.Id == taskId);
+            return _dbContext.EmployeeTask.SingleOrDefault(e => e.Id == taskId);
         }
 
         public EmployeeTask GetEmployeeTaskByTaskId(int taskId)
         {
-            return _dbContext.EmployeeTasks.Include(e => e.Employee).Include(t => t.Task).Where(t => t.TaskId == taskId).SingleOrDefault();
+            return _dbContext.EmployeeTask.Include(e => e.Employee).Include(t => t.Task).Where(t => t.TaskId == taskId).SingleOrDefault();
         }
 
         public void Update(EmployeeTask model)
         {
-            _dbContext.EmployeeTasks.Update(model);
+            _dbContext.EmployeeTask.Update(model);
         }
 
         public List<EmployeeTask> GetTasksByEmployeeIdAndQualifications(int employeeId, List<EmployeeQualification> employeeQualifications)
         {
-            List<Task> taskList = _dbContext.Tasks.ToList();
+            List<Task> taskList = _dbContext.Task.ToList();
 
-            List<TaskQualification> taskQualificationList = _dbContext.TaskQualifications.ToList();
+            List<TaskQualification> taskQualificationList = _dbContext.TaskQualification.ToList();
 
             List<EmployeeTask> employeeTask = new List<EmployeeTask>();
 

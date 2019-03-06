@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using ProjectManager.Core.Entities;
 
 namespace ProjectManager.Core.Contracts
@@ -16,5 +17,7 @@ namespace ProjectManager.Core.Contracts
         List<EmployeeQualification> GetAllProjectManagersAndProjectMembers(int projectId);
         void Update(Employee employee);
         List<Employee> GetEmployeeByDepartmentId(int id);
+        void Add(Employee employee);
+        System.Threading.Tasks.Task AddAsync(Employee employee);
     }
 }

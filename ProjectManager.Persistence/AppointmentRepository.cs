@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
 namespace ProjectManager.Persistence
 {
     public class AppointmentRepository : IAppointmentRepository
     {
         private readonly ApplicationDbContextPersistence _dbContext;
-
 
 
         public AppointmentRepository(ApplicationDbContextPersistence dbContext)
