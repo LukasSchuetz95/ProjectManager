@@ -111,23 +111,6 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Employee>().HasData(
                 new Employee
                 {
-                    Id = 3,
-                    Firstname = "Todd",
-                    Lastname = "Sharvez",
-                    Birthdate = new DateTime(1990, 10, 5),
-                    HiringDate = new DateTime(2010, 2, 12),
-                    Phonenumber = "0660/ 4878 444",
-                    Residence = "Hollywoo",
-                    StreetNameAndNr = "Beachstreet",
-                    ZipCode = "0000",
-                    Status = EmployeeStatusType.Auszeit,
-                    Job = "Software Developer",
-                    DepartmentId = 2,
-                });
-
-            modelBuilder.Entity<Employee>().HasData(
-                new Employee
-                {
                     Id = 4,
                     Firstname = "Bojack",
                     Lastname = "Horseman",
@@ -227,13 +210,30 @@ namespace ProjectManager.Persistence
                     DepartmentId = 5,
                 });
 
+            modelBuilder.Entity<Employee>().HasData(
+                new Employee
+                {
+                    Id = 10,
+                    Firstname = "Todd",
+                    Lastname = "Sharvez",
+                    Birthdate = new DateTime(1990, 10, 5),
+                    HiringDate = new DateTime(2010, 2, 12),
+                    Phonenumber = "0660/ 4878 444",
+                    Residence = "Hollywoo",
+                    StreetNameAndNr = "Beachstreet",
+                    ZipCode = "0000",
+                    Status = EmployeeStatusType.Auszeit,
+                    Job = "Software Developer",
+                    DepartmentId = 2,
+                });
+
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment
                 {
-                    Id = 1214,
+                    Id = 1,
                     AppoName = "Arztbesuch",
                     AppoType = AppointmentType.Meeting,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     Startdate = new DateTime(2020, 10, 30, 6, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 8, 00, 0),
                     Information = "Muss zum Arzt"
@@ -242,10 +242,10 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment
                 {
-                    Id = 224234,
+                    Id = 2,
                     AppoName = "Meeting",
                     AppoType = AppointmentType.Urlaub,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     Startdate = new DateTime(2020, 10, 30, 8, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 9, 00, 0),
                     Information = "Habe ein Meeting"
@@ -254,10 +254,10 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment
                 {
-                    Id = 323423,
+                    Id = 3,
                     AppoName = "test1",
                     AppoType = AppointmentType.Meeting,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     Startdate = new DateTime(2020, 10, 30, 10, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 11, 30, 0),
                     Information = "Das ist ein Test"
@@ -266,10 +266,10 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment
                 {
-                    Id = 44356,
+                    Id = 4,
                     AppoName = "test2",
                     AppoType = AppointmentType.Arztbesuch,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     Startdate = new DateTime(2020, 10, 30, 12, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 13, 30, 0),
                     Information = "Das ist ein Test"
@@ -278,10 +278,10 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment
                 {
-                    Id = 5246,
+                    Id = 5,
                     AppoName = "test3",
                     AppoType = AppointmentType.Andere,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     Startdate = new DateTime(2020, 10, 30, 14, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 15, 30, 0),
                     Information = "Das ist ein Test"
@@ -290,10 +290,10 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment
                 {
-                    Id = 64256,
+                    Id = 6,
                     AppoName = "test4",
                     AppoType = AppointmentType.Zeitausgleich,
-                    EmployeeId = 2214,
+                    EmployeeId = 2,
                     Startdate = new DateTime(2020, 10, 30, 6, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 7, 30, 0),
                     Information = "Das ist ein Test"
@@ -302,10 +302,10 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment
                 {
-                    Id = 7246,
+                    Id = 7,
                     AppoName = "test5",
                     AppoType = AppointmentType.Meeting,
-                    EmployeeId = 2214,
+                    EmployeeId = 2,
                     Startdate = new DateTime(2020, 10, 30, 8, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 9, 30, 0),
                     Information = "Das ist ein Test"
@@ -314,10 +314,10 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment
                 {
-                    Id = 8246,
+                    Id = 8,
                     AppoName = "test6",
                     AppoType = AppointmentType.Arztbesuch,
-                    EmployeeId = 2214,
+                    EmployeeId = 2,
                     Startdate = new DateTime(2020, 10, 30, 10, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 11, 30, 0),
                     Information = "Das ist ein Test"
@@ -326,10 +326,10 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment
                 {
-                    Id = 965747,
+                    Id = 9,
                     AppoName = "test7",
                     AppoType = AppointmentType.Andere,
-                    EmployeeId = 2214,
+                    EmployeeId = 2,
                     Startdate = new DateTime(2020, 10, 30, 12, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 13, 30, 0),
                     Information = "Das ist ein Test"
@@ -338,10 +338,10 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment
                 {
-                    Id = 1026246,
+                    Id = 10,
                     AppoName = "test8",
                     AppoType = AppointmentType.Andere,
-                    EmployeeId = 2214,
+                    EmployeeId = 2,
                     Startdate = new DateTime(2020, 10, 30, 14, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 15, 30, 0),
                     Information = "Das ist ein Test"
@@ -350,10 +350,10 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment
                 {
-                    Id = 11246,
+                    Id = 11,
                     AppoName = "test9",
                     AppoType = AppointmentType.Zeitausgleich,
-                    EmployeeId = 3214,
+                    EmployeeId = 3,
                     Startdate = new DateTime(2020, 10, 30, 6, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 7, 30, 0),
                     Information = "Das ist ein Test"
@@ -362,10 +362,10 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment
                 {
-                    Id = 12246,
+                    Id = 12,
                     AppoName = "test10",
                     AppoType = AppointmentType.Arztbesuch,
-                    EmployeeId = 3214,
+                    EmployeeId = 3,
                     Startdate = new DateTime(2020, 10, 30, 8, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 9, 30, 0),
                     Information = "Das ist ein Test"
@@ -374,10 +374,10 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment
                 {
-                    Id = 13246,
+                    Id = 13,
                     AppoName = "test11",
                     AppoType = AppointmentType.Arztbesuch,
-                    EmployeeId = 3214,
+                    EmployeeId = 3,
                     Startdate = new DateTime(2020, 10, 30, 10, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 11, 30, 0),
                     Information = "Das ist ein Test"
@@ -386,10 +386,10 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment
                 {
-                    Id = 142456,
+                    Id = 14,
                     AppoName = "test12",
                     AppoType = AppointmentType.Arztbesuch,
-                    EmployeeId = 3214,
+                    EmployeeId = 3,
                     Startdate = new DateTime(2020, 10, 30, 12, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 13, 30, 0),
                     Information = "Das ist ein Test"
@@ -398,10 +398,10 @@ namespace ProjectManager.Persistence
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment
                 {
-                    Id = 15426,
+                    Id = 15,
                     AppoName = "test13",
                     AppoType = AppointmentType.Meeting,
-                    EmployeeId = 3214,
+                    EmployeeId = 3,
                     Startdate = new DateTime(2020, 10, 30, 14, 30, 0),
                     Enddate = new DateTime(2020, 10, 30, 15, 30, 0),
                     Information = "Das ist ein Test"
@@ -459,7 +459,7 @@ namespace ProjectManager.Persistence
                 new EmployeeProject
                 {
                     Id = 1246,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     ProjectId = 1246,
                     Projectmanager = false,
                 });
@@ -468,7 +468,7 @@ namespace ProjectManager.Persistence
                 new EmployeeProject
                 {
                     Id = 2246,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     ProjectId = 2426,
                     Projectmanager = false,
                 });
@@ -477,7 +477,7 @@ namespace ProjectManager.Persistence
                 new EmployeeProject
                 {
                     Id = 3246,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     ProjectId = 3246,
                     Projectmanager = true,
                 });
@@ -486,7 +486,7 @@ namespace ProjectManager.Persistence
                 new EmployeeProject
                 {
                     Id = 4246,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     ProjectId = 42456,
                     Projectmanager = true,
                 });
@@ -495,7 +495,7 @@ namespace ProjectManager.Persistence
                 new EmployeeProject
                 {
                     Id = 5246,
-                    EmployeeId = 2214,
+                    EmployeeId = 2,
                     ProjectId = 1246,
                     Projectmanager = false,
                 });
@@ -504,7 +504,7 @@ namespace ProjectManager.Persistence
                 new EmployeeProject
                 {
                     Id = 6215,
-                    EmployeeId = 2214,
+                    EmployeeId = 2,
                     ProjectId = 2426,
                     Projectmanager = true,
                 });
@@ -513,7 +513,7 @@ namespace ProjectManager.Persistence
                 new EmployeeProject
                 {
                     Id = 71234,
-                    EmployeeId = 2214,
+                    EmployeeId = 2,
                     ProjectId = 3246,
                     Projectmanager = false,
                 });
@@ -522,7 +522,7 @@ namespace ProjectManager.Persistence
                 new EmployeeProject
                 {
                     Id = 83465,
-                    EmployeeId = 3214,
+                    EmployeeId = 3,
                     ProjectId = 1246,
                     Projectmanager = true,
                 });
@@ -531,7 +531,7 @@ namespace ProjectManager.Persistence
                 new EmployeeProject
                 {
                     Id = 9634,
-                    EmployeeId = 3214,
+                    EmployeeId = 3,
                     ProjectId = 2426,
                     Projectmanager = false,
                 });
@@ -844,7 +844,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 1968,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     TaskId = 1111,
                 });
 
@@ -852,7 +852,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 2242,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     TaskId = 2222,
                 });
 
@@ -860,7 +860,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 1435,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     TaskId = 3333,
                 });
 
@@ -868,7 +868,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 8678,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     TaskId = 4444,
                 });
 
@@ -876,7 +876,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 7475,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     TaskId = 5555,
                 });
 
@@ -884,7 +884,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 4567,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     TaskId = 6666,
                 });
 
@@ -892,7 +892,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 3435,
-                    EmployeeId = 2214,
+                    EmployeeId = 2,
                     TaskId = 7777,
                 });
 
@@ -900,7 +900,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 3445,
-                    EmployeeId = 2214,
+                    EmployeeId = 2,
                     TaskId = 8888,
                 });
 
@@ -908,7 +908,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 3254,
-                    EmployeeId = 2214,
+                    EmployeeId = 2,
                     TaskId = 9999,
                 });
 
@@ -916,7 +916,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 12433,
-                    EmployeeId = 2214,
+                    EmployeeId = 2,
                     TaskId = 10000,
                 });
 
@@ -924,7 +924,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 54664,
-                    EmployeeId = 2214,
+                    EmployeeId = 2,
                     TaskId = 11111,
                 });
 
@@ -932,7 +932,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 34543,
-                    EmployeeId = 2214,
+                    EmployeeId = 2,
                     TaskId = 12222,
                 });
 
@@ -940,7 +940,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 23532,
-                    EmployeeId = 2214,
+                    EmployeeId = 2,
                     TaskId = 13333,
                 });
 
@@ -948,7 +948,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 21434,
-                    EmployeeId = 3214,
+                    EmployeeId = 3,
                     TaskId = 14444,
                 });
 
@@ -956,7 +956,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 96767,
-                    EmployeeId = 3214,
+                    EmployeeId = 3,
                     TaskId = 15555,
                 });
 
@@ -964,7 +964,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 57868,
-                    EmployeeId = 3214,
+                    EmployeeId = 3,
                     TaskId = 16666,
                 });
 
@@ -972,7 +972,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 32534,
-                    EmployeeId = 3214,
+                    EmployeeId = 3,
                     TaskId = 17777,
                 });
 
@@ -980,7 +980,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 324556,
-                    EmployeeId = 3214,
+                    EmployeeId = 3,
                     TaskId = 18888,
                 });
 
@@ -988,7 +988,7 @@ namespace ProjectManager.Persistence
                 new EmployeeTask
                 {
                     Id = 19324,
-                    EmployeeId = 3214,
+                    EmployeeId = 3,
                     TaskId = 19999,
                 });
 
@@ -1057,7 +1057,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 1111,
                     QualificationId = 1111,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     Information = "Sehr guter Projekt Manager",
                     SkillLevel = SkillLevelType.Sehrgut,
                 });
@@ -1067,7 +1067,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 2222,
                     QualificationId = 2222,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     Information = "Test",
                     SkillLevel = SkillLevelType.Gut,
                 });
@@ -1077,7 +1077,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 3333,
                     QualificationId = 3333,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     Information = "Test",
                     SkillLevel = SkillLevelType.Befriedigend,
                 });
@@ -1087,7 +1087,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 4444,
                     QualificationId = 4444,
-                    EmployeeId = 112412,
+                    EmployeeId = 1,
                     Information = "Test",
                     SkillLevel = SkillLevelType.Genügend,
                 });
@@ -1097,7 +1097,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 5555,
                     QualificationId = 1111,
-                    EmployeeId = 3214,
+                    EmployeeId = 3,
                     Information = "Test",
                     SkillLevel = SkillLevelType.NichtGenügend,
                 });
@@ -1107,7 +1107,7 @@ namespace ProjectManager.Persistence
                  {
                      Id = 6666,
                      QualificationId = 3333,
-                     EmployeeId = 2214,
+                     EmployeeId = 2,
                      Information = "Test",
                      SkillLevel = SkillLevelType.Gut,
                  });
@@ -1117,7 +1117,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 7777,
                     QualificationId = 4444,
-                    EmployeeId = 2214,
+                    EmployeeId = 2,
                     Information = "Test",
                     SkillLevel = SkillLevelType.Genügend,
                 });
@@ -1127,7 +1127,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 8888,
                     QualificationId = 3333,
-                    EmployeeId = 3214,
+                    EmployeeId = 3,
                     Information = "Test",
                     SkillLevel = SkillLevelType.Befriedigend,
                 });
@@ -1137,7 +1137,7 @@ namespace ProjectManager.Persistence
                 {
                     Id = 9999,
                     QualificationId = 4444,
-                    EmployeeId = 3214,
+                    EmployeeId = 3,
                     Information = "Test",
                     SkillLevel = SkillLevelType.Sehrgut,
                 });
