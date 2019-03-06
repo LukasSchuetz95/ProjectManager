@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -13,12 +14,14 @@ using Microsoft.Extensions.Logging;
 using ProjectManager.Core.Contracts;
 using ProjectManager.Core.Entities;
 using ProjectManager.Persistence;
+using ProjectManager.Web.Data;
 using ProjectManager.Web.Models;
 using ProjectManager.Web.Models.ViewModel.Employees;
 
 namespace ProjectManager.Web.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
+    //[AllowAnonymous]
+    [Authorize(Roles = "Admin")]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -26,15 +29,17 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private IUnitOfWork _unitOfWork;
-        private int resultId;
         private List<Department> departmentsList;
+
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            IUnitOfWork unitOfWork)
+            IUnitOfWork unitOfWork,
+            ApplicationDbContext context,  
+            RoleManager<ApplicationRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -43,6 +48,7 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
             _unitOfWork = unitOfWork;
             departmentsList = _unitOfWork.Departments.GetAll();
             DepartmentsSelect = new SelectList(departmentsList, nameof(Department.Id), nameof(Department.DeptName));
+            RolesSelectList = new SelectList(context.Roles.Select(x=>x.Name));
         }
 
         [BindProperty]
@@ -51,6 +57,8 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
         public string ReturnUrl { get; set; }
 
         public SelectList DepartmentsSelect { get; set; }
+
+        public SelectList RolesSelectList { get; set; }
 
         public class InputModel
         {
@@ -76,9 +84,9 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
 
             public string Job { get; set; }
 
-            //public SelectList Departments { get; set; }
-
             public int DepartmentId { get; set; }
+
+            public string MyRole { get; set; }
 
         }
 
@@ -92,30 +100,26 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                //Int32.TryParse(Input.Departments.DataValueField, out resultId);
                 Employee employee = new Employee
                 {
                     Firstname = Input.FirstName,
                     Lastname = Input.LastName,
                     Job = Input.Job,
-                    //DepartmentId = resultId,
                     DepartmentId = Input.DepartmentId,
                     Status = Core.Enum.EmployeeStatusType.Beschäftigt
                 };
 
                 await _unitOfWork.Employees.AddAsync(employee);
 
-                //_unitOfWork.Employees.Add(employee);
-
-                //var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
                 var user = new ApplicationUser
                 {
-                    UserName = employee.ToString(),
+                    UserName = Input.Email,
                     Email = Input.Email,
                     EmployeeId = employee.Id
                 };
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                _userManager.AddToRoleAsync(user, "Member").GetAwaiter().GetResult();
+                _userManager.AddToRoleAsync(user, Input.MyRole).GetAwaiter().GetResult();
 
                 if (result.Succeeded)
                 {
