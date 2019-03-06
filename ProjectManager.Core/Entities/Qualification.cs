@@ -12,5 +12,10 @@ namespace ProjectManager.Core.Entities
         [Required(ErrorMessage = "Dieses Feld wird benötigt")]
         [Display(Name = "Qualifikation")]
         public string QualificationName { get; set; }
+
+        public override string ToString()
+        {
+            return QualificationName;
+        }
     }
 }

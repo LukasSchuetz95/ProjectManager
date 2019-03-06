@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectManager.Core.Contracts;
+using ProjectManager.Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -105,6 +107,13 @@ namespace ProjectManager.Persistence
 
         private void ValidateEntity(object entity)
         {
+            if(entity is Qualification qualification)
+            {
+                if(_dbContext.Qualification.Any(q => (q.QualificationName == qualification.QualificationName) && (q.Id != qualification.Id)))
+                {
+                    throw new ValidationException($"There is already a Qualifikation with the Name: {1}" + qualification.QualificationName, null, nameof(Qualification.QualificationName));
+                }
+            }
         }
 
     }
