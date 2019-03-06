@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ProjectManager.Persistence
 {
@@ -84,6 +85,7 @@ namespace ProjectManager.Persistence
 
         public Employee GetById(int employeeId)
         {
+            
             return _dbContext.Employee.Where(p => p.Id == employeeId).FirstOrDefault();
         }
 
@@ -122,6 +124,10 @@ namespace ProjectManager.Persistence
             return empList;
         }
 
-        
+        public async System.Threading.Tasks.Task AddAsync(Employee employee)
+        {
+            await _dbContext.Employee.AddAsync(employee);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

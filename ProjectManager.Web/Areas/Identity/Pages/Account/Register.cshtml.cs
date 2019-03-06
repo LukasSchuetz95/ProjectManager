@@ -14,6 +14,7 @@ using ProjectManager.Core.Contracts;
 using ProjectManager.Core.Entities;
 using ProjectManager.Persistence;
 using ProjectManager.Web.Models;
+using ProjectManager.Web.Models.ViewModel.Employees;
 
 namespace ProjectManager.Web.Areas.Identity.Pages.Account
 {
@@ -24,26 +25,32 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        private readonly IUnitOfWork unitOfWork = new UnitOfWork();
-        private readonly List<Department> departments;
+        private IUnitOfWork _unitOfWork;
+        private int resultId;
+        private List<Department> departmentsList;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
-            departments = unitOfWork.Departments.GetAll();
+            _unitOfWork = unitOfWork;
+            departmentsList = _unitOfWork.Departments.GetAll();
+            DepartmentsSelect = new SelectList(departmentsList, nameof(Department.Id), nameof(Department.DeptName));
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
 
         public string ReturnUrl { get; set; }
+
+        public SelectList DepartmentsSelect { get; set; }
 
         public class InputModel
         {
@@ -69,6 +76,10 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
 
             public string Job { get; set; }
 
+            //public SelectList Departments { get; set; }
+
+            public int DepartmentId { get; set; }
+
         }
 
         public void OnGet(string returnUrl = null)
@@ -81,24 +92,25 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
+                //Int32.TryParse(Input.Departments.DataValueField, out resultId);
                 Employee employee = new Employee
                 {
                     Firstname = Input.FirstName,
                     Lastname = Input.LastName,
                     Job = Input.Job,
-                    DepartmentId = 1,
+                    //DepartmentId = resultId,
+                    DepartmentId = Input.DepartmentId,
                     Status = Core.Enum.EmployeeStatusType.Beschäftigt
                 };
 
-                using(IUnitOfWork uow = new UnitOfWork())
-                {
-                    uow.Employees.Add(employee);
-                }
+                await _unitOfWork.Employees.AddAsync(employee);
+
+                //_unitOfWork.Employees.Add(employee);
 
                 //var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
                 var user = new ApplicationUser
                 {
-                    UserName = Input.Email,
+                    UserName = employee.ToString(),
                     Email = Input.Email,
                     EmployeeId = employee.Id
                 };
