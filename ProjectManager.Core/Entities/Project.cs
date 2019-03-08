@@ -9,7 +9,7 @@ namespace ProjectManager.Core.Entities
     public class Project : EntityObject, IValidatableObject
     {
         [Required(ErrorMessage = "Dieses Feld wird benötigt")]
-        [Display(Name = "Projektname")]
+        [Display(Name = "Project name")]
         public string ProjectName { get; set; }
 
         public ProjectStatusType Status { get; set; }
@@ -17,13 +17,13 @@ namespace ProjectManager.Core.Entities
         public string Information { get; set; }
 
         //[Required(ErrorMessage = "Dieses Feld wird benötigt")]
-        [Display(Name = "Von")]
+        [Display(Name = "From")]
         public DateTime? Startdate { get; set; }
 
-        [Display(Name = "Bis")]
+        [Display(Name = "To")]
         public DateTime? Enddate { get; set; }
 
-        [Display(Name = "Geschätzte Zeit")]
+        [Display(Name = "Valued Time")]
         public string ValuedTime { get; set; }
 
         public DateTime? Deadline { get; set; }
