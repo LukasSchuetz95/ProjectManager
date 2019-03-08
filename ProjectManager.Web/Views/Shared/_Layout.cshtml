@@ -16,6 +16,9 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="https://unpkg.com/envoy.css@1.6.15/css/envoy.min.css">
     </environment>
+    <style>
+        .navbar co
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -30,7 +33,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div>
-                    <a asp-area="" asp-controller="LoginScreen" asp-action="Home" class="navbar-brand">ProjectManager</a>
+                    <a asp-area="" asp-controller="LoginScreen" asp-action="Home" class="navbar-brand">Project Manager</a>
                 </div>
                 
             </div>
@@ -46,7 +49,7 @@
                         <li><a asp-area="" asp-controller="Departments" asp-action="List">Departments</a></li>
                     </ul>
                 }
-                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                @*@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                 {
                     <ul class="nav navbar-nav">
                         <li><a asp-area="" asp-controller="Appointments" asp-action="Create">Appointment</a></li>
@@ -57,19 +60,44 @@
                         <li><a asp-area="" asp-controller="Departments" asp-action="List">Departments</a></li>
                         <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
                     </ul>
+                }*@
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <ul class="nav navbar-nav">
+                        <li><a asp-area="" asp-controller="Appointments" asp-action="Create">Appointment</a></li>
+                        <li><a asp-area="" asp-controller="Employees" asp-action="List">Employee</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-area="" asp-controller="Projects" asp-action="Create">Create a Project</a></li>
+                                <li><a asp-area="" asp-controller="Projects" asp-action="List">Overview</a></li>
+                                @*<li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">One more separated link</a></li>*@
+                            </ul>
+                        </li>
+                        
+                        <li><a asp-area="" asp-controller="Tasks" asp-action="List">Tasks</a></li>
+                        <li><a asp-area="" asp-controller="Qualifications" asp-action="List">Qualifikationen</a></li>
+                        <li><a asp-area="" asp-controller="Departments" asp-action="List">Departments</a></li>
+                        <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+                    </ul>
                 }
                 <partial name="_LoginPartial" />
             </div>
         </div>
     </nav>
+   
 
-    <partial name="_CookieConsentPartial" />
+    @*<partial name="_CookieConsentPartial" />*@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
         <footer>
-            <p>&copy; ProjectManager</p>
+            <p></p>
         </footer>
     </div>
 
