@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ProjectManager.Core.Contracts;
 using ProjectManager.Core.Entities;
+using ProjectManager.Web.Models;
 using ProjectManager.Web.Models.ViewModel;
 
 namespace ProjectManager.Web.Controllers
@@ -13,6 +15,7 @@ namespace ProjectManager.Web.Controllers
     public class ProjectsController : Controller
     {
         IUnitOfWork _unitOfWork;
+        private UserManager<ApplicationUser> _userManager;
 
         public ProjectsController(IUnitOfWork unitofwork)
         {
@@ -21,6 +24,7 @@ namespace ProjectManager.Web.Controllers
 
         public IActionResult List()
         {
+            
             ProjectsListViewModel model = new ProjectsListViewModel();
             model.LoadData(_unitOfWork);
             return View(model);
@@ -29,6 +33,14 @@ namespace ProjectManager.Web.Controllers
         [HttpPost]
         public IActionResult List(ProjectsListViewModel model)
         {
+            //var user = await GetCurrentUserAsync();
+
+            //var EmployeeId = (int)user?.EmployeeId;
+
+            //model.Projects = _unitOfWork.EmployeeProjects.GetProjectsByEmployeeId(EmployeeId);
+
+            //Muss noch async gemacht werden
+
             model.Projects = _unitOfWork.Projects.GetProjectByName(model.FilterProjectName);
             return View(model);
         }
@@ -57,7 +69,7 @@ namespace ProjectManager.Web.Controllers
                 _unitOfWork.Projects.Update(model.Project);
                 _unitOfWork.EmployeeProjects.Update(employeeProject);
                 _unitOfWork.Save();
-                return RedirectToAction(nameof(Details), new { projectId = model.Project.Id });
+                return RedirectToAction(nameof(List));
             }
 
             return View(model);
@@ -80,6 +92,7 @@ namespace ProjectManager.Web.Controllers
                 try
                 {
                     model.EmployeeProject.Projectmanager = true;
+                    _unitOfWork.Projects.Add(model.EmployeeProject.Project);
                     _unitOfWork.EmployeeProjects.Add(model.EmployeeProject);
                     _unitOfWork.Save();
                     return RedirectToAction("Create", "EmployeeProjects", new { projectId = model.EmployeeProject.ProjectId });
@@ -127,6 +140,7 @@ namespace ProjectManager.Web.Controllers
             return RedirectToAction(nameof(List));
         }
 
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
     }
 }

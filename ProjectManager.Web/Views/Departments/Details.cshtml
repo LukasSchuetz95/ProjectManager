@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "Details";
+}
+
+<!doctype html>
+
+<html lang="de">
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <header>
+        <h2>Departments</h2>
+    </header>
+
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Nachname</th>
+            <th>Vorname</th>
+            <th>Job</th>
+        </tr>
+        @foreach (var employee in Model.EmployeeList)
+        {
+        <tr>
+            <td class="icon-bar" title="Klicken Sie hier um auf das Profil zu gelangen"><a class="active" asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@employee.Id"><i class="glyphicon glyphicon-user"></i></a></td>
+            <td>@employee.Lastname</td>
+            <td>@employee.Firstname</td>
+            <td>@employee.Job</td>
+        </tr>
+        }
+    </table>
+</body>
+</html>

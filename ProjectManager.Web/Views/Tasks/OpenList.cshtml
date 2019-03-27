@@ -1,0 +1,40 @@
+﻿@model ProjectManager.Web.Models.ViewModel.TasksListViewModel
+@{
+    ViewData["Title"] = "OpenList";
+}
+
+<h3>Offene Tasks</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Taskname</th>
+            <th>Projekt</th>
+            <th>Priorität</th>
+            <th>Von</th>
+            <th>Bis</th>
+            <th>Deadline</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model.UndefinedTasks)
+        {
+        <tr>
+            <td>@task.TaskName</td>
+            <td>@task.Project.ProjectName</td>
+            <td>@task.Priority</td>
+            <td>@task.Startdate</td>
+            <td>@task.Enddate</td>
+            <td>@task.Deadline</td>
+            <td>@task.Status</td>
+            <td>@task.Id</td>
+            <td>
+                <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a>
+                <a asp-controller="Tasks" asp-action="Edit" asp-route-taskId="@task.Id">Edit</a>
+                <a asp-controller="Tasks" asp-action="Delete" asp-route-taskId="@task.Id">Task Löschen</a> |
+            </td>
+        </tr>
+        }
+    </tbody>
+    <li><a asp-area="" asp-controller="Tasks" asp-action="List" class="btn btn-primary">Zurück</a></li>
+</table>

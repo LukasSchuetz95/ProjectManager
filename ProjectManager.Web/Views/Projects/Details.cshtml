@@ -1,5 +1,5 @@
 ﻿@model ProjectManager.Web.Models.ViewModel.ProjectsDetailsViewModel
-
+@*@using Kendo.Mvc.UI*@
 @{
     ViewData["Title"] = "Details";
 }
@@ -39,7 +39,11 @@
         <tr>
             <td>@emp.Employee.ToString()</td>
             <td>@emp.Employee.Job</td>
-            <td>@emp.Projectmanager</td>
+
+            @if (emp.Projectmanager)
+            {
+                <td><i class="glyphicon glyphicon-star"></i></td>
+            }
         </tr>
         }
     </tbody>
@@ -60,21 +64,44 @@
     <tbody>
         @foreach (var task in Model.UndefinedTasks)
         {
-        <tr>
-            <td>@task.Id</td>
-            <td>@task.TaskName</td>
-            <td>@task.Status</td>
-            <td>@task.FixedTask</td>
-            <td>@task.Startdate</td>
-            <td>@task.Enddate</td>
-            <td>@task.Deadline</td>
-            <td>
-                <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id" class="btn btn-info">Details</a>
-            </td>
-        </tr>
+            <tr>
+                <td>@task.Id</td>
+                <td>@task.TaskName</td>
+                <td>@task.Status</td>
+                <td>@task.FixedTask</td>
+                <td>@task.Startdate</td>
+                <td>@task.Enddate</td>
+                <td>@task.Deadline</td>
+                <td>
+                    <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id" class="btn btn-info">Details</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
+
+@(Html.Kendo().Grid<ProjectManager.Core.Entities.Task>(Model.UndefinedTasks)
+            .Name("Grid")
+            .Columns(columns =>
+            {
+                columns.Bound(c => c.Id);
+                columns.Bound(c => c.TaskName);
+                columns.Bound(c => c.Status);
+                columns.Bound(c => c.FixedTask);
+                columns.Bound(c => c.Startdate);
+            })
+            .Pageable()
+            .Sortable()
+            .Scrollable(scr => scr.Height(430))
+            .Filterable()
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .PageSize(20)
+                .ServerOperation(false)
+              )
+
+)
+
 <h2>Abgeschlossene Tasks</h2>
 <table class="table">
     <thead>
@@ -91,18 +118,18 @@
     <tbody>
         @foreach (var task in Model.CompletedTasks)
         {
-        <tr>
-            <td>@task.Id</td>
-            <td>@task.TaskName</td>
-            <td>@task.Status</td>
-            <td>@task.FixedTask</td>
-            <td>@task.Startdate</td>
-            <td>@task.Enddate</td>
-            <td>@task.Deadline</td>
-            <td>
-                <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id" class="btn btn-info">Details</a>
-            </td>
-        </tr>
+            <tr>
+                <td>@task.Id</td>
+                <td>@task.TaskName</td>
+                <td>@task.Status</td>
+                <td>@task.FixedTask</td>
+                <td>@task.Startdate</td>
+                <td>@task.Enddate</td>
+                <td>@task.Deadline</td>
+                <td>
+                    <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id" class="btn btn-info">Details</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
@@ -122,18 +149,18 @@
     <tbody>
         @foreach (var task in Model.ProcessingTasks)
         {
-        <tr>
-            <td>@task.Id</td>
-            <td>@task.TaskName</td>
-            <td>@task.Status</td>
-            <td>@task.FixedTask</td>
-            <td>@task.Startdate</td>
-            <td>@task.Enddate</td>
-            <td>@task.Deadline</td>
-            <td>
-                <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id" class="btn btn-info">Details</a>
-            </td>
-        </tr>
+            <tr>
+                <td>@task.Id</td>
+                <td>@task.TaskName</td>
+                <td>@task.Status</td>
+                <td>@task.FixedTask</td>
+                <td>@task.Startdate</td>
+                <td>@task.Enddate</td>
+                <td>@task.Deadline</td>
+                <td>
+                    <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id" class="btn btn-info">Details</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>

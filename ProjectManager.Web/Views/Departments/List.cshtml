@@ -1,0 +1,41 @@
+﻿@model ProjectManager.Web.Models.ViewModel.DepartmentsViewModel
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<!doctype html>
+
+<html lang="de">
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <header>
+        <h3>Departments</h3>
+    </header>
+
+    <div>
+        <a asp-controller="Departments" asp-action="Create" class="btn btn-primary">Neue Abteilung anlegen</a>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>Firmenname</th>
+            <th>Firmensitz</th>
+        </tr>
+
+        @foreach (var department in Model.DepartmentList)
+        {
+          <tr>
+              <td title="Klicken Sie hier um die Arbeiter dieses Standorts zu sehen">
+                  <a asp-controller="Departments" asp-action="Details" asp-route-departmentId="@department.Id">@department.DeptName</a>
+              </td>
+              <td title="Klicken Sie hier um die Arbeiter dieses Standorts zu sehen">
+                  <a asp-controller="Departments" asp-action="Details" asp-route-departmentId="@department.Id">@department.DeptLocation</a></td>
+          </tr>
+        }
+    </table>
+</body>
+</html>

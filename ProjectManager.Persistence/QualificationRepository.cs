@@ -18,27 +18,27 @@ namespace ProjectManager.Persistence
 
         public void Add(Qualification model)
         {
-            _dbContext.Qualifications.Add(model);
+            _dbContext.Qualification.Add(model);
         }
 
         public void Delete(Qualification model)
         {
-            _dbContext.Qualifications.Remove(model);
+            _dbContext.Qualification.Remove(model);
         }
 
         public List<Qualification> GetAll()
         {
-            return _dbContext.Qualifications.OrderBy(q => q.QualificationName).ToList();
+            return _dbContext.Qualification.OrderBy(q => q.QualificationName).ToList();
         }
 
         public Qualification GetById(int qualId)
         {
-            return _dbContext.Qualifications.SingleOrDefault(q => q.Id == qualId);
+            return _dbContext.Qualification.SingleOrDefault(q => q.Id == qualId);
         }
 
         public List<Qualification> GetQualificationByName(string filter)
         {
-            IQueryable<Qualification> query = _dbContext.Qualifications.OrderBy(q => q.QualificationName);
+            IQueryable<Qualification> query = _dbContext.Qualification.OrderBy(q => q.QualificationName);
 
             if (filter == null || filter == "")
             {
@@ -52,7 +52,7 @@ namespace ProjectManager.Persistence
 
         public void Update(Qualification model)
         {
-            _dbContext.Qualifications.Update(model);
+            _dbContext.Qualification.Update(model);
         }
     }
 }

@@ -6,91 +6,49 @@
 
 <h2>List</h2>
 
-<a asp-controller="Tasks" asp-action="Create" class="btn btn-primary">Task anlegen</a>
+<a asp-area="" asp-controller="Tasks" asp-action="Create" class="btn btn-primary">Algemeine Tasks anlegen</a>
 
-<h3>Offene Tasks</h3>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Taskname</th>
-            <th>Projekt</th>
-            <th>Priorität</th>
-            <th>Von</th>
-            <th>Bis</th>
-            <th>Deadline</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var task in Model.UndefinedTasks)
-        {
-            <tr>
-                <td>@task.TaskName</td>
-                <td>@task.Project.ProjectName</td>
-                <td>@task.Priority</td>
-                <td>@task.Startdate</td>
-                <td>@task.Enddate</td>
-                <td>@task.Deadline</td>
-                <td>
-                    <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 
-<h3>Tasks in Arbeit</h3>
+<h3>Tasks Übersicht</h3>
+
+<a asp-area="" asp-controller="Tasks" asp-action="FinishList" class="btn btn-primary">Abgeschlossene Tasks</a>
+<a asp-area="" asp-controller="Tasks" asp-action="OpenList" class="btn btn-primary">Offene Tasks</a>
+<a asp-area="" asp-controller="Tasks" asp-action="InProgressList" class="btn btn-primary"> Tasks in Bearbeitung</a>
+
+
+
+<form asp-controller="Tasks" asp-action="List">
+    <div class="form-group">
+        <input asp-for="FilterTaskName" class="form-control" />
+        <span asp-validation-for="FilterTaskName" class="text-danger"></span>
+    </div>
+    <input type="submit" value="Filter Projekt Name" class="btn btn-primary" />
+</form>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Taskname</th>
-            <th>Projekt</th>
-            <th>Priorität</th>
-            <th>Von</th>
-            <th>Bis</th>
+            <th>Task</th>
             <th>Deadline</th>
+            <th>Taskname</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var task in Model.ProcessingTasks)
+        @if (Model.FilterTaskName != null)
         {
-            <tr>
-                <td>@task.TaskName</td>
-                <td>@task.Project.ProjectName</td>
-                <td>@task.Priority</td>
-                <td>@task.Startdate</td>
-                <td>@task.Enddate</td>
-                <td>@task.Deadline</td>
-                <td>
-                    <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a>
-                </td>
-            </tr>
+            @foreach (var task in Model.Tasks)
+            {
+                <tr>
+                    <td>@task.TaskName</td>
+                    <td>@task.Deadline</td>
+                    <td>@task.TaskName</td>
+                    <td>
+                        <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a> |
+                    </td>
+                </tr>
+
+            }
         }
-    </tbody>
-</table>
-
-<h3>Abgeschlossene Tasks</h3>
-
-<a asp-controller="Tasks" asp-action="FinishList" class="btn btn-primary">Abgeschlossene Tasks</a>
-
-@*<tbody>
-        @foreach (var task in Model.Tasks)
-        {
-            <tr>
-                <td>@task.TaskName</td>
-                <td>@task.Project.ProjectName</td>
-                <td>@task.Priority</td>
-                <td>@task.Startdate</td>
-                <td>@task.Enddate</td>
-                <td>@task.Deadline</td>
-                <td>@task.Status</td>
-
-                <td>
-                    <a asp-controller="Tasks" asp-action="Edit" asp-route-taskId="@task.Id">Edit</a>
-                    <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a>
-
-                </td>
-            </tr>
-        }
-    </tbody>*@
+        </tbody>
+    </table>

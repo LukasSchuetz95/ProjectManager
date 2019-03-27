@@ -19,22 +19,22 @@ namespace ProjectManager.Persistence
 
         public void Add(EmployeeProject model)
         {
-            _dbContext.EmployeeProjects.Add(model);
+            _dbContext.EmployeeProject.Add(model);
         }
 
         public void Delete(EmployeeProject model)
         {
-            _dbContext.EmployeeProjects.Remove(model);
+            _dbContext.EmployeeProject.Remove(model);
         }
 
         public List<EmployeeProject> GetAll()
         {
-            return _dbContext.EmployeeProjects.Include(e => e.Employee).Include(p => p.Project).OrderBy(e => e.Id).ToList();
+            return _dbContext.EmployeeProject.Include(e => e.Employee).Include(p => p.Project).OrderBy(e => e.Id).ToList();
         }
 
         public List<EmployeeProject> GetAllByProjectId(int projectId)
         {
-            return _dbContext.EmployeeProjects.Include(e => e.Employee).Include(p => p.Project)
+            return _dbContext.EmployeeProject.Include(e => e.Employee).Include(p => p.Project)
                 .Where(p => p.ProjectId == projectId).OrderBy(e => e.Id).ToList();
         }
 
@@ -42,9 +42,9 @@ namespace ProjectManager.Persistence
         {
             List<EmployeeProject> list = GetAllByProjectId(projectId);
 
-            List<Employee> employees = _dbContext.Employees.ToList();
+            List<Employee> employees = _dbContext.Employee.ToList();
 
-            List<Employee> newemployees = _dbContext.Employees.ToList();
+            List<Employee> newemployees = _dbContext.Employee.ToList();
 
             foreach (var i in list)
             {
@@ -62,37 +62,37 @@ namespace ProjectManager.Persistence
 
         public EmployeeProject GetByEmployeeIdAndProjectId(int projectId, int empId)
         {
-            return _dbContext.EmployeeProjects.SingleOrDefault(p => p.EmployeeId == empId && p.ProjectId == projectId);
+            return _dbContext.EmployeeProject.SingleOrDefault(p => p.EmployeeId == empId && p.ProjectId == projectId);
         }
 
         public EmployeeProject GetById(int empProId)
         {
-            return _dbContext.EmployeeProjects.SingleOrDefault(e => e.Id == empProId);
+            return _dbContext.EmployeeProject.SingleOrDefault(e => e.Id == empProId);
         }
 
         public EmployeeProject GetByProjectId(int id)
         {
-            return _dbContext.EmployeeProjects.Where(p => p.ProjectId == id).FirstOrDefault();
+            return _dbContext.EmployeeProject.Where(p => p.ProjectId == id).FirstOrDefault();
         }
 
         public EmployeeProject GetProjectManagerByProjectId(int projectId)
         {
-            return _dbContext.EmployeeProjects.Include(e => e.Employee).Include(pr => pr.Project).Where(p => p.ProjectId == projectId && p.Projectmanager == true).SingleOrDefault();
+            return _dbContext.EmployeeProject.Include(e => e.Employee).Include(pr => pr.Project).Where(p => p.ProjectId == projectId && p.Projectmanager == true).SingleOrDefault();
         }
 
         public List<EmployeeProject> GetProjectsByEmployeeId(int employeeId)
         {
-            return _dbContext.EmployeeProjects.Include(e => e.Employee).Include(p => p.Project).Where(p => p.EmployeeId == employeeId).ToList();
+            return _dbContext.EmployeeProject.Include(e => e.Employee).Include(p => p.Project).Where(p => p.EmployeeId == employeeId).ToList();
         }
 
         public void SetAllProjectManagersToFalse(int projectId)
         {
-            _dbContext.EmployeeProjects.Where(p => p.ProjectId == projectId).ToList().ForEach(pp => pp.Projectmanager = false);
+            _dbContext.EmployeeProject.Where(p => p.ProjectId == projectId).ToList().ForEach(pp => pp.Projectmanager = false);
         }
 
         public void Update(EmployeeProject employeeProject)
         {
-            _dbContext.EmployeeProjects.Update(employeeProject);
+            _dbContext.EmployeeProject.Update(employeeProject);
         }
     }
 }

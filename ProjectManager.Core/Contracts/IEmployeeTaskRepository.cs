@@ -12,7 +12,11 @@ namespace ProjectManager.Core.Contracts
         void Add(EmployeeTask model);
 
         void Update(EmployeeTask model);
-
-   
+        EmployeeTask GetByProjectId(int projectId);
+        EmployeeTask GetByTaskId(int taskId);
+        void Delete(EmployeeTask model);
+        EmployeeTask GetById(int empProId);
+        EmployeeTask GetByEmployeeIdAndTaskId(int id1, int id2);
+        List<EmployeeTask> GetTasksByEmployeeIdAndQualifications(int employeeId, List<EmployeeQualification> employeeQualificationList);
     }
 }

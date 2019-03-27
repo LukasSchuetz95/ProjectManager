@@ -8,5 +8,6 @@ namespace ProjectManager.Core.Contracts
     public interface IEmployeeQualificationRepository
     {
         List<EmployeeQualification> GetAllProjectManagers();
+        List<EmployeeQualification> GetQualificationsByEmployeeId(int employeeId);
     }
 }

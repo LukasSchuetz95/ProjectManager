@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ProjectManager.Persistence
 {
@@ -17,9 +18,18 @@ namespace ProjectManager.Persistence
             _dbContext = dbContext;
         }
 
+        public void Add(Employee employee)
+        {
+            _dbContext.Employee.Add(employee);
+        }
+        public void Update(Employee employee)
+        {
+            _dbContext.Employee.Update(employee);
+        }
+
         public List<Employee> GetEmployeeByLastname(string filter)
         {
-            IQueryable<Employee> query = _dbContext.Employees.Include(e=> e.Department).OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
+            IQueryable<Employee> query = _dbContext.Employee.Include(e=> e.Department).OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
 
             if (filter == null || filter == "")
             {
@@ -33,7 +43,7 @@ namespace ProjectManager.Persistence
 
         public List<Employee> GetEmployeeByFirstname(string filter)
         {
-            IQueryable<Employee> query = _dbContext.Employees.Include(e => e.Department).OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
+            IQueryable<Employee> query = _dbContext.Employee.Include(e => e.Department).OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
 
             if (filter == null || filter == "")
             {
@@ -47,7 +57,7 @@ namespace ProjectManager.Persistence
 
         public List<Employee> GetEmployeeByJob(string filter)
         {
-            IQueryable<Employee> query = _dbContext.Employees.Include(e => e.Department).OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
+            IQueryable<Employee> query = _dbContext.Employee.Include(e => e.Department).OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
 
             if (filter == null || filter == "")
             {
@@ -61,7 +71,7 @@ namespace ProjectManager.Persistence
 
         public List<Employee> GetEmployeeByDeparmentName(string filter)
         {
-            IQueryable<Employee> query = _dbContext.Employees.Include(e => e.Department).OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
+            IQueryable<Employee> query = _dbContext.Employee.Include(e => e.Department).OrderBy(e => e.Lastname).ThenBy(e => e.Firstname);
 
             if (filter == null || filter == "")
             {
@@ -75,20 +85,21 @@ namespace ProjectManager.Persistence
 
         public Employee GetById(int employeeId)
         {
-            return _dbContext.Employees.Where(p => p.Id == employeeId).FirstOrDefault();
+            
+            return _dbContext.Employee.Where(p => p.Id == employeeId).FirstOrDefault();
         }
 
         public List<Employee> GetAll()
         {
-            return _dbContext.Employees.OrderBy(e => e.Firstname).ThenBy(e => e.Lastname).ToList();
+            return _dbContext.Employee.OrderBy(e => e.Firstname).ThenBy(e => e.Lastname).ToList();
         }
 
         public List<EmployeeQualification> GetAllProjectManagersAndProjectMembers(int projectId)
         {
-            List<EmployeeQualification> projectManagers = _dbContext.EmployeeQualifications.Include(e => e.Employee).Include(q => q.Qualification).
+            List<EmployeeQualification> projectManagers = _dbContext.EmployeeQualification.Include(e => e.Employee).Include(q => q.Qualification).
                 Where(e => e.Qualification.QualificationName == "Projekt Manager").ToList();
 
-            List<EmployeeProject> employeeProjects = _dbContext.EmployeeProjects.Where(p => p.ProjectId == projectId).ToList();
+            List<EmployeeProject> employeeProjects = _dbContext.EmployeeProject.Where(p => p.ProjectId == projectId).ToList();
 
             List<EmployeeQualification> employees = new List<EmployeeQualification>();
 
@@ -104,6 +115,19 @@ namespace ProjectManager.Persistence
             }
 
             return employees;
+        }
+
+        public List<Employee> GetEmployeeByDepartmentId(int id)
+        {
+            List<Employee> empList = _dbContext.Employee.Where(e => e.DepartmentId == id).OrderBy(e =>e.Lastname).ThenBy(e => e.Firstname).ToList();
+
+            return empList;
+        }
+
+        public async System.Threading.Tasks.Task AddAsync(Employee employee)
+        {
+            await _dbContext.Employee.AddAsync(employee);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

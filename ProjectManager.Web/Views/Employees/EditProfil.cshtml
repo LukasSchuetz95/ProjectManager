@@ -5,26 +5,63 @@
 }
 
 <h2>EditProfil</h2>
-
-<h4>EmployeesEditProfilViewModel</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="EditProfil">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group" >
-                <label asp-for="Employee.Lastname" class="control-label"></label>
-                <input asp-for="Employee.Lastname" class="form-control" />
-                <span asp-validation-for="Employee.Lastname" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-success" />
-            </div>
-        </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<form asp-action="EditProfil">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+            <label asp-for="Employee.Profilepicture" class="control-label"></label>
+            <input asp-for="Employee.Profilepicture" type="image" class="form-control" style="width:400px" />
+            <span asp-validation-for="Employee.Profilepicture" class="text-danger"></span>
+            <button class="btn btn-primary">Browse</button>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.StreetNameAndNr" class="control-label"></label>
+        <input asp-for="Employee.StreetNameAndNr" class="form-control" style="width:400px" />
+        <span asp-validation-for="Employee.StreetNameAndNr" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.ZipCode" class="control-label"></label>
+        <input asp-for="Employee.ZipCode" class="form-control" style="width:400px" />
+        <span asp-validation-for="Employee.ZipCode" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.Residence" class="control-label"></label>
+        <input asp-for="Employee.Residence" class="form-control" style="width:400px" />
+        <span asp-validation-for="Employee.Residence" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.Phonenumber" class="control-label"></label>
+        <input asp-for="Employee.Phonenumber" class="form-control" style="width:400px" />
+        <span asp-validation-for="Employee.Phonenumber" class="text-danger"></span>
+    </div>
+
+    <input type="hidden" asp-for="Employee.Id" />
+    <input type="hidden" asp-for="Employee.Timestamp" />
+    <input type="hidden" asp-for="Employee.Department" />
+    <input type="hidden" asp-for="Employee.DepartmentId" />
+    <input type="hidden" asp-for="Employee.Firstname" />
+    <input type="hidden" asp-for="Employee.Lastname" />
+    <input type="hidden" asp-for="Employee.Job" />
+    <input type="hidden" asp-for="Employee.Status" />
+    <input type="hidden" asp-for="Employee.Profilepicture" />
+    <input type="hidden" asp-for="Employee.Birthdate" />
+    <input type="hidden" asp-for="Employee.HiringDate" />
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" style="width:200px" />
+        @if (Model.Success == true)
+        {
+            <span>Daten erfolgreich gespeichert!</span>
+        }
+    </div>
+    <div>
+        <a asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@Model.Employee.Id" class="btn btn-default" style="width:200px">Zurück zum Profil</a>
+    </div>
+</form>
+
+
+
+
+
 

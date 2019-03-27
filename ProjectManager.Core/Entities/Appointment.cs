@@ -11,6 +11,7 @@ namespace ProjectManager.Core.Entities
 {
     public class Appointment : EntityObject, IValidatableObject
     {
+
         [ForeignKey(nameof(EmployeeId))]
         public Employee Employee { get; set; }
         public int EmployeeId { get; set; }

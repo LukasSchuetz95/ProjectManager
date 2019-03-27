@@ -1,10 +1,9 @@
 ﻿@model ProjectManager.Web.Models.ViewModel.TasksListViewModel
 
 @{
-    ViewData["Title"] = "FinishList";
+    ViewData["Title"] = "Abgeschlossene Tasks";
 }
 
-<h2>FinishList</h2>
 
 <h3>Abgeschlossene Tasks</h3>
 
@@ -31,9 +30,11 @@
                 <td>@task.Deadline</td>
                 <td>
                     <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a>
+                    <a asp-controller="Tasks" asp-action="Edit" asp-route-taskId="@task.Id">Edit</a>
+                    <a asp-controller="Tasks" asp-action="Delete" asp-route-taskId="@task.Id">Task Löschen</a> |
                 </td>
             </tr>
         }
     </tbody>
-
+    <li><a asp-area="" asp-controller="Tasks" asp-action="List" class="btn btn-primary">Zurück</a></li>
 </table>

@@ -13,43 +13,32 @@
 </head>
 <body>
     <header>
-        <h3>CreateAppointment</h3>
+        <h3>Mitarbeiter suchen</h3>
     </header>
-    <form asp-controller="Employees" asp-action="List">
-        <div class="dl-horizontal">
-            <label asp-for="FilterLastname"></label>
-            <input asp-for="FilterLastname" class="form-control" />
-            <span asp-validation-for="FilterLastname" class="text-danger"></span>
-        </div>
-        <input type="submit" value="Nachname filtern" class="btn btn-primary" />
-    </form>
-    <form asp-controller="Employees" asp-action="List">
-        <div class="dl-horizontal">
-            <label asp-for="FilterFirstname"></label>
-            <input asp-for="FilterFirstname" class="form-control" />
-            <span asp-validation-for="FilterFirstname" class="text-danger"></span>
-        </div>
-        <input type="submit" value="Vorname filtern" class="btn btn-primary" size="50"/>
-    </form>
-    <form asp-controller="Employees" asp-action="List">
-        <div class="dl-horizontal">
-            <label asp-for="FilterJob"></label>
-            <input asp-for="FilterJob" class="form-control" />
-            <span asp-validation-for="FilterJob" class="text-danger"></span>
-        </div>
-        <input type="submit" value="Job filtern" class="btn btn-primary" size="50"/>
-    </form>
-    <form asp-controller="Employees" asp-action="List">
-        <div class="form-group">
-            <label asp-for="FilterDepartmentName"></label>
-            <input asp-for="FilterDepartmentName" class="form-control" />
-            <span asp-validation-for="FilterDepartmentName" class="text-danger" size="50"></span>
-        </div>
-        <input type="submit" value="Abteilung filtern" class="btn btn-primary" size="50" />
+
+    <form asp-controller="Employees" asp-action="List">        
+            <div class="dropdown-menu-left">
+                <input asp-for="Filter" class="form-control" style="width:812px"/>
+                <span asp-validation-for="Filter" class="text-danger"></span>
+                <div>
+                <input asp-for="LastnameFilter" type="submit" value="Nachname filtern" class="btn btn-primary" style="width:200px"/>
+                <span asp-validation-for="LastnameFilter" class="text-danger" />
+
+                <input asp-for="FirstnameFilter" type="submit" value="Vorname filtern" class="btn btn-primary" style="width:200px" />
+                <span asp-validation-for="FirstnameFilter" class="text-danger" />
+
+                <input asp-for="JobFilter" type="submit" value="Job filtern" class="btn btn-primary" style="width:200px" />
+                <span asp-validation-for="JobFilter" class="text-danger" />
+
+                <input asp-for="DepartmentFilter" type="submit" value="Abteilung filtern" class="btn btn-primary" style="width:200px" />
+                <span asp-validation-for="DepartmentFilter" class="text-danger" />
+                </div>
+            </div>
     </form>
 
-    <table class="table">
+    <table class="table" style="width:812px">
         <tr>
+            <th></th>
             <th>Nachname</th>
             <th>Vorname</th>
             <th>Job</th>
@@ -57,14 +46,15 @@
         </tr>
         @foreach (var employee in Model.Employees)
         {
-            <tr>
-                <td title="Klicken Sie hier um auf das Profil zu gelangen"><a asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@employee.Id">@employee.Lastname</a></td>
-                <td title="Klicken Sie hier um auf das Profil zu gelangen"><a asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@employee.Id">@employee.Firstname</a></td>
-                <td>@employee.Job</td>
-                <td>@employee.Department.DeptName</td>
-            </tr>
+        <tr>
+            <td class="icon-bar" title="Klicken Sie hier um auf das Profil zu gelangen"><a class="active" asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@employee.Id"><i class="glyphicon glyphicon-user"></i></a></td>
+            <td>@employee.Lastname</td>
+            <td>@employee.Firstname</td>
+            <td>@employee.Job</td>
+            <td>@employee.Department.DeptName</td>
+        </tr>
         }
-    </table>
+    </table>  
 </body>
 </html>
 

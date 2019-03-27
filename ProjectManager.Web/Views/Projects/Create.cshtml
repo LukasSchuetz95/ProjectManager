@@ -14,7 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="EmployeeProject.Project.ProjectName" class="control-label"></label>
-                <input asp-for="EmployeeProject.Project.ProjectName" class="form-control" />
+                <input required="true" asp-for="EmployeeProject.Project.ProjectName" class="form-control" />
                 <span asp-validation-for="EmployeeProject.Project.ProjectName" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -19,24 +19,87 @@ namespace ProjectManager.Persistence
 
         public void Add(EmployeeTask model)
         {
-            _dbContext.EmployeeTasks.Add(model);
+            _dbContext.EmployeeTask.Add(model);
+        }
+
+        public void Delete(EmployeeTask model)
+        {
+            _dbContext.EmployeeTask.Remove(model);
         }
 
         public List<EmployeeTask> GetAll()
         {
-            return _dbContext.EmployeeTasks.Include(e => e.Employee).Include(t => t.Task).OrderBy(p => p.Task.Status).ToList();     
+            return _dbContext.EmployeeTask.Include(e => e.Employee).Include(t => t.Task).OrderBy(p => p.Task.Status).ToList();
 
             //throw new NotImplementedException();
         }
 
+        public EmployeeTask GetByEmployeeIdAndTaskId(int taskId, int empId)
+        {
+            return _dbContext.EmployeeTask.SingleOrDefault(p => p.EmployeeId == empId && p.TaskId == taskId);
+        }
+
+        public EmployeeTask GetById(int empProId)
+        {
+            return _dbContext.EmployeeTask.Where(p => p.Id == empProId).FirstOrDefault();
+        }
+
+        public EmployeeTask GetByProjectId(int projectId)
+        {
+            return _dbContext.EmployeeTask.SingleOrDefault(e => e.Task.ProjectId == projectId);
+        }
+
+        public EmployeeTask GetByTaskId(int taskId)
+        {
+            return _dbContext.EmployeeTask.SingleOrDefault(e => e.Id == taskId);
+        }
+
         public EmployeeTask GetEmployeeTaskByTaskId(int taskId)
         {
-            return _dbContext.EmployeeTasks.Include(e => e.Employee).Include(t => t.Task).Where(t => t.TaskId == taskId).SingleOrDefault();
+            return _dbContext.EmployeeTask.Include(e => e.Employee).Include(t => t.Task).Where(t => t.TaskId == taskId).SingleOrDefault();
         }
 
         public void Update(EmployeeTask model)
         {
-            _dbContext.EmployeeTasks.Update(model);
+            _dbContext.EmployeeTask.Update(model);
+        }
+
+        public List<EmployeeTask> GetTasksByEmployeeIdAndQualifications(int employeeId, List<EmployeeQualification> employeeQualifications)
+        {
+            List<Task> taskList = _dbContext.Task.ToList();
+
+            List<TaskQualification> taskQualificationList = _dbContext.TaskQualification.ToList();
+
+            List<EmployeeTask> employeeTask = new List<EmployeeTask>();
+
+            foreach (var tra in taskList)
+            {
+                if (taskQualificationList.Count() != 0)
+                {
+                    foreach (var luf in taskQualificationList)
+                    {
+                        if (tra.Id == luf.TaskId)
+                        {
+                            foreach (var kid in employeeQualifications)
+                            {
+                                if (luf.QualificationId == kid.QualificationId)
+                                {
+                                    EmployeeTask newTask = new EmployeeTask();
+                                    newTask.EmployeeId = kid.EmployeeId;
+                                    newTask.TaskId = luf.TaskId;
+                                    employeeTask.Add(newTask);
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+
+                }
+            }
+
+            return employeeTask;
         }
     }
 }

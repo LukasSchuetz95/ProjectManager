@@ -19,5 +19,6 @@ namespace ProjectManager.Core.Contracts
         EmployeeProject GetProjectManagerByProjectId(int projectId);
         EmployeeProject GetByEmployeeIdAndProjectId(int id1, int id2);
         void SetAllProjectManagersToFalse(int id);
+   
     }
 }
