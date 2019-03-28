@@ -16,21 +16,21 @@ namespace ProjectManager.Core.Entities
         public Employee Employee { get; set; }
         public int EmployeeId { get; set; }
 
-        [Required(ErrorMessage = "Dieses Feld wird benötigt")]
+        [Required(ErrorMessage = "This field is required")]
         [Display(Name = "Termin")]
         public string AppoName { get; set; }
 
-        [Required(ErrorMessage = "Dieses Feld wird benötigt")]
-        [Display(Name = "Terminart")]
+        [Required(ErrorMessage = "This field is required")]
+        [Display(Name = "Appointment Type")]
         public AppointmentType AppoType { get; set; }
         
         public string Information { get; set; }
 
-        [Required(ErrorMessage = "Dieses Feld wird benötigt")]
-        [Display(Name = "Von")]
+        [Required(ErrorMessage = "This field is required")]
+        [Display(Name = "From")]
         public DateTime Startdate { get; set; }
 
-        [Display(Name = "Bis")]
+        [Display(Name = "To")]
         public DateTime Enddate { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
