@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProjectManager.Core.Contracts;
 using ProjectManager.Core.Entities;
@@ -19,6 +20,7 @@ namespace ProjectManager.Web.Controllers
             _unitOfWork = unitofwork;
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult List()
         {
             QualificationsListViewModel model = new QualificationsListViewModel();
@@ -27,18 +29,21 @@ namespace ProjectManager.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult List(QualificationsListViewModel model)
         {
             model.Qualifications = _unitOfWork.Qualifications.GetQualificationByName(model.FilterProjectName);
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(Qualification model)
         {
             if (ModelState.IsValid)
@@ -59,6 +64,7 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int qualId)
         {
             Qualification model = new Qualification();
@@ -68,6 +74,7 @@ namespace ProjectManager.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(Qualification model)
         {
             if (ModelState.IsValid)
@@ -80,6 +87,7 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int qualId)
         {
             Qualification model = _unitOfWork.Qualifications.GetById(qualId);
@@ -93,6 +101,7 @@ namespace ProjectManager.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteConfirm(int qualId)
         {
             Qualification model = _unitOfWork.Qualifications.GetById(qualId);

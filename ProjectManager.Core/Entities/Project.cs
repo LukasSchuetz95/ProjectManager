@@ -8,7 +8,7 @@ namespace ProjectManager.Core.Entities
 {
     public class Project : EntityObject, IValidatableObject
     {
-        [Required(ErrorMessage = "Dieses Feld wird benötigt")]
+        [Required(ErrorMessage = "This field is required")]
         [Display(Name = "Project name")]
         public string ProjectName { get; set; }
 
@@ -39,11 +39,11 @@ namespace ProjectManager.Core.Entities
             {
                 if(this.Startdate > this.Enddate)
                 {
-                    yield return new ValidationResult("Startdatum muss vor Enddatum liegen !", new List<string>() { nameof(this.Startdate), nameof(this.Enddate) });
+                    yield return new ValidationResult("Start date has to be before end date !", new List<string>() { nameof(this.Startdate), nameof(this.Enddate) });
                 }
                 if (this.Startdate >= DateTime.Now)
                 {
-                    yield return new ValidationResult("Startdatum muss vor aktuellem Datum liegen !", new List<string>() { nameof(this.Startdate) });
+                    yield return new ValidationResult("Start date has to be before the current date !", new List<string>() { nameof(this.Startdate) });
                 }
             }
         }

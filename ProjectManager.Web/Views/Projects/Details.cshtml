@@ -6,6 +6,10 @@
 
 <h2>Details</h2>
 
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+
 <dl class="dl-horizontal">
     <dt>@Html.DisplayNameFor(m => m.Projects.Id)</dt>
     <dd>@Model.Projects.Id</dd>
@@ -42,7 +46,7 @@
 
             @if (emp.Projectmanager)
             {
-                <td><i class="glyphicon glyphicon-star"></i></td>
+                <td><i class="fas fa-user-tie"></i></td>
             }
         </tr>
         }

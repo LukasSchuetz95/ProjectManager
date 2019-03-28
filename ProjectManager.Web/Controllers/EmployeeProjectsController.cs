@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProjectManager.Core.Contracts;
 using ProjectManager.Core.Entities;
@@ -18,6 +19,8 @@ namespace ProjectManager.Web.Controllers
         {
             _unitOfWork = unitOfWork;
         }
+
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(int projectId)
         {
             EmployeeProjectsCreateViewModel model = new EmployeeProjectsCreateViewModel();
@@ -26,6 +29,7 @@ namespace ProjectManager.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(int employeeId, int projectId)
         {
 
@@ -50,6 +54,7 @@ namespace ProjectManager.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int empProId)
         {
             EmployeeProject model = _unitOfWork.EmployeeProjects.GetById(empProId);

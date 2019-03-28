@@ -9,8 +9,8 @@ namespace ProjectManager.Core.Entities
     public class Qualification : EntityObject
     {
 
-        [Required(ErrorMessage = "Dieses Feld wird benötigt")]
-        [Display(Name = "Qualifikation")]
+        [Required(ErrorMessage = "This field is required")]
+        [Display(Name = "Qualification")]
         public string QualificationName { get; set; }
 
         public override string ToString()

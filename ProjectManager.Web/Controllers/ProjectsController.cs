@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ProjectManager.Core.Contracts;
@@ -45,6 +46,7 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int projectId)
         {
             ProjectsEditViewModel model = new ProjectsEditViewModel();
@@ -54,6 +56,7 @@ namespace ProjectManager.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(ProjectsEditViewModel model)
         {
             Employee employee = _unitOfWork.Employees.GetById(model.EditEmployee.Id);
@@ -75,6 +78,7 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ProjectsCreateViewModel model = new ProjectsCreateViewModel();
@@ -83,6 +87,7 @@ namespace ProjectManager.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(ProjectsCreateViewModel model)
         {
             
@@ -107,6 +112,7 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+
         public IActionResult Details(int projectId)
         {
             ProjectsDetailsViewModel model = new ProjectsDetailsViewModel();
@@ -114,6 +120,7 @@ namespace ProjectManager.Web.Controllers
             return View(model);   
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int projectId)
         {
             Project model = _unitOfWork.Projects.GetById(projectId);
@@ -127,6 +134,7 @@ namespace ProjectManager.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteConfirm(int projectId)
         {
             Project model = _unitOfWork.Projects.GetById(projectId);
@@ -140,7 +148,7 @@ namespace ProjectManager.Web.Controllers
             return RedirectToAction(nameof(List));
         }
 
-        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+        //private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
     }
 }

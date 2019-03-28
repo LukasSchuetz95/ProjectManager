@@ -17,7 +17,7 @@ namespace ProjectManager.Core.Entities
         public int EmployeeId { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
-        [Display(Name = "Termin")]
+        [Display(Name = "Appointment")]
         public string AppoName { get; set; }
 
         [Required(ErrorMessage = "This field is required")]

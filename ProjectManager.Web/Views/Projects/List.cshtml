@@ -5,7 +5,9 @@
 }
 
 <h2>Projekte</h2>
-
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
 
 <form asp-controller="Projects" asp-action="List">
     <div class="form-group-sm  col-xs-2">
@@ -25,16 +27,22 @@
     <tbody>
         @foreach (var project in Model.Projects)
         {
-        <tr>
-            <td>@project.ProjectName</td>
-            <td>@project.Deadline</td>
-            <td>@project.Id</td>
-            <td title="Bearbeiten"><a asp-controller="Projects" asp-action="Edit" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-edit"></i></a></td>
-            <td title="Details"><a asp-controller="Projects" asp-action="Details" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-zoom-in"></i></a></td>
-            <td title="Projekt löschen"><a asp-controller="Projects" asp-action="Delete" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-remove-circle"></i></a></td>
-            <td title="Mitarbeiter hinzufügen"><a asp-controller="EmployeeProjects" asp-action="Create" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-th"></i></a></td>
-            <td title="Task erstellen"><a asp-controller="Tasks" asp-action="Create" asp-route-projectId="@project.Id"><i class="glyphicon glyphicon-tasks"></i></a></td>
-        </tr>
+            <tr>
+                <td>@project.ProjectName</td>
+                <td>@project.Deadline</td>
+                <td>@project.Id</td>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <td title="Edit"><a asp-controller="Projects" asp-action="Edit" asp-route-projectId="@project.Id"><i class="far fa-edit"></i></a></td>
+                    <td title="Delete project"><a asp-controller="Projects" asp-action="Delete" asp-route-projectId="@project.Id"><i class="far fa-trash-alt"></i></a></td>
+                    <td title="Edit project member"><a asp-controller="EmployeeProjects" asp-action="Create" asp-route-projectId="@project.Id"><i class="fas fa-users-cog"></i></a></td>
+                }
+
+                <td title="Details"><a asp-controller="Projects" asp-action="Details" asp-route-projectId="@project.Id"><i class="fas fa-info"></i></a></td>
+                <td title="Create task"><a asp-controller="Tasks" asp-action="Create" asp-route-projectId="@project.Id"><i class="fas fa-tasks"></i></a></td>
+
+
+            </tr>
         }
     </tbody>
 </table>

@@ -17,7 +17,7 @@ namespace ProjectManager.Core.Entities
         public Project Project { get; set; }
         public int ProjectId { get; set; }
 
-        [Display(Name = "Projekt-Manager")]
+        [Display(Name = "Project Manager")]
         public bool Projectmanager { get; set; }
     }
 }

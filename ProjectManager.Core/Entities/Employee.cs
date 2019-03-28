@@ -14,38 +14,38 @@ namespace ProjectManager.Core.Entities
         public Department Department { get; set; }
         public int DepartmentId { get; set; }
 
-        [Required(ErrorMessage = "Dieses Feld wird benötigt")]
-        [Display(Name = "Vorname")]
+        [Required(ErrorMessage = "This field is required")]
+        [Display(Name = "Firstname")]
         public string Firstname { get; set; }
 
-        [Required(ErrorMessage = "Dieses Feld wird benötigt")]
-        [Display(Name = "Nachname")]
+        [Required(ErrorMessage = "This field is required")]
+        [Display(Name = "Lastname")]
         public string Lastname { get; set; }
 
-        [Display(Name = "Job-Name")]
+        [Display(Name = "Job")]
         public string Job { get; set; }
 
         public EmployeeStatusType Status { get; set; }
 
-        [Display(Name = "Profil-Bild")]
+        [Display(Name = "Profile Picture")]
         public byte[] Profilepicture { get; set; }
 
-        [Display(Name = "Geburtsdatum")]
+        [Display(Name = "Birthdate")]
         public DateTime? Birthdate { get; set; }
 
-        [Display(Name = "Straße/Hausnr.")]
+        [Display(Name = "Street address")]
         public string StreetNameAndNr { get; set; }
 
-        [Display(Name = "PLZ")]
+        [Display(Name = "Postcode")]
         public string ZipCode { get; set; }
 
-        [Display(Name = "Wohnort")]
+        [Display(Name = "Town/City")]
         public string Residence { get; set; }
 
-        [Display(Name = "Anstellungsdatum")]
+        [Display(Name = "Hiring Date")]
         public DateTime? HiringDate { get; set; }
 
-        [Display(Name = "Telefonnummer")]
+        [Display(Name = "Phonenumber")]
         public string Phonenumber { get; set; }
 
         public override string ToString()
