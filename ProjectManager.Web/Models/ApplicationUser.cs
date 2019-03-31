@@ -10,21 +10,10 @@ namespace ProjectManager.Web.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        public ApplicationUser() : base()
-        {
-
-        }
-
+        //Navigation Property to Employee
         [ForeignKey(nameof(EmployeeId))]
         [NotMapped]
         public virtual Employee Employee { get; set; }
         public int EmployeeId { get; set; }
-
-        //UserManager<IdentityUser> userManager; // DI injected
-
-        //var user = await userManager.Users
-        //    .Include(x => x.Employee)
-        //    .SingleAsync(x => x.NormalizedEmail == email);
-
     }
 }
