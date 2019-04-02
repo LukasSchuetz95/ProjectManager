@@ -83,7 +83,7 @@ namespace ProjectManager.Web.Controllers
                     _unitOfWork.EmployeeTasks.Add(model.EmployeeTask);
                     _unitOfWork.Save();
                     //  return RedirectToAction("Create", "EmployeeTasks", new { taskId = model.EmployeeTask.TaskId });
-                    return RedirectToAction("List", "Projects");
+                    return RedirectToAction("List", "Project");
                 }
                 catch (ValidationException validationException)
                 {

@@ -8,5 +8,8 @@ namespace ProjectManager.Core.Contracts
     public interface IAppointmentRepository
     {
         List<Appointment> GetAll();
+        void Add(Appointment appointments);
+        List<Appointment> GetByEmployee(int employeeId);
+
     }
 }
