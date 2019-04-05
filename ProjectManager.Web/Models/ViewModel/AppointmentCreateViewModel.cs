@@ -18,7 +18,7 @@ namespace ProjectManager.Web.Models.ViewModel
             List<Employee> employees = unitOfWork.Employees.GetAll();
 
             Employees = new SelectList(employees, nameof(Employee.Id), nameof(Employee));
-           
+
         }
     }
 }
