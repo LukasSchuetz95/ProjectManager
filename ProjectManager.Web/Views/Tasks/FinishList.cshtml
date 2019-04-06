@@ -7,7 +7,7 @@
 
 <h3>Abgeschlossene Tasks</h3>
 
-<form asp-controller="Tasks" asp-action="List">
+<form asp-controller="Tasks" asp-action="FinishList">
     <div class="form-group">
         <input asp-for="FilterTaskName" class="form-control" />
         <span asp-validation-for="FilterTaskName" class="text-danger"></span>
@@ -32,9 +32,9 @@
                 <tr>
                     <td>@task.TaskName</td>
                     <td>@task.Deadline</td>
-                    <td>@task.TaskName</td>
+                    <td>@task.Project.ProjectName</td>
                     <td>
-                        <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a> |
+                        <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a> 
                     </td>
                 </tr>
 
@@ -47,9 +47,9 @@
                 <tr>
                     <td>@task.TaskName</td>
                     <td>@task.Deadline</td>
-                    <td>@task.TaskName</td>
+                    <td>@task.Project.ProjectName</td>
                     <td>
-                        <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a> |
+                        <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a> 
                     </td>
                 </tr>
 
@@ -57,3 +57,5 @@
         }
     </tbody>
 </table>
+
+<a asp-area="" asp-controller="Tasks" asp-action="List" class="btn btn-primary">Zurück</a>

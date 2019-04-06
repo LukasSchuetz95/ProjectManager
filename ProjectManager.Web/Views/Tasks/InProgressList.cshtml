@@ -5,7 +5,7 @@
 
 <h3>Tasks in Bearbeitung</h3>
 
-<form asp-controller="Tasks" asp-action="List">
+<form asp-controller="Tasks" asp-action="InProgessList">
     <div class="form-group">
         <input asp-for="FilterTaskName" class="form-control" />
         <span asp-validation-for="FilterTaskName" class="text-danger"></span>
@@ -19,7 +19,7 @@
         <tr>
             <th>Task</th>
             <th>Deadline</th>
-            <th>Taskname</th>
+            <th>Project</th>
         </tr>
     </thead>
     <tbody>
@@ -30,7 +30,7 @@
                 <tr>
                     <td>@task.TaskName</td>
                     <td>@task.Deadline</td>
-                    <td>@task.TaskName</td>
+                    <td>@task.Project.ProjectName</td>
                     <td>
                         <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a> |
                     </td>
@@ -45,7 +45,7 @@
                 <tr>
                     <td>@task.TaskName</td>
                     <td>@task.Deadline</td>
-                    <td>@task.TaskName</td>
+                    <td>@task.Project.ProjectName</td>
                     <td>
                         <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a> |
                     </td>
@@ -56,35 +56,5 @@
     </tbody>
 </table>
 
+<a asp-area="" asp-controller="Tasks" asp-action="List" class="btn btn-primary">Zurück</a>
 
-@*<table class="table">
-        <thead>
-            <tr>
-                <th>Taskname</th>
-                <th>Projekt</th>
-                <th>Priorität</th>
-                <th>Von</th>
-                <th>Bis</th>
-                <th>Deadline</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var task in Model.ProcessingTasks)
-            {
-                <tr>
-                    <td>@task.TaskName</td>
-                    <td>@task.Project.ProjectName</td>
-                    <td>@task.Priority</td>
-                    <td>@task.Startdate</td>
-                    <td>@task.Enddate</td>
-                    <td>@task.Deadline</td>
-                    <td>
-                        <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a>
-                        <a asp-controller="Tasks" asp-action="Edit" asp-route-taskId="@task.Id">Edit</a>
-                        <a asp-controller="Tasks" asp-action="Delete" asp-route-taskId="@task.Id">Task Löschen</a> |
-                    </td>
-                </tr>
-            }
-        </tbody>
-        <a asp-area="" asp-controller="Tasks" asp-action="List" class="btn btn-primary">Zurück</a>
-    </table>*@

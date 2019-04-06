@@ -32,7 +32,7 @@
         <tr>
             <th>Task</th>
             <th>Deadline</th>
-            <th>Taskname</th>
+            <th>Project</th>
         </tr>
     </thead>
     <tbody>
@@ -43,7 +43,7 @@
                 <tr>
                     <td>@task.TaskName</td>
                     <td>@task.Deadline</td>
-                    <td>@task.TaskName</td>
+                    <td>@task.Project.ProjectName</td>
                     <td>
                         <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a> |
                     </td>
@@ -53,12 +53,13 @@
         }
         else
         {
-            @foreach (var task in Model.Tasks)
+            @foreach(var task in Model.Tasks.OrderBy(t => t.Deadline) )
             {
+        
                 <tr>
                     <td>@task.TaskName</td>
                     <td>@task.Deadline</td>
-                    <td>@task.TaskName</td>
+                    <td>@task.Project.ProjectName</td>
                     <td>
                         <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a> |
                     </td>
