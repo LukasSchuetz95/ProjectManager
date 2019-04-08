@@ -30,8 +30,6 @@ namespace ProjectManager.Persistence
         public List<EmployeeTask> GetAll()
         {
             return _dbContext.EmployeeTask.Include(e => e.Employee).Include(t => t.Task).OrderBy(p => p.Task.Status).ToList();
-
-            //throw new NotImplementedException();
         }
 
         public EmployeeTask GetByEmployeeIdAndTaskId(int taskId, int empId)
@@ -64,42 +62,23 @@ namespace ProjectManager.Persistence
             _dbContext.EmployeeTask.Update(model);
         }
 
-        public List<EmployeeTask> GetTasksByEmployeeIdAndQualifications(int employeeId, List<EmployeeQualification> employeeQualifications)
+        public List<EmployeeTask>GetAllByEmployeeId(int Id)
         {
-            List<Task> taskList = _dbContext.Task.ToList();
+            return _dbContext.EmployeeTask.Include(e => e.Employee).Include(t => t.Task).
+                   Where(et => et.EmployeeId == Id && et.Task.Status==Core.Enum.TaskStatusType.NichtBegonnen && et.InWork==false).
+                   OrderBy(et => et.Task.TaskName).ToList();
+        }
 
-            List<TaskQualification> taskQualificationList = _dbContext.TaskQualification.ToList();
+        public List<EmployeeTask>GetTasksWithHighPriority(int Id)
+        {
+            return _dbContext.EmployeeTask.Include(e => e.Employee).Include(e => e.Task).
+                   Where(et => et.EmployeeId == Id && et.Task.Status == Core.Enum.TaskStatusType.NichtBegonnen &&
+                   et.Task.Priority == Core.Enum.PriorityType.Hoch).ToList();
+        }
 
-            List<EmployeeTask> employeeTask = new List<EmployeeTask>();
-
-            foreach (var tra in taskList)
-            {
-                if (taskQualificationList.Count() != 0)
-                {
-                    foreach (var luf in taskQualificationList)
-                    {
-                        if (tra.Id == luf.TaskId)
-                        {
-                            foreach (var kid in employeeQualifications)
-                            {
-                                if (luf.QualificationId == kid.QualificationId)
-                                {
-                                    EmployeeTask newTask = new EmployeeTask();
-                                    newTask.EmployeeId = kid.EmployeeId;
-                                    newTask.TaskId = luf.TaskId;
-                                    employeeTask.Add(newTask);
-                                }
-                            }
-                        }
-                    }
-                }
-                else
-                {
-
-                }
-            }
-
-            return employeeTask;
+        public List<EmployeeTask>GetAllExceptFromEmployeeId(int employeeId)
+        {
+            return _dbContext.EmployeeTask.Include(e => e.Employee).Include(e => e.Task).Where(p => p.EmployeeId != employeeId).ToList();
         }
     }
 }

@@ -23,5 +23,8 @@ namespace ProjectManager.Core.Contracts
         Task GetById(int tasikId);
         void Delete(Task model);
         List<Task> GetTaskByName(string filterTaskName);
+        List<Task> GetProjectTasksByEmployeeQualification(List<EmployeeQualification> EmployeeQualifications, List<EmployeeProject> EmployeeProjects, IUnitOfWork uow, string project);
+        List<Task> GetByProjectIdWithoutGeneralTasks(int projectId);
+        List<Task> GetByGeneralProjectId(int projectId);
     }
 }

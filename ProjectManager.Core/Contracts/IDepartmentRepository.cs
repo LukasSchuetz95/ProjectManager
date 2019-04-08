@@ -8,5 +8,6 @@ namespace ProjectManager.Core.Contracts
     public interface IDepartmentRepository
     {
         List<Department> GetAll();
+        void Add(Department model);
     }
 }

@@ -17,11 +17,9 @@
     </header>
 
     <form asp-controller="Employees" asp-action="List">        
-            <div class="dropdown-menu-left">
-                <input asp-for="Filter" class="form-control" style="width:812px"/>
-                <span asp-validation-for="Filter" class="text-danger"></span>
-                <div>
-                <input asp-for="LastnameFilter" type="submit" value="Nachname filtern" class="btn btn-primary" style="width:200px"/>
+        <div class="dropdown-menu-left">
+            <div>
+                <input asp-for="LastnameFilter" type="submit" value="Nachname filtern" class="btn btn-primary" style="width:200px" />
                 <span asp-validation-for="LastnameFilter" class="text-danger" />
 
                 <input asp-for="FirstnameFilter" type="submit" value="Vorname filtern" class="btn btn-primary" style="width:200px" />
@@ -32,8 +30,10 @@
 
                 <input asp-for="DepartmentFilter" type="submit" value="Abteilung filtern" class="btn btn-primary" style="width:200px" />
                 <span asp-validation-for="DepartmentFilter" class="text-danger" />
-                </div>
             </div>
+            <input asp-for="Filter" class="form-control" style="width:812px" />
+            <span asp-validation-for="Filter" class="text-danger"></span>
+        </div>
     </form>
 
     <table class="table" style="width:812px">

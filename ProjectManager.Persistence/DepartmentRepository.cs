@@ -20,5 +20,10 @@ namespace ProjectManager.Persistence
         {
             return _dbContext.Department.OrderBy(p=>p.DeptName).ToList();
         }
+
+        public void Add(Department model)
+        {
+            _dbContext.Department.Add(model);
+        }
     }
 }

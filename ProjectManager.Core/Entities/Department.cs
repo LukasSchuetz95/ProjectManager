@@ -8,7 +8,6 @@ namespace ProjectManager.Core.Entities
 {
     public class Department : EntityObject
     {
-        //public List<Employee> Employees { get; set; }
         [Required(ErrorMessage = "This field is required")]
         [Display(Name = "Department Location")]
         public string DeptLocation { get; set; }

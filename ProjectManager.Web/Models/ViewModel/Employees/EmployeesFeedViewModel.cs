@@ -10,28 +10,125 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
 {
     public class EmployeesFeedViewModel
     {
-        public EmployeeProject EmployeeProject { get; set; }
-        public List<EmployeeQualification> EmployeeQualificationList { get; set; }
-        public List<TaskQualification> TaskQualificationList { get; set; }
-        public List<EmployeeTask> EmployeeTaskList { get; set; }
-        public List<Task> WorkTasks { get; set; }
-        public Task ChoosenTask { get; set; }
+        private List<Task> _poolTasks = new List<Task>();
 
+        public Employee Employee { get; set; }
+
+        public List<EmployeeTask> EmployeeAssignedTasksList { get; set; }
+        public List<EmployeeQualification> EmployeeQualifications { get; set; }
+        public List<EmployeeProject> EmployeeProjects { get; set; }
+
+        public List<FeedDisplay> feedTasks { get; set; }
+
+        public List<EmployeeTask> AssignedTasks { get; set; }
+        public List<Task> PoolTasks { get => _poolTasks; set => _poolTasks=value; }
+
+        public string Assigned { get; set; }
         public string ProjectFilter { get; set; }
         public string GeneralFilter { get; set; }
         public string PriorityFilter { get; set; }
         public string AddTask { get; set; }
 
-        public void LoadFeedData(int employeeId, IUnitOfWork unitOfWork)
-        {
-            EmployeeQualificationList = unitOfWork.EmployeeQualifications.GetQualificationsByEmployeeId(employeeId);
+        public string ButtonClicked { get; set; }
+        public string Search { get; set; }
+        public string SearchInput { get; set; }
 
-            EmployeeTaskList = unitOfWork.EmployeeTasks.GetTasksByEmployeeIdAndQualifications(employeeId, EmployeeQualificationList);
+        //public string ErrorMessage { get; set; }
+        //public bool ErrorCreateEmployeeTask { get; set; }
+
+        public void LoadFeedData(int employeeId, IUnitOfWork uow)
+        {
+            ButtonClicked = "Assigned";
+            EmployeeAssignedTasksList = uow.EmployeeTasks.GetAllByEmployeeId(employeeId);
+            LoadFeedTasks();
+
+            Task task = new Task();
+
+            foreach (var ele in this.EmployeeAssignedTasksList)
+            {
+                task.Id = ele.Task.Id;
+                task.TaskName = ele.Task.TaskName;
+                task.Information = ele.Task.Information;
+                task.Priority = ele.Task.Priority;
+
+                PoolTasks.Add(task);
+                task = new Task();
+            }
         }
 
-        public void LoadWorkTasks()
+        public void LoadProjectFeedData(int employeeId, IUnitOfWork uow)
         {
-            WorkTasks = new List<Task>();
+            ButtonClicked = "Project";
+
+            EmployeeQualifications = uow.EmployeeQualifications.GetQualificationsByEmployeeId(employeeId);
+
+            EmployeeProjects = uow.EmployeeProjects.GetProjectsByEmployeeId(employeeId);
+
+            this.PoolTasks.AddRange(uow.Tasks.GetProjectTasksByEmployeeQualification(EmployeeQualifications, EmployeeProjects, uow, "All"));
+
+            RemoveAssignedTasks(uow, employeeId);
+
+            LoadFeedTasks();
         }
+
+        public void LoadGeneralFeedData(int employeeId, IUnitOfWork uow)
+        {
+            ButtonClicked = "General";
+
+            EmployeeQualifications = uow.EmployeeQualifications.GetQualificationsByEmployeeId(employeeId);
+
+            EmployeeProjects = uow.EmployeeProjects.GetProjectsByEmployeeId(employeeId);
+
+            this.PoolTasks.AddRange(uow.Tasks.GetProjectTasksByEmployeeQualification(EmployeeQualifications, EmployeeProjects, uow, "General"));
+
+            RemoveAssignedTasks(uow, employeeId);
+
+            LoadFeedTasks();
+        }
+
+        private void RemoveAssignedTasks(IUnitOfWork uow, int employeeId)
+        {
+            List<Task> fakePoolTasks = new List<Task>();
+            fakePoolTasks.AddRange(this.PoolTasks);
+
+            this.AssignedTasks = uow.EmployeeTasks.GetAllExceptFromEmployeeId(employeeId);
+
+            foreach (var fPT in fakePoolTasks)
+            {
+                foreach (var aT in AssignedTasks)
+                {
+                    if (fPT.Id == aT.TaskId)
+                    {
+                        this.PoolTasks.Remove(fPT);
+                    }
+                }
+            }
+        }
+
+        public void LoadFeedTasks()
+        {
+            this.feedTasks = new List<FeedDisplay>();
+        }
+
+        #region ViewMethods
+
+        public bool IsTaskVisible(Task tsk)
+        {
+            if (SearchInput != null)
+            {
+                return tsk.TaskName.ToUpper().Contains(SearchInput.ToUpper());
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public int CountHighPriorityTasks()
+        {
+            return this.PoolTasks.Where(p => p.Priority == Core.Enum.PriorityType.Hoch).Count();
+        }
+
+        #endregion
     }
 }

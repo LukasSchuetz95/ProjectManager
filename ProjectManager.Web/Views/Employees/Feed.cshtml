@@ -1,7 +1,7 @@
 ﻿@model ProjectManager.Web.Models.ViewModel.Employees.EmployeesFeedViewModel
 
 @{
-    ViewData["Title"] = "EditView";
+    ViewData["Title"] = "Feed";
 }
 
 <!doctype html>
@@ -12,80 +12,137 @@
     <meta charset="utf-8" />
 </head>
 <body>
-    <div id="header">
-        <h1>Der Feed</h1>
-        <p>Your personal Overview</p>
-    </div>
-    <div>
-        <div class="col-sm-9">
-            <table class="table" style="width:400px">
-                <tr>
-                    <th>Taskname</th>
-                    <th>Priorität</th>
-                </tr>
-                @foreach (var obj in Model.WorkTasks)
-                {
+    <form asp-controller="Employees" asp-action="Feed">
+        <div id="header">
+
+            <h1>The Dashboard of @Model.Employee.Firstname</h1>
+            <p>Your personal Overview</p>
+            @*@if (Model.ErrorCreateEmployeeTask == false)
+            {
+                <p>@Model.ErrorMessage</p>
+            }*@
+
+        </div>       
+            <div class="col-sm-6">
+                @*<table class="table" style="width:300px">
                     <tr>
-                        <td>@obj.TaskName</td>
-                        <td>@obj.Priority</td>
+
+                        <th>Taskname</th>
+                        <th>Priority</th>
+                        <th></th>
                     </tr>
-                }
-            </table>
-        </div>
+                    @foreach (var fT in Model.feedTasks)
+                    {
+                            <tr>
+                                <td>
+                                    @fT.task.TaskName
+                                </td>
+                                <td>@fT.task.Priority</td>
+                            </tr>                      
+                    }
+                </table>
+            </div>*@
 
-        <div class="col-sm-3">
-            <table class="table" style="width:400px">
+            <div>
 
-                <tr>
-                    <th>
-                        <form asp-controller="Employees" asp-action="Feed">
+                <input asp-for="Assigned" type="submit" value="Assigned Tasks" class="btn btn-primary" style="width:370px" />
+                <span asp-validation-for="Assigned" class="text-danger"></span>
+
+                @*<input type="hidden" asp-for="Employee.Id" />
+                <input type="hidden" asp-for="ButtonClicked" />*@
+
+            </div>
+            <div class="col-sm-6">
+
+                <table class="table" style="width:300px">
+                    <tr>
+                        <th>
+
                             <input asp-for="ProjectFilter" type="submit" value="Projekt" class="btn btn-primary" style="width:100px" />
                             <span asp-validation-for="ProjectFilter" class="text-danger"></span>
-                        </form>
-                    </th>
-                    <th>
-                        <form asp-controller="Employees" asp-action="Feed">
+
+                            @*<input type="hidden" asp-for="Employee.Id" />
+                            <input type="hidden" asp-for="ButtonClicked" />*@
+
+                        </th>
+                        <th>
+
                             <input asp-for="GeneralFilter" type="submit" value="Allgemein" class="btn btn-primary" style="width:100px" />
                             <span asp-validation-for="GeneralFilter" class="text-danger"></span>
-                        </form>
-                    </th>
-                    <th>
-                        @if (Model.EmployeeTaskList.Count() == 0)
-                        {
-                            <form asp-controller="Employees" asp-action="Feed">
-                                <input asp-for="PriorityFilter" type="submit" value="@Model.EmployeeTaskList.Count()" class="btn btn-primary" style="width:100px" />
+
+                            @*<input type="hidden" asp-for="Employee.Id" />
+                            <input type="hidden" asp-for="ButtonClicked" />*@
+
+                        </th>
+                        <th>
+                            @if (Model.PoolTasks.Count() == 0)
+                            {
+
+                                <input asp-for="PriorityFilter" type="submit" value="@Model.PoolTasks.Count()" class="btn btn-primary" style="width:100px" />
                                 <span asp-validation-for="PriorityFilter" class="text-danger"></span>
-                            </form>
-                        }
-                        else
-                        {
-                            <form asp-controller="Employees" asp-action="Feed">
-                                <input asp-for="PriorityFilter" type="submit" value="@Model.EmployeeTaskList.Count()" class="btn btn-danger" style="width:100px" />
+
+                                @*<input type="hidden" asp-for="Employee.Id" />
+                                <input type="hidden" asp-for="ButtonClicked" />*@
+
+                            }
+                            else
+                            {
+
+                                <input asp-for="PriorityFilter" type="submit" value="@Model.CountHighPriorityTasks()" class="btn btn-danger" style="width:100px" />
                                 <span asp-validation-for="PriorityFilter" class="text-danger"></span>
-                            </form>
-                        }
-                    </th>
-                </tr>
-                <tr>
-                    <th>Taskname</th>
-                    <th>Priority</th>
-                    <th></th>
-                </tr>
-                @foreach (var obj in Model.EmployeeTaskList)
-                {
-                    <tr>
-                        <td>@obj.Task.TaskName</td>
-                        <td>@obj.Task.Priority</td>
-                        <td>
-                            <form asp-controller="Employees" asp-action="AddTo" asp-route-taskId="@obj.Id">
-                                <input type="button" value="Add" class="btn btn-primary" />
-                            </form>
-                        </td>
+
+                                @*<input type="hidden" asp-for="Employee.Id" />
+                                <input type="hidden" asp-for="ButtonClicked" />*@
+
+                            }
+                        </th>
                     </tr>
-                }
-            </table>
+                </table>
+
+                <div>
+
+
+                    <input asp-for="SearchInput" class="form-control" style="width:250px" />
+                    <span asp-validation-for="SearchInput" class="text-danger"></span>
+
+                    <input asp-for="Search" type="submit" value="Search" class="btn btn-primary" style="width:75px" />
+                    <span asp-validation-for="Search" class="text-danger"></span>
+
+                    <input type="hidden" asp-for="Employee.Id" />
+                    <input type="hidden" asp-for="ButtonClicked" />
+
+
+                    <table class="table" style="width:300px">
+                        <tr>
+
+                            <th>Taskname</th>
+                            <th>Priority</th>
+                            <th></th>
+                        </tr>
+                        @foreach (var pT in Model.PoolTasks)
+                        {
+                            @if (Model.IsTaskVisible(pT))
+                            {
+                                <tr>
+                                    <td>
+                                        @pT.TaskName
+                                    </td>
+                                    <td>@pT.Priority</td>
+                                    <td>
+
+                                        <input asp-for="AddTask" type="submit" value="@pT.Id" class="btn btn-primary" />
+                                        <span asp-validation-for="AddTask" class="text-danger"></span>
+
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+
+            </div>
         </div>
-    </div>
+    </form>
 </body>
 </html>
 

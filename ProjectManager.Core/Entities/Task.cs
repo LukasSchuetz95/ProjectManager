@@ -32,27 +32,27 @@ namespace ProjectManager.Core.Entities
 
         [Required(ErrorMessage = "This field is required")]
         [Display(Name = "From")]
-        public DateTime Startdate { get; set; }
+        public DateTime Created { get; set; }
 
         [Display(Name = "To")]
-        public DateTime Enddate { get; set; }
+        public DateTime? Enddate { get; set; }
 
         [Display(Name = "Valued Time")]
         public string ValuedTime { get; set; }
 
-        public DateTime Deadline { get; set; }
+        public DateTime? Deadline { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if ((this.Startdate != null) && (this.Enddate != null))
+            if ((this.Created != null) && (this.Enddate != null))
             {
-                if (this.Startdate > this.Enddate)
+                if (this.Created > this.Enddate)
                 {
-                    yield return new ValidationResult("Start date has to be before end date !", new List<string>() { nameof(this.Startdate), nameof(this.Enddate) });
+                    yield return new ValidationResult("Start date has to be before end date !", new List<string>() { nameof(this.Created), nameof(this.Enddate) });
                 }
-                if (this.Startdate > DateTime.Now)
+                if (this.Created > DateTime.Now)
                 {
-                    yield return new ValidationResult("Start date has to be before the current date !", new List<string>() { nameof(this.Startdate) });
+                    yield return new ValidationResult("Start date has to be before the current date !", new List<string>() { nameof(this.Created) });
                 }
             }
         }

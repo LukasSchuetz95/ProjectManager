@@ -25,7 +25,7 @@ namespace ProjectManager.Persistence
 
         public List<EmployeeQualification> GetQualificationsByEmployeeId(int employeeId)
         {
-            return _dbContext.EmployeeQualification.Where(e => e.EmployeeId == employeeId).ToList();
+            return _dbContext.EmployeeQualification.Include(p=>p.Qualification).Where(e => e.EmployeeId == employeeId).ToList();
         }
     }
 }

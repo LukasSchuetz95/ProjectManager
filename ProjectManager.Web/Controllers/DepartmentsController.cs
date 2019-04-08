@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProjectManager.Core.Contracts;
 using ProjectManager.Web.Models.ViewModel;
+using ProjectManager.Web.Models.ViewModel.Departments;
 
 namespace ProjectManager.Web.Controllers
 {
@@ -31,11 +33,36 @@ namespace ProjectManager.Web.Controllers
             DepartmentsViewModel model = new DepartmentsViewModel();
             model.EmployeeList = _unitOfWork.Employees.GetEmployeeByDepartmentId(departmentId);
             return View(model);
-        }  
-        
+        }
+
         public IActionResult Create()
         {
-            return View();
+            CreateDepartmentViewModel model = new CreateDepartmentViewModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Create(CreateDepartmentViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _unitOfWork.Departments.Add(model.Department);
+                    _unitOfWork.Departments.Add(model.Department);
+                    _unitOfWork.Save();
+                    model.Success = true;
+                    //return RedirectToAction("Create", "Departments");
+                }
+                catch (ValidationException validationException)
+                {
+                    ValidationResult valResult = validationException.ValidationResult;
+                    ModelState.AddModelError(nameof(model) + "." + valResult.MemberNames.First(), valResult.ErrorMessage);
+                }
+            }
+
+            return View(model);
         }
     }
 }

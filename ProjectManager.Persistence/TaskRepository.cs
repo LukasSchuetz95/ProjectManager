@@ -86,5 +86,102 @@ namespace ProjectManager.Persistence
         {
             _dbContext.Task.Update(task);
         }
+
+        //Methoden wurden wegen der Übersicht ausgelagert
+        public List<Task> GetProjectTasksByEmployeeQualification(List<EmployeeQualification> EmployeeQualifications,
+                                                                 List<EmployeeProject> EmployeeProjects, 
+                                                                 IUnitOfWork uow, string project){
+
+            List<TaskQualification> taskQualifications = new List<TaskQualification>();
+            List<Task> tasks = new List<Task>();
+            List<Task> poolTasks = new List<Task>();
+
+            taskQualifications = GetAllQualifications(EmployeeQualifications, uow);
+
+            tasks = GetAllProjectTasks(EmployeeProjects, uow, project);
+
+            return poolTasks = GetMatchingTasks(taskQualifications, tasks);
+
+        }
+
+        public List<Task> GetByGeneralProjectId(int projectId) 
+        {
+            return _dbContext.Task.Where(p => p.ProjectId == projectId && p.Project.ProjectName == "Allgemein" && p.Status == TaskStatusType.NichtBegonnen).ToList();
+        }
+
+        public List<Task> GetByProjectIdWithoutGeneralTasks(int projectId)
+        {
+            return _dbContext.Task.Where(p => p.ProjectId == projectId && p.Project.ProjectName != "Allgemein" && p.Status == TaskStatusType.NichtBegonnen).ToList();
+        }
+
+        #region Methods
+
+        private List<TaskQualification> GetAllQualifications(List<EmployeeQualification>EmployeeQualifications, IUnitOfWork uow)
+        {
+            List<TaskQualification> taskQualifications = new List<TaskQualification>();
+
+            foreach (var ele in EmployeeQualifications)
+            {
+                taskQualifications.AddRange(uow.TaskQualifications.GetByQualificationId(ele.Qualification.Id));
+            }
+
+            return taskQualifications;
+        }
+
+        private List<Task> GetAllProjectTasks(List<EmployeeProject>EmployeeProjects, IUnitOfWork uow, string project)
+        {
+            List<Task> tasks = new List<Task>();
+
+            if (project == "All")
+            {
+                foreach (var ele in EmployeeProjects)
+                {
+                    tasks.AddRange(uow.Tasks.GetByProjectIdWithoutGeneralTasks(ele.Project.Id));
+                }
+            }
+            else if (project == "General")
+            {
+                foreach (var ele in EmployeeProjects)
+                {
+                    tasks.AddRange(uow.Tasks.GetByGeneralProjectId(ele.Project.Id));
+                }
+            }
+
+            return tasks;
+
+        }
+
+        private List<Task> GetMatchingTasks(List<TaskQualification> taskQualifications, List<Task> tasks)
+        {
+            List<Task> poolTasks = new List<Task>();
+            bool check = true;
+
+            foreach (var ele in taskQualifications)
+            {
+                foreach (var obj in tasks)
+                {
+                    if (ele.Task.Id == obj.Id)
+                    {
+                        foreach (var item in poolTasks)
+                        {
+                            if (item.Id == obj.Id)
+                            {
+                                check = false;
+                            }
+                        }
+
+                        if (check == true)
+                        {
+                            poolTasks.Add(obj);
+                        }
+
+                        check = true;
+                    }
+                }
+            }
+
+            return poolTasks;
+        }
+        #endregion
     }
 }
