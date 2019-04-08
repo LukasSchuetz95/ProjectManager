@@ -35,7 +35,17 @@ namespace ProjectManager.Core.Entities
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            throw new NotImplementedException();
+            if ((this.Startdate != null) && (this.Enddate != null))
+            {
+                if (this.Startdate > this.Enddate)
+                {
+                    yield return new ValidationResult("Start date has to be before end date !", new List<string>() { nameof(this.Startdate), nameof(this.Enddate) });
+                }
+                if (this.Startdate >= DateTime.Now)
+                {
+                    yield return new ValidationResult("Start date has to be before the current date !", new List<string>() { nameof(this.Startdate) });
+                }
+            }
         }
     }
 }

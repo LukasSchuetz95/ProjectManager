@@ -10,9 +10,9 @@ namespace ProjectManager.Web.Models.ViewModel
     public class TasksListViewModel
     {
         public List<Core.Entities.Task> Tasks { get; set; }
-        public List<Core.Entities.Task> UndefinedTasks { get; private set; }
-        public List<Core.Entities.Task> ProcessingTasks { get; private set; }
-        public List<Core.Entities.Task> CompletedTasks { get; private set; }
+        public List<Core.Entities.Task> UndefinedTasks { get;  set; }
+        public List<Core.Entities.Task> ProcessingTasks { get;  set; }
+        public List<Core.Entities.Task> CompletedTasks { get;  set; }
         public string FilterTaskName { get; set; }
 
         internal void LoadData(IUnitOfWork unitOfWork)

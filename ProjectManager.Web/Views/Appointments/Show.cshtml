@@ -1,0 +1,29 @@
+﻿@model ProjectManager.Web.Models.ViewModel.AppointmentListViewModel
+
+@{
+    ViewData["Title"] = "Show";
+}
+
+<h2>Show</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Typ</th>
+            <th>Employee</th>
+        </tr>
+    </thead>
+    <tbody>
+           @foreach (var app in Model.Appointments)
+            {
+                <tr>
+                    <td>@app.AppoName</td>
+                    <td>@app.AppoType</td>
+                    <td>@app.Employee</td>              
+                </tr>
+
+            }
+        
+    </tbody>
+</table>

@@ -23,15 +23,16 @@
         <input asp-for="FilterTaskName" class="form-control" />
         <span asp-validation-for="FilterTaskName" class="text-danger"></span>
     </div>
-    <input type="submit" value="Filter Projekt Name" class="btn btn-primary" />
+    <input type="submit" value="Filter Task Name" class="btn btn-primary" />
 </form>
+
 
 <table class="table">
     <thead>
         <tr>
             <th>Task</th>
             <th>Deadline</th>
-            <th>Taskname</th>
+            <th>Project</th>
         </tr>
     </thead>
     <tbody>
@@ -42,7 +43,7 @@
                 <tr>
                     <td>@task.TaskName</td>
                     <td>@task.Deadline</td>
-                    <td>@task.TaskName</td>
+                    <td>@task.Project.ProjectName</td>
                     <td>
                         <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a> |
                     </td>
@@ -50,5 +51,21 @@
 
             }
         }
-        </tbody>
+        else
+        {
+            @foreach(var task in Model.Tasks.OrderBy(t => t.Deadline) )
+            {
+        
+                <tr>
+                    <td>@task.TaskName</td>
+                    <td>@task.Deadline</td>
+                    <td>@task.Project.ProjectName</td>
+                    <td>
+                        <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a> |
+                    </td>
+                </tr>
+
+            }
+        }
+    </tbody>
     </table>

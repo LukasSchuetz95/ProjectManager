@@ -42,21 +42,46 @@ namespace ProjectManager.Web.Controllers
 
         }
 
+        [HttpPost]
+        public IActionResult FinishList(TasksListViewModel model)
+        {
+            model.CompletedTasks = _unitOfWork.Tasks.GetTaskByName(model.FilterTaskName);
+            return View(model);
+
+        }
+
+
         public IActionResult OpenList()
         {
             TasksListViewModel model = new TasksListViewModel();
             model.LoadData(_unitOfWork);
             return View(model);
 
-            //return View();
         }
+
+        [HttpPost]
+        public IActionResult OpenList(TasksListViewModel model)
+        {
+            model.UndefinedTasks = _unitOfWork.Tasks.GetTaskByName(model.FilterTaskName);
+            return View(model);
+
+        }
+
+
         public IActionResult InProgressList()
         {
             TasksListViewModel model = new TasksListViewModel();
             model.LoadData(_unitOfWork);
             return View(model);
 
-            //return View();
+        }
+
+        [HttpPost]
+        public IActionResult InProgressList(TasksListViewModel model)
+        {
+            model.ProcessingTasks = _unitOfWork.Tasks.GetTaskByName(model.FilterTaskName);
+            return View(model);
+
         }
 
 
@@ -79,11 +104,15 @@ namespace ProjectManager.Web.Controllers
             {
                 try
                 {
+                    EmployeeTask etask = new EmployeeTask();
+                    etask.Task = model.Task;
+
+                   // _unitOfWork.EmployeeTasks.Add(model.Task);
                     _unitOfWork.Tasks.Add(model.Task);
-                    _unitOfWork.EmployeeTasks.Add(model.EmployeeTask);
+                    _unitOfWork.EmployeeTasks.Add(etask);
                     _unitOfWork.Save();
                     //  return RedirectToAction("Create", "EmployeeTasks", new { taskId = model.EmployeeTask.TaskId });
-                    return RedirectToAction("List", "Projects");
+                    return RedirectToAction("List", "Project");
                 }
                 catch (ValidationException validationException)
                 {

@@ -28,7 +28,7 @@ namespace ProjectManager.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateEmployee( int taskId)
+        public IActionResult Create( int taskId)
         {
 
             EmployeeTask model = new EmployeeTask {  TaskId = taskId };

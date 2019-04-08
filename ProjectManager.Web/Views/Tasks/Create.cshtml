@@ -11,8 +11,7 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Task.TaskName" class="control-label"></label>
-                @*<input asp-for="EmployeeTask.Task.TaskName" asp-items="@Model.Project" class="form-control" />*@
+                <label asp-for= "Task.TaskName" class="control-label"></label>
                 <input asp-for="Task.TaskName" class="form-control" />
                 <span asp-validation-for="Task.TaskName" class="text-danger"></span>
             </div>
@@ -56,18 +55,80 @@
                 <select asp-for="EmployeeTask.EmployeeId" asp-items="@Model.Employees" class="form-control"></select>
                 <span asp-validation-for="EmployeeTask.EmployeeId" class="text-danger"></span>
             </div>
-            <div class="form-group disabled">
+   
+            <div class="form-group">
+                @{ Model.Project = Model.Project;}
+            </div>
+
+            @*<div class="form-group disabled">
                 <label asp-for="Project.ProjectName" class="control-label"></label>
                 <input asp-for="Project.ProjectName" class="form-control" />
                 <span asp-validation-for="Project.ProjectName" class="text-danger"></span>
-            </div>
+            </div>*@
+
+
+            @*<input asp-for="EmployeeTask.Task.TaskName" asp-items="@Model.Project" class="form-control" />*@
+            @*<div class="form-group">
+
+                    <label asp-for="EmployeeTask.Task.TaskName" class="control-label"></label>
+                    <input asp-for="EmployeeTask.Task.TaskName" class="form-control" />
+                    <span asp-validation-for="EmployeeTask.Task.TaskName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmployeeTask.Task.Priority" class="control-label"></label>
+                    <select asp-for="EmployeeTask.Task.Priority" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.PriorityType>()" class="form-control"></select>
+                    <span asp-validation-for="EmployeeTask.Task.Priority" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmployeeTask.Task.Status" class="control-label"></label>
+                    <select asp-for="EmployeeTask.Task.Status" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.TaskStatusType>()" class="form-control"></select>
+                    <span asp-validation-for="EmployeeTask.Task.Status" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmployeeTask.Task.Information" class="control-label"></label>
+                    <input asp-for="EmployeeTask.Task.Information" class="form-control" />
+                    <span asp-validation-for="EmployeeTask.Task.Information" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmployeeTask.Task.Startdate" class="control-label"></label>
+                    <input asp-for="EmployeeTask.Task.Startdate" type="date" class="form-control" />
+                    <span asp-validation-for="EmployeeTask.Task.Startdate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmployeeTask.Task.Enddate" class="control-label"></label>
+                    <input asp-for="EmployeeTask.Task.Enddate" type="date" class="form-control" />
+                    <span asp-validation-for="EmployeeTask.Task.Enddate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmployeeTask.Task.Deadline" class="control-label"></label>
+                    <input asp-for="EmployeeTask.Task.Deadline" type="date" class="form-control" />
+                    <span asp-validation-for="EmployeeTask.Task.Deadline" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmployeeTask.Task.ValuedTime" class="control-label"></label>
+                    <input asp-for="EmployeeTask.Task.ValuedTime" class="form-control" />
+                    <span asp-validation-for="EmployeeTask.Task.ValuedTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Mitarbeiter</label>
+                    <select asp-for="EmployeeTask.EmployeeId" asp-items="@Model.Employees" class="form-control"></select>
+                    <span asp-validation-for="EmployeeTask.EmployeeId" class="text-danger"></span>
+                </div>*@
+            @*<div class="form-group disabled">
+                    <label asp-for="EmployeeTask.Task.ProjectId" class="control-label"></label>
+                    <input asp-for="EmployeeTask.Project.ProjectName" class="form-control" />
+                    <span asp-validation-for="EmployeeTask.Project.ProjectName" class="text-danger"></span>
+                </div>*@
+
+
+
             @Html.ValidationSummary()
 
             @*<div class="form-group">
-            <label class="control-label">Mitarbeiter</label>
-            <select asp-for="EmployeeTask.EmployeeId" asp-items="@Model.Employees" class="form-control"></select>
-            <span asp-validation-for="EmployeeTask.Employee" class="text-danger"></span>
-        </div>*@
+                    <label class="control-label">Mitarbeiter</label>
+                    <select asp-for="EmployeeTask.EmployeeId" asp-items="@Model.Employees" class="form-control"></select>
+                    <span asp-validation-for="EmployeeTask.Employee" class="text-danger"></span>
+                </div>*@
             <div class="form-group">
                 <input type="submit" value="Task anlegen" class="btn btn-sucess" />
             </div>
@@ -75,7 +136,7 @@
     </div>
 </div>
 
-<li><a asp-area="" asp-controller="Tasks" asp-action="List" class="btn btn-primary">Zurück</a></li>
+<a asp-area="" asp-controller="Tasks" asp-action="List" class="btn btn-primary">Zurück</a>
 
 @*Dummie projekt für mitarbeiter, Projektleiter hat alle seine projekte zur auswahl*@
 

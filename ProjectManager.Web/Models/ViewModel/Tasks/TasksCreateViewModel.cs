@@ -16,6 +16,8 @@ namespace ProjectManager.Web.Models.ViewModel
         public Project Project { get; set; }
         public Task Task { get; set; }
 
+       // public Qualification Qualification { get; set; }
+
         //public List<EmployeeProject> EmployeeProject { get; set; }
 
         //public SelectList AllEmployees { get; set; }
@@ -26,7 +28,9 @@ namespace ProjectManager.Web.Models.ViewModel
             List<EmployeeProject> employees = uow.EmployeeProjects.GetAllByProjectId(projectId);
 
             Employees = new SelectList(employees, nameof(Employee.Id), nameof(Employee));
-            Project = uow.Projects.GetById(projectId);
+            this.Project = uow.Projects.GetById(projectId); ;
+
+ 
             //EmployeeProject = uow.EmployeeProjects.GetAllByProjectId(projectId);         
             //AllEmployees = new SelectList(allEmployees, nameof(Employee.Id), null);
         }
