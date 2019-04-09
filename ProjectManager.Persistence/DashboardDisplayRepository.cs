@@ -3,6 +3,7 @@ using ProjectManager.Core.Contracts;
 using ProjectManager.Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ProjectManager.Persistence
@@ -31,6 +32,11 @@ namespace ProjectManager.Persistence
         public void Update(DashboardDisplay feedDisplay)
         {
             _dbContext.DashboardDisplay.Update(feedDisplay);
+        }
+
+        public List<DashboardDisplay> GetByEmployeeId(int employeeId)
+        {
+            return _dbContext.DashboardDisplay.Where(p => p.Employee.Id == employeeId).OrderBy(p=>p.Startdatum).ThenBy(p=>p.Name).ToList();
         }
 
         #endregion

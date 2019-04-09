@@ -225,6 +225,7 @@ namespace ProjectManager.Web.Controllers
         {
             EmployeesFeedViewModel model = new EmployeesFeedViewModel();
             model.Employee = _unitOfWork.Employees.GetById(employeeId);
+            model.ButtonClicked = "Assigned";
 
             model.LoadFeedData(employeeId, _unitOfWork);
 
@@ -398,7 +399,7 @@ namespace ProjectManager.Web.Controllers
 
         private void UpdateTask(EmployeeTask employeeTask)
         {
-            Task task = _unitOfWork.Tasks.GetById(employeeTask.Id);
+            Task task = _unitOfWork.Tasks.GetById(employeeTask.Task.Id);
             task.Status = Core.Enum.TaskStatusType.InArbeit;
 
             try
@@ -438,8 +439,9 @@ namespace ProjectManager.Web.Controllers
             dashboardTask.Startdatum = DateTime.Now;
             dashboardTask.SpecificInformation = Convert.ToString(employeeTask.Task.Priority);
             dashboardTask.Finished = false;
-            dashboardTask.EmployeeId = employeeTask.Id;
-            dashboardTask.TaskId = employeeTask.Id;
+            dashboardTask.Employee = employeeTask.Employee;
+            dashboardTask.EmployeeId = employeeTask.Employee.Id;
+            dashboardTask.TaskId = employeeTask.Task.Id;
 
             return dashboardTask;
         }
@@ -457,6 +459,20 @@ namespace ProjectManager.Web.Controllers
         }
 
         #endregion
+
+        #endregion
+
+        #region DeleteOrPass
+
+        public IActionResult DeleteOrPass(int employeeId, int taskId)
+        {
+            EmployeesDeleteOrPassViewModel model = new EmployeesDeleteOrPassViewModel();
+            model.LoadData(_unitOfWork, taskId, employeeId);
+            if (model.Task == null)
+                return NotFound();
+
+            return View(model);
+        }
 
         #endregion
     }

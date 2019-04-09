@@ -24,26 +24,28 @@
 
         </div>
 
-    </form>
-    <div class="col-sm-6">
-        <table class="table" style="width:300px">
-            <tr>
-
-                <th>Taskname</th>
-                <th>Information</th>
-                <th></th>
-            </tr>
-            @foreach (var fT in Model.DashboardTasks)
-            {
+        <div class="col-sm-6">
+            <table class="table" style="width:300px">
                 <tr>
-                    <td>
-                        @fT.Name
-                    </td>
-                    <td>@fT.SpecificInformation</td>
+
+                    <th>Taskname</th>
+                    <th>Information</th>
+                    <th></th>
+                    <th></th>
                 </tr>
-            }
-        </table>
-    </div>
+                @foreach (var fT in Model.DashboardTasks)
+                {
+                    <tr>
+                        <td>@fT.Name</td>
+                        <td>@fT.SpecificInformation</td>
+                        <td>@fT.Startdatum</td>
+                        <td class="btn-primary" title="Click here to delete or pass the task!"><a class="btn btn-primary" asp-controller="Employees" asp-action="DeleteOrPass" asp-route-employeeId="@Model.Employee.Id" asp-route-taskId="@fT.TaskId"></a>Delete></td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </form>
+
     <form asp-controller="Employees" asp-action="Feed">
         <div>
 
@@ -51,6 +53,7 @@
             <span asp-validation-for="Assigned" class="text-danger"></span>
 
             <input type="hidden" asp-for="Employee.Id" />
+            <input type="hidden" asp-for="Employee.Firstname" />
             <input type="hidden" value="Assigned" asp-for="ButtonClicked" />
 
         </div>
@@ -65,6 +68,7 @@
                         <span asp-validation-for="ProjectFilter" class="text-danger"></span>
 
                         <input type="hidden" asp-for="Employee.Id" />
+                        <input type="hidden" asp-for="Employee.Firstname" />
                         <input type="hidden" value="Project" asp-for="ButtonClicked" />
                     </form>
 
@@ -75,6 +79,7 @@
                         <span asp-validation-for="GeneralFilter" class="text-danger"></span>
 
                         <input type="hidden" asp-for="Employee.Id" />
+                        <input type="hidden" asp-for="Employee.Firstname" />
                         <input type="hidden" value="General" asp-for="ButtonClicked" />
                     </form>
 
@@ -92,6 +97,7 @@
                             <span asp-validation-for="PriorityFilter" class="text-danger"></span>
                         }
                         <input type="hidden" asp-for="Employee.Id" />
+                        <input type="hidden" asp-for="Employee.Firstname" />
                         <input type="hidden" value="@Model.ButtonClicked" asp-for="ButtonClicked" />
                     </form>
                 </th>
@@ -107,6 +113,7 @@
                 <span asp-validation-for="Search" class="text-danger"></span>
 
                 <input type="hidden" asp-for="Employee.Id" />
+                <input type="hidden" asp-for="Employee.Firstname" />
                 <input type="hidden" asp-for="ButtonClicked" />
             </form>
 
@@ -139,7 +146,8 @@
                 </table>
 
                 <input type="hidden" asp-for="Employee.Id" />
-                <input type="hidden" asp-for="ButtonClicked" />
+                <input type="hidden" asp-for="Employee.Firstname" />
+                <input type="hidden" value="@Model.ButtonClicked" asp-for="ButtonClicked" />
 
             </form>
         </div>

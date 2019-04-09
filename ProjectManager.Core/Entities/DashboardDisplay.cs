@@ -16,15 +16,21 @@ namespace ProjectManager.Core.Entities
         [Required(ErrorMessage = "This field is required")]
         public DateTime Startdatum { get; set; }
 
+        [ForeignKey(nameof(EmployeeId))]
+        public Employee Employee { get; set; }
+        public int EmployeeId { get; set; }
+
         public bool Finished { get; set; }
 
         public string SpecificInformation { get; set; }
 
-        public int EmployeeId { get; set; }
+        //public Appointment Appointment { get; set; }
 
-        public int AppointmentId { get; set; }
+        //public Task Task { get; set; }
 
         public int TaskId { get; set; }
+
+        public int AppointmentId { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

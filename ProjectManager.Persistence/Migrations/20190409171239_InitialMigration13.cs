@@ -4,30 +4,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectManager.Persistence.Migrations
 {
-    public partial class InitialMigration10 : Migration
+    public partial class InitialMigration13 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "DashboardDisplay",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    Name = table.Column<string>(nullable: false),
-                    Startdatum = table.Column<DateTime>(nullable: false),
-                    Finished = table.Column<bool>(nullable: false),
-                    SpecificInformation = table.Column<string>(nullable: true),
-                    EmployeeId = table.Column<int>(nullable: false),
-                    AppointmentId = table.Column<int>(nullable: false),
-                    TaskId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DashboardDisplay", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Department",
                 columns: table => new
@@ -78,37 +58,6 @@ namespace ProjectManager.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Employee",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    DepartmentId = table.Column<int>(nullable: false),
-                    Firstname = table.Column<string>(nullable: false),
-                    Lastname = table.Column<string>(nullable: false),
-                    Job = table.Column<string>(nullable: true),
-                    Status = table.Column<int>(nullable: false),
-                    Profilepicture = table.Column<byte[]>(nullable: true),
-                    Birthdate = table.Column<DateTime>(nullable: true),
-                    StreetNameAndNr = table.Column<string>(nullable: true),
-                    ZipCode = table.Column<string>(nullable: true),
-                    Residence = table.Column<string>(nullable: true),
-                    HiringDate = table.Column<DateTime>(nullable: true),
-                    Phonenumber = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Employee", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Employee_Department_DepartmentId",
-                        column: x => x.DepartmentId,
-                        principalTable: "Department",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Task",
                 columns: table => new
                 {
@@ -138,6 +87,65 @@ namespace ProjectManager.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TaskQualification",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    TaskId = table.Column<int>(nullable: false),
+                    QualificationId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TaskQualification", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TaskQualification_Qualification_QualificationId",
+                        column: x => x.QualificationId,
+                        principalTable: "Qualification",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TaskQualification_Task_TaskId",
+                        column: x => x.TaskId,
+                        principalTable: "Task",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Employee",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    DepartmentId = table.Column<int>(nullable: false),
+                    Firstname = table.Column<string>(nullable: false),
+                    Lastname = table.Column<string>(nullable: false),
+                    Job = table.Column<string>(nullable: true),
+                    Status = table.Column<int>(nullable: false),
+                    Profilepicture = table.Column<byte[]>(nullable: true),
+                    Birthdate = table.Column<DateTime>(nullable: true),
+                    StreetNameAndNr = table.Column<string>(nullable: true),
+                    ZipCode = table.Column<string>(nullable: true),
+                    Residence = table.Column<string>(nullable: true),
+                    HiringDate = table.Column<DateTime>(nullable: true),
+                    Phonenumber = table.Column<string>(nullable: true),
+                    EmployeeTaskId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employee", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Employee_Department_DepartmentId",
+                        column: x => x.DepartmentId,
+                        principalTable: "Department",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Appointment",
                 columns: table => new
                 {
@@ -156,6 +164,32 @@ namespace ProjectManager.Persistence.Migrations
                     table.PrimaryKey("PK_Appointment", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Appointment_Employee_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employee",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DashboardDisplay",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    Startdatum = table.Column<DateTime>(nullable: false),
+                    EmployeeId = table.Column<int>(nullable: false),
+                    Finished = table.Column<bool>(nullable: false),
+                    SpecificInformation = table.Column<string>(nullable: true),
+                    TaskId = table.Column<int>(nullable: false),
+                    AppointmentId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DashboardDisplay", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DashboardDisplay_Employee_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employee",
                         principalColumn: "Id",
@@ -247,33 +281,6 @@ namespace ProjectManager.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "TaskQualification",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    TaskId = table.Column<int>(nullable: false),
-                    QualificationId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TaskQualification", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_TaskQualification_Qualification_QualificationId",
-                        column: x => x.QualificationId,
-                        principalTable: "Qualification",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TaskQualification_Task_TaskId",
-                        column: x => x.TaskId,
-                        principalTable: "Task",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "Department",
                 columns: new[] { "Id", "DeptLocation", "DeptName", "Timestamp" },
@@ -313,21 +320,21 @@ namespace ProjectManager.Persistence.Migrations
 
             migrationBuilder.InsertData(
                 table: "Employee",
-                columns: new[] { "Id", "Birthdate", "DepartmentId", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
+                columns: new[] { "Id", "Birthdate", "DepartmentId", "EmployeeTaskId", "Firstname", "HiringDate", "Job", "Lastname", "Phonenumber", "Profilepicture", "Residence", "Status", "StreetNameAndNr", "Timestamp", "ZipCode" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(1995, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Lukas", new DateTime(2011, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Schuetz", "0660/ 4878 299", null, "Bad Hall", 1, "Roemerstr. 41", null, "4540" },
-                    { 9, new DateTime(1993, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "Raimond", new DateTime(2012, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Hoad", "90445343454", null, "Department 99", 0, "Brooklyn street", null, "Ka Ahnung" },
-                    { 8, new DateTime(1993, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "Rosa", new DateTime(2012, 8, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Diaz", "90445343454", null, "Department 99", 0, "Brooklyn street", null, "Ka Ahnung" },
-                    { 7, new DateTime(1993, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "Amy", new DateTime(2012, 2, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web-Developer", "Santiago", "90445343454", null, "Department 99", 1, "Brooklyn street", null, "Ka Ahnung" },
-                    { 10, new DateTime(1990, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Todd", new DateTime(2010, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Sharvez", "0660/ 4878 444", null, "Hollywoo", 1, "Beachstreet", null, "0000" },
-                    { 5, new DateTime(1950, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Rick", new DateTime(2017, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web-Developer", "Sanchez", "039454646453", null, "Interdimensional", 0, "streetytreetstreet", null, "Ka Ahnung" },
-                    { 6, new DateTime(1990, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "Jack", new DateTime(2017, 12, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web-Developer", "Peralta", "6784352363465", null, "Department 99", 2, "Brooklyn street", null, "Ka Ahnung" },
-                    { 3, new DateTime(1990, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Manuel", new DateTime(2010, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Mairinger", "0660/ 4878 444", null, "Irgendwo", 2, "Weiss i ned", null, "Ka Ahnung" },
-                    { 2000, new DateTime(1997, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Testine", new DateTime(2012, 10, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Testakulär", "066498234435", null, "Wels", 0, "Testreet", null, "8998" },
-                    { 1000, new DateTime(1996, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Testamon", new DateTime(2010, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Testa", "0000000000", null, "Wels", 0, "Manstreet", null, "4540" },
-                    { 2, new DateTime(1994, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Thomas", new DateTime(2012, 9, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web-Developer", "Baurnberger", "0660/ 4878 333", null, "Kematen am Innbach", 0, "See 44", null, "4633" },
-                    { 4, new DateTime(1960, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Bojack", new DateTime(2014, 7, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Horseman", "0676/9876534", null, "Hollywoo", 0, "Beachstreet 5", null, "Ka Ahnung" }
+                    { 1, new DateTime(1995, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, "Lukas", new DateTime(2011, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Schuetz", "0660/ 4878 299", null, "Bad Hall", 1, "Roemerstr. 41", null, "4540" },
+                    { 9, new DateTime(1993, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, null, "Raimond", new DateTime(2012, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Hoad", "90445343454", null, "Department 99", 0, "Brooklyn street", null, "Ka Ahnung" },
+                    { 8, new DateTime(1993, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, null, "Rosa", new DateTime(2012, 8, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Diaz", "90445343454", null, "Department 99", 0, "Brooklyn street", null, "Ka Ahnung" },
+                    { 7, new DateTime(1993, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, null, "Amy", new DateTime(2012, 2, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web-Developer", "Santiago", "90445343454", null, "Department 99", 1, "Brooklyn street", null, "Ka Ahnung" },
+                    { 10, new DateTime(1990, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, null, "Todd", new DateTime(2010, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Sharvez", "0660/ 4878 444", null, "Hollywoo", 1, "Beachstreet", null, "0000" },
+                    { 5, new DateTime(1950, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, null, "Rick", new DateTime(2017, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web-Developer", "Sanchez", "039454646453", null, "Interdimensional", 0, "streetytreetstreet", null, "Ka Ahnung" },
+                    { 6, new DateTime(1990, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, null, "Jack", new DateTime(2017, 12, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web-Developer", "Peralta", "6784352363465", null, "Department 99", 2, "Brooklyn street", null, "Ka Ahnung" },
+                    { 3, new DateTime(1990, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, null, "Manuel", new DateTime(2010, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Mairinger", "0660/ 4878 444", null, "Irgendwo", 2, "Weiss i ned", null, "Ka Ahnung" },
+                    { 2000, new DateTime(1997, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, "Testine", new DateTime(2012, 10, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Testakulär", "066498234435", null, "Wels", 0, "Testreet", null, "8998" },
+                    { 1000, new DateTime(1996, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, "Testamon", new DateTime(2010, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Testa", "0000000000", null, "Wels", 0, "Manstreet", null, "4540" },
+                    { 2, new DateTime(1994, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, "Thomas", new DateTime(2012, 9, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web-Developer", "Baurnberger", "0660/ 4878 333", null, "Kematen am Innbach", 0, "See 44", null, "4633" },
+                    { 4, new DateTime(1960, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, null, "Bojack", new DateTime(2014, 7, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Horseman", "0676/9876534", null, "Hollywoo", 0, "Beachstreet 5", null, "Ka Ahnung" }
                 });
 
             migrationBuilder.InsertData(
@@ -496,9 +503,19 @@ namespace ProjectManager.Persistence.Migrations
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_DashboardDisplay_EmployeeId",
+                table: "DashboardDisplay",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Employee_DepartmentId",
                 table: "Employee",
                 column: "DepartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employee_EmployeeTaskId",
+                table: "Employee",
+                column: "EmployeeTaskId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EmployeeProject_EmployeeId",
@@ -544,10 +561,22 @@ namespace ProjectManager.Persistence.Migrations
                 name: "IX_TaskQualification_TaskId",
                 table: "TaskQualification",
                 column: "TaskId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Employee_EmployeeTask_EmployeeTaskId",
+                table: "Employee",
+                column: "EmployeeTaskId",
+                principalTable: "EmployeeTask",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_EmployeeTask_Employee_EmployeeId",
+                table: "EmployeeTask");
+
             migrationBuilder.DropTable(
                 name: "Appointment");
 
@@ -561,22 +590,22 @@ namespace ProjectManager.Persistence.Migrations
                 name: "EmployeeQualification");
 
             migrationBuilder.DropTable(
-                name: "EmployeeTask");
-
-            migrationBuilder.DropTable(
                 name: "TaskQualification");
-
-            migrationBuilder.DropTable(
-                name: "Employee");
 
             migrationBuilder.DropTable(
                 name: "Qualification");
 
             migrationBuilder.DropTable(
-                name: "Task");
+                name: "Employee");
 
             migrationBuilder.DropTable(
                 name: "Department");
+
+            migrationBuilder.DropTable(
+                name: "EmployeeTask");
+
+            migrationBuilder.DropTable(
+                name: "Task");
 
             migrationBuilder.DropTable(
                 name: "Project");

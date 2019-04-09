@@ -8,5 +8,6 @@ namespace ProjectManager.Core.Contracts
     public interface ITaskQualificationRepository
     {
         List<TaskQualification> GetByQualificationId(int qualificationId);
+        List<TaskQualification> GetQualificationsByTaskId(int taskId);
     }
 }

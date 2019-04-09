@@ -25,7 +25,18 @@ namespace ProjectManager.Persistence
 
         public List<EmployeeQualification> GetQualificationsByEmployeeId(int employeeId)
         {
-            return _dbContext.EmployeeQualification.Include(p=>p.Qualification).Where(e => e.EmployeeId == employeeId).ToList();
+            return _dbContext.EmployeeQualification.Include(p=>p.Qualification).Include(p=>p.Employee).Where(e => e.EmployeeId == employeeId).ToList();
+        }
+
+        public List<Employee> GetEmployeesByQualifications(List<TaskQualification> taskQualifications)
+        {
+            List<Employee> employees = new List<Employee>();
+
+            foreach (var tQ in taskQualifications)
+            {
+                employees.AddRange(_dbContext.EmployeeQualification.Include(p => p.Employee).Include(p => p.Qualification).Where(p=>p.Qualification == tQ.Qualification).ToList());
+            }
+            return employees;
         }
     }
 }

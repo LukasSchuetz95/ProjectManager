@@ -94,6 +94,8 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmployeeId");
+
                     b.ToTable("DashboardDisplay");
                 });
 
@@ -136,6 +138,8 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.Property<int>("DepartmentId");
 
+                    b.Property<int?>("EmployeeTaskId");
+
                     b.Property<string>("Firstname")
                         .IsRequired();
 
@@ -165,6 +169,8 @@ namespace ProjectManager.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
+
+                    b.HasIndex("EmployeeTaskId");
 
                     b.ToTable("Employee");
 
@@ -513,12 +519,24 @@ namespace ProjectManager.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("ProjectManager.Core.Entities.DashboardDisplay", b =>
+                {
+                    b.HasOne("ProjectManager.Core.Entities.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("ProjectManager.Core.Entities.Employee", b =>
                 {
                     b.HasOne("ProjectManager.Core.Entities.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ProjectManager.Core.Entities.EmployeeTask")
+                        .WithMany("WorkedOn")
+                        .HasForeignKey("EmployeeTaskId");
                 });
 
             modelBuilder.Entity("ProjectManager.Core.Entities.EmployeeProject", b =>

@@ -18,5 +18,7 @@ namespace ProjectManager.Core.Entities
         public int TaskId { get; set; }
 
         public bool Picked { get; set; }
+
+        public List<Employee> WorkedOn { get; set; }
     }
 }

@@ -22,5 +22,11 @@ namespace ProjectManager.Persistence
             return _dbContext.TaskQualification.Include(p => p.Qualification).Include(p => p.Task).
                    Where(p => p.QualificationId == qualificationId).ToList();
         }
+
+        public List<TaskQualification> GetQualificationsByTaskId(int taskId)
+        {
+            return _dbContext.TaskQualification.Include(p=>p.Qualification).Include(p=>p.Task).
+                   Where(p=>p.Task.Id == taskId).ToList();
+        }
     }
 }

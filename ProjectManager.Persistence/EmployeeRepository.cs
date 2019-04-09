@@ -81,11 +81,11 @@ namespace ProjectManager.Persistence
 
             if (order)
             {
-                query = _dbContext.Employee.Include(e => e.Department).Where(e=>e.Firstname != "Admin" && e.Lastname != "Admin").OrderBy(e => e.Department).ThenBy(e => e.Lastname);
+                query = _dbContext.Employee.Include(e => e.Department).Where(e=>e.Firstname != "Admin" && e.Lastname != "Admin").OrderBy(e => e.Department.DeptName).ThenBy(e => e.Lastname);
             }
             else
             {
-                query = _dbContext.Employee.Include(e => e.Department).Where(e => e.Firstname != "Admin" && e.Lastname != "Admin").OrderByDescending(e => e.Department).ThenByDescending(e => e.Lastname);
+                query = _dbContext.Employee.Include(e => e.Department).Where(e => e.Firstname != "Admin" && e.Lastname != "Admin").OrderByDescending(e => e.Department.DeptName).ThenByDescending(e => e.Lastname);
             }
 
             return ReturnListWithFilter(query, filter, 4);
@@ -137,6 +137,32 @@ namespace ProjectManager.Persistence
         {
             await _dbContext.Employee.AddAsync(employee);
             await _dbContext.SaveChangesAsync();
+        }
+
+        List<Employee> GetEmployeesByProjectsAndQualifications(int taskId, int employeeId, IUnitOfWork uow)
+        {
+            List<Employee> employees = new List<Employee>();
+            List<TaskQualification> taskQualifications = new List<TaskQualification>();
+
+            Project project = uow.Projects.GetById(uow.Tasks.GetById(taskId).ProjectId);
+            List<TaskQualification> tempTaskQualifications = uow.TaskQualifications.GetQualificationsByTaskId(taskId);
+
+            foreach (var tTQ in tempTaskQualifications)
+            {
+                if (tTQ.Task.ProjectId == project.Id)
+                {
+                    taskQualifications.Add(tTQ);
+                }
+            }
+
+            List<EmployeeQualification> QualifiedEmployees = uow.EmployeeQualifications.GetEmployeesByQualifications(taskQualifications);
+
+            foreach (var qe in QualifiedEmployees)
+            {
+                employees.Add(uow.Employees.GetById(qe.EmployeeId));
+            }
+
+            return employees;
         }
 
         #region Methods

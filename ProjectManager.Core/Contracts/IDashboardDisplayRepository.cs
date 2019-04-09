@@ -10,5 +10,6 @@ namespace ProjectManager.Core.Contracts
         void Update(DashboardDisplay dashboardDisplay);
         void Add(DashboardDisplay feedDisplay);
         void Delete(DashboardDisplay feedDisplay);
+        List<DashboardDisplay> GetByEmployeeId(int employeeId);
     }
 }
