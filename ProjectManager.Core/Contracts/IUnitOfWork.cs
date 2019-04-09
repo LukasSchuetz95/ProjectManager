@@ -27,7 +27,7 @@ namespace ProjectManager.Core.Contracts
 
         IEmployeeProjectRepository EmployeeProjects { get; }
 
-        IFeedDisplayRepository FeedDisplays { get; }
+        IDashboardDisplayRepository DashboardDisplays { get; }
 
 
         void Save();

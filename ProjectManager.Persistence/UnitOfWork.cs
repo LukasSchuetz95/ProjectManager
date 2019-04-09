@@ -34,7 +34,7 @@ namespace ProjectManager.Persistence
 
         public ITaskQualificationRepository TaskQualifications { get; }
 
-        public IFeedDisplayRepository FeedDisplays { get; }
+        public IDashboardDisplayRepository DashboardDisplays { get; }
 
         public UnitOfWork()
         {
@@ -49,7 +49,7 @@ namespace ProjectManager.Persistence
             Tasks = new TaskRepository(_dbContext);
             TaskQualifications = new TaskQualificationRepository(_dbContext);
             EmployeeProjects = new EmployeeProjectRepository(_dbContext);
-            FeedDisplays = new FeedDisplayRepository(_dbContext);
+            DashboardDisplays = new DashboardDisplayRepository(_dbContext);
         }
 
         public void DeleteDatabase()

@@ -18,131 +18,135 @@
             <h1>The Dashboard of @Model.Employee.Firstname</h1>
             <p>Your personal Overview</p>
             @*@if (Model.ErrorCreateEmployeeTask == false)
-            {
-                <p>@Model.ErrorMessage</p>
-            }*@
+                {
+                    <p>@Model.ErrorMessage</p>
+                }*@
 
-        </div>       
-            <div class="col-sm-6">
-                @*<table class="table" style="width:300px">
+        </div>
+
+    </form>
+    <div class="col-sm-6">
+        <table class="table" style="width:300px">
+            <tr>
+
+                <th>Taskname</th>
+                <th>Information</th>
+                <th></th>
+            </tr>
+            @foreach (var fT in Model.DashboardTasks)
+            {
+                <tr>
+                    <td>
+                        @fT.Name
+                    </td>
+                    <td>@fT.SpecificInformation</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <form asp-controller="Employees" asp-action="Feed">
+        <div>
+
+            <input asp-for="Assigned" type="submit" value="Assigned Tasks" class="btn btn-primary" style="width:370px" />
+            <span asp-validation-for="Assigned" class="text-danger"></span>
+
+            <input type="hidden" asp-for="Employee.Id" />
+            <input type="hidden" value="Assigned" asp-for="ButtonClicked" />
+
+        </div>
+    </form>
+    <div class="col-sm-6">
+
+        <table class="table" style="width:300px">
+            <tr>
+                <th>
+                    <form asp-controller="Employees" asp-action="Feed">
+                        <input asp-for="ProjectFilter" type="submit" value="Projekt" class="btn btn-primary" style="width:100px" />
+                        <span asp-validation-for="ProjectFilter" class="text-danger"></span>
+
+                        <input type="hidden" asp-for="Employee.Id" />
+                        <input type="hidden" value="Project" asp-for="ButtonClicked" />
+                    </form>
+
+                </th>
+                <th>
+                    <form asp-controller="Employees" asp-action="Feed">
+                        <input asp-for="GeneralFilter" type="submit" value="Allgemein" class="btn btn-primary" style="width:100px" />
+                        <span asp-validation-for="GeneralFilter" class="text-danger"></span>
+
+                        <input type="hidden" asp-for="Employee.Id" />
+                        <input type="hidden" value="General" asp-for="ButtonClicked" />
+                    </form>
+
+                </th>
+                <th>
+                    <form asp-controller="Employees" asp-action="Feed">
+                        @if (Model.PoolTasks.Count() == 0)
+                        {
+                            <input asp-for="PriorityFilter" type="submit" value="@Model.PoolTasks.Count()" class="btn btn-primary" style="width:100px" />
+                            <span asp-validation-for="PriorityFilter" class="text-danger"></span>
+                        }
+                        else
+                        {
+                            <input asp-for="PriorityFilter" type="submit" value="@Model.CountHighPriorityTasks()" class="btn btn-danger" style="width:100px" />
+                            <span asp-validation-for="PriorityFilter" class="text-danger"></span>
+                        }
+                        <input type="hidden" asp-for="Employee.Id" />
+                        <input type="hidden" value="@Model.ButtonClicked" asp-for="ButtonClicked" />
+                    </form>
+                </th>
+            </tr>
+        </table>
+
+        <div>
+            <form asp-controller="Employees" asp-action="Feed">
+                <input asp-for="SearchInput" class="form-control" style="width:250px" />
+                <span asp-validation-for="SearchInput" class="text-danger"></span>
+
+                <input asp-for="Search" type="submit" value="Search" class="btn btn-primary" style="width:75px" />
+                <span asp-validation-for="Search" class="text-danger"></span>
+
+                <input type="hidden" asp-for="Employee.Id" />
+                <input type="hidden" asp-for="ButtonClicked" />
+            </form>
+
+            <form asp-controller="Employees" asp-action="Feed">
+                <table class="table" style="width:300px">
                     <tr>
 
                         <th>Taskname</th>
                         <th>Priority</th>
                         <th></th>
                     </tr>
-                    @foreach (var fT in Model.feedTasks)
+                    @foreach (var pT in Model.PoolTasks)
                     {
+                        @if (Model.IsTaskVisible(pT))
+                        {
                             <tr>
                                 <td>
-                                    @fT.task.TaskName
+                                    @pT.TaskName
                                 </td>
-                                <td>@fT.task.Priority</td>
-                            </tr>                      
+                                <td>@pT.Priority</td>
+                                <td>
+
+                                    <input asp-for="AddTask" type="submit" value="@pT.Id" class="btn btn-primary" />
+                                    <span asp-validation-for="AddTask" class="text-danger"></span>
+
+                                </td>
+                            </tr>
+                        }
                     }
                 </table>
-            </div>*@
 
-            <div>
+                <input type="hidden" asp-for="Employee.Id" />
+                <input type="hidden" asp-for="ButtonClicked" />
 
-                <input asp-for="Assigned" type="submit" value="Assigned Tasks" class="btn btn-primary" style="width:370px" />
-                <span asp-validation-for="Assigned" class="text-danger"></span>
-
-                @*<input type="hidden" asp-for="Employee.Id" />
-                <input type="hidden" asp-for="ButtonClicked" />*@
-
-            </div>
-            <div class="col-sm-6">
-
-                <table class="table" style="width:300px">
-                    <tr>
-                        <th>
-
-                            <input asp-for="ProjectFilter" type="submit" value="Projekt" class="btn btn-primary" style="width:100px" />
-                            <span asp-validation-for="ProjectFilter" class="text-danger"></span>
-
-                            @*<input type="hidden" asp-for="Employee.Id" />
-                            <input type="hidden" asp-for="ButtonClicked" />*@
-
-                        </th>
-                        <th>
-
-                            <input asp-for="GeneralFilter" type="submit" value="Allgemein" class="btn btn-primary" style="width:100px" />
-                            <span asp-validation-for="GeneralFilter" class="text-danger"></span>
-
-                            @*<input type="hidden" asp-for="Employee.Id" />
-                            <input type="hidden" asp-for="ButtonClicked" />*@
-
-                        </th>
-                        <th>
-                            @if (Model.PoolTasks.Count() == 0)
-                            {
-
-                                <input asp-for="PriorityFilter" type="submit" value="@Model.PoolTasks.Count()" class="btn btn-primary" style="width:100px" />
-                                <span asp-validation-for="PriorityFilter" class="text-danger"></span>
-
-                                @*<input type="hidden" asp-for="Employee.Id" />
-                                <input type="hidden" asp-for="ButtonClicked" />*@
-
-                            }
-                            else
-                            {
-
-                                <input asp-for="PriorityFilter" type="submit" value="@Model.CountHighPriorityTasks()" class="btn btn-danger" style="width:100px" />
-                                <span asp-validation-for="PriorityFilter" class="text-danger"></span>
-
-                                @*<input type="hidden" asp-for="Employee.Id" />
-                                <input type="hidden" asp-for="ButtonClicked" />*@
-
-                            }
-                        </th>
-                    </tr>
-                </table>
-
-                <div>
-
-
-                    <input asp-for="SearchInput" class="form-control" style="width:250px" />
-                    <span asp-validation-for="SearchInput" class="text-danger"></span>
-
-                    <input asp-for="Search" type="submit" value="Search" class="btn btn-primary" style="width:75px" />
-                    <span asp-validation-for="Search" class="text-danger"></span>
-
-                    <input type="hidden" asp-for="Employee.Id" />
-                    <input type="hidden" asp-for="ButtonClicked" />
-
-
-                    <table class="table" style="width:300px">
-                        <tr>
-
-                            <th>Taskname</th>
-                            <th>Priority</th>
-                            <th></th>
-                        </tr>
-                        @foreach (var pT in Model.PoolTasks)
-                        {
-                            @if (Model.IsTaskVisible(pT))
-                            {
-                                <tr>
-                                    <td>
-                                        @pT.TaskName
-                                    </td>
-                                    <td>@pT.Priority</td>
-                                    <td>
-
-                                        <input asp-for="AddTask" type="submit" value="@pT.Id" class="btn btn-primary" />
-                                        <span asp-validation-for="AddTask" class="text-danger"></span>
-
-                                    </td>
-                                </tr>
-                            }
-                        }
-                    </table>
-                </div>
-
-            </div>
+            </form>
         </div>
-    </form>
+
+    </div>
+
+
 </body>
 </html>
 

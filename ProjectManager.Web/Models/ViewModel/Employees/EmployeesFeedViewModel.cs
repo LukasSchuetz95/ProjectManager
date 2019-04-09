@@ -18,7 +18,7 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
         public List<EmployeeQualification> EmployeeQualifications { get; set; }
         public List<EmployeeProject> EmployeeProjects { get; set; }
 
-        public List<FeedDisplay> feedTasks { get; set; }
+        public List<DashboardDisplay> DashboardTasks { get; set; }
 
         public List<EmployeeTask> AssignedTasks { get; set; }
         public List<Task> PoolTasks { get => _poolTasks; set => _poolTasks=value; }
@@ -38,9 +38,8 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
 
         public void LoadFeedData(int employeeId, IUnitOfWork uow)
         {
-            ButtonClicked = "Assigned";
             EmployeeAssignedTasksList = uow.EmployeeTasks.GetAllByEmployeeId(employeeId);
-            LoadFeedTasks();
+            LoadDashboardTasks();
 
             Task task = new Task();
 
@@ -58,8 +57,6 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
 
         public void LoadProjectFeedData(int employeeId, IUnitOfWork uow)
         {
-            ButtonClicked = "Project";
-
             EmployeeQualifications = uow.EmployeeQualifications.GetQualificationsByEmployeeId(employeeId);
 
             EmployeeProjects = uow.EmployeeProjects.GetProjectsByEmployeeId(employeeId);
@@ -68,13 +65,11 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
 
             RemoveAssignedTasks(uow, employeeId);
 
-            LoadFeedTasks();
+            LoadDashboardTasks();
         }
 
         public void LoadGeneralFeedData(int employeeId, IUnitOfWork uow)
         {
-            ButtonClicked = "General";
-
             EmployeeQualifications = uow.EmployeeQualifications.GetQualificationsByEmployeeId(employeeId);
 
             EmployeeProjects = uow.EmployeeProjects.GetProjectsByEmployeeId(employeeId);
@@ -83,7 +78,7 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
 
             RemoveAssignedTasks(uow, employeeId);
 
-            LoadFeedTasks();
+            LoadDashboardTasks();
         }
 
         private void RemoveAssignedTasks(IUnitOfWork uow, int employeeId)
@@ -105,9 +100,10 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
             }
         }
 
-        public void LoadFeedTasks()
+        //Wird bereits erstellt muss jetzt nach employeeid selektieren
+        public void LoadDashboardTasks()
         {
-            this.feedTasks = new List<FeedDisplay>();
+            this.DashboardTasks = new List<DashboardDisplay>();
         }
 
         #region ViewMethods

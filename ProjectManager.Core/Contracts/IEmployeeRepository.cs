@@ -8,10 +8,10 @@ namespace ProjectManager.Core.Contracts
 {
     public interface IEmployeeRepository
     {
-        List<Employee> GetEmployeeByLastname(string filter=null);
-        List<Employee> GetEmployeeByFirstname(string filter=null);
-        List<Employee> GetEmployeeByJob(string filterJob=null);
-        List<Employee> GetEmployeeByDeparmentName(string filterDepartmentName=null);
+        List<Employee> GetEmployeeByLastname(string filter, bool order);
+        List<Employee> GetEmployeeByFirstname(string filter, bool order);
+        List<Employee> GetEmployeeByJob(string filter, bool order);
+        List<Employee> GetEmployeeByDeparmentName(string filter, bool order);
         Employee GetById(int employeeId);
         List<Employee> GetAll();
         List<EmployeeQualification> GetAllProjectManagersAndProjectMembers(int projectId);

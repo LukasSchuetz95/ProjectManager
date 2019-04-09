@@ -10,8 +10,8 @@ using ProjectManager.Persistence;
 namespace ProjectManager.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContextPersistence))]
-    [Migration("20190408132712_InitiaMigraton8")]
-    partial class InitiaMigraton8
+    [Migration("20190408210818_InitialMigration10")]
+    partial class InitialMigration10
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,6 +67,36 @@ namespace ProjectManager.Persistence.Migrations
                         new { Id = 14, AppoName = "termin12", AppoType = 0, EmployeeId = 3, Enddate = new DateTime(2020, 10, 30, 13, 30, 0, 0, DateTimeKind.Unspecified), Information = "Das ist ein Test", Startdate = new DateTime(2020, 10, 30, 12, 30, 0, 0, DateTimeKind.Unspecified) },
                         new { Id = 15, AppoName = "termin13", AppoType = 1, EmployeeId = 3, Enddate = new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "Das ist ein Test", Startdate = new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified) }
                     );
+                });
+
+            modelBuilder.Entity("ProjectManager.Core.Entities.DashboardDisplay", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AppointmentId");
+
+                    b.Property<int>("EmployeeId");
+
+                    b.Property<bool>("Finished");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<string>("SpecificInformation");
+
+                    b.Property<DateTime>("Startdatum");
+
+                    b.Property<int>("TaskId");
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DashboardDisplay");
                 });
 
             modelBuilder.Entity("ProjectManager.Core.Entities.Department", b =>
@@ -256,7 +286,7 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.Property<int>("EmployeeId");
 
-                    b.Property<bool>("InWork");
+                    b.Property<bool>("Picked");
 
                     b.Property<int>("TaskId");
 
@@ -273,58 +303,27 @@ namespace ProjectManager.Persistence.Migrations
                     b.ToTable("EmployeeTask");
 
                     b.HasData(
-                        new { Id = 100, EmployeeId = 1, InWork = false, TaskId = 1111 },
-                        new { Id = 101, EmployeeId = 1, InWork = false, TaskId = 2222 },
-                        new { Id = 102, EmployeeId = 1, InWork = false, TaskId = 3333 },
-                        new { Id = 103, EmployeeId = 1, InWork = false, TaskId = 4444 },
-                        new { Id = 104, EmployeeId = 1, InWork = false, TaskId = 5555 },
-                        new { Id = 105, EmployeeId = 1, InWork = false, TaskId = 6666 },
-                        new { Id = 106, EmployeeId = 2, InWork = false, TaskId = 7777 },
-                        new { Id = 107, EmployeeId = 2, InWork = false, TaskId = 8888 },
-                        new { Id = 108, EmployeeId = 2, InWork = false, TaskId = 9999 },
-                        new { Id = 109, EmployeeId = 2, InWork = false, TaskId = 10000 },
-                        new { Id = 110, EmployeeId = 2, InWork = false, TaskId = 11111 },
-                        new { Id = 111, EmployeeId = 2, InWork = false, TaskId = 12222 },
-                        new { Id = 112, EmployeeId = 2, InWork = false, TaskId = 13333 },
-                        new { Id = 113, EmployeeId = 3, InWork = false, TaskId = 14444 },
-                        new { Id = 114, EmployeeId = 3, InWork = false, TaskId = 15555 },
-                        new { Id = 115, EmployeeId = 3, InWork = false, TaskId = 16666 },
-                        new { Id = 116, EmployeeId = 3, InWork = false, TaskId = 17777 },
-                        new { Id = 117, EmployeeId = 3, InWork = false, TaskId = 18888 },
-                        new { Id = 118, EmployeeId = 3, InWork = false, TaskId = 19999 },
-                        new { Id = 1000, EmployeeId = 1000, InWork = false, TaskId = 1000 }
+                        new { Id = 100, EmployeeId = 1, Picked = false, TaskId = 1111 },
+                        new { Id = 101, EmployeeId = 1, Picked = false, TaskId = 2222 },
+                        new { Id = 102, EmployeeId = 1, Picked = false, TaskId = 3333 },
+                        new { Id = 103, EmployeeId = 1, Picked = false, TaskId = 4444 },
+                        new { Id = 104, EmployeeId = 1, Picked = false, TaskId = 5555 },
+                        new { Id = 105, EmployeeId = 1, Picked = false, TaskId = 6666 },
+                        new { Id = 106, EmployeeId = 2, Picked = false, TaskId = 7777 },
+                        new { Id = 107, EmployeeId = 2, Picked = false, TaskId = 8888 },
+                        new { Id = 108, EmployeeId = 2, Picked = false, TaskId = 9999 },
+                        new { Id = 109, EmployeeId = 2, Picked = false, TaskId = 10000 },
+                        new { Id = 110, EmployeeId = 2, Picked = false, TaskId = 11111 },
+                        new { Id = 111, EmployeeId = 2, Picked = false, TaskId = 12222 },
+                        new { Id = 112, EmployeeId = 2, Picked = false, TaskId = 13333 },
+                        new { Id = 113, EmployeeId = 3, Picked = false, TaskId = 14444 },
+                        new { Id = 114, EmployeeId = 3, Picked = false, TaskId = 15555 },
+                        new { Id = 115, EmployeeId = 3, Picked = false, TaskId = 16666 },
+                        new { Id = 116, EmployeeId = 3, Picked = false, TaskId = 17777 },
+                        new { Id = 117, EmployeeId = 3, Picked = false, TaskId = 18888 },
+                        new { Id = 118, EmployeeId = 3, Picked = false, TaskId = 19999 },
+                        new { Id = 1000, EmployeeId = 1000, Picked = false, TaskId = 1000 }
                     );
-                });
-
-            modelBuilder.Entity("ProjectManager.Core.Entities.FeedDisplay", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AppointmentId");
-
-                    b.Property<int?>("EmployeeId");
-
-                    b.Property<bool>("Finished");
-
-                    b.Property<DateTime?>("Startdatum");
-
-                    b.Property<int?>("TaskId");
-
-                    b.Property<byte[]>("Timestamp")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppointmentId");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("TaskId");
-
-                    b.ToTable("FeedDisplayRepository");
                 });
 
             modelBuilder.Entity("ProjectManager.Core.Entities.Project", b =>
@@ -561,21 +560,6 @@ namespace ProjectManager.Persistence.Migrations
                         .WithMany()
                         .HasForeignKey("TaskId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("ProjectManager.Core.Entities.FeedDisplay", b =>
-                {
-                    b.HasOne("ProjectManager.Core.Entities.Appointment", "Appointment")
-                        .WithMany()
-                        .HasForeignKey("AppointmentId");
-
-                    b.HasOne("ProjectManager.Core.Entities.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId");
-
-                    b.HasOne("ProjectManager.Core.Entities.Task", "Task")
-                        .WithMany()
-                        .HasForeignKey("TaskId");
                 });
 
             modelBuilder.Entity("ProjectManager.Core.Entities.Task", b =>

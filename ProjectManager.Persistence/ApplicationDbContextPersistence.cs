@@ -29,7 +29,7 @@ namespace ProjectManager.Persistence
 
         public DbSet<EmployeeProject> EmployeeProject { get; set; }
 
-        public DbSet<FeedDisplay> FeedDisplayRepository { get; set; }
+        public DbSet<DashboardDisplay> DashboardDisplay { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -1030,7 +1030,7 @@ namespace ProjectManager.Persistence
                     Id = 100,
                     EmployeeId = 1,
                     TaskId = 1111,
-                    InWork=false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
@@ -1039,7 +1039,7 @@ namespace ProjectManager.Persistence
                     Id = 101,
                     EmployeeId = 1,
                     TaskId = 2222,
-                    InWork = false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
@@ -1048,7 +1048,7 @@ namespace ProjectManager.Persistence
                     Id = 102,
                     EmployeeId = 1,
                     TaskId = 3333,
-                    InWork = false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
@@ -1057,7 +1057,7 @@ namespace ProjectManager.Persistence
                     Id = 103,
                     EmployeeId = 1,
                     TaskId = 4444,
-                    InWork = false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
@@ -1066,7 +1066,7 @@ namespace ProjectManager.Persistence
                     Id = 104,
                     EmployeeId = 1,
                     TaskId = 5555,
-                    InWork = false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
@@ -1075,7 +1075,7 @@ namespace ProjectManager.Persistence
                     Id = 105,
                     EmployeeId = 1,
                     TaskId = 6666,
-                    InWork = false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
@@ -1084,7 +1084,7 @@ namespace ProjectManager.Persistence
                     Id = 106,
                     EmployeeId = 2,
                     TaskId = 7777,
-                    InWork = false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
@@ -1093,7 +1093,7 @@ namespace ProjectManager.Persistence
                     Id = 107,
                     EmployeeId = 2,
                     TaskId = 8888,
-                    InWork = false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
@@ -1102,7 +1102,7 @@ namespace ProjectManager.Persistence
                     Id = 108,
                     EmployeeId = 2,
                     TaskId = 9999,
-                    InWork = false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
@@ -1111,7 +1111,7 @@ namespace ProjectManager.Persistence
                     Id = 109,
                     EmployeeId = 2,
                     TaskId = 10000,
-                    InWork = false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
@@ -1120,7 +1120,7 @@ namespace ProjectManager.Persistence
                     Id = 110,
                     EmployeeId = 2,
                     TaskId = 11111,
-                    InWork = false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
@@ -1129,7 +1129,7 @@ namespace ProjectManager.Persistence
                     Id = 111,
                     EmployeeId = 2,
                     TaskId = 12222,
-                    InWork = false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
@@ -1138,7 +1138,7 @@ namespace ProjectManager.Persistence
                     Id = 112,
                     EmployeeId = 2,
                     TaskId = 13333,
-                    InWork = false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
@@ -1147,7 +1147,7 @@ namespace ProjectManager.Persistence
                     Id = 113,
                     EmployeeId = 3,
                     TaskId = 14444,
-                    InWork = false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
@@ -1156,7 +1156,7 @@ namespace ProjectManager.Persistence
                     Id = 114,
                     EmployeeId = 3,
                     TaskId = 15555,
-                    InWork = false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
@@ -1165,7 +1165,7 @@ namespace ProjectManager.Persistence
                     Id = 115,
                     EmployeeId = 3,
                     TaskId = 16666,
-                    InWork = false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
@@ -1174,7 +1174,7 @@ namespace ProjectManager.Persistence
                     Id = 116,
                     EmployeeId = 3,
                     TaskId = 17777,
-                    InWork = false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
@@ -1183,7 +1183,7 @@ namespace ProjectManager.Persistence
                     Id = 117,
                     EmployeeId = 3,
                     TaskId = 18888,
-                    InWork = false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<EmployeeTask>().HasData(
@@ -1192,7 +1192,7 @@ namespace ProjectManager.Persistence
                     Id = 118,
                     EmployeeId = 3,
                     TaskId = 19999,
-                    InWork = false,
+                    Picked = false,
                 });
 
             modelBuilder.Entity<TaskQualification>().HasData(
@@ -1619,7 +1619,7 @@ namespace ProjectManager.Persistence
                     Id = 1000,
                     EmployeeId = 1000,
                     TaskId = 1000,
-                    InWork = false,
+                    Picked = false,
                 });
 
             //Test für Tasks die anderen zugeteilten wurden

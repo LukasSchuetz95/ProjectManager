@@ -4,10 +4,30 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectManager.Persistence.Migrations
 {
-    public partial class InitiaMigraton8 : Migration
+    public partial class InitialMigration10 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "DashboardDisplay",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    Startdatum = table.Column<DateTime>(nullable: false),
+                    Finished = table.Column<bool>(nullable: false),
+                    SpecificInformation = table.Column<string>(nullable: true),
+                    EmployeeId = table.Column<int>(nullable: false),
+                    AppointmentId = table.Column<int>(nullable: false),
+                    TaskId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DashboardDisplay", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Department",
                 columns: table => new
@@ -208,7 +228,7 @@ namespace ProjectManager.Persistence.Migrations
                     Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
                     EmployeeId = table.Column<int>(nullable: false),
                     TaskId = table.Column<int>(nullable: false),
-                    InWork = table.Column<bool>(nullable: false)
+                    Picked = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -252,42 +272,6 @@ namespace ProjectManager.Persistence.Migrations
                         principalTable: "Task",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FeedDisplayRepository",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    EmployeeId = table.Column<int>(nullable: true),
-                    AppointmentId = table.Column<int>(nullable: true),
-                    TaskId = table.Column<int>(nullable: true),
-                    Startdatum = table.Column<DateTime>(nullable: true),
-                    Finished = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FeedDisplayRepository", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_FeedDisplayRepository_Appointment_AppointmentId",
-                        column: x => x.AppointmentId,
-                        principalTable: "Appointment",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FeedDisplayRepository_Employee_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employee",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FeedDisplayRepository_Task_TaskId",
-                        column: x => x.TaskId,
-                        principalTable: "Task",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -453,7 +437,7 @@ namespace ProjectManager.Persistence.Migrations
 
             migrationBuilder.InsertData(
                 table: "EmployeeTask",
-                columns: new[] { "Id", "EmployeeId", "InWork", "TaskId", "Timestamp" },
+                columns: new[] { "Id", "EmployeeId", "Picked", "TaskId", "Timestamp" },
                 values: new object[,]
                 {
                     { 111, 2, false, 12222, null },
@@ -547,21 +531,6 @@ namespace ProjectManager.Persistence.Migrations
                 column: "TaskId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FeedDisplayRepository_AppointmentId",
-                table: "FeedDisplayRepository",
-                column: "AppointmentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FeedDisplayRepository_EmployeeId",
-                table: "FeedDisplayRepository",
-                column: "EmployeeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FeedDisplayRepository_TaskId",
-                table: "FeedDisplayRepository",
-                column: "TaskId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Task_ProjectId",
                 table: "Task",
                 column: "ProjectId");
@@ -580,6 +549,12 @@ namespace ProjectManager.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Appointment");
+
+            migrationBuilder.DropTable(
+                name: "DashboardDisplay");
+
+            migrationBuilder.DropTable(
                 name: "EmployeeProject");
 
             migrationBuilder.DropTable(
@@ -589,13 +564,10 @@ namespace ProjectManager.Persistence.Migrations
                 name: "EmployeeTask");
 
             migrationBuilder.DropTable(
-                name: "FeedDisplayRepository");
-
-            migrationBuilder.DropTable(
                 name: "TaskQualification");
 
             migrationBuilder.DropTable(
-                name: "Appointment");
+                name: "Employee");
 
             migrationBuilder.DropTable(
                 name: "Qualification");
@@ -604,13 +576,10 @@ namespace ProjectManager.Persistence.Migrations
                 name: "Task");
 
             migrationBuilder.DropTable(
-                name: "Employee");
+                name: "Department");
 
             migrationBuilder.DropTable(
                 name: "Project");
-
-            migrationBuilder.DropTable(
-                name: "Department");
         }
     }
 }

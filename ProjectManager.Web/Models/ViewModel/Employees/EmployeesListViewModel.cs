@@ -16,5 +16,10 @@ namespace ProjectManager.Web.Models.ViewModel
         public string FirstnameFilter { get; set; }
         public string JobFilter { get; set; }
         public string DepartmentFilter { get; set; }
+
+        public bool SwitchOrderFirstName { get; set; }
+        public bool SwitchOrderLastName { get; set; }
+        public bool SwitchOrderJob { get; set; }
+        public bool SwitchOrderDepartment { get; set; }
     }
 }

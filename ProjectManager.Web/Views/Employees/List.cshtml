@@ -15,8 +15,7 @@
     <header>
         <h3>Mitarbeiter suchen</h3>
     </header>
-
-    <form asp-controller="Employees" asp-action="List">        
+    <form asp-controller="Employees" asp-action="List">
         <div class="dropdown-menu-left">
             <div>
                 <input asp-for="LastnameFilter" type="submit" value="Nachname filtern" class="btn btn-primary" style="width:200px" />
@@ -30,11 +29,20 @@
 
                 <input asp-for="DepartmentFilter" type="submit" value="Abteilung filtern" class="btn btn-primary" style="width:200px" />
                 <span asp-validation-for="DepartmentFilter" class="text-danger" />
+
             </div>
-            <input asp-for="Filter" class="form-control" style="width:812px" />
+
+
+            <input asp-for="Filter" value="@Model.Filter" class="form-control" style="width:812px" />
             <span asp-validation-for="Filter" class="text-danger"></span>
+
+            <input asp-for="SwitchOrderLastName" value="@Model.SwitchOrderLastName" type="hidden" />
+            <input asp-for="SwitchOrderFirstName" value="@Model.SwitchOrderFirstName" type="hidden" />
+            <input asp-for="SwitchOrderJob" value="@Model.SwitchOrderJob" type="hidden" />
+            <input asp-for="Filter" type="hidden" value="@Model.Filter" />
         </div>
     </form>
+
 
     <table class="table" style="width:812px">
         <tr>
@@ -46,15 +54,17 @@
         </tr>
         @foreach (var employee in Model.Employees)
         {
-        <tr>
-            <td class="icon-bar" title="Klicken Sie hier um auf das Profil zu gelangen"><a class="active" asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@employee.Id"><i class="glyphicon glyphicon-user"></i></a></td>
-            <td>@employee.Lastname</td>
-            <td>@employee.Firstname</td>
-            <td>@employee.Job</td>
-            <td>@employee.Department.DeptName</td>
-        </tr>
+            <tr>
+                <td class="icon-bar" title="Klicken Sie hier um auf das Profil zu gelangen"><a class="active" asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@employee.Id"><i class="glyphicon glyphicon-user"></i></a></td>
+                <td>@employee.Lastname</td>
+                <td>@employee.Firstname</td>
+                <td>@employee.Job</td>
+                <td>@employee.Department.DeptName</td>
+            </tr>
         }
-    </table>  
+    </table>
 </body>
 </html>
+
+
 

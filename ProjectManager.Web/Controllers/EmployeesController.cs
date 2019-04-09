@@ -27,7 +27,7 @@ namespace ProjectManager.Web.Controllers
 
         public EmployeesController(IUnitOfWork unitOfWork)
         {
-            _unitOfWork=unitOfWork;
+            _unitOfWork = unitOfWork;
         }
 
         #endregion
@@ -37,28 +37,42 @@ namespace ProjectManager.Web.Controllers
         public IActionResult List()
         {
             EmployeesListViewModel model = new EmployeesListViewModel();
-            model.Employees = _unitOfWork.Employees.GetEmployeeByLastname();
+            model.Employees = _unitOfWork.Employees.GetAll();
+
+            model.SwitchOrderLastName = true;
+            model.SwitchOrderFirstName = true;
+            model.SwitchOrderJob = true;
+            model.SwitchOrderDepartment = true;
+
             return View(model);
         }
-       
+
         [HttpPost]
         public IActionResult List(EmployeesListViewModel model)
         {
             if (model.LastnameFilter != null)
             {
-                model.Employees = _unitOfWork.Employees.GetEmployeeByLastname(model.Filter);
+                SetBackSwitchOrders(1, model);
+                model.SwitchOrderLastName = SwitchFilter(model.SwitchOrderLastName);
+                model.Employees = _unitOfWork.Employees.GetEmployeeByLastname(model.Filter, model.SwitchOrderLastName);
             }
             else if (model.FirstnameFilter != null)
             {
-                model.Employees = _unitOfWork.Employees.GetEmployeeByFirstname(model.Filter);
+                SetBackSwitchOrders(2, model);
+                model.SwitchOrderFirstName = SwitchFilter(model.SwitchOrderFirstName);
+                model.Employees = _unitOfWork.Employees.GetEmployeeByFirstname(model.Filter, model.SwitchOrderFirstName);
             }
             else if (model.JobFilter != null)
             {
-                model.Employees = _unitOfWork.Employees.GetEmployeeByJob(model.Filter);
+                SetBackSwitchOrders(3, model);
+                model.SwitchOrderJob = SwitchFilter(model.SwitchOrderJob);
+                model.Employees = _unitOfWork.Employees.GetEmployeeByJob(model.Filter, model.SwitchOrderJob);
             }
             else if (model.DepartmentFilter != null)
             {
-                model.Employees = _unitOfWork.Employees.GetEmployeeByDeparmentName(model.Filter);
+                SetBackSwitchOrders(4, model);
+                model.SwitchOrderDepartment = SwitchFilter(model.SwitchOrderDepartment);
+                model.Employees = _unitOfWork.Employees.GetEmployeeByDeparmentName(model.Filter, model.SwitchOrderDepartment);
             }
             else
             {
@@ -67,6 +81,64 @@ namespace ProjectManager.Web.Controllers
 
             return View(model);
         }
+
+        private void SetBackSwitchOrders(int Swt, EmployeesListViewModel model)
+        {
+            if (Swt == 1)
+            {
+                model.SwitchOrderFirstName = false;
+                model.SwitchOrderJob = false;
+                model.SwitchOrderDepartment = false;
+            }
+            else if (Swt == 2)
+            {
+                model.SwitchOrderLastName = false;
+                model.SwitchOrderJob = false;
+                model.SwitchOrderDepartment = false;
+            }
+            else if (Swt == 3)
+            {
+                model.SwitchOrderFirstName = false;
+                model.SwitchOrderLastName = false;
+                model.SwitchOrderDepartment = false;
+            }
+            else if (Swt == 4)
+            {
+                model.SwitchOrderFirstName = false;
+                model.SwitchOrderJob = false;
+                model.SwitchOrderLastName = false;
+            }
+        }
+
+        #region List-methods
+
+        private bool IsNullOrEmpty(string check)
+        {
+            if (check.Trim() == "" || check == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private bool SwitchFilter(bool switchOrder)
+        {
+            if (switchOrder==true)
+            {
+                switchOrder = false;
+            }
+            else
+            {
+                switchOrder = true;
+            }
+
+            return switchOrder;
+        }
+
+        #endregion
 
         #endregion
 
@@ -153,7 +225,6 @@ namespace ProjectManager.Web.Controllers
         {
             EmployeesFeedViewModel model = new EmployeesFeedViewModel();
             model.Employee = _unitOfWork.Employees.GetById(employeeId);
-            model.LoadFeedTasks();
 
             model.LoadFeedData(employeeId, _unitOfWork);
 
@@ -204,9 +275,22 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
-        #endregion
+        #region Feed : Methods
 
-        #region Methods
+        private bool CheckIfEmployeeTaskIsAlreadyExsisting(EmployeeTask employeeTask)
+        {
+            List<EmployeeTask> employeeTaskList = _unitOfWork.EmployeeTasks.GetAllByEmployeeId(employeeTask.EmployeeId);
+
+            foreach (var eTL in employeeTaskList)
+            {
+                if (employeeTask.EmployeeId == eTL.EmployeeId && employeeTask.TaskId == eTL.TaskId)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
 
         public void GetFilteredList(EmployeesFeedViewModel model, bool priority)
         {
@@ -249,19 +333,66 @@ namespace ProjectManager.Web.Controllers
             return model;
         }
 
-        #region Update and Create
-
         public bool CheckIfEmployeeTaskExists(int employeeId, int taskId, EmployeesFeedViewModel model)
         {
             EmployeeTask employeeTask = GenerateEmployeetask(employeeId, taskId);
 
             if (CheckIfEmployeeTaskIsAlreadyExsisting(employeeTask))
             {
-                return TryToAddEmployeeTask(employeeTask, model);
+                return AddEmployeeTask(employeeTask, model);
             }
             else
             {
-                return TryToUpdateEmployeeTask(employeeTask, model);
+                return UpdateEmployeeTask(employeeTask, model);
+            }
+        }
+
+        //private static async DeleteErrorMessage()
+        //{
+
+        //}
+
+        #endregion
+
+        #region Feed : Update, Create and Generate
+
+        private bool UpdateEmployeeTask(EmployeeTask employeeTask, EmployeesFeedViewModel model)
+        {
+            employeeTask = _unitOfWork.EmployeeTasks.GetByEmployeeIdAndTaskId(employeeTask.TaskId, employeeTask.EmployeeId);
+            employeeTask.Picked = true;
+
+            try
+            {
+                _unitOfWork.EmployeeTasks.Update(employeeTask);
+                _unitOfWork.Save();
+                UpdateTask(employeeTask);
+                CreateFeedDisplay(model, employeeTask);
+                return true;
+            }
+            catch (ValidationException validationException)
+            {
+                ValidationResult valResult = validationException.ValidationResult;
+                ModelState.AddModelError(valResult.MemberNames.First(), valResult.ErrorMessage);
+                return false;
+            }
+        }
+
+        private bool AddEmployeeTask(EmployeeTask employeeTask, EmployeesFeedViewModel model)
+        {
+            try
+            {
+                _unitOfWork.EmployeeTasks.Add(employeeTask);
+                _unitOfWork.Save();
+                UpdateTask(employeeTask);
+                CreateFeedDisplay(model, employeeTask);
+                return true;
+
+            }
+            catch (ValidationException validationException)
+            {
+                ValidationResult valResult = validationException.ValidationResult;
+                ModelState.AddModelError(valResult.MemberNames.First(), valResult.ErrorMessage);
+                return false;
             }
         }
 
@@ -274,66 +405,22 @@ namespace ProjectManager.Web.Controllers
             {
                 _unitOfWork.Tasks.Update(task);
                 _unitOfWork.Save();
-                UpdateTask(employeeTask);
             }
             catch (ValidationException validationException)
             {
                 ValidationResult valResult = validationException.ValidationResult;
                 ModelState.AddModelError(valResult.MemberNames.First(), valResult.ErrorMessage);
-            }
-        }
-
-        private bool TryToUpdateEmployeeTask(EmployeeTask employeeTask, EmployeesFeedViewModel model)
-        {
-            employeeTask = _unitOfWork.EmployeeTasks.GetByEmployeeIdAndTaskId(employeeTask.TaskId, employeeTask.EmployeeId);
-            employeeTask.InWork = true;
-            try
-            {
-                _unitOfWork.EmployeeTasks.Update(employeeTask);
-                _unitOfWork.Save();
-                CreateFeedDisplay(model, employeeTask);
-                UpdateTask(employeeTask);
-                return true;
-            }
-            catch (ValidationException validationException)
-            {
-                ValidationResult valResult = validationException.ValidationResult;
-                ModelState.AddModelError(valResult.MemberNames.First(), valResult.ErrorMessage);
-                return false;
-            }
-        }
-
-        private bool TryToAddEmployeeTask(EmployeeTask employeeTask, EmployeesFeedViewModel model)
-        {
-            try
-            {
-                _unitOfWork.EmployeeTasks.Add(employeeTask);
-                _unitOfWork.Save();
-                CreateFeedDisplay(model, employeeTask);
-                UpdateTask(employeeTask);
-                return true;
-
-            }
-            catch (ValidationException validationException)
-            {
-                ValidationResult valResult = validationException.ValidationResult;
-                ModelState.AddModelError(valResult.MemberNames.First(), valResult.ErrorMessage);
-                return false;
             }
         }
 
         public void CreateFeedDisplay(EmployeesFeedViewModel model, EmployeeTask employeeTask)
         {
-            FeedDisplay feedDisplay = new FeedDisplay();
-            Task task = _unitOfWork.Tasks.GetById(employeeTask.TaskId);
-            //feedDisplay.task = task;
-            //feedDisplay.taskId = task.Id;
-            //feedDisplay.appointment = null;
-            //feedDisplay.appointmentId = 0;
+            DashboardDisplay dashboardDisplay = new DashboardDisplay();
+            dashboardDisplay = GenerateDashboardTask(employeeTask);
 
             try
             {
-                _unitOfWork.FeedDisplays.Add(feedDisplay);
+                _unitOfWork.DashboardDisplays.Add(dashboardDisplay);
                 _unitOfWork.Save();
             }
             catch (ValidationException validationException)
@@ -343,7 +430,19 @@ namespace ProjectManager.Web.Controllers
             }
         }
 
-        #region Sonstiges
+        private DashboardDisplay GenerateDashboardTask(EmployeeTask employeeTask)
+        {
+            DashboardDisplay dashboardTask = new DashboardDisplay();
+
+            dashboardTask.Name = employeeTask.Task.TaskName;
+            dashboardTask.Startdatum = DateTime.Now;
+            dashboardTask.SpecificInformation = Convert.ToString(employeeTask.Task.Priority);
+            dashboardTask.Finished = false;
+            dashboardTask.EmployeeId = employeeTask.Id;
+            dashboardTask.TaskId = employeeTask.Id;
+
+            return dashboardTask;
+        }
 
         private EmployeeTask GenerateEmployeetask(int employeeId, int taskId)
         {
@@ -352,36 +451,13 @@ namespace ProjectManager.Web.Controllers
             employeeTask.Task = _unitOfWork.Tasks.GetById(taskId);
             employeeTask.TaskId = taskId;
             employeeTask.EmployeeId = employeeId;
-            employeeTask.InWork = true;
+            employeeTask.Picked = true;
 
             return employeeTask;
         }
 
-        private bool CheckIfEmployeeTaskIsAlreadyExsisting(EmployeeTask employeeTask)
-        {
-            List<EmployeeTask> employeeTaskList = _unitOfWork.EmployeeTasks.GetAllByEmployeeId(employeeTask.EmployeeId);
-
-            foreach (var eTL in employeeTaskList)
-            {
-                if (employeeTask.EmployeeId == eTL.EmployeeId && employeeTask.TaskId == eTL.TaskId)
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        //private static async DeleteErrorMessage()
-        //{
-
-        //}
-
         #endregion
 
         #endregion
-
-        #endregion
-
     }
 }
