@@ -62,6 +62,7 @@
                     <td>@task.Project.ProjectName</td>
                     <td>
                         <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a> |
+                        <a asp-controller="Tasks" asp-action="Delete"   asp-route-taskId="@task.Id">Löschen</a> 
                     </td>
                 </tr>
 

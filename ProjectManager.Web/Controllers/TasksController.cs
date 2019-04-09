@@ -113,10 +113,10 @@ namespace ProjectManager.Web.Controllers
             //model.EmployeeTask.Task = model.Task;
             //model.EmployeeTask.TaskId = model.Task.Id;
             //model.Task.Project = model.Project;
+            model.Task.ProjectId = model.Project.Id;
 
-
-            if (ModelState.IsValid)
-            {
+         //   if (ModelState.IsValid)
+          //{
                 try
                 {
                     //EmployeeTask etask = new EmployeeTask();
@@ -136,7 +136,7 @@ namespace ProjectManager.Web.Controllers
                     ValidationResult valResult = validationException.ValidationResult;
                     ModelState.AddModelError(nameof(model) + "." + valResult.MemberNames.First(), valResult.ErrorMessage);
                 }
-            }
+            //}
 
              return View(model);      
         }

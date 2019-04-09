@@ -29,11 +29,11 @@
                 <select asp-for="Task.Priority" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.PriorityType>()" class="form-control"></select>
                 <span asp-validation-for="Task.Priority" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
+            <div class="form-group">
             <label class="control-label">Mitarbeiter</label>
             <select asp-for="EmployeeTask.Employee" asp-items="@Model.Employees" class="form-control"></select>
             <span asp-validation-for="EmployeeTask.Employee" class="text-danger"></span>
-        </div>*@
+        </div>
 
             @*<input asp-for="Em.Id" type="hidden" />*@
             <input type="hidden" asp-for="Task.Project" />

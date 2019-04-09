@@ -31,7 +31,9 @@ namespace ProjectManager.Web.Models.ViewModel
             List<EmployeeProject> employees = uow.EmployeeProjects.GetAllByProjectId(projectId);
 
             Employees = new SelectList(employees, nameof(Employee.Id), nameof(Employee));
-            this.Project = uow.Projects.GetById(projectId); 
+            this.Project = uow.Projects.GetById(projectId);
+            this.ProjectId = projectId;
+           
 
  
             //EmployeeProject = uow.EmployeeProjects.GetAllByProjectId(projectId);         
