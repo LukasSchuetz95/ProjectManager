@@ -87,10 +87,22 @@ namespace ProjectManager.Web.Controllers
 
         public IActionResult Create(int projectId)
         {
+
+
             TasksCreateViewModel model = new TasksCreateViewModel();
             // model.Project.Id = projectId;
             //model.LoadData(_unitOfWork, 6969);
-            model.LoadData(_unitOfWork, projectId);
+            if (projectId != 0)
+            {
+                model.LoadData(_unitOfWork, projectId);
+                
+            }
+            else
+            {
+                model.LoadData(_unitOfWork, 6969);
+            }
+
+ 
             model.Project = _unitOfWork.Projects.GetById(projectId);
             return View(model);
         }
