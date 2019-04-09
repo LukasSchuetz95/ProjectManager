@@ -88,8 +88,10 @@ namespace ProjectManager.Web.Controllers
         public IActionResult Create(int projectId)
         {
             TasksCreateViewModel model = new TasksCreateViewModel();
-           // model.Project.Id = projectId;
+            // model.Project.Id = projectId;
+            //model.LoadData(_unitOfWork, 6969);
             model.LoadData(_unitOfWork, projectId);
+            model.Project = _unitOfWork.Projects.GetById(projectId);
             return View(model);
         }
 
@@ -99,17 +101,20 @@ namespace ProjectManager.Web.Controllers
             //model.EmployeeTask.Task = model.Task;
             //model.EmployeeTask.TaskId = model.Task.Id;
             //model.Task.Project = model.Project;
-            
+
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    EmployeeTask etask = new EmployeeTask();
-                    etask.Task = model.Task;
+                    //EmployeeTask etask = new EmployeeTask();
+                  //  etask.Task = model.Task;
+
+                    
 
                    // _unitOfWork.EmployeeTasks.Add(model.Task);
                     _unitOfWork.Tasks.Add(model.Task);
-                    _unitOfWork.EmployeeTasks.Add(etask);
+                    //_unitOfWork.EmployeeTasks.Add(model.Task);
                     _unitOfWork.Save();
                     //  return RedirectToAction("Create", "EmployeeTasks", new { taskId = model.EmployeeTask.TaskId });
                     return RedirectToAction("List", "Project");

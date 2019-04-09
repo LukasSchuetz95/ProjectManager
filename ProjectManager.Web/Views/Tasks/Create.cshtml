@@ -10,6 +10,14 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+           <input asp-for="Project.Id" type="hidden"/>
+           <input asp-for="Task.ProjectId" type="hidden" />
+
+           
+
+            
+
             <div class="form-group">
                 <label asp-for= "Task.TaskName" class="control-label"></label>
                 <input asp-for="Task.TaskName" class="form-control" />

@@ -29,9 +29,9 @@ namespace ProjectManager.Web.Models.ViewModel
             List<EmployeeProject> employees = uow.EmployeeProjects.GetAllByProjectId(projectId);
             Employees = new SelectList(employees, nameof(Employee.Id), nameof(Project.Id));
             Tasks = uow.Tasks.GetById(taskId);
-            EmployeeProject = uow.EmployeeProjects.GetAllByProjectId(projectId);
-            QualificationList = uow.Qualifications.GetAll();
-            Qualifications = new SelectList(QualificationList, nameof(Qualification.Id));
+           // EmployeeProject = uow.EmployeeProjects.GetAllByProjectId(projectId);
+            //QualificationList = uow.Qualifications.GetAll();
+            //Qualifications = new SelectList(QualificationList, nameof(Qualification.Id));
         }
 
        
