@@ -80,5 +80,37 @@ namespace ProjectManager.Persistence
         {
             return _dbContext.EmployeeTask.Include(e => e.Employee).Include(e => e.Task).Where(p => p.EmployeeId != employeeId).ToList();
         }
+
+        public List<EmployeeProject> GetAllByProjectId(int projectId)
+        {
+            return _dbContext.EmployeeProject.Include(e => e.Employee).Include(p => p.Project)
+                .Where(p => p.ProjectId == projectId).OrderBy(e => e.Id).ToList();
+        }
+
+
+        public List<Employee> GetAllWithProjectID(int projectId, int taskId)
+        {
+           
+                List<EmployeeProject> list = GetAllByProjectId(projectId);
+
+                List<Employee> employees = _dbContext.Employee.ToList();
+
+                List<Employee> newemployees = _dbContext.Employee.ToList();
+
+                foreach (var i in list)
+                {
+                    foreach (var j in employees)
+                    {
+                        if (i.EmployeeId == j.Id)
+                        {
+                            newemployees.Remove(j);
+                        }
+                    }
+                }
+
+                return newemployees;
+           
+
+        }
     }
 }

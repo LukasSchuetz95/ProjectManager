@@ -110,10 +110,12 @@ namespace ProjectManager.Web.Controllers
         [HttpPost]
         public IActionResult Create(TasksCreateViewModel model)
         {
-            //model.EmployeeTask.Task = model.Task;
-            //model.EmployeeTask.TaskId = model.Task.Id;
-            //model.Task.Project = model.Project;
+
+
             model.Task.ProjectId = model.Project.Id;
+            model.EmployeeTask.Task = model.Task;
+          //  model.EmployeeTask.Employee.Id = model.EmployeeTask.EmployeeId;
+            
 
          //   if (ModelState.IsValid)
           //{
@@ -126,11 +128,14 @@ namespace ProjectManager.Web.Controllers
 
                    // _unitOfWork.EmployeeTasks.Add(model.Task);
                     _unitOfWork.Tasks.Add(model.Task);
+                    _unitOfWork.EmployeeTasks.Add(model.EmployeeTask);
                     //_unitOfWork.EmployeeTasks.Add(model.Task);
                     _unitOfWork.Save();
                     //  return RedirectToAction("Create", "EmployeeTasks", new { taskId = model.EmployeeTask.TaskId });
-                    return RedirectToAction("List", "Project");
-                }
+                   // return RedirectToAction("List", "Projects");
+                   return RedirectToAction("Create", "EmployeeTasks", new { projectId = model.EmployeeTask.Task.ProjectId , taskid = model.EmployeeTask.TaskId });
+
+            }
                 catch (ValidationException validationException)
                 {
                     ValidationResult valResult = validationException.ValidationResult;
