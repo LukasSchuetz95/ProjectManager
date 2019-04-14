@@ -20,7 +20,6 @@ using ProjectManager.Web.Models.ViewModel.Employees;
 
 namespace ProjectManager.Web.Areas.Identity.Pages.Account
 {
-    //[AllowAnonymous]
     [Authorize(Roles = "Admin")]
     public class RegisterModel : PageModel
     {
@@ -47,7 +46,7 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
             _emailSender = emailSender;
             _unitOfWork = unitOfWork;
             departmentsList = _unitOfWork.Departments.GetAll();
-            DepartmentsSelect = new SelectList(departmentsList, nameof(Department.Id), nameof(Department.DeptName));
+            DepartmentsSelectList = new SelectList(departmentsList, nameof(Department.Id), nameof(Department.DeptName));
             RolesSelectList = new SelectList(context.Roles.Select(x=>x.Name));
         }
 
@@ -56,7 +55,7 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
 
         public string ReturnUrl { get; set; }
 
-        public SelectList DepartmentsSelect { get; set; }
+        public SelectList DepartmentsSelectList { get; set; }
 
         public SelectList RolesSelectList { get; set; }
 
@@ -78,10 +77,10 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            [Display(Name = "First name")]
+            [Display(Name = "Firstname")]
             public string FirstName { get; set; }
 
-            [Display(Name = "Last name")]
+            [Display(Name = "Lastname")]
             public string LastName { get; set; }
 
             public string Job { get; set; }
@@ -147,7 +146,6 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
     }
