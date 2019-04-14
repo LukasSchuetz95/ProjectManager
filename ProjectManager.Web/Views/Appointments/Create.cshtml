@@ -34,16 +34,12 @@
                 <span asp-validation-for="Appointment.Information" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Mitarbeiter</label>
-                <select asp-for="Appointment.EmployeeId" sp-items="@Model.Employees" class="form-control" />
-                <span asp-validation-for="Appointment.EmployeeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <input type="submit" value="Erstellen" class="btn btn-sucess" />
             </div>
-
+            <input type="hidden" value="@Model.Employee.Id" asp-for="Appointment.EmployeeId" />
+            <input type="hidden" value="@Model.Employee" asp-for="Appointment.Employee" />
         </form>
     </div>
 </div>
 
-<li><a asp-area="" asp-controller="Appointments" asp-action="Show" class="btn btn-primary">Zurück</a></li>
+<li><a asp-controller="Employees" asp-action="Feed" asp-route-employeeId="@Model.Employee.Id" class="btn btn-primary">Back</a></li>

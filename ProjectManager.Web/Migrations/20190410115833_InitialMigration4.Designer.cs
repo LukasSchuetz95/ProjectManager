@@ -10,8 +10,8 @@ using ProjectManager.Web.Data;
 namespace ProjectManager.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190407195123_InitialMigration2")]
-    partial class InitialMigration2
+    [Migration("20190410115833_InitialMigration4")]
+    partial class InitialMigration4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -22,6 +22,7 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
 
         public List<EmployeeTask> AssignedTasks { get; set; }
         public List<Task> PoolTasks { get => _poolTasks; set => _poolTasks=value; }
+        public List<Appointment> AppointmentList { get; set; }
 
         public string Assigned { get; set; }
         public string ProjectFilter { get; set; }
@@ -39,6 +40,7 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
         public void LoadFeedData(int employeeId, IUnitOfWork uow)
         {
             EmployeeAssignedTasksList = uow.EmployeeTasks.GetAllByEmployeeId(employeeId);
+
             LoadDashboardTasks(uow, employeeId);
 
             Task task = new Task();

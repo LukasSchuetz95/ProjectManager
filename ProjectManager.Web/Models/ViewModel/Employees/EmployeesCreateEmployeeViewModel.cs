@@ -11,8 +11,5 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
     {
         public Employee Employee { get; set; }
 
-        public void LoadData(IUnitOfWork unitOfWork)
-        {
-        }
     }
 }

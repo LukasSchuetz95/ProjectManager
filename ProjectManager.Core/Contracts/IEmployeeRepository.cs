@@ -18,7 +18,7 @@ namespace ProjectManager.Core.Contracts
         void Update(Employee employee);
         List<Employee> GetEmployeeByDepartmentId(int id);
         void Add(Employee employee);
-        List<Employee> GetEmployeesByProjectsAndQualifications(int taskId, int employeeId, IUnitOfWork uow);
+        List<Employee> GetEmployeesByProjectAndQualifications(int taskId, int employeeId, IUnitOfWork uow);
         System.Threading.Tasks.Task AddAsync(Employee employee);
     }
 }

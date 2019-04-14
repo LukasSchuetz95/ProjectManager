@@ -11,14 +11,11 @@ namespace ProjectManager.Web.Models.ViewModel
     public class AppointmentCreateViewModel
     {
         public Appointment Appointment { get; set; }
-        public SelectList Employees { get; set; }
+        public Employee Employee { get; set; }
 
-        public void LoadData(IUnitOfWork unitOfWork)
+        public void LoadData(IUnitOfWork uow, int employeeId)
         {
-            List<Employee> employees = unitOfWork.Employees.GetAll();
-
-            Employees = new SelectList(employees, nameof(Employee.Id), nameof(Employee));
-
+            this.Employee = uow.Employees.GetById(employeeId);
         }
     }
 }

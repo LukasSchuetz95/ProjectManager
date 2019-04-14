@@ -139,30 +139,58 @@ namespace ProjectManager.Persistence
             await _dbContext.SaveChangesAsync();
         }
 
-        List<Employee> GetEmployeesByProjectsAndQualifications(int taskId, int employeeId, IUnitOfWork uow)
+        //Was wenn eine der Listen Null ist? Prüfungen einplanen
+        public List<Employee> GetEmployeesByProjectAndQualifications(int taskId, int employeeId, IUnitOfWork uow)
         {
             List<Employee> employees = new List<Employee>();
-            List<TaskQualification> taskQualifications = new List<TaskQualification>();
+            List<EmployeeQualification> qualifiedEmployees = new List<EmployeeQualification>();
+            List<EmployeeProject> employeeProjects = new List<EmployeeProject>();
 
-            Project project = uow.Projects.GetById(uow.Tasks.GetById(taskId).ProjectId);
-            List<TaskQualification> tempTaskQualifications = uow.TaskQualifications.GetQualificationsByTaskId(taskId);
+            employeeProjects = uow.EmployeeProjects.GetAllByProjectId(uow.Projects.GetById(uow.Tasks.GetById(taskId).ProjectId).Id);
 
-            foreach (var tTQ in tempTaskQualifications)
+            List<TaskQualification> taskQualifications = uow.TaskQualifications.GetQualificationsByTaskId(taskId);
+
+            foreach (var tQ in taskQualifications)
             {
-                if (tTQ.Task.ProjectId == project.Id)
+                qualifiedEmployees = uow.EmployeeQualifications.GetEmployeesByQualifications(tQ.QualificationId);
+            }
+
+            foreach (var qE in qualifiedEmployees)
+            {
+                foreach (var eP in employeeProjects)
                 {
-                    taskQualifications.Add(tTQ);
+                    if (eP.Employee.Id == qE.Employee.Id && eP.Employee.Id != employeeId)
+                    {
+                        if (CheckIfEmployeeIsAlreadySaved(eP, employees))
+                        {
+                            employees.Add(eP.Employee);
+                        }
+                    }
                 }
             }
 
-            List<EmployeeQualification> QualifiedEmployees = uow.EmployeeQualifications.GetEmployeesByQualifications(taskQualifications);
+            return employees;
+        }
 
-            foreach (var qe in QualifiedEmployees)
+        //Methode testen
+        private bool CheckIfEmployeeIsAlreadySaved(EmployeeProject employeeProject, List<Employee> employees)
+        {
+            if (employees.Count == 0)
             {
-                employees.Add(uow.Employees.GetById(qe.EmployeeId));
+                return true;
+            }
+            else
+            {
+                foreach (var emp in employees)
+                {
+                    if (employeeProject.Employee.Id == emp.Id)
+                    {
+                        return false;
+                    }
+                }
             }
 
-            return employees;
+            return true;
         }
 
         #region Methods

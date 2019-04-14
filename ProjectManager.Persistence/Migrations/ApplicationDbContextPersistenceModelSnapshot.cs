@@ -138,8 +138,6 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.Property<int>("DepartmentId");
 
-                    b.Property<int?>("EmployeeTaskId");
-
                     b.Property<string>("Firstname")
                         .IsRequired();
 
@@ -169,8 +167,6 @@ namespace ProjectManager.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
-
-                    b.HasIndex("EmployeeTaskId");
 
                     b.ToTable("Employee");
 
@@ -290,6 +286,8 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.Property<int>("EmployeeId");
 
+                    b.Property<int?>("PassedTaskId");
+
                     b.Property<bool>("Picked");
 
                     b.Property<int>("TaskId");
@@ -301,6 +299,8 @@ namespace ProjectManager.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
+
+                    b.HasIndex("PassedTaskId");
 
                     b.HasIndex("TaskId");
 
@@ -533,10 +533,6 @@ namespace ProjectManager.Persistence.Migrations
                         .WithMany()
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ProjectManager.Core.Entities.EmployeeTask")
-                        .WithMany("WorkedOn")
-                        .HasForeignKey("EmployeeTaskId");
                 });
 
             modelBuilder.Entity("ProjectManager.Core.Entities.EmployeeProject", b =>
@@ -571,6 +567,10 @@ namespace ProjectManager.Persistence.Migrations
                         .WithMany()
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ProjectManager.Core.Entities.Employee", "PassedTask")
+                        .WithMany()
+                        .HasForeignKey("PassedTaskId");
 
                     b.HasOne("ProjectManager.Core.Entities.Task", "Task")
                         .WithMany()

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectManager.Web.Migrations
 {
-    public partial class InitialMigration2 : Migration
+    public partial class InitialMigration4 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

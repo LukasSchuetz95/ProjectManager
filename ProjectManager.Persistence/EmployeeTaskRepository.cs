@@ -32,7 +32,7 @@ namespace ProjectManager.Persistence
             return _dbContext.EmployeeTask.Include(e => e.Employee).Include(t => t.Task).OrderBy(p => p.Task.Status).ToList();
         }
 
-        public EmployeeTask GetByEmployeeIdAndTaskId(int taskId, int empId)
+        public EmployeeTask GetByEmployeeIdAndTaskId(int empId, int taskId)
         {
             return _dbContext.EmployeeTask.SingleOrDefault(p => p.EmployeeId == empId && p.TaskId == taskId);
         }
@@ -65,7 +65,9 @@ namespace ProjectManager.Persistence
         public List<EmployeeTask>GetAllByEmployeeId(int Id)
         {
             return _dbContext.EmployeeTask.Include(e => e.Employee).Include(t => t.Task).
-                   Where(et => et.EmployeeId == Id && et.Task.Status==Core.Enum.TaskStatusType.NichtBegonnen && et.Picked==false).
+                   Where(et => et.EmployeeId == Id && et.Task.Status==Core.Enum.TaskStatusType.NichtBegonnen &&
+                                                      et.Picked==false && 
+                                                      et.PassedTask.Id != Id).
                    OrderBy(et => et.Task.TaskName).ToList();
         }
 
@@ -73,7 +75,9 @@ namespace ProjectManager.Persistence
         {
             return _dbContext.EmployeeTask.Include(e => e.Employee).Include(e => e.Task).
                    Where(et => et.EmployeeId == Id && et.Task.Status == Core.Enum.TaskStatusType.NichtBegonnen &&
-                   et.Task.Priority == Core.Enum.PriorityType.Hoch).ToList();
+                   et.Task.Priority == Core.Enum.PriorityType.Hoch && 
+                   et.Picked == false &&
+                   et.PassedTask.Id != Id).ToList();
         }
 
         public List<EmployeeTask>GetAllExceptFromEmployeeId(int employeeId)

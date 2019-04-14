@@ -112,21 +112,14 @@ namespace ProjectManager.Web.Controllers
 
         #region List-methods
 
-        private bool IsNullOrEmpty(string check)
+        public bool IsNullOrEmpty(string check)
         {
-            if (check.Trim() == "" || check == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return check != null || check.Trim() != "";
         }
 
         private bool SwitchFilter(bool switchOrder)
         {
-            if (switchOrder==true)
+            if (switchOrder == true)
             {
                 switchOrder = false;
             }
@@ -258,7 +251,7 @@ namespace ProjectManager.Web.Controllers
             {
                 int taskId = Convert.ToInt32(model.AddTask);
 
-                CheckIfEmployeeTaskExists(model.Employee.Id, taskId, model);
+                CheckIfEmployeeTaskExists(model.Employee.Id, taskId);
 
                 //DeleteErrorMessage();
 
@@ -334,40 +327,168 @@ namespace ProjectManager.Web.Controllers
             return model;
         }
 
-        public bool CheckIfEmployeeTaskExists(int employeeId, int taskId, EmployeesFeedViewModel model)
+        public bool CheckIfEmployeeTaskExists(int employeeId, int taskId)
         {
-            EmployeeTask employeeTask = GenerateEmployeetask(employeeId, taskId);
+            EmployeeTask employeeTask = _unitOfWork.EmployeeTasks.GetByEmployeeIdAndTaskId(employeeId, taskId);
 
             if (CheckIfEmployeeTaskIsAlreadyExsisting(employeeTask))
             {
-                return AddEmployeeTask(employeeTask, model);
+                employeeTask = GenerateEmployeetask(employeeId, taskId);
+                employeeTask.Picked = true;
+
+                if (CreateEmployeeTask(employeeTask))
+                {
+                    employeeTask.Task.Status = Core.Enum.TaskStatusType.InArbeit;
+                    UpdateTask(employeeTask.Task);
+
+                    DashboardDisplay dashboardDisplay = GenerateDashboardTask(employeeTask);
+                    dashboardDisplay = GenerateDashboardTask(employeeTask);
+                    CreateDashboardDisplay(dashboardDisplay);
+                }
+
+                return false;
             }
             else
             {
-                return UpdateEmployeeTask(employeeTask, model);
+                employeeTask.Picked = true;
+
+                if (UpdateEmployeeTask(employeeTask))
+                {
+                    employeeTask.Task.Status = Core.Enum.TaskStatusType.InArbeit;
+                    UpdateTask(employeeTask.Task);
+
+                    DashboardDisplay dashboardDisplay = GenerateDashboardTask(employeeTask);
+                    dashboardDisplay = GenerateDashboardTask(employeeTask);
+                    CreateDashboardDisplay(dashboardDisplay);
+
+                }
+
+                return false;
             }
         }
 
         //private static async DeleteErrorMessage()
         //{
-
+        //Wenn die Methode nach dem Laden einige Sekunden await und dann eine bestimmte Aktion ausführt könnte 
+        //eine Fehlermeldung verschwinden oder immer wenn eine andere Aktion ausgewählt wird
         //}
 
         #endregion
 
-        #region Feed : Update, Create and Generate
+        #endregion
 
-        private bool UpdateEmployeeTask(EmployeeTask employeeTask, EmployeesFeedViewModel model)
+        #region FinishOrPass
+
+        public IActionResult FinishOrPass(int employeeId, int taskId)
         {
-            employeeTask = _unitOfWork.EmployeeTasks.GetByEmployeeIdAndTaskId(employeeTask.TaskId, employeeTask.EmployeeId);
-            employeeTask.Picked = true;
+            EmployeesFinishOrPassViewModel model = new EmployeesFinishOrPassViewModel();
+            model.LoadData(_unitOfWork, employeeId, taskId);
 
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult FinishOrPass(EmployeesFinishOrPassViewModel model)
+        {
+            model.LoadData(_unitOfWork, model.Employee.Id, model.Task.Id);
+
+            if (!CheckButtons(_unitOfWork, model.Employee.Id, model.Task.Id, model))
+            {
+                return NotFound();
+            }
+
+            if ((model.Finish == "Finish" && model.FinishConfirmed == true) || (model.Pass == "Pass" && model.PassConfirmed==true))
+            {
+                return RedirectToAction(nameof(Feed), new { employeeId = model.Employee.Id });
+            }
+            else
+            {
+                return View(model);
+            }
+        }
+
+        #region Methods
+        //Nachvollziehen die Dashboarddisplay löschen oder wert setzen und nicht mehr anzeigen lassen?
+        //Wenn picked wieder false ist zeigt es den employeetasl wieder bei allen anderen zugeordneten an, fallse der 
+        //Task enum verändert wurde, nochmal gründlich überdenken, bedingungen in der persistance ansehen und entity checken
+        //Passedto den empfänger speichern und in der persistence auf null abfragen? wenn was drin steht nicht mehr im eigenen feed anzeigen(geht nicht ganz)
+        //Die Frage ist ob bei einem pass auch bei allen vorher zugeteilten Employees der Task angezeigt werden soll,
+        //mit packed true könnte in wieder der zugeteilte sehen dann muss aber auch der Taskstatus geändert werden
+        //Werte die gesetzt werden sollten checken wenn der Datensatz nicht gelöscht werden soll
+        //create new dispalay if fixedtask wird benutzt
+        //enum mit weitergereicht machen
+        //delete employeetask wieder in update ändern da es wenn man einfach weiter oben auch den passto auf nulls setzt auch
+        //bei mehrmaligem herumreichen immer wieder angezeigt wird
+        public bool CheckButtons(IUnitOfWork uow, int employeeId, int taskId, EmployeesFinishOrPassViewModel model)
+        {
+            if (model.Pass != null)
+            {
+                if (model.PassConfirmed == true)
+                {
+                    if (model.RecipientEmployee != null)
+                    {
+                        DashboardDisplay dashboardDisplay = _unitOfWork.DashboardDisplays.GetByEmployeeIdAndTaskId(employeeId, taskId);
+                        DeleteDashBoardTask(dashboardDisplay);
+
+                        EmployeeTask employeeTask = _unitOfWork.EmployeeTasks.GetByEmployeeIdAndTaskId(employeeId, taskId);
+                        DeleteEmployeeTask(employeeTask);
+
+                        EmployeeTask recipientEmployeeTask = GenerateEmployeetask(model.RecipientEmployee.Id, taskId);
+                        recipientEmployeeTask.Picked = false;
+                        CreateEmployeeTask(recipientEmployeeTask);
+
+                        //Zwischenschritt einbauen im ENUM
+                        employeeTask.Task.Status = Core.Enum.TaskStatusType.NichtBegonnen;
+                        UpdateTask(employeeTask.Task);
+
+                        //Nur wenn fixed Task true ist
+                        //DashboardDisplay recipientDashboardDisplay = GenerateDashboardTask(recipientEmployeeTask);
+                        //CreateDashboardDisplay(recipientDashboardDisplay);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    model.PassClicked = true;
+                    model.LoadSelectList(uow, employeeId, taskId);
+                }
+            }
+            else if (model.Finish != null)
+            {
+                if (model.FinishConfirmed == true)
+                {
+                    DashboardDisplay dashboardDisplay = _unitOfWork.DashboardDisplays.GetByEmployeeIdAndTaskId(employeeId, taskId);
+                    dashboardDisplay.Finished = true;
+                    DeleteDashBoardTask(dashboardDisplay);
+
+                    model.Task.Status = Core.Enum.TaskStatusType.Erledigt;
+                    model.Task.Enddate = DateTime.Now;
+                    UpdateTask(model.Task);
+                }
+                else
+                {
+                    model.FinishClicked = true;
+                }
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Update, Add and Delete
+
+        private bool UpdateEmployeeTask(EmployeeTask employeeTask)
+        {
             try
             {
                 _unitOfWork.EmployeeTasks.Update(employeeTask);
                 _unitOfWork.Save();
-                UpdateTask(employeeTask);
-                CreateFeedDisplay(model, employeeTask);
                 return true;
             }
             catch (ValidationException validationException)
@@ -378,14 +499,28 @@ namespace ProjectManager.Web.Controllers
             }
         }
 
-        private bool AddEmployeeTask(EmployeeTask employeeTask, EmployeesFeedViewModel model)
+        private bool DeleteEmployeeTask(EmployeeTask employeeTask)
+        {
+            try
+            {
+                _unitOfWork.EmployeeTasks.Delete(employeeTask);
+                _unitOfWork.Save();
+                return true;
+            }
+            catch (ValidationException validationException)
+            {
+                ValidationResult valResult = validationException.ValidationResult;
+                ModelState.AddModelError(valResult.MemberNames.First(), valResult.ErrorMessage);
+                return false;
+            }
+        }
+
+        private bool CreateEmployeeTask(EmployeeTask employeeTask)
         {
             try
             {
                 _unitOfWork.EmployeeTasks.Add(employeeTask);
                 _unitOfWork.Save();
-                UpdateTask(employeeTask);
-                CreateFeedDisplay(model, employeeTask);
                 return true;
 
             }
@@ -397,11 +532,8 @@ namespace ProjectManager.Web.Controllers
             }
         }
 
-        private void UpdateTask(EmployeeTask employeeTask)
+        private void UpdateTask(Task task)
         {
-            Task task = _unitOfWork.Tasks.GetById(employeeTask.Task.Id);
-            task.Status = Core.Enum.TaskStatusType.InArbeit;
-
             try
             {
                 _unitOfWork.Tasks.Update(task);
@@ -414,11 +546,8 @@ namespace ProjectManager.Web.Controllers
             }
         }
 
-        public void CreateFeedDisplay(EmployeesFeedViewModel model, EmployeeTask employeeTask)
+        public void CreateDashboardDisplay(DashboardDisplay dashboardDisplay)
         {
-            DashboardDisplay dashboardDisplay = new DashboardDisplay();
-            dashboardDisplay = GenerateDashboardTask(employeeTask);
-
             try
             {
                 _unitOfWork.DashboardDisplays.Add(dashboardDisplay);
@@ -431,13 +560,31 @@ namespace ProjectManager.Web.Controllers
             }
         }
 
+        private void DeleteDashBoardTask(DashboardDisplay dashboardDisplay)
+        {
+            try
+            {
+                _unitOfWork.DashboardDisplays.Delete(dashboardDisplay);
+                _unitOfWork.Save();
+            }
+            catch (ValidationException validationException)
+            {
+                ValidationResult valResult = validationException.ValidationResult;
+                ModelState.AddModelError(valResult.MemberNames.First(), valResult.ErrorMessage);
+            }
+        }
+
+        #endregion
+
+        #region Generate
+
         private DashboardDisplay GenerateDashboardTask(EmployeeTask employeeTask)
         {
             DashboardDisplay dashboardTask = new DashboardDisplay();
 
             dashboardTask.Name = employeeTask.Task.TaskName;
             dashboardTask.Startdatum = DateTime.Now;
-            dashboardTask.SpecificInformation = Convert.ToString(employeeTask.Task.Priority);
+            dashboardTask.SpecificInformation = "Priority: " + Convert.ToString(employeeTask.Task.Priority);
             dashboardTask.Finished = false;
             dashboardTask.Employee = employeeTask.Employee;
             dashboardTask.EmployeeId = employeeTask.Employee.Id;
@@ -453,25 +600,8 @@ namespace ProjectManager.Web.Controllers
             employeeTask.Task = _unitOfWork.Tasks.GetById(taskId);
             employeeTask.TaskId = taskId;
             employeeTask.EmployeeId = employeeId;
-            employeeTask.Picked = true;
 
             return employeeTask;
-        }
-
-        #endregion
-
-        #endregion
-
-        #region DeleteOrPass
-
-        public IActionResult DeleteOrPass(int employeeId, int taskId)
-        {
-            EmployeesDeleteOrPassViewModel model = new EmployeesDeleteOrPassViewModel();
-            model.LoadData(_unitOfWork, taskId, employeeId);
-            if (model.Task == null)
-                return NotFound();
-
-            return View(model);
         }
 
         #endregion

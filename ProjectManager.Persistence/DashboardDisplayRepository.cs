@@ -36,7 +36,12 @@ namespace ProjectManager.Persistence
 
         public List<DashboardDisplay> GetByEmployeeId(int employeeId)
         {
-            return _dbContext.DashboardDisplay.Where(p => p.Employee.Id == employeeId).OrderBy(p=>p.Startdatum).ThenBy(p=>p.Name).ToList();
+            return _dbContext.DashboardDisplay.Where(p => p.Employee.Id == employeeId && p.Finished == false).OrderBy(p=>p.Startdatum).ThenBy(p=>p.Name).ToList();
+        }
+
+        public DashboardDisplay GetByEmployeeIdAndTaskId(int employeeId, int taskId)
+        {
+            return _dbContext.DashboardDisplay.Where(P => P.Employee.Id == employeeId && P.TaskId == taskId).FirstOrDefault();
         }
 
         #endregion

@@ -16,7 +16,6 @@ namespace ProjectManager.Core.Entities
         public Employee Employee { get; set; }
         public int EmployeeId { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
         [Display(Name = "Appointment")]
         public string AppoName { get; set; }
 
@@ -41,10 +40,10 @@ namespace ProjectManager.Core.Entities
                 {
                     yield return new ValidationResult("Start date has to be before end date !", new List<string>() { nameof(this.Startdate), nameof(this.Enddate) });
                 }
-                if (this.Startdate >= DateTime.Now)
-                {
-                    yield return new ValidationResult("Start date has to be before the current date !", new List<string>() { nameof(this.Startdate) });
-                }
+                //if (this.Startdate >= DateTime.Now)
+                //{
+                //    yield return new ValidationResult("Start date has to be before the current date !", new List<string>() { nameof(this.Startdate) });
+                //}
             }
         }
     }

@@ -19,6 +19,6 @@ namespace ProjectManager.Core.Entities
 
         public bool Picked { get; set; }
 
-        public List<Employee> WorkedOn { get; set; }
+        public Employee PassedTask { get; set; }
     }
 }

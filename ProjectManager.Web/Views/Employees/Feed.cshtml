@@ -31,7 +31,9 @@
                     <th>Taskname</th>
                     <th>Information</th>
                     <th></th>
-                    <th></th>
+                    <th class="btn-primary" title="Click here to create an appointment!">
+                    <a class="btn btn-primary" asp-controller="Appointments" asp-action="Create" asp-route-employeeId="@Model.Employee.Id"></a>Create Appointment
+                    </th>
                 </tr>
                 @foreach (var fT in Model.DashboardTasks)
                 {
@@ -39,7 +41,9 @@
                         <td>@fT.Name</td>
                         <td>@fT.SpecificInformation</td>
                         <td>@fT.Startdatum</td>
-                        <td class="btn-primary" title="Click here to delete or pass the task!"><a class="btn btn-primary" asp-controller="Employees" asp-action="DeleteOrPass" asp-route-employeeId="@Model.Employee.Id" asp-route-taskId="@fT.TaskId"></a>Delete></td>
+                        <td class="btn-primary" title="Click here to finish or pass the task!">
+                            <a class="btn btn-primary" asp-controller="Employees" asp-action="FinishOrPass" asp-route-employeeId="@Model.Employee.Id" asp-route-taskId="@fT.TaskId"></a>Finish
+                        </td>
                     </tr>
                 }
             </table>
@@ -86,9 +90,9 @@
                 </th>
                 <th>
                     <form asp-controller="Employees" asp-action="Feed">
-                        @if (Model.PoolTasks.Count() == 0)
+                        @if (Model.CountHighPriorityTasks() == 0)
                         {
-                            <input asp-for="PriorityFilter" type="submit" value="@Model.PoolTasks.Count()" class="btn btn-primary" style="width:100px" />
+                            <input asp-for="PriorityFilter" type="submit" value="0" class="btn btn-primary" style="width:100px" />
                             <span asp-validation-for="PriorityFilter" class="text-danger"></span>
                         }
                         else
