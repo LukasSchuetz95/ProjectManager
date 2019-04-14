@@ -1,0 +1,79 @@
+﻿@model ProjectManager.Web.Models.ViewModel.EmployeeTasksCreateViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Mitarbeiter zum Projekt "@Model.EmployeeTask.Task.TaskName" hinzufügen</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        </form>
+    </div>
+</div>
+<h2>Task-Mitglied</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Job</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Model.EmployeeTask.EmployeeId != 0)
+        {
+            <tr>
+                <td>@Model.EmployeeTask.Employee.ToString()</td>
+                <td>@Model.EmployeeTask.Employee.Status</td>
+                <td>@Model.EmployeeTask.Employee.Job</td>
+                <td>
+                    <form asp-action="Delete" asp-route="@Model.EmployeeTask.EmployeeId">
+                        <input type="submit" value="Löschen" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td>@Model.EmployeeTask.Employee.ToString()</td>
+                <td>@Model.EmployeeTask.Employee.Status</td>
+                <td>@Model.EmployeeTask.Employee.Job</td>
+
+            </tr>
+        }
+    </tbody>
+    </table>
+
+<h2>Alle Mitarbeiter (ohne Projekt-Mitglieder)</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Job</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model.EmplyoeeNotInProject)
+        {
+            <tr>
+                <td>@emp.ToString()</td>
+                <td>@emp.Status</td>
+                <td>@emp.Job</td>
+                <td>
+                    <form asp-action="Create" asp-controller="EmployeeTasks" asp-route-employeeId="@emp.Id" asp-route-taskId="@Model.EmployeeTask.TaskId">
+                        <input type="submit" value="Mitarbeiter hinzufügen" class="btn btn-success" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>

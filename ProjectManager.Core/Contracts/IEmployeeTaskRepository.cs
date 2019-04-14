@@ -20,5 +20,6 @@ namespace ProjectManager.Core.Contracts
         List<EmployeeTask>GetAllByEmployeeId(int employeeId);
         List<EmployeeTask> GetTasksWithHighPriority(int Id);
         List<EmployeeTask> GetAllExceptFromEmployeeId(int employeeId);
+        List<Employee> GetAllWithProjectID(int projectId, int taskId);
     }
 }
