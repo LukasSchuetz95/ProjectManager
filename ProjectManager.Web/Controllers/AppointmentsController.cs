@@ -21,12 +21,7 @@ namespace ProjectManager.Web.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Show(AppointmentListViewModel model, int employeeId)
-        {
-            model.LoadData(_unitOfWork,employeeId);
-            return View(model);
-        }
-
+ 
 
         public IActionResult Create(int employeeId)
         {
@@ -56,6 +51,14 @@ namespace ProjectManager.Web.Controllers
 
             return View(model);
         }
+
+        public IActionResult Details(int appId)
+        {
+            AppointmentDetailViewModel model = new AppointmentDetailViewModel();
+            model.LoadData(_unitOfWork, appId);
+            return View(model);
+        }
+
 
         #region Create Methoods
 
