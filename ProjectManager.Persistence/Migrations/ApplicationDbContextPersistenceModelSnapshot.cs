@@ -25,8 +25,7 @@ namespace ProjectManager.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AppoName")
-                        .IsRequired();
+                    b.Property<string>("AppoName");
 
                     b.Property<int>("AppoType");
 

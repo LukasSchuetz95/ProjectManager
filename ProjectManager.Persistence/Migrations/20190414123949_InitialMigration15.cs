@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectManager.Persistence.Migrations
 {
-    public partial class InitialMigration14 : Migration
+    public partial class InitialMigration15 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -125,7 +125,7 @@ namespace ProjectManager.Persistence.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
                     EmployeeId = table.Column<int>(nullable: false),
-                    AppoName = table.Column<string>(nullable: false),
+                    AppoName = table.Column<string>(nullable: true),
                     AppoType = table.Column<int>(nullable: false),
                     Information = table.Column<string>(nullable: true),
                     Startdate = table.Column<DateTime>(nullable: false),

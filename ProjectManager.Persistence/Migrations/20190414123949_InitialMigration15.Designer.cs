@@ -10,8 +10,8 @@ using ProjectManager.Persistence;
 namespace ProjectManager.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContextPersistence))]
-    [Migration("20190410115929_InitialMigration14")]
-    partial class InitialMigration14
+    [Migration("20190414123949_InitialMigration15")]
+    partial class InitialMigration15
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,8 +27,7 @@ namespace ProjectManager.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AppoName")
-                        .IsRequired();
+                    b.Property<string>("AppoName");
 
                     b.Property<int>("AppoType");
 

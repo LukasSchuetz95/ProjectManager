@@ -10,30 +10,35 @@
 <head>
     <title></title>
     <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
 </head>
 <body>
     <header>
         <h3>Mitarbeiter suchen</h3>
     </header>
-    <form asp-controller="Employees" asp-action="List">
-        <div class="dropdown-menu-left">
+    <form asp-controller="Employees" asp-action="List" class="form-inline">
+        <div class="form-check form-check-inline">
             <div>
-                <input asp-for="LastnameFilter" type="submit" value="Nachname filtern" class="btn btn-primary" style="width:200px" />
+                <input asp-for="LastnameFilter" type="submit" value="filter lastname" class="btn btn-primary" style="width:159px" />
                 <span asp-validation-for="LastnameFilter" class="text-danger" />
 
-                <input asp-for="FirstnameFilter" type="submit" value="Vorname filtern" class="btn btn-primary" style="width:200px" />
+                <input asp-for="FirstnameFilter" type="submit" value="filter firstname" class="btn btn-primary" style="width:159px" />
                 <span asp-validation-for="FirstnameFilter" class="text-danger" />
 
-                <input asp-for="JobFilter" type="submit" value="Job filtern" class="btn btn-primary" style="width:200px" />
+                <input asp-for="JobFilter" type="submit" value="filter job" class="btn btn-primary" style="width:159px" />
                 <span asp-validation-for="JobFilter" class="text-danger" />
 
-                <input asp-for="DepartmentFilter" type="submit" value="Abteilung filtern" class="btn btn-primary" style="width:200px" />
+                <input asp-for="DepartmentFilter" type="submit" value="filter department" class="btn btn-primary" style="width:159px" />
                 <span asp-validation-for="DepartmentFilter" class="text-danger" />
 
+                <select asp-for="Qualification.Id" asp-items="@Model.QualificationSelectList" class="form-control" style="width:159px"><option> </option></select>
             </div>
 
 
-            <input asp-for="Filter" value="@Model.Filter" class="form-control" style="width:812px" />
+            <input asp-for="Filter" value="@Model.Filter" class="form-control" style="width:812px" autofocus />
             <span asp-validation-for="Filter" class="text-danger"></span>
 
             <input asp-for="SwitchOrderLastName" value="@Model.SwitchOrderLastName" type="hidden" />
@@ -44,26 +49,33 @@
         </div>
     </form>
 
-
-    <table class="table" style="width:812px">
-        <tr>
-            <th></th>
-            <th>Nachname</th>
-            <th>Vorname</th>
-            <th>Job</th>
-            <th>Abteilung</th>
-        </tr>
-        @foreach (var employee in Model.Employees)
-        {
+    @if (Model.Employees.Count == 0 || Model.Employees == null)
+    {
+        <h4>We could not find any Data, please try again with different parameters, or reload the site!</h4>
+    }
+    else
+    {
+        <table class="table" style="width:812px">
             <tr>
-                <td class="icon-bar" title="Klicken Sie hier um auf das Profil zu gelangen"><a class="active" asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@employee.Id"><i class="glyphicon glyphicon-user"></i></a></td>
-                <td>@employee.Lastname</td>
-                <td>@employee.Firstname</td>
-                <td>@employee.Job</td>
-                <td>@employee.Department.DeptName</td>
+                <th></th>
+                <th>Nachname</th>
+                <th>Vorname</th>
+                <th>Job</th>
+                <th>Abteilung</th>
             </tr>
-        }
-    </table>
+            @foreach (var employee in Model.Employees)
+            {
+                <tr>
+                    <td class="icon-bar" title="Click here to see the dashboard of this person"><a class="active" asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@employee.Id"><i class="fa fa-user" aria-hidden="true"></i></a></td>
+                    <td>@employee.Lastname</td>
+                    <td>@employee.Firstname</td>
+                    <td>@employee.Job</td>
+                    <td>@employee.Department.DeptName</td>
+                </tr>
+            }
+
+        </table>
+    }
 </body>
 </html>
 

@@ -37,12 +37,7 @@ namespace ProjectManager.Web.Controllers
         public IActionResult List()
         {
             EmployeesListViewModel model = new EmployeesListViewModel();
-            model.Employees = _unitOfWork.Employees.GetAll();
-
-            model.SwitchOrderLastName = true;
-            model.SwitchOrderFirstName = true;
-            model.SwitchOrderJob = true;
-            model.SwitchOrderDepartment = true;
+            model.LoadData(_unitOfWork);
 
             return View(model);
         }
@@ -52,27 +47,19 @@ namespace ProjectManager.Web.Controllers
         {
             if (model.LastnameFilter != null)
             {
-                SetBackSwitchOrders(1, model);
-                model.SwitchOrderLastName = SwitchFilter(model.SwitchOrderLastName);
-                model.Employees = _unitOfWork.Employees.GetEmployeeByLastname(model.Filter, model.SwitchOrderLastName);
+                model.LoadListData(_unitOfWork, 1);
             }
             else if (model.FirstnameFilter != null)
             {
-                SetBackSwitchOrders(2, model);
-                model.SwitchOrderFirstName = SwitchFilter(model.SwitchOrderFirstName);
-                model.Employees = _unitOfWork.Employees.GetEmployeeByFirstname(model.Filter, model.SwitchOrderFirstName);
+                model.LoadListData(_unitOfWork, 2);
             }
             else if (model.JobFilter != null)
             {
-                SetBackSwitchOrders(3, model);
-                model.SwitchOrderJob = SwitchFilter(model.SwitchOrderJob);
-                model.Employees = _unitOfWork.Employees.GetEmployeeByJob(model.Filter, model.SwitchOrderJob);
+                model.LoadListData(_unitOfWork, 3);
             }
             else if (model.DepartmentFilter != null)
             {
-                SetBackSwitchOrders(4, model);
-                model.SwitchOrderDepartment = SwitchFilter(model.SwitchOrderDepartment);
-                model.Employees = _unitOfWork.Employees.GetEmployeeByDeparmentName(model.Filter, model.SwitchOrderDepartment);
+                model.LoadListData(_unitOfWork, 4);
             }
             else
             {
@@ -81,57 +68,6 @@ namespace ProjectManager.Web.Controllers
 
             return View(model);
         }
-
-        private void SetBackSwitchOrders(int Swt, EmployeesListViewModel model)
-        {
-            if (Swt == 1)
-            {
-                model.SwitchOrderFirstName = false;
-                model.SwitchOrderJob = false;
-                model.SwitchOrderDepartment = false;
-            }
-            else if (Swt == 2)
-            {
-                model.SwitchOrderLastName = false;
-                model.SwitchOrderJob = false;
-                model.SwitchOrderDepartment = false;
-            }
-            else if (Swt == 3)
-            {
-                model.SwitchOrderFirstName = false;
-                model.SwitchOrderLastName = false;
-                model.SwitchOrderDepartment = false;
-            }
-            else if (Swt == 4)
-            {
-                model.SwitchOrderFirstName = false;
-                model.SwitchOrderJob = false;
-                model.SwitchOrderLastName = false;
-            }
-        }
-
-        #region List-methods
-
-        public bool IsNullOrEmpty(string check)
-        {
-            return check != null || check.Trim() != "";
-        }
-
-        private bool SwitchFilter(bool switchOrder)
-        {
-            if (switchOrder == true)
-            {
-                switchOrder = false;
-            }
-            else
-            {
-                switchOrder = true;
-            }
-
-            return switchOrder;
-        }
-
-        #endregion
 
         #endregion
 
@@ -617,5 +553,10 @@ namespace ProjectManager.Web.Controllers
         }
 
         #endregion
+
+                //public bool IsNullOrEmpty(string check)
+        //{
+        //    return check != null || check.Trim() != "";
+        //}
     }
 }
