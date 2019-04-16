@@ -144,6 +144,9 @@ namespace ProjectManager.Web.Controllers
             if (model.Employee == null)
                 return NotFound();
 
+            //model.Employee.HiringDate = model.Employee.HiringDate.Date;
+            //model.Employee.Birthdate = model.Employee.HiringDate.Date;
+
             return View(model);
         }
 
@@ -480,6 +483,15 @@ namespace ProjectManager.Web.Controllers
         #endregion
 
         #endregion
+
+        public IActionResult DeleteAppointment(int employeeId, int appointmentId)
+        {
+            DashboardDisplay dashboardDisplay = _unitOfWork.DashboardDisplays.GetByEmployeeIdAndAppointmentId(employeeId, appointmentId);
+
+            this.DeleteDashBoardTask(dashboardDisplay);
+
+            return RedirectToAction(nameof(Feed), new { employeeId = employeeId });
+        }
 
         #region Update, Add and Delete
 

@@ -44,6 +44,11 @@ namespace ProjectManager.Persistence
             return _dbContext.DashboardDisplay.Where(P => P.Employee.Id == employeeId && P.TaskId == taskId).FirstOrDefault();
         }
 
+        public DashboardDisplay GetByEmployeeIdAndAppointmentId(int employeeId, int appointmentId)
+        {
+            return _dbContext.DashboardDisplay.Where(P => P.Employee.Id == employeeId && P.AppointmentId == appointmentId).FirstOrDefault();
+        }
+
         #endregion
     }
 }

@@ -12,5 +12,6 @@ namespace ProjectManager.Core.Contracts
         void Delete(DashboardDisplay feedDisplay);
         List<DashboardDisplay> GetByEmployeeId(int employeeId);
         DashboardDisplay GetByEmployeeIdAndTaskId(int taskId, int employeeId);
+        DashboardDisplay GetByEmployeeIdAndAppointmentId(int employeeId, int appointmentId);
     }
 }

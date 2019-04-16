@@ -27,7 +27,7 @@
         <div class="col-sm-6">
             <table class="table" style="width:300px">
                 <tr>
-
+                    <th></th>
                     <th>Taskname</th>
                     <th>Information</th>
                     <th></th>
@@ -37,14 +37,35 @@
                 </tr>
                 @foreach (var fT in Model.DashboardTasks)
                 {
-                    <tr>
-                        <td>@fT.Name</td>
-                        <td>@fT.SpecificInformation</td>
-                        <td>@fT.Startdatum</td>
+                <tr>
+                    @if (fT.TaskId != 0)
+                    {
+                        <td title="Click here to see Details from this task!">
+                            <a class="btn btn-primary" asp-controller="Tasks" asp-action="Details" asp-route-taskId="@fT.TaskId"></a>T
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="btn-primary" title="Click here to see Details from this appointment!">
+                            <a class="btn btn-primary" asp-controller="" asp-action="" asp-route-appointmentId="@fT.AppointmentId"></a>A
+                        </td>
+                    }
+                    <td>@fT.Name</td>
+                    <td>@fT.SpecificInformation</td>
+                    <td>@fT.Startdatum</td>
+                    @if (fT.TaskId != 0)
+                    {
                         <td class="btn-primary" title="Click here to finish or pass the task!">
                             <a class="btn btn-primary" asp-controller="Employees" asp-action="FinishOrPass" asp-route-employeeId="@Model.Employee.Id" asp-route-taskId="@fT.TaskId"></a>Finish
                         </td>
-                    </tr>
+                    }
+                    else
+                    {
+                        <td class="btn-primary" title="Click here to finish or pass the task!">
+                            <a class="btn btn-primary" asp-controller="Employees" asp-action="DeleteAppointment" asp-route-employeeId="@Model.Employee.Id" asp-route-appointmentId="@fT.AppointmentId"></a>Finish
+                        </td>
+                    }
+                </tr>
                 }
             </table>
         </div>
