@@ -9,7 +9,6 @@ namespace ProjectManager.Core.Contracts
     {
         List<Appointment> GetAll();
         void Add(Appointment appointments);
-        List<Appointment> GetByEmployee(int employeeId);
-
+        Appointment GetById(int appId);
     }
 }

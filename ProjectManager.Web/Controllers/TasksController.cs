@@ -117,6 +117,7 @@ namespace ProjectManager.Web.Controllers
           //  model.EmployeeTask.Employee.Id = model.EmployeeTask.EmployeeId;
             
 
+
          //   if (ModelState.IsValid)
           //{
                 try
