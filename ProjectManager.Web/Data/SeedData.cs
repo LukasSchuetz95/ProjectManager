@@ -38,7 +38,7 @@ namespace ProjectManager.Web.Data
                 {
                     Firstname = "Admin",
                     Lastname = "Admin",
-                    Status = Core.Enum.EmployeeStatusType.Beschäftigt,
+                    Status = Core.Enum.EmployeeStatusType.Active,
                     DepartmentId = 1
                 };
 

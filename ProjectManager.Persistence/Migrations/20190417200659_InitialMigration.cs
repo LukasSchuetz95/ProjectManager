@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectManager.Persistence.Migrations
 {
-    public partial class InitialMigration15 : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -308,7 +308,7 @@ namespace ProjectManager.Persistence.Migrations
                     { 1246, new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), null, "This project needs love", "Diplomarbeit", new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), 1, null, "500" },
                     { 2426, new DateTime(2022, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), null, "This project needs love", "Project1", new DateTime(2021, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), 1, null, "500" },
                     { 3246, new DateTime(2024, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), null, "This project needs love", "Project2", new DateTime(2023, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), 0, null, "500" },
-                    { 42456, new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), null, "This project needs love", "Project3", new DateTime(2025, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), 1, null, "500" },
+                    { 42456, new DateTime(2017, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "This project needs love", "Project3", new DateTime(2016, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, "500" },
                     { 1000, new DateTime(9999, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), null, "This project contains all tasks who can't be added to a specified project", "Testakulär", new DateTime(2015, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), 1, null, null }
                 });
 
@@ -317,10 +317,10 @@ namespace ProjectManager.Persistence.Migrations
                 columns: new[] { "Id", "QualificationName", "Timestamp" },
                 values: new object[,]
                 {
-                    { 1111, "Projekt Manager", null },
+                    { 1111, "Project Manager", null },
                     { 2222, "CSharp", null },
                     { 3333, "Html", null },
-                    { 4444, "Pflichtenheft", null },
+                    { 4444, "Backend", null },
                     { 1000, "Testy", null }
                 });
 

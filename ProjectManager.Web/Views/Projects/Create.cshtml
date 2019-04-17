@@ -4,66 +4,89 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+@*<h2>Create</h2>
 
 <h4>Project</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="EmployeeProject.Project.ProjectName" class="control-label"></label>
-                <input required="true" asp-for="EmployeeProject.Project.ProjectName" class="form-control" />
-                <span asp-validation-for="EmployeeProject.Project.ProjectName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Projekt-Manager</label>
-                <select asp-for="EmployeeProject.EmployeeId" asp-items="@Model.ProjectManagers" class="form-control"></select>
-                <span asp-validation-for="EmployeeProject.EmployeeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmployeeProject.Project.Status" class="control-label"></label>
-                <select asp-for="EmployeeProject.Project.Status" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.ProjectStatusType>()" class="form-control"></select>
-                <span asp-validation-for="EmployeeProject.Project.Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmployeeProject.Project.Startdate" class="control-label"></label>
-                <input asp-for="EmployeeProject.Project.Startdate" type="date" class="form-control" />
-                <span asp-validation-for="EmployeeProject.Project.Startdate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmployeeProject.Project.Enddate" class="control-label"></label>
-                <input asp-for="EmployeeProject.Project.Enddate" type="date" class="form-control" />
-                <span asp-validation-for="EmployeeProject.Project.Enddate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmployeeProject.Project.ValuedTime" class="control-label"></label>
-                <input asp-for="EmployeeProject.Project.ValuedTime" class="form-control" />
-                <span asp-validation-for="EmployeeProject.Project.ValuedTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmployeeProject.Project.Deadline" class="control-label"></label>
-                <input asp-for="EmployeeProject.Project.Deadline" type="date" class="form-control" />
-                <span asp-validation-for="EmployeeProject.Project.Deadline" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmployeeProject.Project.Information" class="control-label"></label>
-                <input asp-for="EmployeeProject.Project.Information" class="form-control" />
-                <span asp-validation-for="EmployeeProject.Project.Information" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Mitarbeiter hinzufügen" class="btn btn-success" />
-            </div>
+<hr />*@
 
-        </form>
-        @*<form asp-action="Mitarbeiter hinzufügen" asp-route-Id="@EmployeeProject.Id" asp-route-movieId="@Model.Id">
-            <input type="submit" value="Löschen" />
-            <a asp-action="CategoryDetails" asp-route-catId="@Model.Category_Id">Zurück zur Übersicht</a>
-        </form>*@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="page-header">
+                        <h2>Create</h2>
+                    </div>
+                    @*<div class="row">
+                        <div class="col-md-4">*@
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="EmployeeProject.Project.ProjectName" class="control-label"></label>
+                                    <input required="True" asp-for="EmployeeProject.Project.ProjectName" class="form-control" />
+                                    <span asp-validation-for="EmployeeProject.Project.ProjectName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Project Manager</label>
+                                    <select asp-for="EmployeeProject.EmployeeId" asp-items="@Model.ProjectManagers" class="form-control"></select>
+                                    <span asp-validation-for="EmployeeProject.EmployeeId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="EmployeeProject.Project.Status" class="control-label"></label>
+                                    <select asp-for="EmployeeProject.Project.Status" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.ProjectStatusType>()" class="form-control"></select>
+                                    <span asp-validation-for="EmployeeProject.Project.Status" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="EmployeeProject.Project.Startdate" class="control-label"></label>
+                                    <input asp-for="EmployeeProject.Project.Startdate" type="date" class="form-control" />
+                                    <span asp-validation-for="EmployeeProject.Project.Startdate" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="EmployeeProject.Project.Enddate" class="control-label"></label>
+                                    <input asp-for="EmployeeProject.Project.Enddate" type="date" class="form-control" />
+                                    <span asp-validation-for="EmployeeProject.Project.Enddate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="EmployeeProject.Project.ValuedTime" class="control-label"></label>
+                                    <input asp-for="EmployeeProject.Project.ValuedTime" class="form-control" />
+                                    <span asp-validation-for="EmployeeProject.Project.ValuedTime" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="EmployeeProject.Project.Deadline" class="control-label"></label>
+                                    <input asp-for="EmployeeProject.Project.Deadline" type="date" class="form-control" />
+                                    <span asp-validation-for="EmployeeProject.Project.Deadline" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="EmployeeProject.Project.Information" class="control-label"></label>
+                                    <input asp-for="EmployeeProject.Project.Information" class="form-control" />
+                                    <span asp-validation-for="EmployeeProject.Project.Information" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Add Employee" class="btn btn-success" />
+                        </div>
+                        <div>
+                            <a asp-controller="Projects" asp-action="List" class="btn btn-default">Overview</a>
+                        </div>
+                                
+                    </form>
+                            @*<form asp-action="Mitarbeiter hinzufügen" asp-route-Id="@EmployeeProject.Id" asp-route-movieId="@Model.Id">
+                <input type="submit" value="Löschen" />
+                <a asp-action="CategoryDetails" asp-route-catId="@Model.Category_Id">Zurück zur Übersicht</a>
+            </form>*@
+                        @*</div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-controller="Projects" asp-action="List" class="btn btn-default">Zurück</a>
-</div>
+
+

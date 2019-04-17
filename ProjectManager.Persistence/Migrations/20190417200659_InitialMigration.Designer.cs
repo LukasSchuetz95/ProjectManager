@@ -10,14 +10,14 @@ using ProjectManager.Persistence;
 namespace ProjectManager.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContextPersistence))]
-    [Migration("20190414123949_InitialMigration15")]
-    partial class InitialMigration15
+    [Migration("20190417200659_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -365,7 +365,7 @@ namespace ProjectManager.Persistence.Migrations
                         new { Id = 1246, Deadline = new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "This project needs love", ProjectName = "Diplomarbeit", Startdate = new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = 1, ValuedTime = "500" },
                         new { Id = 2426, Deadline = new DateTime(2022, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "This project needs love", ProjectName = "Project1", Startdate = new DateTime(2021, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = 1, ValuedTime = "500" },
                         new { Id = 3246, Deadline = new DateTime(2024, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "This project needs love", ProjectName = "Project2", Startdate = new DateTime(2023, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = 0, ValuedTime = "500" },
-                        new { Id = 42456, Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "This project needs love", ProjectName = "Project3", Startdate = new DateTime(2025, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = 1, ValuedTime = "500" },
+                        new { Id = 42456, Deadline = new DateTime(2017, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), Information = "This project needs love", ProjectName = "Project3", Startdate = new DateTime(2016, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), Status = 1, ValuedTime = "500" },
                         new { Id = 1000, Deadline = new DateTime(9999, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "This project contains all tasks who can't be added to a specified project", ProjectName = "Testakulär", Startdate = new DateTime(2015, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = 1 }
                     );
                 });
@@ -388,10 +388,10 @@ namespace ProjectManager.Persistence.Migrations
                     b.ToTable("Qualification");
 
                     b.HasData(
-                        new { Id = 1111, QualificationName = "Projekt Manager" },
+                        new { Id = 1111, QualificationName = "Project Manager" },
                         new { Id = 2222, QualificationName = "CSharp" },
                         new { Id = 3333, QualificationName = "Html" },
-                        new { Id = 4444, QualificationName = "Pflichtenheft" },
+                        new { Id = 4444, QualificationName = "Backend" },
                         new { Id = 1000, QualificationName = "Testy" }
                     );
                 });

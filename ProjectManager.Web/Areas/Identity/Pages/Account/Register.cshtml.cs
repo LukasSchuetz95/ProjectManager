@@ -109,7 +109,7 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
                     Lastname = Input.LastName,
                     Job = Input.Job,
                     DepartmentId = Input.DepartmentId,
-                    Status = Core.Enum.EmployeeStatusType.Beschäftigt
+                    Status = Core.Enum.EmployeeStatusType.Active
                 };
 
                 await _unitOfWork.Employees.AddAsync(employee);

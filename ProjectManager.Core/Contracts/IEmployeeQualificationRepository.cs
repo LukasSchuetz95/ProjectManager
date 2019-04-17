@@ -9,6 +9,7 @@ namespace ProjectManager.Core.Contracts
     {
         List<EmployeeQualification> GetAllProjectManagers();
         List<EmployeeQualification> GetQualificationsByEmployeeId(int employeeId);
-       List<EmployeeQualification> GetEmployeesByQualifications(int id);
+        List<EmployeeQualification> GetEmployeesByQualifications(int id);
+        List<EmployeeQualification> GetAllProjectManagersAndProjectMembers(int projectId);
     }
 }

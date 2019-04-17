@@ -35,3 +35,9 @@ body {
         display: none;
     }
 }
+
+.panel-height {
+    min-height : 10px;
+    max-height : 25px;
+    overflow-y: scroll;
+}

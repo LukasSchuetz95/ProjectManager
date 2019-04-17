@@ -4,73 +4,95 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+@*<h2>Edit</h2>
 
 <h4>Project</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Project.ProjectName" class="control-label"></label>
-                <input asp-for="Project.ProjectName" class="form-control" />
-                <span asp-validation-for="Project.ProjectName" class="text-danger"></span>
+<hr />*@
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="page-header">
+                        <h2>Edit</h2>
+                    </div>
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="Project.ProjectName" class="control-label"></label>
+                                    <input asp-for="Project.ProjectName" class="form-control" />
+                                    <span asp-validation-for="Project.ProjectName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Project Manager</label>
+                                    <select asp-for="EditEmployee.Id" asp-items="@Model.ProjectManagersAndMembers" class="form-control"></select>
+                                    <span asp-validation-for="EditEmployee.Id" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Project.Status" class="control-label"></label>
+                                    <select asp-for="Project.Status" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.ProjectStatusType>()" class="form-control"></select>
+                                    <span asp-validation-for="Project.Status" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Project.Information" class="control-label"></label>
+                                    <input asp-for="Project.Information" class="form-control" />
+                                    <span asp-validation-for="Project.Information" class="text-danger"></span>
+                                </div>
+
+                                <input type="hidden" asp-for="EditEmployee.Birthdate" />
+                                <input type="hidden" asp-for="EditEmployee.Department" />
+                                <input type="hidden" asp-for="EditEmployee.DepartmentId" />
+                                <input type="hidden" asp-for="EditEmployee.Firstname" />
+                                <input type="hidden" asp-for="EditEmployee.HiringDate" />
+                                <input type="hidden" asp-for="EditEmployee.Job" />
+                                <input type="hidden" asp-for="EditEmployee.Lastname" />
+                                <input type="hidden" asp-for="EditEmployee.Phonenumber" />
+                                <input type="hidden" asp-for="EditEmployee.Profilepicture" />
+                                <input type="hidden" asp-for="EditEmployee.Residence" />
+                                <input type="hidden" asp-for="EditEmployee.Status" />
+                                <input type="hidden" asp-for="EditEmployee.StreetNameAndNr" />
+                                <input type="hidden" asp-for="EditEmployee.Timestamp" />
+                                <input type="hidden" asp-for="EditEmployee.ZipCode" />
+                                <input type="hidden" asp-for="Project.Timestamp" />
+                                <input type="hidden" asp-for="Project.Startdate" />
+                                <input type="hidden" asp-for="Project.Id" />
+
+
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="Project.Enddate" class="control-label"></label>
+                                    <input asp-for="Project.Enddate" class="form-control" />
+                                    <span asp-validation-for="Project.Enddate" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Project.ValuedTime" class="control-label"></label>
+                                    <input asp-for="Project.ValuedTime" class="form-control" />
+                                    <span asp-validation-for="Project.ValuedTime" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Project.Deadline" class="control-label"></label>
+                                    <input asp-for="Project.Deadline" class="form-control" />
+                                    <span asp-validation-for="Project.Deadline" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-success" />
+                        </div>
+                        <div>
+                            <a asp-controller="Projects" asp-action="List" class="btn btn-default">Overview</a>
+                        </div>
+                    </form>     
+                </div>
             </div>
-            <div class="form-group">
-                <label class="control-label">Projekt-Manager</label>
-                <select asp-for="EditEmployee.Id" asp-items="@Model.ProjectManagersAndMembers" class="form-control"></select>
-                <span asp-validation-for="EditEmployee.Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Project.Status" class="control-label"></label>
-                <select asp-for="Project.Status" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.ProjectStatusType>()" class="form-control"></select>
-                <span asp-validation-for="Project.Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Project.Information" class="control-label"></label>
-                <input asp-for="Project.Information" class="form-control" />
-                <span asp-validation-for="Project.Information" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Project.Enddate" class="control-label"></label>
-                <input asp-for="Project.Enddate" class="form-control" />
-                <span asp-validation-for="Project.Enddate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Project.ValuedTime" class="control-label"></label>
-                <input asp-for="Project.ValuedTime" class="form-control" />
-                <span asp-validation-for="Project.ValuedTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Project.Deadline" class="control-label"></label>
-                <input asp-for="Project.Deadline" class="form-control" />
-                <span asp-validation-for="Project.Deadline" class="text-danger"></span>
-            </div>
-            <input type="hidden" asp-for="EditEmployee.Birthdate" />
-            <input type="hidden" asp-for="EditEmployee.Department" />
-            <input type="hidden" asp-for="EditEmployee.DepartmentId" />
-            <input type="hidden" asp-for="EditEmployee.Firstname" />
-            <input type="hidden" asp-for="EditEmployee.HiringDate" />
-            <input type="hidden" asp-for="EditEmployee.Job" />
-            <input type="hidden" asp-for="EditEmployee.Lastname" />
-            <input type="hidden" asp-for="EditEmployee.Phonenumber" />
-            <input type="hidden" asp-for="EditEmployee.Profilepicture" />
-            <input type="hidden" asp-for="EditEmployee.Residence" />
-            <input type="hidden" asp-for="EditEmployee.Status" />
-            <input type="hidden" asp-for="EditEmployee.StreetNameAndNr" />
-            <input type="hidden" asp-for="EditEmployee.Timestamp" />
-            <input type="hidden" asp-for="EditEmployee.ZipCode" />
-            <input type="hidden" asp-for="Project.Timestamp" />
-            <input type="hidden" asp-for="Project.Startdate" />
-            <input type="hidden" asp-for="Project.Id" />
-            <div class="form-group">
-                <input type="submit" value="Speichern" class="btn btn-success" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-controller="Projects" asp-action="List" class="btn btn-default">Zur Übersicht</a>
-</div>
+
+

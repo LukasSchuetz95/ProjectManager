@@ -4,107 +4,122 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Mitarbeiter zum Projekt "@Model.EmployeeProject.Project.ProjectName" hinzufügen</h2>
 
-@*<dl class="dl-horizontal">
-        <dt>@Html.DisplayNameFor(m => m.EmployeeProject.Project.Id)</dt>
-        <dd>@Model.EmployeeProject.Project.Id</dd>
-        <dt>@Html.DisplayNameFor(m => m.EmployeeProject.Project.ProjectName)</dt>
-        <dd>@Model.EmployeeProject.Project.ProjectName</dd>
-        <dt>@Html.DisplayNameFor(m => m.EmployeeProject.Project.Status)</dt>
-        <dd>@Model.EmployeeProject.Project.Status</dd>
-        <dt>@Html.DisplayNameFor(m => m.EmployeeProject.Project.Startdate)</dt>
-        <dd>@Model.EmployeeProject.Project.Startdate</dd>
-        <dt>@Html.DisplayNameFor(m => m.EmployeeProject.Project.Enddate)</dt>
-        <dd>@Model.EmployeeProject.Project.Enddate</dd>
-        <dt>@Html.DisplayNameFor(m => m.EmployeeProject.Project.Deadline)</dt>
-        <dd>@Model.EmployeeProject.Project.Deadline</dd>
-        <dt>@Html.DisplayNameFor(m => m.EmployeeProject.Project.ValuedTime)</dt>
-        <dd>@Model.EmployeeProject.Project.ValuedTime Stunden</dd>
-        <dt>@Html.DisplayNameFor(m => m.EmployeeProject.Project.Information)</dt>
-        <dd>@Model.EmployeeProject.Project.Information</dd>
-    </dl>*@
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        </form>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="page-header">
+                        <h2>Add Employees to "@Model.EmployeeProject.Project.ProjectName"</h2>
+                    </div>
+                    <form asp-controller="EmployeeProjects" asp-action="Sort" asp-route-filter="FilterEmployeeName" asp-route-projectId="@Model.EmployeeProject.ProjectId">
+                        <div class="col-md-3">
+                            <input asp-for="FilterEmployeeName" type="search" class="form-control" />
+                            <span asp-validation-for="FilterEmployeeName" class="text-danger"></span>
+                        </div>
+                        <input type="submit" value="Filter employee name" class="btn btn-primary" />
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<h2>Projekt-Mitglieder</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Status</th>
-            <th>Job</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var emp in Model.EmployeesInProject)
-        {
-            @if (emp.Projectmanager == true)
-            {
-                <tr>
-                    <td>@emp.Employee.ToString()</td>
-                    <td>@emp.Employee.Status</td>
-                    <td>@emp.Employee.Job</td>
-                    <td><input type="button" value="Projekt-Manager" class="btn btn-default" /></td>
-                </tr>
-            }
-            else
-            {
-                <tr>
-                    <td>@emp.Employee.ToString()</td>
-                    <td>@emp.Employee.Status</td>
-                    <td>@emp.Employee.Job</td>
-                    <td>
-                        <form asp-action="Delete" asp-route-empProId="@emp.Id">
-                            <input type="submit" value="Löschen" class="btn btn-danger" />
-                        </form>
-                        @*<a asp-controller="Projects" asp-action="Edit" >Entfernen</a>*@
-                    </td>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default"  style="max-height: 600px; min-height: 600px; overflow-y: scroll">
+                    <div class="panel-body panel-danger">
+                        <div class="page-header">
+                            <h2>Project member</h2>
+                        </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Status</th>
+                                        <th>Job</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var emp in Model.EmployeesInProject)
+                                    {
+                                        @if (emp.Projectmanager == true)
+                                        {
+                                            <tr>
+                                                <td>@emp.Employee.ToString()</td>
+                                                <td>@emp.Employee.Status</td>
+                                                <td>@emp.Employee.Job</td>
+                                                <td><input type="button" value="Project Manager" class="btn btn-default" /></td>
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td>@emp.Employee.ToString()</td>
+                                                <td>@emp.Employee.Status</td>
+                                                <td>@emp.Employee.Job</td>
+                                                <td>
+                                                    <form asp-action="Delete" asp-route-empProId="@emp.Id">
+                                                        <input type="submit" value="Delete" class="btn btn-danger" />
+                                                    </form>
+                                                    @*<a asp-controller="Projects" asp-action="Edit" >Entfernen</a>*@
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default"  style="max-height: 600px; min-height: 600px; overflow-y: scroll">
+                    <div class="panel-body">
+                        <div class="page-header">
+                            <h2>Employees</h2>
+                        </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Status</th>
+                                        <th>Job</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var emp in Model.EmployeesNotInProject)
+                                    {
+                                        <tr>
+                                            <td>@emp.ToString()</td>
+                                            <td>@emp.Status</td>
+                                            <td>@emp.Job</td>
+                                            <td>
+                                                <form asp-action="Create" asp-controller="EmployeeProjects" asp-route-employeeId="@emp.Id" asp-route-projectId="@Model.EmployeeProject.ProjectId">
+                                                    <input type="submit" value="Add" class="btn btn-success" />
+                                                </form>
+                                                @*<div class="form-group">
+                                    <input type="submit" value="Mitarbeiter hinzufügen" class="btn btn-success" />
+                                </div>*@
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
 
-<h2>Alle Mitarbeiter (ohne Projekt-Mitglieder)</h2>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Status</th>
-            <th>Job</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var emp in Model.EmployeesNotInProject)
-        {
-            <tr>
-                <td>@emp.ToString()</td>
-                <td>@emp.Status</td>
-                <td>@emp.Job</td>
-                <td>
-                    <form asp-action="Create" asp-controller="EmployeeProjects" asp-route-employeeId="@emp.Id" asp-route-projectId="@Model.EmployeeProject.ProjectId">
-                        <input type="submit" value="Mitarbeiter hinzufügen" class="btn btn-success" />
-                    </form>
-                    @*<div class="form-group">
-                        <input type="submit" value="Mitarbeiter hinzufügen" class="btn btn-success" />
-                    </div>*@
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-<div>
-    <a asp-controller="Projects" asp-action="List" class="btn btn-default">Zur Übersicht</a>
-</div>
-
+    <div>
+        <a asp-controller="Projects" asp-action="List" class="btn btn-default">Overview</a>
+    </div>
+</body>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

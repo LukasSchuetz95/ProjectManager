@@ -18,14 +18,17 @@ namespace ProjectManager.Core.Entities
 
         //[Required(ErrorMessage = "Dieses Feld wird benötigt")]
         [Display(Name = "From")]
+        [DataType(DataType.Date)]
         public DateTime? Startdate { get; set; }
 
         [Display(Name = "To")]
+        [DataType(DataType.Date)]
         public DateTime? Enddate { get; set; }
 
         [Display(Name = "Valued Time")]
         public string ValuedTime { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime? Deadline { get; set; }
 
         public override string ToString()

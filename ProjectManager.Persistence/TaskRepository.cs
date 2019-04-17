@@ -35,32 +35,32 @@ namespace ProjectManager.Persistence
 
         public List<Task> GetAllTasksForProjectWithCompletedStatus(int projectId)
         {
-            return _dbContext.Task.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Erledigt)).ToList();
+            return _dbContext.Task.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Completed)).ToList();
         }
 
         public List<Task> GetAllTasksForProjectWithCompletedStatus()
         {
-            return _dbContext.Task.Where(p=> p.Status == TaskStatusType.Erledigt).ToList();
+            return _dbContext.Task.Where(p=> p.Status == TaskStatusType.Completed).ToList();
         }
 
         public List<Task> GetAllTasksForProjectWithProcessingStatus(int projectId)
         {
-            return _dbContext.Task.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.InArbeit)).ToList();
+            return _dbContext.Task.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Processing)).ToList();
         }
 
         public List<Task> GetAllTasksForProjectWithProcessingStatus()
         {
-            return _dbContext.Task.Where(p => p.Status == TaskStatusType.InArbeit).ToList();
+            return _dbContext.Task.Where(p => p.Status == TaskStatusType.Processing).ToList();
         }
 
         public List<Task> GetAllTasksForProjectWithUndefinedStatus(int projectId)
         {
-            return _dbContext.Task.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.NichtBegonnen)).ToList();
+            return _dbContext.Task.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Open)).ToList();
         }
 
         public List<Task> GetAllTasksForProjectWithUndefinedStatus()
         {
-            return _dbContext.Task.Where(p => p.Status == TaskStatusType.NichtBegonnen).ToList();
+            return _dbContext.Task.Where(p => p.Status == TaskStatusType.Open).ToList();
         }
 
         public Task GetById(int tasikId)
@@ -106,12 +106,12 @@ namespace ProjectManager.Persistence
 
         public List<Task> GetByGeneralProjectId(int projectId) 
         {
-            return _dbContext.Task.Where(p => p.ProjectId == projectId && p.Project.ProjectName == "Allgemein" && p.Status == TaskStatusType.NichtBegonnen).ToList();
+            return _dbContext.Task.Where(p => p.ProjectId == projectId && p.Project.ProjectName == "Allgemein" && p.Status == TaskStatusType.Open).ToList();
         }
 
         public List<Task> GetByProjectIdWithoutGeneralTasks(int projectId)
         {
-            return _dbContext.Task.Where(p => p.ProjectId == projectId && p.Project.ProjectName != "Allgemein" && p.Status == TaskStatusType.NichtBegonnen).ToList();
+            return _dbContext.Task.Where(p => p.ProjectId == projectId && p.Project.ProjectName != "Allgemein" && p.Status == TaskStatusType.Open).ToList();
         }
 
         #region Methods

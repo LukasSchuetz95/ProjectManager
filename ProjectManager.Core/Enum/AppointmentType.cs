@@ -6,10 +6,10 @@ namespace ProjectManager.Core.Enum
 {
     public enum AppointmentType
     {
-        Arztbesuch,
+        Doctor,
         Meeting,
-        Zeitausgleich,
-        Urlaub,
-        Andere,
+        Compensatory,
+        Vacation,
+        Other,
     }
 }
