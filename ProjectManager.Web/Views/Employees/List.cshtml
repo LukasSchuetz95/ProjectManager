@@ -17,7 +17,7 @@
 </head>
 <body>
     <header>
-        <h3>Mitarbeiter suchen</h3>
+        <h3>Search for employees</h3>
     </header>
     <form asp-controller="Employees" asp-action="List" class="form-inline">
         <div class="form-check form-check-inline">
@@ -51,7 +51,7 @@
 
     @if (Model.Employees.Count == 0 || Model.Employees == null)
     {
-        <h4>We could not find any Data, please try again with different parameters, or reload the site!</h4>
+        <h4>We couldn't find any data, please try again with different parameters, or reload the site!</h4>
     }
     else
     {
@@ -66,7 +66,7 @@
             @foreach (var employee in Model.Employees)
             {
                 <tr>
-                    <td class="icon-bar" title="Click here to see the dashboard of this person"><a class="active" asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@employee.Id"><i class="fa fa-user" aria-hidden="true"></i></a></td>
+                    <td class="icon-bar" title="Click here to see the profil of this person"><a class="active" asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@employee.Id"><i class="fa fa-user" aria-hidden="true"></i></a></td>
                     <td>@employee.Lastname</td>
                     <td>@employee.Firstname</td>
                     <td>@employee.Job</td>

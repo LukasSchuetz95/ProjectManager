@@ -86,9 +86,7 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
-
-
-        public IActionResult EditProfil(int employeeId)
+    public IActionResult EditProfil(int employeeId)
         {
             EmployeesEditProfilViewModel model = new EmployeesEditProfilViewModel();
             model.LoadEditProfilData(_unitOfWork, employeeId);
