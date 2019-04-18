@@ -15,6 +15,8 @@ namespace ProjectManager.Web.Models.ViewModel
 
         public List<Employee> EmployeesNotInProject { get; set; }
 
+        public string FilterEmployeeName { get; set; }
+
         public void LoadData(IUnitOfWork unitOfWork, int projectId)
         {
             EmployeeProject = unitOfWork.EmployeeProjects.GetByProjectId(projectId);

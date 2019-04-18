@@ -67,5 +67,17 @@ namespace ProjectManager.Web.Controllers
             _unitOfWork.Save();
             return RedirectToAction(nameof(Create), new { projectId = model.ProjectId });
         }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Sort(string filter, int projectId)
+        {
+            EmployeeProjectsCreateViewModel model = new EmployeeProjectsCreateViewModel();
+            //model.Projects = _unitOfWork.Projects.GetProjectByName(model.FilterProjectName);
+            model.LoadData(_unitOfWork, projectId);
+            model.EmployeesInProject = _unitOfWork.EmployeeProjects.GetEmplyoeesInProjectByEmployeeName(model.FilterEmployeeName, model.EmployeeProject.ProjectId);
+            model.EmployeesNotInProject = _unitOfWork.EmployeeProjects.GetEmplyoeesNotInProjectByEmployeeName(model.FilterEmployeeName, model.EmployeeProject.ProjectId);
+            return RedirectToAction(nameof(Create), new { projectId = model.EmployeeProject.ProjectId });
+        }
     }
 }

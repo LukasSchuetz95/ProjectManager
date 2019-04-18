@@ -254,7 +254,7 @@ namespace ProjectManager.Web.Controllers
             {
                 foreach (var obj in checkTasks)
                 {
-                    if (obj.Priority != Core.Enum.PriorityType.Hoch)
+                    if (obj.Priority != Core.Enum.PriorityType.High)
                     {
                         model.PoolTasks.Remove(obj);
                     }
@@ -275,7 +275,7 @@ namespace ProjectManager.Web.Controllers
 
                 if (CreateEmployeeTask(employeeTask))
                 {
-                    employeeTask.Task.Status = Core.Enum.TaskStatusType.InArbeit;
+                    employeeTask.Task.Status = Core.Enum.TaskStatusType.Processing;
                     UpdateTask(employeeTask.Task);
 
                     DashboardDisplay dashboardDisplay = GenerateDashboardTask(employeeTask);
@@ -291,7 +291,7 @@ namespace ProjectManager.Web.Controllers
 
                 if (UpdateEmployeeTask(employeeTask))
                 {
-                    employeeTask.Task.Status = Core.Enum.TaskStatusType.InArbeit;
+                    employeeTask.Task.Status = Core.Enum.TaskStatusType.Processing;
                     UpdateTask(employeeTask.Task);
 
                     DashboardDisplay dashboardDisplay = GenerateDashboardTask(employeeTask);
@@ -375,7 +375,7 @@ namespace ProjectManager.Web.Controllers
                         CreateEmployeeTask(recipientEmployeeTask);
 
                         //Zwischenschritt einbauen im ENUM
-                        employeeTask.Task.Status = Core.Enum.TaskStatusType.NichtBegonnen;
+                        employeeTask.Task.Status = Core.Enum.TaskStatusType.Open;
                         UpdateTask(employeeTask.Task);
 
                         //Nur wenn fixed Task true ist
@@ -401,7 +401,7 @@ namespace ProjectManager.Web.Controllers
                     dashboardDisplay.Finished = true;
                     DeleteDashBoardTask(dashboardDisplay);
 
-                    model.Task.Status = Core.Enum.TaskStatusType.Erledigt;
+                    model.Task.Status = Core.Enum.TaskStatusType.Completed;
                     model.Task.Enddate = DateTime.Now;
                     UpdateTask(model.Task);
                 }

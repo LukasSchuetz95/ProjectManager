@@ -6,8 +6,8 @@ namespace ProjectManager.Core.Enum
 {
     public enum ProjectStatusType
     {
-        Planung,
-        Laufend,
-        Abgeschlossen,
+        Planning,
+        Ongoing,
+        Completed,
     }
 }

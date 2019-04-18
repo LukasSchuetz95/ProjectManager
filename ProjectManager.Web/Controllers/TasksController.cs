@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProjectManager.Core.Contracts;
 using ProjectManager.Core.Entities;
+using ProjectManager.Core.Enum;
 using ProjectManager.Web.Models.ViewModel;
 using Task = ProjectManager.Core.Entities.Task;
 
@@ -45,11 +46,16 @@ namespace ProjectManager.Web.Controllers
         [HttpPost]
         public IActionResult FinishList(TasksListViewModel model)
         {
-            model.CompletedTasks = _unitOfWork.Tasks.GetTaskByName(model.FilterTaskName);
+            TaskStatusType completetd = new TaskStatusType();
+            completetd = TaskStatusType.Completed;
+
+            model.CompletedTasks = _unitOfWork.Tasks.GetTaskByName(model.FilterTaskName, completetd );
             return View(model);
 
         }
-
+        //Open,
+        //Processing,
+        //Completed,
 
         public IActionResult OpenList()
         {
@@ -62,7 +68,10 @@ namespace ProjectManager.Web.Controllers
         [HttpPost]
         public IActionResult OpenList(TasksListViewModel model)
         {
-            model.UndefinedTasks = _unitOfWork.Tasks.GetTaskByName(model.FilterTaskName);
+            TaskStatusType open = new TaskStatusType();
+            open = TaskStatusType.Open;
+
+            model.UndefinedTasks = _unitOfWork.Tasks.GetTaskByName(model.FilterTaskName, open);
             return View(model);
 
         }
@@ -79,7 +88,10 @@ namespace ProjectManager.Web.Controllers
         [HttpPost]
         public IActionResult InProgressList(TasksListViewModel model)
         {
-            model.ProcessingTasks = _unitOfWork.Tasks.GetTaskByName(model.FilterTaskName);
+            TaskStatusType processing = new TaskStatusType();
+            processing = TaskStatusType.Processing;
+
+            model.ProcessingTasks = _unitOfWork.Tasks.GetTaskByName(model.FilterTaskName, processing);
             return View(model);
 
         }
@@ -111,9 +123,14 @@ namespace ProjectManager.Web.Controllers
         public IActionResult Create(TasksCreateViewModel model)
         {
 
+            Employee nobody = new Employee();
+            nobody.Id = 2002;
 
-            model.Task.ProjectId = model.Project.Id;
-            model.EmployeeTask.Task = model.Task;
+            model.EmployeeTask.Task.ProjectId = model.Project.Id;
+            model.EmployeeTask.EmployeeId = nobody.Id;
+           // model.EmployeeTask.Employee = nobody;
+           
+           // model.EmployeeTask.Task = model.Task;
           //  model.EmployeeTask.Employee.Id = model.EmployeeTask.EmployeeId;
             
 
@@ -122,19 +139,21 @@ namespace ProjectManager.Web.Controllers
           //{
                 try
                 {
-                    //EmployeeTask etask = new EmployeeTask();
-                  //  etask.Task = model.Task;
+                //EmployeeTask etask = new EmployeeTask();
+                // etask.Task = model.Task;
 
-                    
+         
 
-                   // _unitOfWork.EmployeeTasks.Add(model.Task);
-                    _unitOfWork.Tasks.Add(model.Task);
-                    _unitOfWork.EmployeeTasks.Add(model.EmployeeTask);
+                // _unitOfWork.EmployeeTasks.Add(model.Task);
+                   _unitOfWork.Tasks.Add(model.EmployeeTask.Task);
+                     _unitOfWork.EmployeeTasks.Add(model.EmployeeTask);
+           //     _unitOfWork.EmployeeTasks.Add(etask);
+                  
                     //_unitOfWork.EmployeeTasks.Add(model.Task);
                     _unitOfWork.Save();
                     //  return RedirectToAction("Create", "EmployeeTasks", new { taskId = model.EmployeeTask.TaskId });
                    // return RedirectToAction("List", "Projects");
-                   return RedirectToAction("Create", "EmployeeTasks", new { projectId = model.EmployeeTask.Task.ProjectId , taskid = model.EmployeeTask.TaskId });
+                   return RedirectToAction("Create", "EmployeeTasks", new { projectId = model.EmployeeTask.Task.ProjectId , taskid = model.EmployeeTask.Task.Id, emptaskId = model.EmployeeTask.Id });
 
             }
                 catch (ValidationException validationException)

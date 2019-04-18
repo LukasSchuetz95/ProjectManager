@@ -6,8 +6,8 @@ namespace ProjectManager.Core.Enum
 {
     public enum PriorityType
     {
-        Hoch,
-        Mittel,
-        Niedrig,
+        High,
+        Middle,
+        Low,
     }
 }

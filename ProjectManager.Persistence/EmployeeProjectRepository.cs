@@ -75,6 +75,35 @@ namespace ProjectManager.Persistence
             return _dbContext.EmployeeProject.Where(p => p.ProjectId == id).FirstOrDefault();
         }
 
+        public List<EmployeeProject> GetEmplyoeesInProjectByEmployeeName(string filterEmployeeName, int projectId)
+        {
+            List <EmployeeProject> temp = GetAllByProjectId(projectId);
+
+            if (filterEmployeeName == null || filterEmployeeName == "")
+            {
+                return temp.ToList();
+            }
+            else
+            {
+                return temp.Where(e => e.Employee.ToString().Contains(filterEmployeeName)).ToList();
+            }
+
+        }
+
+        public List<Employee> GetEmplyoeesNotInProjectByEmployeeName(string filterEmployeeName, int projectId)
+        {
+            List<Employee> temp = GetAllNotPartOfProject(projectId);
+
+            if (filterEmployeeName == null || filterEmployeeName == "")
+            {
+                return temp.ToList();
+            }
+            else
+            {
+                return temp.Where(e => e.ToString().Contains(filterEmployeeName)).ToList();
+            }
+        }
+
         public EmployeeProject GetProjectManagerByProjectId(int projectId)
         {
             return _dbContext.EmployeeProject.Include(e => e.Employee).Include(pr => pr.Project).Where(p => p.ProjectId == projectId && p.Projectmanager == true).SingleOrDefault();

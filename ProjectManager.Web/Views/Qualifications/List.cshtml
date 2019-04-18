@@ -4,54 +4,62 @@
     ViewData["Title"] = "List";
 }
 
-<h2>List</h2>
 
 <head>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
-<form asp-controller="Qualifications" asp-action="List">
-    <div class="form-group-sm  col-xs-2">
-        <input asp-for="FilterProjectName" class="form-control" />
-        <span asp-validation-for="FilterProjectName" class="text-danger"></span>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="page-header">
+                        <h2>Qualifications</h2>
+                        <form asp-controller="Qualifications" asp-action="List">
+                            <div class="form-group-sm  col-xs-2">
+                                <input asp-for="FilterProjectName" class="form-control" />
+                                <span asp-validation-for="FilterProjectName" class="text-danger"></span>
+                            </div>
+                            <input type="submit" value="Filter Qualification" class="btn btn-primary" />
+                        </form>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Name
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Qualifications)
+                            {
+                                <tr>
+                                    @if (item.QualificationName == "Project Manager")
+                                    {
+
+                                        <td>
+                                            @item.QualificationName
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @item.QualificationName
+                                        </td>
+                                        <td title="Edit"><a asp-controller="Qualifications" asp-action="Edit" asp-route-qualId="@item.Id"><i class="far fa-edit"></i></a></td>
+                                        <td title="Delete"><a asp-controller="Qualifications" asp-action="Delete" asp-route-qualId="@item.Id"><i class="far fa-trash-alt"></i></a></td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-    <input type="submit" value="Filter Qualifikation" class="btn btn-primary" />
-</form>
+</div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Qualification
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Qualifications)
-        {
-            <tr>
-                @if (item.QualificationName == "Projekt Manager")
-                {
-                    
-                    <td>
-                        @item.QualificationName
-                    </td>
-                    
-                }
-                else
-                {
-            
-                    <td>
-                        @item.QualificationName
-                    </td>
-                    <td title="Edit"><a asp-controller="Qualifications" asp-action="Edit" asp-route-qualId="@item.Id"><i class="far fa-edit"></i></a></td>
-                    <td title="Delete"><a asp-controller="Qualifications" asp-action="Delete" asp-route-qualId="@item.Id"><i class="far fa-trash-alt"></i></a></td>
-            
-
-                }
-            </tr>
-
-
-        }
-    </tbody>
-</table>

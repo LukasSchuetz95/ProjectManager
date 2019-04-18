@@ -6,8 +6,8 @@ namespace ProjectManager.Core.Enum
 {
     public enum EmployeeStatusType
     {
-        Beschäftigt,
-        Auszeit,
-        Gekündigt,
+        Active,
+        Timeout,
+        Terminated,
     }
 }

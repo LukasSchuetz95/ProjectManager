@@ -123,7 +123,7 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
 
         public int CountHighPriorityTasks()
         {
-            return this.PoolTasks.Where(p => p.Priority == Core.Enum.PriorityType.Hoch).Count();
+            return this.PoolTasks.Where(p => p.Priority == Core.Enum.PriorityType.High).Count();
         }
 
         #endregion

@@ -4,71 +4,84 @@
     ViewData["Title"] = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="page-header">
+                        <h3>Do you want to delete the following Project ?</h3>
+                    </div>
+                    
+                    <div>
+                        
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.ProjectName)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.ProjectName)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Status)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Information)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Information)
+                            </dd>
+                            <dd>
+                                @*<dt>
+                        @Html.DisplayNameFor(model => model.Startdate)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Startdate)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Enddate)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Enddate)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ValuedTime)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ValuedTime)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Deadline)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Deadline)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Id)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Timestamp)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Timestamp)
+                    </dd>*@
+                        </dl>
 
-<h3>Wollen Sie das Projekt @Model.ProjectName wirklich löschen ?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ProjectName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ProjectName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Information)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Information)
-        </dd>
-        <dd>
-        @*<dt>
-            @Html.DisplayNameFor(model => model.Startdate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Startdate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Enddate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Enddate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ValuedTime)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ValuedTime)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Deadline)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Deadline)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Timestamp)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Timestamp)
-        </dd>*@
-    </dl>
-    
-    <form asp-action="DeleteConfirm" asp-route-projectId="@Model.Id">
-        <input type="submit" value="Löschen" class="btn btn-danger" /> 
-        <a asp-action="List" class="btn btn-default">Zur Übersicht</a>
-    </form>
+                        <form asp-action="DeleteConfirm" asp-route-projectId="@Model.Id">
+                            <input type="submit" value="Delete" class="btn btn-danger" />
+                            <a asp-action="List" class="btn btn-default">Overview</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+

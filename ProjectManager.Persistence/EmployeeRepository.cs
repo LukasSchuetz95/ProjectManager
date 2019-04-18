@@ -103,29 +103,6 @@ namespace ProjectManager.Persistence
                                                                 OrderBy(e => e.Lastname).ThenBy(e => e.Firstname).ToList();
         }
 
-        public List<EmployeeQualification> GetAllProjectManagersAndProjectMembers(int projectId)
-        {
-            List<EmployeeQualification> projectManagers = _dbContext.EmployeeQualification.Include(e => e.Employee).Include(q => q.Qualification).
-                Where(e => e.Qualification.QualificationName == "Projekt Manager").ToList();
-
-            List<EmployeeProject> employeeProjects = _dbContext.EmployeeProject.Where(p => p.ProjectId == projectId).ToList();
-
-            List<EmployeeQualification> employees = new List<EmployeeQualification>();
-
-            foreach (var pm in projectManagers)
-            {
-                foreach (var ep in employeeProjects)
-                {
-                    if (pm.EmployeeId == ep.EmployeeId)
-                    {
-                        employees.Add(pm);
-                    }
-                }
-            }
-
-            return employees;
-        }
-
         public List<Employee> GetEmployeeByDepartmentId(int id)
         {
             List<Employee> empList = _dbContext.Employee.Where(e => e.DepartmentId == id).OrderBy(e => e.Lastname).ThenBy(e => e.Firstname).ToList();
