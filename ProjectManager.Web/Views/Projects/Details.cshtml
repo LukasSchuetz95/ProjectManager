@@ -11,37 +11,43 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
             <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2>Details</h2>
+                </div>
                 <div class="panel-body">
-                    <div class="page-header">
-                        <h2>Details</h2>
-                    </div>
-
                     <div class="container-fluid">
-                        <dl class="dl-horizontal">
-                            <dd>@Model.Projects.Information</dd>
-                            <hr />
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <dt>Name</dt>
-                                    <dd>@Model.Projects.ProjectName</dd>
-                                    <dt>@Html.DisplayNameFor(m => m.Projects.Status)</dt>
-                                    <dd>@Model.Projects.Status</dd>
-                                </div>
-                                <div class="col-md-2"></div>
-                                <div class="col-md-4">
-                                    <dt>@Html.DisplayNameFor(m => m.Projects.Startdate)</dt>
-                                    <dd>@Model.Projects.Startdate</dd>
-                                    <dt>@Html.DisplayNameFor(m => m.Projects.Enddate)</dt>
-                                    <dd>@Model.Projects.Enddate</dd>
-                                    <dt>@Html.DisplayNameFor(m => m.Projects.Deadline)</dt>
-                                    <dd>@Model.Projects.Deadline</dd>
-                                    <dt>@Html.DisplayNameFor(m => m.Projects.ValuedTime)</dt>
-                                    <dd>@Model.Projects.ValuedTime H</dd>
-                                </div>
-                            </div>
-                        </dl>
+                        <h4><dd>@Model.Projects.Information</dd></h4>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td><dt>Name</dt></td>
+                                    <td><dd>@Model.Projects.ProjectName</dd></td>
+                                </tr>
+                                <tr>
+                                    <td><dt>@Html.DisplayNameFor(m => m.Projects.Status)</dt></td>
+                                    <td><dd>@Model.Projects.Status</dd></td>
+                                </tr>
+                                <tr>
+                                    <td><dt>@Html.DisplayNameFor(m => m.Projects.Startdate)</dt></td>
+                                    <td><dd>@Model.Projects.Startdate</dd></td>
+                                </tr>
+                                <tr>
+                                    <td><dt>@Html.DisplayNameFor(m => m.Projects.Enddate)</dt></td>
+                                    <td><dd>@Model.Projects.Enddate</dd></td>
+                                </tr>
+                                <tr>
+                                    <td><dt>@Html.DisplayNameFor(m => m.Projects.Deadline)</dt></td>
+                                    <td><dd>@Model.Projects.Deadline</dd></td>
+                                </tr>
+                                <tr>
+                                    <td><dt>@Html.DisplayNameFor(m => m.Projects.ValuedTime)</dt></td>
+                                    <td><dd>@Model.Projects.ValuedTime H</dd></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -51,36 +57,39 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
             <div class="panel panel-default" style="max-height: 400px; min-height: 400px; overflow-y: scroll">
+                <div class="panel-heading">
+                    <h3>Project member</h3>
+                </div>
                 <div class="panel-body">
-                    <div class="page-header">
-                        <h2>Project member</h2>
-                    </div>
                     <table class="table">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>Name</th>
                                 <th>Job</th>
-                                <th>Project Manager</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var emp in Model.EmployeeProjects)
                             {
-                                <tr>
+                            <tr>
+
+                                @if (emp.Projectmanager)
+                                {
+                                    <td title="Project Manager" class="text-center"><i class="fas fa-user-tie"></i></td>
                                     <td>@emp.Employee.ToString()</td>
                                     <td>@emp.Employee.Job</td>
-
-                                    @if (emp.Projectmanager)
-                                    {
-                                        <td><i class="fas fa-user-tie"></i></td>
-                                    }
-                                    else
-                                    {
-                                        <td></td>
-                                    }
-                                </tr>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                    <td>@emp.Employee.ToString()</td>
+                                    <td>@emp.Employee.Job</td>
+                                }
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -94,12 +103,13 @@
 {
     <div class="container">
         <div class="row">
-            <div class="col-lg-9">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
                 <div class="panel panel-default" style="max-height: 400px; min-height: 400px; overflow-y: scroll">
+                    <div class="panel-heading">
+                        <h3>Open Tasks</h3>
+                    </div>
                     <div class="panel-body">
-                        <div class="page-header">
-                            <h2>Open Tasks</h2>
-                        </div>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -117,7 +127,15 @@
                                     <tr>
                                         <td>@task.TaskName</td>
                                         <td>@task.Status</td>
-                                        <td>@task.FixedTask</td>
+                                        @if (task.FixedTask)
+                                        {
+
+                                            <td class="text-center"><i class="fas fa-check"></i></td>
+                                        }
+                                        else
+                                        {
+                                            <td class="text-center"><i class="fas fa-times"></i></td>
+                                        }
                                         <td>@task.Created</td>
                                         <td>@task.Enddate</td>
                                         <td>@task.Deadline</td>
@@ -139,12 +157,13 @@
 {
     <div class="container">
         <div class="row">
-            <div class="col-lg-9">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
                 <div class="panel panel-default" style="max-height: 400px; min-height: 400px; overflow-y: scroll">
+                    <div class="panel-heading">
+                        <h3>Completed Tasks</h3>
+                    </div>
                     <div class="panel-body">
-                        <div class="page-header">
-                            <h2>Completed Tasks</h2>
-                        </div>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -159,17 +178,25 @@
                             <tbody>
                                 @foreach (var task in Model.CompletedTasks)
                                 {
-                                    <tr>
-                                        <td>@task.TaskName</td>
-                                        <td>@task.Status</td>
-                                        <td>@task.FixedTask</td>
-                                        <td>@task.Created</td>
-                                        <td>@task.Enddate</td>
-                                        <td>@task.Deadline</td>
-                                        <td>
-                                            <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id" class="btn btn-info">Details</a>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td>@task.TaskName</td>
+                                    <td>@task.Status</td>
+                                    @if (task.FixedTask)
+                                    {
+
+                                        <td class="text-center"><i class="fas fa-check"></i></td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center"><i class="fas fa-times"></i></td>
+                                    }
+                                    <td>@task.Created</td>
+                                    <td>@task.Enddate</td>
+                                    <td>@task.Deadline</td>
+                                    <td>
+                                        <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id" class="btn btn-info">Details</a>
+                                    </td>
+                                </tr>
                                 }
                             </tbody>
                         </table>
@@ -184,13 +211,13 @@
 {
     <div class="container">
         <div class="row">
-            <div class="col-lg-9">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
                 <div class="panel panel-default" style="max-height: 400px; min-height: 400px; overflow-y: scroll">
+                    <div class="panel-heading">
+                        <h3>Processing Tasks</h3>
+                    </div>
                     <div class="panel-body">
-
-                        <div class="page-header">
-                            <h2>Processing Tasks</h2>
-                        </div>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -205,17 +232,25 @@
                             <tbody>
                                 @foreach (var task in Model.ProcessingTasks)
                                 {
-                                    <tr>
-                                        <td>@task.TaskName</td>
-                                        <td>@task.Status</td>
-                                        <td>@task.FixedTask</td>
-                                        <td>@task.Created</td>
-                                        <td>@task.Enddate</td>
-                                        <td>@task.Deadline</td>
-                                        <td>
-                                            <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id" class="btn btn-info">Details</a>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td>@task.TaskName</td>
+                                    <td>@task.Status</td>
+                                    @if (task.FixedTask)
+                                    {
+
+                                        <td class="text-center"><i class="fas fa-check"></i></td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center"><i class="fas fa-times"></i></td>
+                                    }
+                                    <td>@task.Created</td>
+                                    <td>@task.Enddate</td>
+                                    <td>@task.Deadline</td>
+                                    <td>
+                                        <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id" class="btn btn-info">Details</a>
+                                    </td>
+                                </tr>
                                 }
                             </tbody>
                         </table>
@@ -227,7 +262,7 @@
 }
 
 
-
-<div>
-    <a asp-controller="Projects" asp-action="List" class="btn btn-default">Overview</a>
+<div class="col-lg-2"></div>
+<div class="col-lg-1">
+    <a asp-controller="Projects" asp-action="List" class="btn btn-default"><i class="fas fa-chevron-left"></i> Overview</a>
 </div>

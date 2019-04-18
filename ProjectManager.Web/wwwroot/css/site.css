@@ -41,3 +41,13 @@ body {
     max-height : 25px;
     overflow-y: scroll;
 }
+
+.panel > .panel-heading {
+    background-image: none;
+    background-color: black;
+    color: white;
+}
+
+.panel-default > .panel-heading {
+    background: black;
+}
