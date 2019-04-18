@@ -8,10 +8,6 @@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="Employee.Id" />
     <div>
-        @*<label asp-for="Employee.Profilepicture" class="control-label"></label>
-        <input asp-for="Employee.Profilepicture" class="form-control" />
-        <span asp-validation-for="Employee.Profilepicture" class="text-danger"></span>*@
-
         <div class="form-group">
             <dl class="dl-horizontal">
                 <dt>@Html.DisplayNameFor(m => m.Employee.Lastname)</dt>
@@ -61,10 +57,18 @@
         </div>
         <div>
             <a asp-controller="Employees" asp-action="Feed" asp-route-employeeId="@Model.Employee.Id" style="width:200px" class="btn btn-primary">Dashboard</a>
-            <a asp-controller="Employees" asp-action="EditProfil" asp-route-employeeId="@Model.Employee.Id" style="width:200px" class="btn btn-primary">Profil bearbeiten</a>
-            <a asp-controller="Employees" asp-action="CreateEmployee" style="width:200px" class="btn btn-primary">Mitarbeiter anlegen</a>
+            <a asp-controller="Employees" asp-action="EditProfil" asp-route-employeeId="@Model.Employee.Id" style="width:200px" class="btn btn-primary">Edit profil</a>
         </div>
     </div>
+    @*<div>
+        @using (Html.BeginForm("ProfilPicUpload", "Employees", FormMethod.Post,
+                           new { enctype = "multipart/form-data" }))
+        {
+            <label for="file">Upload Image:</label>
+            <input type="file" name="file" id="file" style="width: 100%;" />
+            <input type="submit" value="Upload" class="submit" />
+        }
+    </div>*@
 </form>
 
 <table class="table" style="width:800px">
