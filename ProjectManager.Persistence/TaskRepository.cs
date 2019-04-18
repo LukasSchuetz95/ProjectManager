@@ -68,19 +68,50 @@ namespace ProjectManager.Persistence
             return _dbContext.Task.Where(t => t.Id == tasikId).FirstOrDefault();
         }
 
-        public List<Task> GetTaskByName(string filter)
+        public List<Task> GetTaskByName(string filter, TaskStatusType status)
+        {
+            // IQueryable<Task> query = _dbContext.Task.OrderBy(p => p.TaskName);
+
+            IQueryable<Task> query = _dbContext.Task.Where(t => t.Status == status);
+
+            //if (filter == null || filter == "")
+            //{
+            //    return query.ToList();
+            //}
+            //else
+            //{
+            //    return query.Where(p => p.TaskName.Contains(filter)).ToList();
+            //}
+
+            if (filter == null || filter == "")
+            {
+                return query.Where(t => t.Status == status).ToList();
+
+            }
+            else
+            {
+                return query.Where(p => p.TaskName.Contains(filter)).ToList();
+
+            }   
+
+        }
+
+        public List<Task> GetTaskByName(string filterTaskName)
         {
             IQueryable<Task> query = _dbContext.Task.OrderBy(p => p.TaskName);
 
-            if (filter == null || filter == "")
+
+            if (filterTaskName == null || filterTaskName == "")
             {
                 return query.ToList();
             }
             else
             {
-                return query.Where(p => p.TaskName.Contains(filter)).ToList();
+                return query.Where(p => p.TaskName.Contains(filterTaskName)).ToList();
             }
         }
+
+
 
         public void Update(Task task)
         {
@@ -182,6 +213,8 @@ namespace ProjectManager.Persistence
 
             return poolTasks;
         }
+
+
         #endregion
     }
 }

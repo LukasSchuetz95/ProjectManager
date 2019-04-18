@@ -30,7 +30,7 @@
                 <tr>
                     <td>@task.TaskName</td>
                     <td>@task.Deadline</td>
-                    <td>@task.Project.ProjectName</td>
+                    @*<td>@task.Project.ProjectName</td>*@
                     <td>
                         <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a> |
                     </td>
@@ -45,7 +45,7 @@
                 <tr>
                     <td>@task.TaskName</td>
                     <td>@task.Deadline</td>
-                    <td>@task.Project.ProjectName</td>
+                    @*<td>@task.Project.ProjectName</td>*@
                     <td>
                         <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a> |
                     </td>
