@@ -15,12 +15,17 @@ namespace ProjectManager.Web.Models.ViewModel
         public List<Core.Entities.Task> CompletedTasks { get;  set; }
         public string FilterTaskName { get; set; }
 
+        public EmployeeTask EmployeeTask { get; set; }
+
         internal void LoadData(IUnitOfWork unitOfWork)
         {
             Tasks = unitOfWork.Tasks.GetAll();
             UndefinedTasks = unitOfWork.Tasks.GetAllTasksForProjectWithUndefinedStatus();
             ProcessingTasks = unitOfWork.Tasks.GetAllTasksForProjectWithProcessingStatus();
             CompletedTasks = unitOfWork.Tasks.GetAllTasksForProjectWithCompletedStatus();
+
+           
+            
         }
     }
 }
