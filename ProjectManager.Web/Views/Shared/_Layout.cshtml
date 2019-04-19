@@ -34,45 +34,44 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div>
-                        <a asp-area="" asp-controller="LoginScreen" asp-action="Home" class="navbar-brand">Project Manager</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Project Manager</a>
                     </div>
 
                 </div>
                 <div class="navbar-collapse collapse">
                     @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
                     {
-                        <ul class="nav navbar-nav">
-                            <li><a asp-area="" asp-controller="Appointments" asp-action="Create">Appointment</a></li>
-                            <li><a asp-area="" asp-controller="Employees" asp-action="List">Employee</a></li>
-                            <li><a asp-area="" asp-controller="Projects" asp-action="List">Projekte</a></li>
-                            <li><a asp-area="" asp-controller="Tasks" asp-action="List">Tasks</a></li>
-                            <li><a asp-area="" asp-controller="Departments" asp-action="List">Departments</a></li>
-                        </ul>
+                    <ul class="nav navbar-nav">
+                        <li><a asp-area="" asp-controller="Tasks" asp-action="List">Tasks</a></li>
+                        <li><a asp-area="" asp-controller="Appointments" asp-action="Create">Appointment</a></li>
+                        <li><a asp-area="" asp-controller="Employees" asp-action="List">Employee</a></li>
+                        <li><a asp-area="" asp-controller="Departments" asp-action="List">Departments</a></li>
+                        <li><a asp-area="" asp-controller="Projects" asp-action="List">Projects</a></li>
+                    </ul>
                     }
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
-                        <ul class="nav navbar-nav">
-                            <li><a asp-area="" asp-controller="Appointments" asp-action="Show">Appointment</a></li>
-                            <li><a asp-area="" asp-controller="Employees" asp-action="List">Employee</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a asp-area="" asp-controller="Projects" asp-action="List">Overview</a></li>
-                                    <li><a asp-area="" asp-controller="Projects" asp-action="Create">Create a Project</a></li>
-                                </ul>
-                            </li>
-
-                            <li><a asp-area="" asp-controller="Tasks" asp-action="List">Tasks</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Qualifications<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a asp-area="" asp-controller="Qualifications" asp-action="List">Overview</a></li>
-                                    <li><a asp-area="" asp-controller="Qualifications" asp-action="Create">Create a Qualification</a></li>
-                                </ul>
-                            </li>
-                            <li><a asp-area="" asp-controller="Departments" asp-action="List">Departments</a></li>
-                            <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
-                        </ul>
+                    <ul class="nav navbar-nav">
+                        <li><a asp-area="" asp-controller="Tasks" asp-action="List">Tasks</a></li>
+                        <li><a asp-area="" asp-controller="Appointments" asp-action="Show">Appointment</a></li>
+                        <li><a asp-area="" asp-controller="Employees" asp-action="List">Employee</a></li>
+                        <li><a asp-area="" asp-controller="Departments" asp-action="List">Departments</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Qualifications<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-area="" asp-controller="Qualifications" asp-action="List">Overview</a></li>
+                                <li><a asp-area="" asp-controller="Qualifications" asp-action="Create">Create a Qualification</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-area="" asp-controller="Projects" asp-action="List">Overview</a></li>
+                                <li><a asp-area="" asp-controller="Projects" asp-action="Create">Create a Project</a></li>
+                            </ul>
+                        </li>
+                        <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+                    </ul>
                     }
                     <partial name="_LoginPartial" />
                 </div>
