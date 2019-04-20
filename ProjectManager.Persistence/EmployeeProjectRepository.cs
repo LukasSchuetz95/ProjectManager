@@ -77,30 +77,47 @@ namespace ProjectManager.Persistence
 
         public List<EmployeeProject> GetEmplyoeesInProjectByEmployeeName(string filterEmployeeName, int projectId)
         {
-            List <EmployeeProject> temp = GetAllByProjectId(projectId);
+            IQueryable<EmployeeProject> emp = _dbContext.EmployeeProject.Include(e => e.Employee).Include(p => p.Project);
+                
 
             if (filterEmployeeName == null || filterEmployeeName == "")
             {
-                return temp.ToList();
+                return emp.Where(p => p.ProjectId == projectId).OrderBy(e => e.Id).ToList();
             }
             else
             {
-                return temp.Where(e => e.Employee.ToString().Contains(filterEmployeeName)).ToList();
+                return emp.Where(p => p.Employee.ToString().Contains(filterEmployeeName) && p.ProjectId == projectId).OrderBy(e => e.Id).ToList();
             }
 
         }
 
         public List<Employee> GetEmplyoeesNotInProjectByEmployeeName(string filterEmployeeName, int projectId)
         {
-            List<Employee> temp = GetAllNotPartOfProject(projectId);
+
+            List<EmployeeProject> list = GetAllByProjectId(projectId);
+
+            List<Employee> employees = _dbContext.Employee.ToList();
+
+            List<Employee> newemployees = _dbContext.Employee.ToList();
+
+            foreach (var i in list)
+            {
+                foreach (var j in employees)
+                {
+                    if (i.EmployeeId == j.Id)
+                    {
+                        newemployees.Remove(j);
+                    }
+                }
+            }
 
             if (filterEmployeeName == null || filterEmployeeName == "")
             {
-                return temp.ToList();
+                return newemployees.OrderBy(e => e.Id).ToList();
             }
             else
             {
-                return temp.Where(e => e.ToString().Contains(filterEmployeeName)).ToList();
+                return newemployees.Where(e => e.ToString().Contains(filterEmployeeName)).OrderBy(e => e.Id).ToList();
             }
         }
 

@@ -114,7 +114,7 @@ namespace ProjectManager.Persistence
             {
                 if(_dbContext.Qualification.Any(q => (q.QualificationName == qualification.QualificationName) && (q.Id != qualification.Id)))
                 {
-                    throw new ValidationException($"There is already a Qualifikation with the Name: {1}" + qualification.QualificationName, null, nameof(Qualification.QualificationName));
+                    throw new ValidationException($"There is already a Qualification with the Name: {1}" + qualification.QualificationName, null, nameof(Qualification.QualificationName));
                 }
             }
         }

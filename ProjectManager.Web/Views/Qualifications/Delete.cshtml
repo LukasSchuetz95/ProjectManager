@@ -4,18 +4,25 @@
     ViewData["Title"] = "Delete";
 }
 
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+
 <div class="container">
     <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
             <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Do you want to delete the Qualification "@Model.QualificationName" ?</h3>
+                </div>
                 <div class="panel-body">
-                    <div class="page-header">
-                        <h3>Do you want to delete the Qualification "@Model.QualificationName" ?</h3>
-                    </div>
                     <div>
                         <form asp-action="DeleteConfirm" asp-route-qualId="@Model.Id">
-                            <input type="submit" value="Delete" class="btn btn-danger" />
-                            <a asp-action="List" class="btn btn-default">Overview</a>
+                            <div class="pager">
+                                <a asp-controller="Qualifications" asp-action="List" class="btn btn-default"><i class="fas fa-chevron-left"></i> Overview</a>
+                                <input type="submit" value="Delete" class="btn btn-danger" />
+                            </div>
                         </form>
                     </div>
                 </div>

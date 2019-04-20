@@ -70,14 +70,13 @@ namespace ProjectManager.Web.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public IActionResult Sort(string filter, int projectId)
+        public IActionResult Sort(int projectId, EmployeeProjectsCreateViewModel model)
         {
-            EmployeeProjectsCreateViewModel model = new EmployeeProjectsCreateViewModel();
             //model.Projects = _unitOfWork.Projects.GetProjectByName(model.FilterProjectName);
-            model.LoadData(_unitOfWork, projectId);
-            model.EmployeesInProject = _unitOfWork.EmployeeProjects.GetEmplyoeesInProjectByEmployeeName(model.FilterEmployeeName, model.EmployeeProject.ProjectId);
-            model.EmployeesNotInProject = _unitOfWork.EmployeeProjects.GetEmplyoeesNotInProjectByEmployeeName(model.FilterEmployeeName, model.EmployeeProject.ProjectId);
-            return RedirectToAction(nameof(Create), new { projectId = model.EmployeeProject.ProjectId });
+            //model.LoadData(_unitOfWork, projectId);
+            model.EmployeesInProject = _unitOfWork.EmployeeProjects.GetEmplyoeesInProjectByEmployeeName(model.FilterEmployeeName, projectId);
+            model.EmployeesNotInProject = _unitOfWork.EmployeeProjects.GetEmplyoeesNotInProjectByEmployeeName(model.FilterEmployeeName, projectId);
+            return RedirectToAction(nameof(Create), new { projectId = projectId });
         }
     }
 }

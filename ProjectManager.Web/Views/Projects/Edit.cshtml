@@ -9,17 +9,23 @@
 <h4>Project</h4>
 <hr />*@
 
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+
 <div class="container">
     <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
             <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2>Edit</h2>
+                </div>
                 <div class="panel-body">
-                    <div class="page-header">
-                        <h2>Edit</h2>
-                    </div>
                     <form asp-action="Edit">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="row">
+                            <div class="col-md-1"></div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label asp-for="Project.ProjectName" class="control-label"></label>
@@ -37,9 +43,14 @@
                                     <span asp-validation-for="Project.Status" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="Project.Information" class="control-label"></label>
-                                    <input asp-for="Project.Information" class="form-control" />
-                                    <span asp-validation-for="Project.Information" class="text-danger"></span>
+                                    <label asp-for="Project.Startdate" class="control-label"></label>
+                                    <input asp-for="Project.Startdate" class="form-control" />
+                                    <span asp-validation-for="Project.Startdate" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Project.Enddate" class="control-label"></label>
+                                    <input asp-for="Project.Enddate" class="form-control" />
+                                    <span asp-validation-for="Project.Enddate" class="text-danger"></span>
                                 </div>
 
                                 <input type="hidden" asp-for="EditEmployee.Birthdate" />
@@ -65,11 +76,6 @@
                             <div class="col-md-2"></div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label asp-for="Project.Enddate" class="control-label"></label>
-                                    <input asp-for="Project.Enddate" class="form-control" />
-                                    <span asp-validation-for="Project.Enddate" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
                                     <label asp-for="Project.ValuedTime" class="control-label"></label>
                                     <input asp-for="Project.ValuedTime" class="form-control" />
                                     <span asp-validation-for="Project.ValuedTime" class="text-danger"></span>
@@ -79,14 +85,18 @@
                                     <input asp-for="Project.Deadline" class="form-control" />
                                     <span asp-validation-for="Project.Deadline" class="text-danger"></span>
                                 </div>
+                                <div class="form-group">
+                                    <label asp-for="Project.Information" class="control-label"></label>
+                                    <textarea asp-for="Project.Information" rows="6" class="form-control"></textarea>
+                                    <span asp-validation-for="Project.Information" class="text-danger"></span>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="pager">
+                            <a asp-controller="Projects" asp-action="List" class="btn btn-default"><i class="fas fa-chevron-left"></i> Overview</a>
                             <input type="submit" value="Save" class="btn btn-success" />
                         </div>
-                        <div>
-                            <a asp-controller="Projects" asp-action="List" class="btn btn-default">Overview</a>
-                        </div>
+                        
                     </form>     
                 </div>
             </div>
