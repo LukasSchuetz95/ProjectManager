@@ -99,17 +99,18 @@
     </div>
 </div>
 
-@if (Model.UndefinedTasks.Count != 0)
-{
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8">
-                <div class="panel panel-default" style="max-height: 400px; min-height: 400px; overflow-y: scroll">
-                    <div class="panel-heading">
-                        <h3>Open Tasks</h3>
-                    </div>
-                    <div class="panel-body">
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <div class="panel panel-default" style="max-height: 400px; min-height: 400px; overflow-y: scroll">
+                <div class="panel-heading">
+                    <h3>Open Tasks</h3>
+                </div>
+                <div class="panel-body">
+                    @if (Model.ProcessingTasks.Count != 0)
+                    {
                         <table class="table">
                             <thead>
                                 <tr>
@@ -146,24 +147,34 @@
                                 }
                             </tbody>
                         </table>
-                    </div>
+                    }
+                    else
+                    {
+                        <div class="center-block well">
+                            <h1 class="text-center">Bad News...</h1>
+                            <h2 class="text-center">This Taskpool is empty !</h2>
+                        </div>
+
+                    }
                 </div>
             </div>
         </div>
     </div>
-}
+</div>
 
-@if (Model.CompletedTasks.Count != 0)
-{
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8">
-                <div class="panel panel-default" style="max-height: 400px; min-height: 400px; overflow-y: scroll">
-                    <div class="panel-heading">
-                        <h3>Completed Tasks</h3>
-                    </div>
-                    <div class="panel-body">
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <div class="panel panel-default" style="max-height: 400px; min-height: 400px; overflow-y: scroll">
+                <div class="panel-heading">
+                    <h3>Completed Tasks</h3>
+                </div>
+                <div class="panel-body">
+                    @if (Model.ProcessingTasks.Count != 0)
+                    {
                         <table class="table">
                             <thead>
                                 <tr>
@@ -178,46 +189,58 @@
                             <tbody>
                                 @foreach (var task in Model.CompletedTasks)
                                 {
-                                <tr>
-                                    <td>@task.TaskName</td>
-                                    <td>@task.Status</td>
-                                    @if (task.FixedTask)
-                                    {
+                                    <tr>
+                                        <td>@task.TaskName</td>
+                                        <td>@task.Status</td>
+                                        @if (task.FixedTask)
+                                        {
 
-                                        <td class="text-center"><i class="fas fa-check"></i></td>
-                                    }
-                                    else
-                                    {
-                                        <td class="text-center"><i class="fas fa-times"></i></td>
-                                    }
-                                    <td>@task.Created</td>
-                                    <td>@task.Enddate</td>
-                                    <td>@task.Deadline</td>
-                                    <td>
-                                        <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id" class="btn btn-info">Details</a>
-                                    </td>
-                                </tr>
+                                            <td class="text-center"><i class="fas fa-check"></i></td>
+                                        }
+                                        else
+                                        {
+                                            <td class="text-center"><i class="fas fa-times"></i></td>
+                                        }
+                                        <td>@task.Created</td>
+                                        <td>@task.Enddate</td>
+                                        <td>@task.Deadline</td>
+                                        <td>
+                                            <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id" class="btn btn-info">Details</a>
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>
-                    </div>
+                    }
+                    else
+                    {
+                        <div class="center-block well">
+                            <h1 class="text-center">Bad News...</h1>
+                            <h2 class="text-center">This Taskpool is empty !</h2>
+                        </div>
+
+                    }
                 </div>
             </div>
         </div>
     </div>
-}
+</div>
 
-@if (Model.ProcessingTasks.Count != 0)
-{
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8">
-                <div class="panel panel-default" style="max-height: 400px; min-height: 400px; overflow-y: scroll">
-                    <div class="panel-heading">
-                        <h3>Processing Tasks</h3>
-                    </div>
-                    <div class="panel-body">
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <div class="panel panel-default" style="max-height: 400px; min-height: 400px; overflow-y: scroll">
+                <div class="panel-heading">
+                    <h3>Processing Tasks</h3>
+                </div>
+                <div class="panel-body">
+                    @if (Model.ProcessingTasks.Count != 0)
+                    {
+
+                        
                         <table class="table">
                             <thead>
                                 <tr>
@@ -232,34 +255,43 @@
                             <tbody>
                                 @foreach (var task in Model.ProcessingTasks)
                                 {
-                                <tr>
-                                    <td>@task.TaskName</td>
-                                    <td>@task.Status</td>
-                                    @if (task.FixedTask)
-                                    {
+                                    <tr>
+                                        <td>@task.TaskName</td>
+                                        <td>@task.Status</td>
+                                        @if (task.FixedTask)
+                                        {
 
-                                        <td class="text-center"><i class="fas fa-check"></i></td>
-                                    }
-                                    else
-                                    {
-                                        <td class="text-center"><i class="fas fa-times"></i></td>
-                                    }
-                                    <td>@task.Created</td>
-                                    <td>@task.Enddate</td>
-                                    <td>@task.Deadline</td>
-                                    <td>
-                                        <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id" class="btn btn-info">Details</a>
-                                    </td>
-                                </tr>
+                                            <td class="text-center"><i class="fas fa-check"></i></td>
+                                        }
+                                        else
+                                        {
+                                            <td class="text-center"><i class="fas fa-times"></i></td>
+                                        }
+                                        <td>@task.Created</td>
+                                        <td>@task.Enddate</td>
+                                        <td>@task.Deadline</td>
+                                        <td>
+                                            <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id" class="btn btn-info">Details</a>
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>
-                    </div>
+                    }
+                    else
+                    {
+                        <div class="center-block well">
+                            <h1 class="text-center">Bad News...</h1>
+                            <h2 class="text-center">This Taskpool is empty !</h2>
+                        </div>
+                            
+                    }
                 </div>
             </div>
         </div>
     </div>
-}
+</div>
+
 
 
 <div class="col-lg-2"></div>

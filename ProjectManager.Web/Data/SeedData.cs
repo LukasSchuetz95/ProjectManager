@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using ProjectManager.Core.Contracts;
 using ProjectManager.Core.Entities;
+using ProjectManager.Core.Enum;
 using ProjectManager.Persistence;
 using ProjectManager.Web.Models;
 using System;
@@ -32,27 +33,35 @@ namespace ProjectManager.Web.Data
                 await roleManager.CreateAsync(new ApplicationRole(role2));
             }
 
-            if (await userManager.FindByNameAsync("admin@admin.com") == null)
+            if (await userManager.FindByNameAsync("lukas.schuetz1@gmail.com") == null)
             {
-                Employee employee = new Employee
-                {
-                    Firstname = "Admin",
-                    Lastname = "Admin",
-                    Status = Core.Enum.EmployeeStatusType.Active,
-                    DepartmentId = 1
-                };
+                //Employee employee = new Employee
+                //{
+                //    Id = 1,
+                //    Firstname = "Lukas",
+                //    Lastname = "Schuetz",
+                //    Status = Core.Enum.EmployeeStatusType.Active,
+                //    DepartmentId = 1,
+                //    Birthdate = new DateTime(1995, 4, 22),
+                //    HiringDate = new DateTime(2011, 12, 24),
+                //    Phonenumber = "0660/ 4878 299",
+                //    Residence = "Bad Hall",
+                //    StreetNameAndNr = "Roemerstr. 41",
+                //    ZipCode = "4540",
+                //    Job = "Software Developer"
+                //};
 
-                using (IUnitOfWork uow = new UnitOfWork())
-                {
-                    await uow.Employees.AddAsync(employee);
-                }
-                
+                //using (IUnitOfWork uow = new UnitOfWork())
+                //{
+                //    await uow.Employees.AddAsync(employee);
+                //}
+
 
                 var user = new ApplicationUser
                 {
-                    UserName = "admin@admin.com",
-                    Email = "admin@admin.com",
-                    EmployeeId = employee.Id
+                    UserName = "lukas.schuetz1@gmail.com",
+                    Email = "lukas.schuetz1@gmail.com",
+                    EmployeeId = 1
                 };
 
                 var result = await userManager.CreateAsync(user);

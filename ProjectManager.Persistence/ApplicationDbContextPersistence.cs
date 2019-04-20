@@ -104,130 +104,130 @@ namespace ProjectManager.Persistence
                     Phonenumber = "0660/ 4878 444",
                     Residence = "Irgendwo",
                     StreetNameAndNr = "Weiss i ned",
-                    ZipCode = "Ka Ahnung",
+                    ZipCode = "4020",
                     Status = EmployeeStatusType.Terminated,
                     Job = "Software Developer",
                     DepartmentId = 2,
                 });
 
-            modelBuilder.Entity<Employee>().HasData(
-                new Employee
-                {
-                    Id = 4,
-                    Firstname = "Bojack",
-                    Lastname = "Horseman",
-                    Birthdate = new DateTime(1960, 2, 2),
-                    HiringDate = new DateTime(2014, 7, 6),
-                    Phonenumber = "0676/9876534",
-                    Residence = "Hollywoo",
-                    StreetNameAndNr = "Beachstreet 5",
-                    ZipCode = "Ka Ahnung",
-                    Status = EmployeeStatusType.Active,
-                    Job = "Software Developer",
-                    DepartmentId = 2,
-                });
+            //modelBuilder.Entity<Employee>().HasData(
+            //    new Employee
+            //    {
+            //        Id = 4,
+            //        Firstname = "Bojack",
+            //        Lastname = "Horseman",
+            //        Birthdate = new DateTime(1960, 2, 2),
+            //        HiringDate = new DateTime(2014, 7, 6),
+            //        Phonenumber = "0676/9876534",
+            //        Residence = "Hollywoo",
+            //        StreetNameAndNr = "Beachstreet 5",
+            //        ZipCode = "4020",
+            //        Status = EmployeeStatusType.Active,
+            //        Job = "Software Developer",
+            //        DepartmentId = 2,
+            //    });
 
-            modelBuilder.Entity<Employee>().HasData(
-                new Employee
-                {
-                    Id = 5,
-                    Firstname = "Rick",
-                    Lastname = "Sanchez",
-                    Birthdate = new DateTime(1950, 4, 3),
-                    HiringDate = new DateTime(2017, 8, 1),
-                    Phonenumber = "039454646453",
-                    Residence = "Interdimensional",
-                    StreetNameAndNr = "streetytreetstreet",
-                    ZipCode = "Ka Ahnung",
-                    Status = EmployeeStatusType.Active,
-                    Job = "Web-Developer",
-                    DepartmentId = 2,
-                });
+            //modelBuilder.Entity<Employee>().HasData(
+            //    new Employee
+            //    {
+            //        Id = 5,
+            //        Firstname = "Rick",
+            //        Lastname = "Sanchez",
+            //        Birthdate = new DateTime(1950, 4, 3),
+            //        HiringDate = new DateTime(2017, 8, 1),
+            //        Phonenumber = "039454646453",
+            //        Residence = "Interdimensional",
+            //        StreetNameAndNr = "streetytreetstreet",
+            //        ZipCode = "4020",
+            //        Status = EmployeeStatusType.Active,
+            //        Job = "Web-Developer",
+            //        DepartmentId = 2,
+            //    });
 
-            modelBuilder.Entity<Employee>().HasData(
-                new Employee
-                {
-                    Id = 6,
-                    Firstname = "Jack",
-                    Lastname = "Peralta",
-                    Birthdate = new DateTime(1990, 7, 12),
-                    HiringDate = new DateTime(2017, 12, 9),
-                    Phonenumber = "6784352363465",
-                    Residence = "Department 99",
-                    StreetNameAndNr = "Brooklyn street",
-                    ZipCode = "Ka Ahnung",
-                    Status = EmployeeStatusType.Terminated,
-                    Job = "Web-Developer",
-                    DepartmentId = 5,
-                });
+            //modelBuilder.Entity<Employee>().HasData(
+            //    new Employee
+            //    {
+            //        Id = 6,
+            //        Firstname = "Jack",
+            //        Lastname = "Peralta",
+            //        Birthdate = new DateTime(1990, 7, 12),
+            //        HiringDate = new DateTime(2017, 12, 9),
+            //        Phonenumber = "6784352363465",
+            //        Residence = "Department 99",
+            //        StreetNameAndNr = "Brooklyn street",
+            //        ZipCode = "4020",
+            //        Status = EmployeeStatusType.Terminated,
+            //        Job = "Web-Developer",
+            //        DepartmentId = 5,
+            //    });
 
-            modelBuilder.Entity<Employee>().HasData(
-                new Employee
-                {
-                    Id = 7,
-                    Firstname = "Amy",
-                    Lastname = "Santiago",
-                    Birthdate = new DateTime(1993, 12, 10),
-                    HiringDate = new DateTime(2012, 2, 4),
-                    Phonenumber = "90445343454",
-                    Residence = "Department 99",
-                    StreetNameAndNr = "Brooklyn street",
-                    ZipCode = "Ka Ahnung",
-                    Status = EmployeeStatusType.Timeout,
-                    Job = "Web-Developer",
-                    DepartmentId = 5,
-                });
+            //modelBuilder.Entity<Employee>().HasData(
+            //    new Employee
+            //    {
+            //        Id = 7,
+            //        Firstname = "Amy",
+            //        Lastname = "Santiago",
+            //        Birthdate = new DateTime(1993, 12, 10),
+            //        HiringDate = new DateTime(2012, 2, 4),
+            //        Phonenumber = "90445343454",
+            //        Residence = "Department 99",
+            //        StreetNameAndNr = "Brooklyn street",
+            //        ZipCode = "4020",
+            //        Status = EmployeeStatusType.Timeout,
+            //        Job = "Web-Developer",
+            //        DepartmentId = 5,
+            //    });
 
-            modelBuilder.Entity<Employee>().HasData(
-                new Employee
-                {
-                    Id = 8,
-                    Firstname = "Rosa",
-                    Lastname = "Diaz",
-                    Birthdate = new DateTime(1993, 12, 10),
-                    HiringDate = new DateTime(2012, 8, 4),
-                    Phonenumber = "90445343454",
-                    Residence = "Department 99",
-                    StreetNameAndNr = "Brooklyn street",
-                    ZipCode = "Ka Ahnung",
-                    Status = EmployeeStatusType.Active,
-                    Job = "Software Developer",
-                    DepartmentId = 5,
-                });
+            //modelBuilder.Entity<Employee>().HasData(
+            //    new Employee
+            //    {
+            //        Id = 8,
+            //        Firstname = "Rosa",
+            //        Lastname = "Diaz",
+            //        Birthdate = new DateTime(1993, 12, 10),
+            //        HiringDate = new DateTime(2012, 8, 4),
+            //        Phonenumber = "90445343454",
+            //        Residence = "Department 99",
+            //        StreetNameAndNr = "Brooklyn street",
+            //        ZipCode = "4020",
+            //        Status = EmployeeStatusType.Active,
+            //        Job = "Software Developer",
+            //        DepartmentId = 5,
+            //    });
 
-            modelBuilder.Entity<Employee>().HasData(
-                new Employee
-                {
-                    Id = 9,
-                    Firstname = "Raimond",
-                    Lastname = "Hoad",
-                    Birthdate = new DateTime(1993, 12, 10),
-                    HiringDate = new DateTime(2012, 2, 9),
-                    Phonenumber = "90445343454",
-                    Residence = "Department 99",
-                    StreetNameAndNr = "Brooklyn street",
-                    ZipCode = "Ka Ahnung",
-                    Status = EmployeeStatusType.Active,
-                    Job = "Software Developer",
-                    DepartmentId = 5,
-                });
+            //modelBuilder.Entity<Employee>().HasData(
+            //    new Employee
+            //    {
+            //        Id = 9,
+            //        Firstname = "Raimond",
+            //        Lastname = "Hoad",
+            //        Birthdate = new DateTime(1993, 12, 10),
+            //        HiringDate = new DateTime(2012, 2, 9),
+            //        Phonenumber = "90445343454",
+            //        Residence = "Department 99",
+            //        StreetNameAndNr = "Brooklyn street",
+            //        ZipCode = "4020",
+            //        Status = EmployeeStatusType.Active,
+            //        Job = "Software Developer",
+            //        DepartmentId = 5,
+            //    });
 
-            modelBuilder.Entity<Employee>().HasData(
-                new Employee
-                {
-                    Id = 10,
-                    Firstname = "Todd",
-                    Lastname = "Sharvez",
-                    Birthdate = new DateTime(1990, 10, 5),
-                    HiringDate = new DateTime(2010, 2, 12),
-                    Phonenumber = "0660/ 4878 444",
-                    Residence = "Hollywoo",
-                    StreetNameAndNr = "Beachstreet",
-                    ZipCode = "0000",
-                    Status = EmployeeStatusType.Timeout,
-                    Job = "Software Developer",
-                    DepartmentId = 2,
-                });
+            //modelBuilder.Entity<Employee>().HasData(
+            //    new Employee
+            //    {
+            //        Id = 10,
+            //        Firstname = "Todd",
+            //        Lastname = "Sharvez",
+            //        Birthdate = new DateTime(1990, 10, 5),
+            //        HiringDate = new DateTime(2010, 2, 12),
+            //        Phonenumber = "0660/ 4878 444",
+            //        Residence = "Hollywoo",
+            //        StreetNameAndNr = "Beachstreet",
+            //        ZipCode = "0000",
+            //        Status = EmployeeStatusType.Timeout,
+            //        Job = "Software Developer",
+            //        DepartmentId = 2,
+            //    });
 
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment
@@ -413,7 +413,7 @@ namespace ProjectManager.Persistence
                 new Project
                 {
                     Id = 6969,
-                    ProjectName = "Allgemein",
+                    ProjectName = "General",
                     Status = ProjectStatusType.Ongoing,
                     Startdate = new DateTime(2015, 10, 30, 14, 30, 0),
                     Deadline = new DateTime(9999, 10, 30, 15, 30, 0),
@@ -425,19 +425,20 @@ namespace ProjectManager.Persistence
                 new Project
                 {
                     Id = 1246,
-                    ProjectName = "Diplomarbeit",
+                    ProjectName = "Diploma",
                     Status = ProjectStatusType.Ongoing,
-                    Startdate = new DateTime(2020, 10, 30, 14, 30, 0),
-                    Deadline = new DateTime(2020, 10, 30, 15, 30, 0),
+                    Startdate = new DateTime(2018, 03, 03),
+                    Enddate = new DateTime(2019, 04, 26),
+                    Deadline = new DateTime(2019, 05, 03),
                     ValuedTime = "500",
-                    Information = "This project needs love",
+                    Information = "",
                 });
 
             modelBuilder.Entity<Project>().HasData(
                 new Project
                 {
                     Id = 2426,
-                    ProjectName = "Project1",
+                    ProjectName = "Mustermann GmbH",
                     Status = ProjectStatusType.Ongoing,
                     Startdate = new DateTime(2021, 10, 30, 14, 30, 0),
                     Deadline = new DateTime(2022, 10, 30, 15, 30, 0),
@@ -449,7 +450,7 @@ namespace ProjectManager.Persistence
                 new Project
                 {
                     Id = 3246,
-                    ProjectName = "Project2",
+                    ProjectName = "Internal Module",
                     Status = ProjectStatusType.Planning,
                     Startdate = new DateTime(2023, 10, 30, 14, 30, 0),
                     Deadline = new DateTime(2024, 10, 30, 15, 30, 0),
@@ -461,7 +462,7 @@ namespace ProjectManager.Persistence
                 new Project
                 {
                     Id = 42456,
-                    ProjectName = "Project3",
+                    ProjectName = "New Module",
                     Status = ProjectStatusType.Ongoing,
                     Startdate = new DateTime(2016, 10, 30),
                     Deadline = new DateTime(2017, 10, 30),
@@ -565,7 +566,7 @@ namespace ProjectManager.Persistence
                     Id = 2,
                     EmployeeId = 2,
                     ProjectId = 6969,
-                    Projectmanager = true,
+                    Projectmanager = false,
                 });
 
             modelBuilder.Entity<EmployeeProject>().HasData(
@@ -574,70 +575,86 @@ namespace ProjectManager.Persistence
                     Id = 3,
                     EmployeeId = 3,
                     ProjectId = 6969,
-                    Projectmanager = true,
+                    Projectmanager = false,
                 });
 
-            modelBuilder.Entity<EmployeeProject>().HasData(
-                new EmployeeProject
-                {
-                    Id = 4,
-                    EmployeeId = 4,
-                    ProjectId = 6969,
-                    Projectmanager = true,
-                });
+            //modelBuilder.Entity<EmployeeProject>().HasData(
+            //    new EmployeeProject
+            //    {
+            //        Id = 4,
+            //        EmployeeId = 4,
+            //        ProjectId = 6969,
+            //        Projectmanager = false,
+            //    });
 
-            modelBuilder.Entity<EmployeeProject>().HasData(
-                new EmployeeProject
-                {
-                    Id = 5,
-                    EmployeeId = 5,
-                    ProjectId = 6969,
-                    Projectmanager = true,
-                });
+            //modelBuilder.Entity<EmployeeProject>().HasData(
+            //    new EmployeeProject
+            //    {
+            //        Id = 5,
+            //        EmployeeId = 5,
+            //        ProjectId = 6969,
+            //        Projectmanager = false,
+            //    });
 
-            modelBuilder.Entity<EmployeeProject>().HasData(
-                new EmployeeProject
-                {
-                    Id = 6,
-                    EmployeeId = 6,
-                    ProjectId = 6969,
-                    Projectmanager = true,
-                });
+            //modelBuilder.Entity<EmployeeProject>().HasData(
+            //    new EmployeeProject
+            //    {
+            //        Id = 6,
+            //        EmployeeId = 6,
+            //        ProjectId = 6969,
+            //        Projectmanager = false,
+            //    });
 
-            modelBuilder.Entity<EmployeeProject>().HasData(
-                new EmployeeProject
-                {
-                    Id = 7,
-                    EmployeeId = 7,
-                    ProjectId = 6969,
-                    Projectmanager = true,
-                });
+            //modelBuilder.Entity<EmployeeProject>().HasData(
+            //    new EmployeeProject
+            //    {
+            //        Id = 7,
+            //        EmployeeId = 7,
+            //        ProjectId = 6969,
+            //        Projectmanager = false,
+            //    });
 
-            modelBuilder.Entity<EmployeeProject>().HasData(
-                new EmployeeProject
-                {
-                    Id = 8,
-                    EmployeeId = 8,
-                    ProjectId = 6969,
-                    Projectmanager = true,
-                });
+            //modelBuilder.Entity<EmployeeProject>().HasData(
+            //    new EmployeeProject
+            //    {
+            //        Id = 8,
+            //        EmployeeId = 8,
+            //        ProjectId = 6969,
+            //        Projectmanager = false,
+            //    });
 
-            modelBuilder.Entity<EmployeeProject>().HasData(
-                new EmployeeProject
-                {
-                    Id = 9,
-                    EmployeeId = 9,
-                    ProjectId = 6969,
-                    Projectmanager = true,
-                });
+            //modelBuilder.Entity<EmployeeProject>().HasData(
+            //    new EmployeeProject
+            //    {
+            //        Id = 9,
+            //        EmployeeId = 9,
+            //        ProjectId = 6969,
+            //        Projectmanager = false,
+            //    });
 
-            modelBuilder.Entity<EmployeeProject>().HasData(
-                new EmployeeProject
+            //modelBuilder.Entity<EmployeeProject>().HasData(
+            //    new EmployeeProject
+            //    {
+            //        Id = 10,
+            //        EmployeeId = 10,
+            //        ProjectId = 6969,
+            //        Projectmanager = false,
+            //    });
+
+            modelBuilder.Entity<Task>().HasData(
+                new Task
                 {
-                    Id = 10,
-                    EmployeeId = 10,
-                    ProjectId = 6969,
-                    Projectmanager = true,
+                    Id = 1,
+                    ProjectId = 1246,
+                    FixedTask = false,
+                    TaskName = "Clean Espresso Machine",
+                    Status = TaskStatusType.Processing,
+                    Information = "There are plenty of tutorials on how to do that.",
+                    ValuedTime = "4",
+                    Deadline = new DateTime(2019, 05, 02, 12, 30, 00),
+                    Enddate = new DateTime(2019, 05, 02, 16, 30, 00),
+                    Created = new DateTime(2019, 05, 02, 16, 30, 00),
+                    Priority = PriorityType.Middle,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -645,12 +662,12 @@ namespace ProjectManager.Persistence
                 {
                     Id = 1111,
                     ProjectId = 1246,
-                    FixedTask = false,
-                    TaskName = "Test1",
-                    Status = TaskStatusType.Open,
-                    Information = "Erster Task",
+                    FixedTask = true,
+                    TaskName = "Sort Files",
+                    Status = TaskStatusType.Completed,
+                    Information = "",
                     ValuedTime = "400",
-                    Deadline = new DateTime(2030, 10, 30, 15, 30, 0),
+                    Deadline = new DateTime(2030, 10, 30),
                     Enddate = null,
                     Created = new DateTime(2010, 10, 30, 15, 30, 0),
                     Priority = PriorityType.Middle,
@@ -662,8 +679,8 @@ namespace ProjectManager.Persistence
                     Id = 2222,
                     ProjectId = 1246,
                     FixedTask = false,
-                    TaskName = "Test2",
-                    Status = TaskStatusType.Completed,
+                    TaskName = "Add another Table",
+                    Status = TaskStatusType.Open,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2026, 10, 30, 15, 30, 0),
@@ -678,8 +695,8 @@ namespace ProjectManager.Persistence
                     Id = 3333,
                     ProjectId = 1246,
                     FixedTask = false,
-                    TaskName = "Test3",
-                    Status = TaskStatusType.Open,
+                    TaskName = "Create the Database",
+                    Status = TaskStatusType.Completed,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2030, 10, 30, 15, 30, 0),
@@ -693,8 +710,8 @@ namespace ProjectManager.Persistence
                 {
                     Id = 4444,
                     ProjectId = 1246,
-                    FixedTask = false,
-                    TaskName = "Test4",
+                    FixedTask = true,
+                    TaskName = "Frontend: Create Project Views",
                     Status = TaskStatusType.Open,
                     Information = "Task",
                     ValuedTime = "400",
@@ -710,14 +727,14 @@ namespace ProjectManager.Persistence
                     Id = 5555,
                     ProjectId = 1246,
                     FixedTask = false,
-                    TaskName = "Test5",
+                    TaskName = "Contact Customer",
                     Status = TaskStatusType.Open,
                     Information = "Task",
                     ValuedTime = "400",
                     Deadline = new DateTime(2030, 10, 30, 15, 30, 0),
                     Enddate = null,
                     Created = new DateTime(2010, 10, 30, 15, 30, 0),
-                    Priority = PriorityType.Middle,
+                    Priority = PriorityType.High,
                 });
 
             modelBuilder.Entity<Task>().HasData(
@@ -1451,28 +1468,28 @@ namespace ProjectManager.Persistence
 
             #region Test: LoadProjectFeedData
 
-            modelBuilder.Entity<Employee>().HasData(
-                new Employee
-                {
-                    Id = 1000,
-                    Firstname = "Testamon",
-                    Lastname = "Testa",
-                    Birthdate = new DateTime(1996, 5, 27),
-                    HiringDate = new DateTime(2010, 12, 24),
-                    Phonenumber = "0000000000",
-                    Residence = "Wels",
-                    StreetNameAndNr = "Manstreet",
-                    ZipCode = "4540",
-                    Status = EmployeeStatusType.Active,
-                    Job = "Software Developer",
-                    DepartmentId = 1,
-                });
+            //modelBuilder.Entity<Employee>().HasData(
+            //    new Employee
+            //    {
+            //        Id = 1000,
+            //        Firstname = "Testamon",
+            //        Lastname = "Testa",
+            //        Birthdate = new DateTime(1996, 5, 27),
+            //        HiringDate = new DateTime(2010, 12, 24),
+            //        Phonenumber = "0000000000",
+            //        Residence = "Wels",
+            //        StreetNameAndNr = "Manstreet",
+            //        ZipCode = "4540",
+            //        Status = EmployeeStatusType.Active,
+            //        Job = "Software Developer",
+            //        DepartmentId = 1,
+            //    });
 
             modelBuilder.Entity<Project>().HasData(
                 new Project
                 {
                     Id = 1000,
-                    ProjectName = "Testakulär",
+                    ProjectName = "Test",
                     Status = ProjectStatusType.Ongoing,
                     Startdate = new DateTime(2015, 10, 30, 14, 30, 0),
                     Deadline = new DateTime(9999, 10, 30, 15, 30, 0),
@@ -1480,23 +1497,32 @@ namespace ProjectManager.Persistence
                     Information = "This project contains all tasks who can't be added to a specified project",
                 });
 
-            modelBuilder.Entity<EmployeeProject>().HasData(
-                new EmployeeProject
-                {
-                    Id = 1000,
-                    EmployeeId = 1000,
-                    ProjectId = 1000,
-                    Projectmanager = false,
-                });
+            //modelBuilder.Entity<EmployeeProject>().HasData(
+            //    new EmployeeProject
+            //    {
+            //        Id = 1000,
+            //        EmployeeId = 1000,
+            //        ProjectId = 1000,
+            //        Projectmanager = false,
+            //    });
 
             modelBuilder.Entity<EmployeeProject>().HasData(
                 new EmployeeProject
                 {
-                    Id = 1100,
-                    EmployeeId = 1000,
-                    ProjectId = 6969,
-                    Projectmanager = false,
+                    Id = 1150,
+                    EmployeeId = 1,
+                    ProjectId = 1000,
+                    Projectmanager = true,
                 });
+
+            //modelBuilder.Entity<EmployeeProject>().HasData(
+            //    new EmployeeProject
+            //    {
+            //        Id = 1100,
+            //        EmployeeId = 1000,
+            //        ProjectId = 6969,
+            //        Projectmanager = false,
+            //    });
 
             modelBuilder.Entity<Task>().HasData(
                 new Task
@@ -1570,15 +1596,15 @@ namespace ProjectManager.Persistence
                     QualificationName = "Testy",
                 });
 
-            modelBuilder.Entity<EmployeeQualification>().HasData(
-                new EmployeeQualification
-                {
-                    Id = 1000,
-                    QualificationId = 1000,
-                    EmployeeId = 1000,
-                    Information = "Test",
-                    SkillLevel = SkillLevelType.Sehrgut,
-                });
+            //modelBuilder.Entity<EmployeeQualification>().HasData(
+            //    new EmployeeQualification
+            //    {
+            //        Id = 1000,
+            //        QualificationId = 1000,
+            //        EmployeeId = 1000,
+            //        Information = "Test",
+            //        SkillLevel = SkillLevelType.Sehrgut,
+            //    });
 
             modelBuilder.Entity<TaskQualification>().HasData(
                 new TaskQualification
@@ -1613,60 +1639,60 @@ namespace ProjectManager.Persistence
                 });
 
             //Zuweisungstest
-            modelBuilder.Entity<EmployeeTask>().HasData(
-                new EmployeeTask
-                {
-                    Id = 1000,
-                    EmployeeId = 1000,
-                    TaskId = 1000,
-                    Picked = false,
-                });
+            //modelBuilder.Entity<EmployeeTask>().HasData(
+            //    new EmployeeTask
+            //    {
+            //        Id = 1000,
+            //        EmployeeId = 1000,
+            //        TaskId = 1000,
+            //        Picked = false,
+            //    });
 
             //Test für Tasks die anderen zugeteilten wurden
-            modelBuilder.Entity<Employee>().HasData(
-                new Employee
-                {
-                    Id = 2000,
-                    Firstname = "Testine",
-                    Lastname = "Testakulär",
-                    Birthdate = new DateTime(1997, 6, 12),
-                    HiringDate = new DateTime(2012, 10, 19),
-                    Phonenumber = "066498234435",
-                    Residence = "Wels",
-                    StreetNameAndNr = "Testreet",
-                    ZipCode = "8998",
-                    Status = EmployeeStatusType.Active,
-                    Job = "Software Developer",
-                    DepartmentId = 1,
-                });
+            //modelBuilder.Entity<Employee>().HasData(
+            //    new Employee
+            //    {
+            //        Id = 2000,
+            //        Firstname = "Testine",
+            //        Lastname = "Testakulär",
+            //        Birthdate = new DateTime(1997, 6, 12),
+            //        HiringDate = new DateTime(2012, 10, 19),
+            //        Phonenumber = "066498234435",
+            //        Residence = "Wels",
+            //        StreetNameAndNr = "Testreet",
+            //        ZipCode = "8998",
+            //        Status = EmployeeStatusType.Active,
+            //        Job = "Software Developer",
+            //        DepartmentId = 1,
+            //    });
 
-            modelBuilder.Entity<EmployeeProject>().HasData(
-                new EmployeeProject
-                {
-                    Id = 2000,
-                    EmployeeId = 2000,
-                    ProjectId = 1000,
-                    Projectmanager = false,
-                });
+            //modelBuilder.Entity<EmployeeProject>().HasData(
+            //    new EmployeeProject
+            //    {
+            //        Id = 2000,
+            //        EmployeeId = 2000,
+            //        ProjectId = 1000,
+            //        Projectmanager = false,
+            //    });
 
-            modelBuilder.Entity<EmployeeProject>().HasData(
-                new EmployeeProject
-                {
-                    Id = 2200,
-                    EmployeeId = 2000,
-                    ProjectId = 6969,
-                    Projectmanager = false,
-                });
+            //modelBuilder.Entity<EmployeeProject>().HasData(
+            //    new EmployeeProject
+            //    {
+            //        Id = 2200,
+            //        EmployeeId = 2000,
+            //        ProjectId = 6969,
+            //        Projectmanager = false,
+            //    });
 
-            modelBuilder.Entity<EmployeeQualification>().HasData(
-                new EmployeeQualification
-                {
-                    Id = 2000,
-                    QualificationId = 1000,
-                    EmployeeId = 2000,
-                    Information = "Test",
-                    SkillLevel = SkillLevelType.Sehrgut,
-                });
+            //modelBuilder.Entity<EmployeeQualification>().HasData(
+            //    new EmployeeQualification
+            //    {
+            //        Id = 2000,
+            //        QualificationId = 1000,
+            //        EmployeeId = 2000,
+            //        Information = "Test",
+            //        SkillLevel = SkillLevelType.Sehrgut,
+            //    });
 
             #endregion
         }
