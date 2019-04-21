@@ -6,10 +6,10 @@ namespace ProjectManager.Core.Enum
 {
     public enum SkillLevelType
     {
-        Sehrgut,
-        Gut,
-        Befriedigend,
-        Genügend,
-        NichtGenügend,
+        Expert,
+        Advanced,
+        Intermediate,
+        Novice,
+        Basic,
     }
 }
