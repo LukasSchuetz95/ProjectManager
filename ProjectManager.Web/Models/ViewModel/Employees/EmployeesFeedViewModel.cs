@@ -10,7 +10,13 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
 {
     public class EmployeesFeedViewModel
     {
+        #region fields
+
         private List<Task> _poolTasks = new List<Task>();
+
+        #endregion
+
+        #region Properties
 
         public Employee Employee { get; set; }
 
@@ -21,8 +27,7 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
         public List<DashboardDisplay> DashboardTasks { get; set; }
 
         public List<EmployeeTask> AssignedTasks { get; set; }
-        public List<Task> PoolTasks { get => _poolTasks; set => _poolTasks=value; }
-        public List<Appointment> AppointmentList { get; set; }
+        public List<Task> PoolTasks { get => _poolTasks; set => _poolTasks = value; }
 
         public string Assigned { get; set; }
         public string ProjectFilter { get; set; }
@@ -34,15 +39,24 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
         public string Search { get; set; }
         public string SearchInput { get; set; }
 
-        //public string ErrorMessage { get; set; }
-        //public bool ErrorCreateEmployeeTask { get; set; }
+        #endregion
 
-        public void LoadFeedData(int employeeId, IUnitOfWork uow)
+        #region Controller-Methods
+
+        public void LoadDashboardData(int employeeId, IUnitOfWork uow)
         {
+            this.Employee = uow.Employees.GetById(employeeId);
+            this.ButtonClicked = "Assigned";
+
+            LoadDashboardDisplays(uow, employeeId);
+
             EmployeeAssignedTasksList = uow.EmployeeTasks.GetAllByEmployeeId(employeeId);
 
-            LoadDashboardTasks(uow, employeeId);
+            FillPoolTaskList();
+        }
 
+        private void FillPoolTaskList()
+        {
             Task task = new Task();
 
             foreach (var ele in this.EmployeeAssignedTasksList)
@@ -57,7 +71,7 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
             }
         }
 
-        public void LoadProjectFeedData(int employeeId, IUnitOfWork uow)
+        public void LoadProjectDashboardData(int employeeId, IUnitOfWork uow)
         {
             EmployeeQualifications = uow.EmployeeQualifications.GetQualificationsByEmployeeId(employeeId);
 
@@ -67,10 +81,10 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
 
             RemoveAssignedTasks(uow, employeeId);
 
-            LoadDashboardTasks(uow, employeeId);
+            LoadDashboardDisplays(uow, employeeId);
         }
 
-        public void LoadGeneralFeedData(int employeeId, IUnitOfWork uow)
+        public void LoadGeneralDashboardData(int employeeId, IUnitOfWork uow)
         {
             EmployeeQualifications = uow.EmployeeQualifications.GetQualificationsByEmployeeId(employeeId);
 
@@ -80,7 +94,16 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
 
             RemoveAssignedTasks(uow, employeeId);
 
-            LoadDashboardTasks(uow, employeeId);
+            LoadDashboardDisplays(uow, employeeId);
+        }
+
+        #endregion      
+
+        #region Model-Methods
+
+        public void LoadDashboardDisplays(IUnitOfWork uow, int employeeId)
+        {
+            this.DashboardTasks = uow.DashboardDisplays.GetByEmployeeId(employeeId);
         }
 
         private void RemoveAssignedTasks(IUnitOfWork uow, int employeeId)
@@ -102,12 +125,9 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
             }
         }
 
-        public void LoadDashboardTasks(IUnitOfWork uow, int employeeId)
-        {
-            this.DashboardTasks = uow.DashboardDisplays.GetByEmployeeId(employeeId);
-        }
+        #endregion
 
-        #region ViewMethods
+        #region View-Methods
 
         public bool IsTaskVisible(Task tsk)
         {
