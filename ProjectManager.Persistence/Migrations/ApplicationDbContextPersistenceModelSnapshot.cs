@@ -172,7 +172,16 @@ namespace ProjectManager.Persistence.Migrations
                     b.HasData(
                         new { Id = 1, Birthdate = new DateTime(1995, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 1, Firstname = "Lukas", HiringDate = new DateTime(2011, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Residence = "Bad Hall", Status = 1, StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
                         new { Id = 2, Birthdate = new DateTime(1994, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 1, Firstname = "Thomas", HiringDate = new DateTime(2012, 9, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Web-Developer", Lastname = "Baurnberger", Phonenumber = "0660/ 4878 333", Residence = "Kematen am Innbach", Status = 0, StreetNameAndNr = "See 44", ZipCode = "4633" },
-                        new { Id = 3, Birthdate = new DateTime(1990, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 2, Firstname = "Manuel", HiringDate = new DateTime(2010, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Residence = "Irgendwo", Status = 2, StreetNameAndNr = "Weiss i ned", ZipCode = "4020" }
+                        new { Id = 3, Birthdate = new DateTime(1990, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 2, Firstname = "Manuel", HiringDate = new DateTime(2010, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Residence = "Irgendwo", Status = 2, StreetNameAndNr = "Weiss i ned", ZipCode = "Ka Ahnung" },
+                        new { Id = 4, Birthdate = new DateTime(1960, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 2, Firstname = "Bojack", HiringDate = new DateTime(2014, 7, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Horseman", Phonenumber = "0676/9876534", Residence = "Hollywoo", Status = 0, StreetNameAndNr = "Beachstreet 5", ZipCode = "Ka Ahnung" },
+                        new { Id = 5, Birthdate = new DateTime(1950, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 2, Firstname = "Rick", HiringDate = new DateTime(2017, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Web-Developer", Lastname = "Sanchez", Phonenumber = "039454646453", Residence = "Interdimensional", Status = 0, StreetNameAndNr = "streetytreetstreet", ZipCode = "Ka Ahnung" },
+                        new { Id = 6, Birthdate = new DateTime(1990, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 5, Firstname = "Jack", HiringDate = new DateTime(2017, 12, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Web-Developer", Lastname = "Peralta", Phonenumber = "6784352363465", Residence = "Department 99", Status = 2, StreetNameAndNr = "Brooklyn street", ZipCode = "Ka Ahnung" },
+                        new { Id = 7, Birthdate = new DateTime(1993, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 5, Firstname = "Amy", HiringDate = new DateTime(2012, 2, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Web-Developer", Lastname = "Santiago", Phonenumber = "90445343454", Residence = "Department 99", Status = 1, StreetNameAndNr = "Brooklyn street", ZipCode = "Ka Ahnung" },
+                        new { Id = 8, Birthdate = new DateTime(1993, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 5, Firstname = "Rosa", HiringDate = new DateTime(2012, 8, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Diaz", Phonenumber = "90445343454", Residence = "Department 99", Status = 0, StreetNameAndNr = "Brooklyn street", ZipCode = "Ka Ahnung" },
+                        new { Id = 9, Birthdate = new DateTime(1993, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 5, Firstname = "Raimond", HiringDate = new DateTime(2012, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Hoad", Phonenumber = "90445343454", Residence = "Department 99", Status = 0, StreetNameAndNr = "Brooklyn street", ZipCode = "Ka Ahnung" },
+                        new { Id = 10, Birthdate = new DateTime(1990, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 2, Firstname = "Todd", HiringDate = new DateTime(2010, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Sharvez", Phonenumber = "0660/ 4878 444", Residence = "Hollywoo", Status = 1, StreetNameAndNr = "Beachstreet", ZipCode = "0000" },
+                        new { Id = 1000, Birthdate = new DateTime(1996, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 1, Firstname = "Testamon", HiringDate = new DateTime(2010, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Testa", Phonenumber = "0000000000", Residence = "Wels", Status = 0, StreetNameAndNr = "Manstreet", ZipCode = "4540" },
+                        new { Id = 2000, Birthdate = new DateTime(1997, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 1, Firstname = "Testine", HiringDate = new DateTime(2012, 10, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Testakulär", Phonenumber = "066498234435", Residence = "Wels", Status = 0, StreetNameAndNr = "Testreet", ZipCode = "8998" }
                     );
                 });
 
@@ -211,9 +220,19 @@ namespace ProjectManager.Persistence.Migrations
                         new { Id = 83465, EmployeeId = 3, ProjectId = 1246, Projectmanager = true },
                         new { Id = 9634, EmployeeId = 3, ProjectId = 2426, Projectmanager = false },
                         new { Id = 1, EmployeeId = 1, ProjectId = 6969, Projectmanager = true },
-                        new { Id = 2, EmployeeId = 2, ProjectId = 6969, Projectmanager = false },
-                        new { Id = 3, EmployeeId = 3, ProjectId = 6969, Projectmanager = false },
-                        new { Id = 1150, EmployeeId = 1, ProjectId = 1000, Projectmanager = true }
+                        new { Id = 2, EmployeeId = 2, ProjectId = 6969, Projectmanager = true },
+                        new { Id = 3, EmployeeId = 3, ProjectId = 6969, Projectmanager = true },
+                        new { Id = 4, EmployeeId = 4, ProjectId = 6969, Projectmanager = true },
+                        new { Id = 5, EmployeeId = 5, ProjectId = 6969, Projectmanager = true },
+                        new { Id = 6, EmployeeId = 6, ProjectId = 6969, Projectmanager = true },
+                        new { Id = 7, EmployeeId = 7, ProjectId = 6969, Projectmanager = true },
+                        new { Id = 8, EmployeeId = 8, ProjectId = 6969, Projectmanager = true },
+                        new { Id = 9, EmployeeId = 9, ProjectId = 6969, Projectmanager = true },
+                        new { Id = 10, EmployeeId = 10, ProjectId = 6969, Projectmanager = true },
+                        new { Id = 1000, EmployeeId = 1000, ProjectId = 1000, Projectmanager = false },
+                        new { Id = 1100, EmployeeId = 1000, ProjectId = 6969, Projectmanager = false },
+                        new { Id = 2000, EmployeeId = 2000, ProjectId = 1000, Projectmanager = false },
+                        new { Id = 2200, EmployeeId = 2000, ProjectId = 6969, Projectmanager = false }
                     );
                 });
 
@@ -252,7 +271,9 @@ namespace ProjectManager.Persistence.Migrations
                         new { Id = 6666, EmployeeId = 2, Information = "Test", QualificationId = 3333, SkillLevel = 1 },
                         new { Id = 7777, EmployeeId = 2, Information = "Test", QualificationId = 4444, SkillLevel = 3 },
                         new { Id = 8888, EmployeeId = 3, Information = "Test", QualificationId = 3333, SkillLevel = 2 },
-                        new { Id = 9999, EmployeeId = 3, Information = "Test", QualificationId = 4444, SkillLevel = 0 }
+                        new { Id = 9999, EmployeeId = 3, Information = "Test", QualificationId = 4444, SkillLevel = 0 },
+                        new { Id = 1000, EmployeeId = 1000, Information = "Test", QualificationId = 1000, SkillLevel = 0 },
+                        new { Id = 2000, EmployeeId = 2000, Information = "Test", QualificationId = 1000, SkillLevel = 0 }
                     );
                 });
 
@@ -303,7 +324,8 @@ namespace ProjectManager.Persistence.Migrations
                         new { Id = 115, EmployeeId = 3, Picked = false, TaskId = 16666 },
                         new { Id = 116, EmployeeId = 3, Picked = false, TaskId = 17777 },
                         new { Id = 117, EmployeeId = 3, Picked = false, TaskId = 18888 },
-                        new { Id = 118, EmployeeId = 3, Picked = false, TaskId = 19999 }
+                        new { Id = 118, EmployeeId = 3, Picked = false, TaskId = 19999 },
+                        new { Id = 1000, EmployeeId = 1000, Picked = false, TaskId = 1000 }
                     );
                 });
 
@@ -337,12 +359,12 @@ namespace ProjectManager.Persistence.Migrations
                     b.ToTable("Project");
 
                     b.HasData(
-                        new { Id = 6969, Deadline = new DateTime(9999, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "This project contains all tasks who can't be added to a specified project", ProjectName = "General", Startdate = new DateTime(2015, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = 1 },
-                        new { Id = 1246, Deadline = new DateTime(2019, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2019, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), Information = "", ProjectName = "Diploma", Startdate = new DateTime(2018, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), Status = 1, ValuedTime = "500" },
-                        new { Id = 2426, Deadline = new DateTime(2022, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "This project needs love", ProjectName = "Mustermann GmbH", Startdate = new DateTime(2021, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = 1, ValuedTime = "500" },
-                        new { Id = 3246, Deadline = new DateTime(2024, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "This project needs love", ProjectName = "Internal Module", Startdate = new DateTime(2023, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = 0, ValuedTime = "500" },
-                        new { Id = 42456, Deadline = new DateTime(2017, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), Information = "This project needs love", ProjectName = "New Module", Startdate = new DateTime(2016, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), Status = 1, ValuedTime = "500" },
-                        new { Id = 1000, Deadline = new DateTime(9999, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "This project contains all tasks who can't be added to a specified project", ProjectName = "Test", Startdate = new DateTime(2015, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = 1 }
+                        new { Id = 6969, Deadline = new DateTime(9999, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "This project contains all tasks who can't be added to a specified project", ProjectName = "Allgemein", Startdate = new DateTime(2015, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = 1 },
+                        new { Id = 1246, Deadline = new DateTime(2020, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "This project needs love", ProjectName = "Diplomarbeit", Startdate = new DateTime(2020, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = 1, ValuedTime = "500" },
+                        new { Id = 2426, Deadline = new DateTime(2022, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "This project needs love", ProjectName = "Project1", Startdate = new DateTime(2021, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = 1, ValuedTime = "500" },
+                        new { Id = 3246, Deadline = new DateTime(2024, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "This project needs love", ProjectName = "Project2", Startdate = new DateTime(2023, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = 0, ValuedTime = "500" },
+                        new { Id = 42456, Deadline = new DateTime(2017, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), Information = "This project needs love", ProjectName = "Project3", Startdate = new DateTime(2016, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), Status = 1, ValuedTime = "500" },
+                        new { Id = 1000, Deadline = new DateTime(9999, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Information = "This project contains all tasks who can't be added to a specified project", ProjectName = "Testakulär", Startdate = new DateTime(2015, 10, 30, 14, 30, 0, 0, DateTimeKind.Unspecified), Status = 1 }
                     );
                 });
 
@@ -410,12 +432,11 @@ namespace ProjectManager.Persistence.Migrations
                     b.ToTable("Task");
 
                     b.HasData(
-                        new { Id = 1, Created = new DateTime(2019, 5, 2, 16, 30, 0, 0, DateTimeKind.Unspecified), Deadline = new DateTime(2019, 5, 2, 12, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2019, 5, 2, 16, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "There are plenty of tutorials on how to do that.", Priority = 1, ProjectId = 1246, Status = 1, TaskName = "Clean Espresso Machine", ValuedTime = "4" },
-                        new { Id = 1111, Created = new DateTime(2010, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Deadline = new DateTime(2030, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), FixedTask = true, Information = "", Priority = 1, ProjectId = 1246, Status = 2, TaskName = "Sort Files", ValuedTime = "400" },
-                        new { Id = 2222, Created = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 1, ProjectId = 1246, Status = 0, TaskName = "Add another Table", ValuedTime = "400" },
-                        new { Id = 3333, Created = new DateTime(2010, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Deadline = new DateTime(2030, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 0, ProjectId = 1246, Status = 2, TaskName = "Create the Database", ValuedTime = "400" },
-                        new { Id = 4444, Created = new DateTime(2010, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Deadline = new DateTime(2030, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = true, Information = "Task", Priority = 0, ProjectId = 1246, Status = 0, TaskName = "Frontend: Create Project Views", ValuedTime = "400" },
-                        new { Id = 5555, Created = new DateTime(2010, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Deadline = new DateTime(2030, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 0, ProjectId = 1246, Status = 0, TaskName = "Contact Customer", ValuedTime = "400" },
+                        new { Id = 1111, Created = new DateTime(2010, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Deadline = new DateTime(2030, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Erster Task", Priority = 1, ProjectId = 1246, Status = 0, TaskName = "Test1", ValuedTime = "400" },
+                        new { Id = 2222, Created = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 1, ProjectId = 1246, Status = 2, TaskName = "Test2", ValuedTime = "400" },
+                        new { Id = 3333, Created = new DateTime(2010, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Deadline = new DateTime(2030, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 0, ProjectId = 1246, Status = 0, TaskName = "Test3", ValuedTime = "400" },
+                        new { Id = 4444, Created = new DateTime(2010, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Deadline = new DateTime(2030, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 0, ProjectId = 1246, Status = 0, TaskName = "Test4", ValuedTime = "400" },
+                        new { Id = 5555, Created = new DateTime(2010, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Deadline = new DateTime(2030, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 1, ProjectId = 1246, Status = 0, TaskName = "Test5", ValuedTime = "400" },
                         new { Id = 6666, Created = new DateTime(2010, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 1, ProjectId = 2426, Status = 0, TaskName = "Test6", ValuedTime = "400" },
                         new { Id = 7777, Created = new DateTime(2010, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 1, ProjectId = 2426, Status = 0, TaskName = "Test7", ValuedTime = "400" },
                         new { Id = 8888, Created = new DateTime(2016, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Deadline = new DateTime(2026, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), Enddate = new DateTime(2018, 10, 30, 15, 30, 0, 0, DateTimeKind.Unspecified), FixedTask = false, Information = "Task", Priority = 2, ProjectId = 2426, Status = 2, TaskName = "Test8", ValuedTime = "400" },

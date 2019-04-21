@@ -34,12 +34,8 @@
                 <dd>@Model.Employee.Department.DeptLocation</dd>
             </dl>
             <dl class="dl-horizontal">
-                <dt>@Html.DisplayNameFor(m => m.Qualification)</dt>
-                <dd><select asp-items="@Model.QualificationSelectList" class="form-control" style="width:159px"></select></dd>
-            </dl>
-            <dl class="dl-horizontal">
                 <dt>@Html.DisplayNameFor(m => m.Employee.Birthdate)</dt>
-                <dd>@Model.Birthdate</dd>
+                <dd>@Model.Employee.Birthdate</dd>
 
                 <dt>@Html.DisplayNameFor(m => m.Employee.StreetNameAndNr)</dt>
                 <dd>@Model.Employee.StreetNameAndNr</dd>
@@ -56,7 +52,7 @@
             </dl>
             <dl class="dl-horizontal">
                 <dt>@Html.DisplayNameFor(m => m.Employee.HiringDate)</dt>
-                <dd>@Model.Hiringdate</dd>
+                <dd>@Model.Employee.HiringDate</dd>
             </dl>
         </div>
         <div>
@@ -82,7 +78,7 @@
         <th>Startdatum</th>
         <th>Deadline</th>
     </tr>
-    @foreach (var ob in Model.ProjectOfEmployee)
+    @foreach (var ob in Model.projectOfEmployee)
     {
         <tr>
             <td title="Hier geht es zu den Details des Projekts"><a asp-controller="Projects" asp-action="Details" asp-route-projectId="@ob.Project.Id">@ob.Project.ProjectName </a></td>

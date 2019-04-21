@@ -47,7 +47,7 @@
                     else
                     {
                         <td class="btn-primary" title="Click here to see Details from this appointment!">
-                            <a class="btn btn-primary" asp-controller="Appointments" asp-action="Details" asp-route-appointmentId="@fT.AppointmentId"></a>A
+                            <a class="btn btn-primary" asp-controller="" asp-action="" asp-route-appointmentId="@fT.AppointmentId"></a>A
                         </td>
                     }
                     <td>@fT.Name</td>
@@ -89,7 +89,7 @@
             <tr>
                 <th>
                     <form asp-controller="Employees" asp-action="Feed">
-                        <input asp-for="ProjectFilter" type="submit" value="Project" class="btn btn-primary" style="width:100px" />
+                        <input asp-for="ProjectFilter" type="submit" value="Projekt" class="btn btn-primary" style="width:100px" />
                         <span asp-validation-for="ProjectFilter" class="text-danger"></span>
 
                         <input type="hidden" asp-for="Employee.Id" />
@@ -100,7 +100,7 @@
                 </th>
                 <th>
                     <form asp-controller="Employees" asp-action="Feed">
-                        <input asp-for="GeneralFilter" type="submit" value="General" class="btn btn-primary" style="width:100px" />
+                        <input asp-for="GeneralFilter" type="submit" value="Allgemein" class="btn btn-primary" style="width:100px" />
                         <span asp-validation-for="GeneralFilter" class="text-danger"></span>
 
                         <input type="hidden" asp-for="Employee.Id" />

@@ -27,5 +27,6 @@ namespace ProjectManager.Core.Contracts
         List<Task> GetProjectTasksByEmployeeQualification(List<EmployeeQualification> EmployeeQualifications, List<EmployeeProject> EmployeeProjects, IUnitOfWork uow, string project);
         List<Task> GetByProjectIdWithoutGeneralTasks(int projectId);
         List<Task> GetByGeneralProjectId(int projectId);
+   
     }
 }

@@ -118,6 +118,7 @@ namespace ProjectManager.Persistence
             _dbContext.Task.Update(task);
         }
 
+        //Methoden wurden wegen der Übersicht ausgelagert
         public List<Task> GetProjectTasksByEmployeeQualification(List<EmployeeQualification> EmployeeQualifications,
                                                                  List<EmployeeProject> EmployeeProjects, 
                                                                  IUnitOfWork uow, string project){
@@ -136,12 +137,12 @@ namespace ProjectManager.Persistence
 
         public List<Task> GetByGeneralProjectId(int projectId) 
         {
-            return _dbContext.Task.Where(p => p.ProjectId == projectId && p.Project.ProjectName == "Allgemein" && p.Status == TaskStatusType.Open).OrderBy(p=>p.TaskName).ToList();
+            return _dbContext.Task.Where(p => p.ProjectId == projectId && p.Project.ProjectName == "Allgemein" && p.Status == TaskStatusType.Open).ToList();
         }
 
         public List<Task> GetByProjectIdWithoutGeneralTasks(int projectId)
         {
-            return _dbContext.Task.Where(p => p.ProjectId == projectId && p.Project.ProjectName != "Allgemein" && p.Status == TaskStatusType.Open).OrderBy(p => p.TaskName).ToList();
+            return _dbContext.Task.Where(p => p.ProjectId == projectId && p.Project.ProjectName != "Allgemein" && p.Status == TaskStatusType.Open).ToList();
         }
 
         #region Methods
