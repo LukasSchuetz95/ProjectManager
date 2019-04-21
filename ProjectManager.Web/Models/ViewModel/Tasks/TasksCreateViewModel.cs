@@ -11,7 +11,6 @@ namespace ProjectManager.Web.Models.ViewModel
 {
     public class TasksCreateViewModel
     {
-        public Employee Employee { get; set; }
         public EmployeeTask EmployeeTask { get; set; }
         public SelectList Employees { get; set; }
 
@@ -39,7 +38,7 @@ namespace ProjectManager.Web.Models.ViewModel
 
             //Qualifications = new SelectList(qualifications, nameof(Qualification.Id), nameof(Qualification));
 
-            Employees = new SelectList(employees, nameof(EmployeeProject.EmployeeId), nameof(Employee));
+            Employees = new SelectList(employees, nameof(Employee.Id), nameof(Employee));
             this.Project = uow.Projects.GetById(projectId);
             this.ProjectId = projectId;
            
