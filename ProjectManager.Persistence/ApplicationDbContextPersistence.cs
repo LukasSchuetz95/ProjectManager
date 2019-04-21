@@ -1383,7 +1383,7 @@ namespace ProjectManager.Persistence
                     QualificationId = 1111,
                     EmployeeId = 1,
                     Information = "Sehr guter Projekt Manager",
-                    SkillLevel = SkillLevelType.Sehrgut,
+                    SkillLevel = SkillLevelType.Expert,
                 });
 
             modelBuilder.Entity<EmployeeQualification>().HasData(
@@ -1393,7 +1393,7 @@ namespace ProjectManager.Persistence
                     QualificationId = 2222,
                     EmployeeId = 1,
                     Information = "Test",
-                    SkillLevel = SkillLevelType.Gut,
+                    SkillLevel = SkillLevelType.Advanced,
                 });
 
             modelBuilder.Entity<EmployeeQualification>().HasData(
@@ -1403,7 +1403,7 @@ namespace ProjectManager.Persistence
                     QualificationId = 3333,
                     EmployeeId = 1,
                     Information = "Test",
-                    SkillLevel = SkillLevelType.Befriedigend,
+                    SkillLevel = SkillLevelType.Intermediate,
                 });
 
             modelBuilder.Entity<EmployeeQualification>().HasData(
@@ -1413,7 +1413,7 @@ namespace ProjectManager.Persistence
                     QualificationId = 4444,
                     EmployeeId = 1,
                     Information = "Test",
-                    SkillLevel = SkillLevelType.Genügend,
+                    SkillLevel = SkillLevelType.Novice,
                 });
 
             modelBuilder.Entity<EmployeeQualification>().HasData(
@@ -1423,7 +1423,7 @@ namespace ProjectManager.Persistence
                     QualificationId = 1111,
                     EmployeeId = 3,
                     Information = "Test",
-                    SkillLevel = SkillLevelType.NichtGenügend,
+                    SkillLevel = SkillLevelType.Basic,
                 });
 
             modelBuilder.Entity<EmployeeQualification>().HasData(
@@ -1433,7 +1433,7 @@ namespace ProjectManager.Persistence
                      QualificationId = 3333,
                      EmployeeId = 2,
                      Information = "Test",
-                     SkillLevel = SkillLevelType.Gut,
+                     SkillLevel = SkillLevelType.Advanced,
                  });
 
             modelBuilder.Entity<EmployeeQualification>().HasData(
@@ -1443,7 +1443,7 @@ namespace ProjectManager.Persistence
                     QualificationId = 4444,
                     EmployeeId = 2,
                     Information = "Test",
-                    SkillLevel = SkillLevelType.Genügend,
+                    SkillLevel = SkillLevelType.Novice,
                 });
 
             modelBuilder.Entity<EmployeeQualification>().HasData(
@@ -1453,7 +1453,7 @@ namespace ProjectManager.Persistence
                     QualificationId = 3333,
                     EmployeeId = 3,
                     Information = "Test",
-                    SkillLevel = SkillLevelType.Befriedigend,
+                    SkillLevel = SkillLevelType.Intermediate,
                 });
 
             modelBuilder.Entity<EmployeeQualification>().HasData(
@@ -1463,7 +1463,7 @@ namespace ProjectManager.Persistence
                     QualificationId = 4444,
                     EmployeeId = 3,
                     Information = "Test",
-                    SkillLevel = SkillLevelType.Sehrgut,
+                    SkillLevel = SkillLevelType.Expert,
                 });
 
             #region Test: LoadProjectFeedData
