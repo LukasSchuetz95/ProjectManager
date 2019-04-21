@@ -16,19 +16,18 @@ namespace ProjectManager.Web.Controllers
 {
     public class EmployeesController : Controller
     {
+
         #region fields
 
         IUnitOfWork _unitOfWork;
-        private readonly UserManager<ApplicationUser> _userManager;
 
         #endregion
 
         #region Constructor
 
-        public EmployeesController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
+        public EmployeesController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _userManager = userManager;
         }
 
         #endregion
@@ -81,7 +80,8 @@ namespace ProjectManager.Web.Controllers
             if (model.Employee == null)
                 return NotFound();
 
-            //var userid = _userManager.GetUserId(HttpContext.User);
+            //model.Employee.HiringDate = model.Employee.HiringDate.Date;
+            //model.Employee.Birthdate = model.Employee.HiringDate.Date;
 
             return View(model);
         }
@@ -150,12 +150,14 @@ namespace ProjectManager.Web.Controllers
 
         #endregion
 
-        #region Dashboard
+        #region Feed
         public IActionResult Feed(int employeeId)
         {
             EmployeesFeedViewModel model = new EmployeesFeedViewModel();
+            model.Employee = _unitOfWork.Employees.GetById(employeeId);
+            model.ButtonClicked = "Assigned";
 
-            model.LoadDashboardData(employeeId, _unitOfWork);
+            model.LoadFeedData(employeeId, _unitOfWork);
 
             if (model == null)
                 return NotFound();
@@ -168,15 +170,15 @@ namespace ProjectManager.Web.Controllers
         {
             if (model.ProjectFilter != null)
             {
-                model.LoadProjectDashboardData(model.Employee.Id, _unitOfWork);
+                model.LoadProjectFeedData(model.Employee.Id, _unitOfWork);
             }
             else if (model.Assigned != null)
             {
-                model.LoadDashboardData(model.Employee.Id, _unitOfWork);
+                model.LoadFeedData(model.Employee.Id, _unitOfWork);
             }
             else if (model.GeneralFilter != null)
             {
-                model.LoadGeneralDashboardData(model.Employee.Id, _unitOfWork);
+                model.LoadGeneralFeedData(model.Employee.Id, _unitOfWork);
             }
             else if (model.PriorityFilter != null)
             {
@@ -187,6 +189,8 @@ namespace ProjectManager.Web.Controllers
                 int taskId = Convert.ToInt32(model.AddTask);
 
                 CheckIfEmployeeTaskExists(model.Employee.Id, taskId);
+
+                //DeleteErrorMessage();
 
                 GetFilteredList(model, false);
             }
@@ -202,57 +206,7 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
-        public IActionResult DeleteAppointment(int employeeId, int appointmentId)
-        {
-            DashboardDisplay dashboardDisplay = _unitOfWork.DashboardDisplays.GetByEmployeeIdAndAppointmentId(employeeId, appointmentId);
-
-            this.DeleteDashBoardTask(dashboardDisplay);
-            _unitOfWork.Save();
-            return RedirectToAction(nameof(Feed), new { employeeId = employeeId });
-        }
-
         #region Feed : Methods
-
-        public void CheckIfEmployeeTaskExists(int employeeId, int taskId)
-        {
-            EmployeeTask employeeTask = _unitOfWork.EmployeeTasks.GetByEmployeeIdAndTaskId(employeeId, taskId);
-
-            if (employeeTask == null)
-            {
-                employeeTask = new EmployeeTask();
-            }
-
-            if (CheckIfEmployeeTaskIsAlreadyExsisting(employeeTask))
-            {
-                employeeTask = GenerateEmployeetask(employeeId, taskId);
-                employeeTask.Picked = true;
-
-                if (CreateEmployeeTask(employeeTask))
-                {
-                    employeeTask.Task.Status = Core.Enum.TaskStatusType.Processing;
-                    UpdateTask(employeeTask.Task);
-
-                    DashboardDisplay dashboardDisplay = GenerateDashboardTask(employeeTask);
-                    dashboardDisplay = GenerateDashboardTask(employeeTask);
-                    CreateDashboardDisplay(dashboardDisplay);
-                }
-            }
-            else
-            {
-                employeeTask.Picked = true;
-
-                if (UpdateEmployeeTask(employeeTask))
-                {
-                    employeeTask.Task.Status = Core.Enum.TaskStatusType.Processing;
-                    UpdateTask(employeeTask.Task);
-
-                    DashboardDisplay dashboardDisplay = GenerateDashboardTask(employeeTask);
-                    dashboardDisplay = GenerateDashboardTask(employeeTask);
-                    CreateDashboardDisplay(dashboardDisplay);
-
-                }
-            }
-        }
 
         private bool CheckIfEmployeeTaskIsAlreadyExsisting(EmployeeTask employeeTask)
         {
@@ -273,19 +227,19 @@ namespace ProjectManager.Web.Controllers
         {
             if (model.ButtonClicked == "Project")
             {
-                model.LoadProjectDashboardData(model.Employee.Id, _unitOfWork);
+                model.LoadProjectFeedData(model.Employee.Id, _unitOfWork);
 
                 model = RemoveLowPriorityTasks(model, priority);
             }
             else if (model.ButtonClicked == "Assigned")
             {
-                model.LoadDashboardData(model.Employee.Id, _unitOfWork);
+                model.LoadFeedData(model.Employee.Id, _unitOfWork);
 
                 model = RemoveLowPriorityTasks(model, priority);
             }
             else if (model.ButtonClicked == "General")
             {
-                model.LoadGeneralDashboardData(model.Employee.Id, _unitOfWork);
+                model.LoadGeneralFeedData(model.Employee.Id, _unitOfWork);
 
                 model = RemoveLowPriorityTasks(model, priority);
             }
@@ -308,6 +262,46 @@ namespace ProjectManager.Web.Controllers
             }
 
             return model;
+        }
+
+        public bool CheckIfEmployeeTaskExists(int employeeId, int taskId)
+        {
+            EmployeeTask employeeTask = _unitOfWork.EmployeeTasks.GetByEmployeeIdAndTaskId(employeeId, taskId);
+
+            if (CheckIfEmployeeTaskIsAlreadyExsisting(employeeTask))
+            {
+                employeeTask = GenerateEmployeetask(employeeId, taskId);
+                employeeTask.Picked = true;
+
+                if (CreateEmployeeTask(employeeTask))
+                {
+                    employeeTask.Task.Status = Core.Enum.TaskStatusType.Processing;
+                    UpdateTask(employeeTask.Task);
+
+                    DashboardDisplay dashboardDisplay = GenerateDashboardTask(employeeTask);
+                    dashboardDisplay = GenerateDashboardTask(employeeTask);
+                    CreateDashboardDisplay(dashboardDisplay);
+                }
+
+                return false;
+            }
+            else
+            {
+                employeeTask.Picked = true;
+
+                if (UpdateEmployeeTask(employeeTask))
+                {
+                    employeeTask.Task.Status = Core.Enum.TaskStatusType.Processing;
+                    UpdateTask(employeeTask.Task);
+
+                    DashboardDisplay dashboardDisplay = GenerateDashboardTask(employeeTask);
+                    dashboardDisplay = GenerateDashboardTask(employeeTask);
+                    CreateDashboardDisplay(dashboardDisplay);
+
+                }
+
+                return false;
+            }
         }
 
         //private static async DeleteErrorMessage()
@@ -423,6 +417,15 @@ namespace ProjectManager.Web.Controllers
         #endregion
 
         #endregion
+
+        public IActionResult DeleteAppointment(int employeeId, int appointmentId)
+        {
+            DashboardDisplay dashboardDisplay = _unitOfWork.DashboardDisplays.GetByEmployeeIdAndAppointmentId(employeeId, appointmentId);
+
+            this.DeleteDashBoardTask(dashboardDisplay);
+
+            return RedirectToAction(nameof(Feed), new { employeeId = employeeId });
+        }
 
         #region Update, Add and Delete
 

@@ -66,7 +66,8 @@ namespace ProjectManager.Persistence
         {
             return _dbContext.EmployeeTask.Include(e => e.Employee).Include(t => t.Task).
                    Where(et => et.EmployeeId == Id && et.Task.Status==Core.Enum.TaskStatusType.Open &&
-                                                      et.Picked==false).
+                                                      et.Picked==false && 
+                                                      et.PassedTask.Id != Id).
                    OrderBy(et => et.Task.TaskName).ToList();
         }
 

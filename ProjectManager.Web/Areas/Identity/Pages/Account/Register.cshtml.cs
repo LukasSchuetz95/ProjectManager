@@ -77,10 +77,10 @@ namespace ProjectManager.Web.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            [Display(Name = "First name")]
+            [Display(Name = "Firstname")]
             public string FirstName { get; set; }
 
-            [Display(Name = "Last name")]
+            [Display(Name = "Lastname")]
             public string LastName { get; set; }
 
             public string Job { get; set; }
