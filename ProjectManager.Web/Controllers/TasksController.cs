@@ -49,7 +49,7 @@ namespace ProjectManager.Web.Controllers
             TaskStatusType completetd = new TaskStatusType();
             completetd = TaskStatusType.Completed;
 
-            model.CompletedTasks = _unitOfWork.Tasks.GetTaskByName(model.FilterTaskName, completetd);
+            model.CompletedTasks = _unitOfWork.Tasks.GetTaskByName(model.FilterTaskName, completetd );
             return View(model);
 
         }
@@ -107,15 +107,15 @@ namespace ProjectManager.Web.Controllers
             if (projectId != 0)
             {
                 model.LoadData(_unitOfWork, projectId);
-
+                
             }
             else
             {
                 model.LoadData(_unitOfWork, 6969);
             }
 
-
-            model.Project = _unitOfWork.Projects.GetById(model.ProjectId);
+ 
+            model.Project = _unitOfWork.Projects.GetById(projectId);
             return View(model);
         }
 
@@ -123,56 +123,47 @@ namespace ProjectManager.Web.Controllers
         public IActionResult Create(TasksCreateViewModel model)
         {
 
-            model.Task.ProjectId = model.Project.Id;
-            // model.EmployeeTask.Task.ProjectId = model.Project.Id;
-            // model.EmployeeTask.Employee = nobody;
+            Employee nobody = new Employee();
+            nobody.Id = 2002;
 
-            // model.EmployeeTask.Task = model.Task;
-            //  model.EmployeeTask.Employee.Id = model.EmployeeTask.EmployeeId;
+            model.EmployeeTask.Task.ProjectId = model.Project.Id;
+            model.EmployeeTask.EmployeeId = nobody.Id;
+           // model.EmployeeTask.Employee = nobody;
+           
+           // model.EmployeeTask.Task = model.Task;
+          //  model.EmployeeTask.Employee.Id = model.EmployeeTask.EmployeeId;
+            
 
 
-
-            //   if (ModelState.IsValid)
-            //{
-            try
-            {
+         //   if (ModelState.IsValid)
+          //{
+                try
+                {
                 //EmployeeTask etask = new EmployeeTask();
                 // etask.Task = model.Task;
 
-                _unitOfWork.Tasks.Add(model.Task);
+         
 
                 // _unitOfWork.EmployeeTasks.Add(model.Task);
-                //if (model.Employee.Id != 0)
-                if (model.EmployeeTask.EmployeeId != 0)
+                   _unitOfWork.Tasks.Add(model.EmployeeTask.Task);
+                     _unitOfWork.EmployeeTasks.Add(model.EmployeeTask);
+           //     _unitOfWork.EmployeeTasks.Add(etask);
+                  
+                    //_unitOfWork.EmployeeTasks.Add(model.Task);
+                    _unitOfWork.Save();
+                    //  return RedirectToAction("Create", "EmployeeTasks", new { taskId = model.EmployeeTask.TaskId });
+                   // return RedirectToAction("List", "Projects");
+                   return RedirectToAction("Create", "EmployeeTasks", new { projectId = model.EmployeeTask.Task.ProjectId , taskid = model.EmployeeTask.Task.Id, emptaskId = model.EmployeeTask.Id });
+
+            }
+                catch (ValidationException validationException)
                 {
-                    Employee emp = new Employee();
-                    emp = _unitOfWork.Employees.GetById(model.EmployeeTask.EmployeeId);
-                    model.EmployeeTask.Employee = emp;
-                    //model.EmployeeTask.Employee = model.Employee;
-                    // model.EmployeeTask.EmployeeId = model.Employee.Id;
-                    model.EmployeeTask.Task = model.Task;
-                    _unitOfWork.EmployeeTasks.Add(model.EmployeeTask);
+                    ValidationResult valResult = validationException.ValidationResult;
+                    ModelState.AddModelError(nameof(model) + "." + valResult.MemberNames.First(), valResult.ErrorMessage);
                 }
-
-                //_unitOfWork.Tasks.Add(model.EmployeeTask.Task);
-                //  _unitOfWork.EmployeeTasks.Add(model.EmployeeTask);
-                //     _unitOfWork.EmployeeTasks.Add(etask);
-
-                //_unitOfWork.EmployeeTasks.Add(model.Task);
-                _unitOfWork.Save();
-                //  return RedirectToAction("Create", "EmployeeTasks", new { taskId = model.EmployeeTask.TaskId });
-                return RedirectToAction("List", "Projects");
-                //return RedirectToAction("Create", "EmployeeTasks", new { projectId = model.EmployeeTask.Task.ProjectId , taskid = model.EmployeeTask.Task.Id, emptaskId = model.EmployeeTask.Id });
-
-            }
-            catch (ValidationException validationException)
-            {
-                ValidationResult valResult = validationException.ValidationResult;
-                ModelState.AddModelError(nameof(model) + "." + valResult.MemberNames.First(), valResult.ErrorMessage);
-            }
             //}
 
-            return View(model);
+             return View(model);      
         }
 
 
@@ -186,77 +177,17 @@ namespace ProjectManager.Web.Controllers
         [HttpPost]
         public IActionResult Edit(TasksEditViewModel model)
         {
-            // model.Task.ProjectId = model.Project.Id
+           // EmployeeTask employeeTask = _unitOfWork.EmployeeTasks.GetByEmployeeIdAndTaskId(model.Tasks.Id, model.EditEmployee.Id);
 
-            // model.EmployeeTask.Task.ProjectId = model.Project.Id;
-            // model.EmployeeTask.Employee = nobody;
-
-            // model.EmployeeTask.Task = model.Task;
-            //  model.EmployeeTask.Employee.Id = model.EmployeeTask.EmployeeId;
-
-            Project project = new Project();
-            project = _unitOfWork.Projects.GetById(model.Tasks.ProjectId);
-            model.Tasks.Project = project;
-
-            //   if (ModelState.IsValid)
-            //{
-
-            // _unitOfWork.EmployeeTasks.Add(model.Task);
-            //if (model.Employee.Id != 0)
-            _unitOfWork.Tasks.Update(model.Tasks);
-            _unitOfWork.Save();
-
-            if (model.EmployeeTask.EmployeeId != 0)
+            if (ModelState.IsValid)
             {
-                Employee emp = new Employee();
-                emp = _unitOfWork.Employees.GetById(model.EmployeeTask.EmployeeId);
-                model.EmployeeTask.Employee = emp;
-                //model.EmployeeTask.Employee = model.Employee;
-                //model.EmployeeTask.EmployeeId = model.Employee.Id;
-                model.EmployeeTask.Task = model.Tasks;
-                //_unitOfWork.EmployeeTasks.Add(model.EmployeeTask);
-
-                _unitOfWork.EmployeeTasks.Update(model.EmployeeTask);
-
+                _unitOfWork.Tasks.Update(model.Tasks);
+              //  _unitOfWork.EmployeeTasks.Update(employeeTask);
                 _unitOfWork.Save();
+                 return RedirectToAction(nameof(Details), new { taskId = model.Tasks.Id });
             }
-            //else
-            //{
 
-            //    //model.EmployeeTask.Employee = model.Employee;
-            //    //model.EmployeeTask.EmployeeId = model.Employee.Id;
-            //    model.EmployeeTask.Task = model.Tasks;
-            //    //_unitOfWork.EmployeeTasks.Add(model.EmployeeTask);
-
-            //    _unitOfWork.EmployeeTasks.Update(model.EmployeeTask);
-
-            //    _unitOfWork.Save();
-            //}
-
-
-
-
-
-            return RedirectToAction("List", "Tasks");
-
-
-
-
-
-
-
-
-            // EmployeeTask employeeTask = _unitOfWork.EmployeeTasks.GetByEmployeeIdAndTaskId(model.Tasks.Id, model.EditEmployee.Id);
-
-            //if (ModelState.IsValid)
-            //{
-
-            //  _unitOfWork.EmployeeTasks.Update(employeeTask);
-            //    _unitOfWork.Save();
-            //    return RedirectToAction(nameof(Details), new { taskId = model.Tasks.Id });
-            //}
-
-            //return View(model);
+            return View(model);
         }
 
 
@@ -266,7 +197,6 @@ namespace ProjectManager.Web.Controllers
         {
             TasksDetailsViewModel model = new TasksDetailsViewModel();
             model.LoadData(_unitOfWork, taskId);
-            model.Task.Project = _unitOfWork.Projects.GetById(model.Task.ProjectId);
             return View(model);
         }
 
@@ -278,7 +208,6 @@ namespace ProjectManager.Web.Controllers
             {
                 return NotFound();
             }
-            model.Project = _unitOfWork.Projects.GetById(model.ProjectId);
 
             return View(model);
         }

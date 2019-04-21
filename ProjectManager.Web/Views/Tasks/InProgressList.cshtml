@@ -3,12 +3,7 @@
     ViewData["Title"] = "InProgressList";
 }
 
-<head>
-    <title>Tasks in Bearbeitung</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link href="~/css/site.css" rel="stylesheet" />
-</head>
-
+<h3>Tasks in Bearbeitung</h3>
 
 <form asp-controller="Tasks" asp-action="InProgessList">
     <div class="form-group">
@@ -18,60 +13,48 @@
     <input type="submit" value="Filter Task Name" class="btn btn-primary" />
 </form>
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2>Tasks</h2>
-                </div>
 
-                <div class="panel-body">
+<table class="table">
+    <thead>
+        <tr>
+            <th>Task</th>
+            <th>Deadline</th>
+            <th>Project</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.FilterTaskName != null)
+        {
+            @foreach (var task in Model.ProcessingTasks)
+            {
+                <tr>
+                    <td>@task.TaskName</td>
+                    <td>@task.Deadline</td>
+                    @*<td>@task.Project.ProjectName</td>*@
+                    <td>
+                        <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a> |
+                    </td>
+                </tr>
 
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Task</th>
-                                <th>Deadline</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (Model.FilterTaskName != null)
-                            {
-                                @foreach (var task in Model.ProcessingTasks)
-                                {
-                                    <tr>
-                                        <td>@task.TaskName</td>
-                                        <td>@task.Deadline</td>
+            }
+        }
+        else
+        {
+            @foreach (var task in Model.ProcessingTasks)
+            {
+                <tr>
+                    <td>@task.TaskName</td>
+                    <td>@task.Deadline</td>
+                    @*<td>@task.Project.ProjectName</td>*@
+                    <td>
+                        <a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id">Details</a> |
+                    </td>
+                </tr>
 
-                                        <td title="Detail"><a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id"><i class="fas fa-info"></i></a></td>
-                                        <td title="Edit"><a asp-controller="Tasks" asp-action="Edit" asp-route-projectId="@task.Id"><i class="fa fa-edit"></i></a></td>
-                                        <td title="Delete"><a asp-controller="Tasks" asp-action="Delete" asp-route-taskId="@task.Id"><i class="far fa-trash-alt"></i></a></td>
-                                    </tr>
+            }
+        }
+    </tbody>
+</table>
 
-                                }
-                            }
-                            else
-                            {
-                                @foreach (var task in Model.ProcessingTasks)
-                                {
-                                    <tr>
-                                        <td>@task.TaskName</td>
-                                        <td>@task.Deadline</td>
-                                        <td title="Detail"><a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id"><i class="fas fa-info"></i></a></td>
-                                        <td title="Edit"><a asp-controller="Tasks" asp-action="Edit" asp-route-projectId="@task.Id"><i class="fa fa-edit"></i></a></td>
-                                        <td title="Delete"><a asp-controller="Tasks" asp-action="Delete" asp-route-taskId="@task.Id"><i class="far fa-trash-alt"></i></a></td>
-                                    </tr>
+<a asp-area="" asp-controller="Tasks" asp-action="List" class="btn btn-primary">Zurück</a>
 
-                                }
-                            }
-                        </tbody>
-                    </table>
-
-                    <a asp-area="" asp-controller="Tasks" asp-action="List" class="btn btn-primary">Zurück</a>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

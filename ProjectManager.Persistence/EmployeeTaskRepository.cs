@@ -54,7 +54,7 @@ namespace ProjectManager.Persistence
 
         public EmployeeTask GetEmployeeTaskByTaskId(int taskId)
         {
-            return _dbContext.EmployeeTask.Include(e => e.Employee).Include(t => t.Task).Where(t => t.TaskId == taskId).LastOrDefault();
+            return _dbContext.EmployeeTask.Include(e => e.Employee).Include(t => t.Task).Where(t => t.TaskId == taskId).SingleOrDefault();
         }
 
         public void Update(EmployeeTask model)
