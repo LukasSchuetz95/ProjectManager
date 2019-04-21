@@ -118,35 +118,35 @@ namespace ProjectManager.Persistence
             _dbContext.Task.Update(task);
         }
 
+        #region Dashboard
+
         public List<Task> GetProjectTasksByEmployeeQualification(List<EmployeeQualification> EmployeeQualifications,
-                                                                 List<EmployeeProject> EmployeeProjects, 
-                                                                 IUnitOfWork uow, string project){
+                                                                 List<EmployeeProject> EmployeeProjects,
+                                                                 IUnitOfWork uow, string project)
+        {
 
             List<TaskQualification> taskQualifications = new List<TaskQualification>();
-            List<Task> tasks = new List<Task>();
+            List<Task> projectTasks = new List<Task>();
             List<Task> poolTasks = new List<Task>();
 
             taskQualifications = GetAllQualifications(EmployeeQualifications, uow);
 
-            tasks = GetAllProjectTasks(EmployeeProjects, uow, project);
+            projectTasks = GetAllProjectTasks(EmployeeProjects, uow, project);
 
-            return poolTasks = GetMatchingTasks(taskQualifications, tasks);
-
+            return poolTasks = GetMatchingTasks(taskQualifications, projectTasks);
         }
 
-        public List<Task> GetByGeneralProjectId(int projectId) 
+        public List<Task> GetByGeneralProjectId(int projectId)
         {
-            return _dbContext.Task.Where(p => p.ProjectId == projectId && p.Project.ProjectName == "Allgemein" && p.Status == TaskStatusType.Open).OrderBy(p=>p.TaskName).ToList();
+            return _dbContext.Task.Where(p => p.ProjectId == projectId && p.Project.ProjectName == "General" && p.Status == TaskStatusType.Open).OrderBy(p => p.TaskName).ToList();
         }
 
         public List<Task> GetByProjectIdWithoutGeneralTasks(int projectId)
         {
-            return _dbContext.Task.Where(p => p.ProjectId == projectId && p.Project.ProjectName != "Allgemein" && p.Status == TaskStatusType.Open).OrderBy(p => p.TaskName).ToList();
+            return _dbContext.Task.Where(p => p.ProjectId == projectId && p.Project.ProjectName != "General" && p.Status == TaskStatusType.Open).OrderBy(p => p.TaskName).ToList();
         }
 
-        #region Methods
-
-        private List<TaskQualification> GetAllQualifications(List<EmployeeQualification>EmployeeQualifications, IUnitOfWork uow)
+        private List<TaskQualification> GetAllQualifications(List<EmployeeQualification> EmployeeQualifications, IUnitOfWork uow)
         {
             List<TaskQualification> taskQualifications = new List<TaskQualification>();
 
@@ -158,7 +158,7 @@ namespace ProjectManager.Persistence
             return taskQualifications;
         }
 
-        private List<Task> GetAllProjectTasks(List<EmployeeProject>EmployeeProjects, IUnitOfWork uow, string project)
+        private List<Task> GetAllProjectTasks(List<EmployeeProject> EmployeeProjects, IUnitOfWork uow, string project)
         {
             List<Task> tasks = new List<Task>();
 
@@ -181,14 +181,14 @@ namespace ProjectManager.Persistence
 
         }
 
-        private List<Task> GetMatchingTasks(List<TaskQualification> taskQualifications, List<Task> tasks)
+        private List<Task> GetMatchingTasks(List<TaskQualification> taskQualifications, List<Task> projectTasks)
         {
             List<Task> poolTasks = new List<Task>();
             bool check = true;
 
             foreach (var ele in taskQualifications)
             {
-                foreach (var obj in tasks)
+                foreach (var obj in projectTasks)
                 {
                     if (ele.Task.Id == obj.Id)
                     {
@@ -213,7 +213,7 @@ namespace ProjectManager.Persistence
             return poolTasks;
         }
 
-
         #endregion
+
     }
 }

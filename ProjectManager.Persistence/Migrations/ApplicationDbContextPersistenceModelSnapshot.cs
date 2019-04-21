@@ -15,7 +15,7 @@ namespace ProjectManager.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -172,7 +172,16 @@ namespace ProjectManager.Persistence.Migrations
                     b.HasData(
                         new { Id = 1, Birthdate = new DateTime(1995, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 1, Firstname = "Lukas", HiringDate = new DateTime(2011, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Schuetz", Phonenumber = "0660/ 4878 299", Residence = "Bad Hall", Status = 1, StreetNameAndNr = "Roemerstr. 41", ZipCode = "4540" },
                         new { Id = 2, Birthdate = new DateTime(1994, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 1, Firstname = "Thomas", HiringDate = new DateTime(2012, 9, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Web-Developer", Lastname = "Baurnberger", Phonenumber = "0660/ 4878 333", Residence = "Kematen am Innbach", Status = 0, StreetNameAndNr = "See 44", ZipCode = "4633" },
-                        new { Id = 3, Birthdate = new DateTime(1990, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 2, Firstname = "Manuel", HiringDate = new DateTime(2010, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Residence = "Irgendwo", Status = 2, StreetNameAndNr = "Weiss i ned", ZipCode = "4020" }
+                        new { Id = 3, Birthdate = new DateTime(1990, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 2, Firstname = "Manuel", HiringDate = new DateTime(2010, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Mairinger", Phonenumber = "0660/ 4878 444", Residence = "Irgendwo", Status = 2, StreetNameAndNr = "Weiss i ned", ZipCode = "4020" },
+                        new { Id = 4, Birthdate = new DateTime(1960, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 2, Firstname = "Bojack", HiringDate = new DateTime(2014, 7, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Horseman", Phonenumber = "0676/9876534", Residence = "Hollywoo", Status = 0, StreetNameAndNr = "Beachstreet 5", ZipCode = "4020" },
+                        new { Id = 5, Birthdate = new DateTime(1950, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 2, Firstname = "Rick", HiringDate = new DateTime(2017, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Web-Developer", Lastname = "Sanchez", Phonenumber = "039454646453", Residence = "Interdimensional", Status = 0, StreetNameAndNr = "streetytreetstreet", ZipCode = "4020" },
+                        new { Id = 6, Birthdate = new DateTime(1990, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 5, Firstname = "Jack", HiringDate = new DateTime(2017, 12, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Web-Developer", Lastname = "Peralta", Phonenumber = "6784352363465", Residence = "Department 99", Status = 2, StreetNameAndNr = "Brooklyn street", ZipCode = "4020" },
+                        new { Id = 7, Birthdate = new DateTime(1993, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 5, Firstname = "Amy", HiringDate = new DateTime(2012, 2, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Web-Developer", Lastname = "Santiago", Phonenumber = "90445343454", Residence = "Department 99", Status = 1, StreetNameAndNr = "Brooklyn street", ZipCode = "4020" },
+                        new { Id = 8, Birthdate = new DateTime(1993, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 5, Firstname = "Rosa", HiringDate = new DateTime(2012, 8, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Diaz", Phonenumber = "90445343454", Residence = "Department 99", Status = 0, StreetNameAndNr = "Brooklyn street", ZipCode = "4020" },
+                        new { Id = 9, Birthdate = new DateTime(1993, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 5, Firstname = "Raimond", HiringDate = new DateTime(2012, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Hoad", Phonenumber = "90445343454", Residence = "Department 99", Status = 0, StreetNameAndNr = "Brooklyn street", ZipCode = "4020" },
+                        new { Id = 10, Birthdate = new DateTime(1990, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 2, Firstname = "Todd", HiringDate = new DateTime(2010, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Sharvez", Phonenumber = "0660/ 4878 444", Residence = "Hollywoo", Status = 1, StreetNameAndNr = "Beachstreet", ZipCode = "0000" },
+                        new { Id = 1000, Birthdate = new DateTime(1996, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 1, Firstname = "Testamon", HiringDate = new DateTime(2010, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Testa", Phonenumber = "0000000000", Residence = "Wels", Status = 0, StreetNameAndNr = "Manstreet", ZipCode = "4540" },
+                        new { Id = 2000, Birthdate = new DateTime(1997, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), DepartmentId = 1, Firstname = "Testine", HiringDate = new DateTime(2012, 10, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), Job = "Software Developer", Lastname = "Testakulär", Phonenumber = "066498234435", Residence = "Wels", Status = 0, StreetNameAndNr = "Testreet", ZipCode = "8998" }
                     );
                 });
 
@@ -213,7 +222,18 @@ namespace ProjectManager.Persistence.Migrations
                         new { Id = 1, EmployeeId = 1, ProjectId = 6969, Projectmanager = true },
                         new { Id = 2, EmployeeId = 2, ProjectId = 6969, Projectmanager = false },
                         new { Id = 3, EmployeeId = 3, ProjectId = 6969, Projectmanager = false },
-                        new { Id = 1150, EmployeeId = 1, ProjectId = 1000, Projectmanager = true }
+                        new { Id = 4, EmployeeId = 4, ProjectId = 6969, Projectmanager = false },
+                        new { Id = 5, EmployeeId = 5, ProjectId = 6969, Projectmanager = false },
+                        new { Id = 6, EmployeeId = 6, ProjectId = 6969, Projectmanager = false },
+                        new { Id = 7, EmployeeId = 7, ProjectId = 6969, Projectmanager = false },
+                        new { Id = 8, EmployeeId = 8, ProjectId = 6969, Projectmanager = false },
+                        new { Id = 9, EmployeeId = 9, ProjectId = 6969, Projectmanager = false },
+                        new { Id = 10, EmployeeId = 10, ProjectId = 6969, Projectmanager = false },
+                        new { Id = 1000, EmployeeId = 1000, ProjectId = 1000, Projectmanager = false },
+                        new { Id = 1150, EmployeeId = 1, ProjectId = 1000, Projectmanager = true },
+                        new { Id = 1100, EmployeeId = 1000, ProjectId = 6969, Projectmanager = false },
+                        new { Id = 2000, EmployeeId = 2000, ProjectId = 1000, Projectmanager = false },
+                        new { Id = 2200, EmployeeId = 2000, ProjectId = 6969, Projectmanager = false }
                     );
                 });
 
@@ -252,7 +272,9 @@ namespace ProjectManager.Persistence.Migrations
                         new { Id = 6666, EmployeeId = 2, Information = "Test", QualificationId = 3333, SkillLevel = 1 },
                         new { Id = 7777, EmployeeId = 2, Information = "Test", QualificationId = 4444, SkillLevel = 3 },
                         new { Id = 8888, EmployeeId = 3, Information = "Test", QualificationId = 3333, SkillLevel = 2 },
-                        new { Id = 9999, EmployeeId = 3, Information = "Test", QualificationId = 4444, SkillLevel = 0 }
+                        new { Id = 9999, EmployeeId = 3, Information = "Test", QualificationId = 4444, SkillLevel = 0 },
+                        new { Id = 1000, EmployeeId = 1000, Information = "Test", QualificationId = 1000, SkillLevel = 0 },
+                        new { Id = 2000, EmployeeId = 2000, Information = "Test", QualificationId = 1000, SkillLevel = 0 }
                     );
                 });
 
@@ -303,7 +325,8 @@ namespace ProjectManager.Persistence.Migrations
                         new { Id = 115, EmployeeId = 3, Picked = false, TaskId = 16666 },
                         new { Id = 116, EmployeeId = 3, Picked = false, TaskId = 17777 },
                         new { Id = 117, EmployeeId = 3, Picked = false, TaskId = 18888 },
-                        new { Id = 118, EmployeeId = 3, Picked = false, TaskId = 19999 }
+                        new { Id = 118, EmployeeId = 3, Picked = false, TaskId = 19999 },
+                        new { Id = 1000, EmployeeId = 1000, Picked = false, TaskId = 1000 }
                     );
                 });
 

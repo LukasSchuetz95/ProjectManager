@@ -168,7 +168,7 @@ namespace ProjectManager.Web.Controllers
         {
             if (model.ProjectFilter != null)
             {
-                model.LoadProjectDashboardData(model.Employee.Id, _unitOfWork);
+                model.LoadProjectDashboardData(model.Employee.Id, _unitOfWork, "All", false);
             }
             else if (model.Assigned != null)
             {
@@ -176,20 +176,20 @@ namespace ProjectManager.Web.Controllers
             }
             else if (model.GeneralFilter != null)
             {
-                model.LoadGeneralDashboardData(model.Employee.Id, _unitOfWork);
+                model.LoadProjectDashboardData(model.Employee.Id, _unitOfWork, "General", false);
             }
             else if (model.PriorityFilter != null)
             {
                 GetFilteredList(model, true);
             }
-            else if (model.AddTask != null)
-            {
-                int taskId = Convert.ToInt32(model.AddTask);
+            //else if (model.AddTask != null)
+            //{
+            //    int taskId = Convert.ToInt32(model.AddTask);
 
-                CheckIfEmployeeTaskExists(model.Employee.Id, taskId);
+            //    CheckIfEmployeeTaskExists(model.Employee.Id, taskId);
 
-                GetFilteredList(model, false);
-            }
+            //    GetFilteredList(model, false);
+            //}
             else if (model.Search != null)
             {
                 GetFilteredList(model, false);
@@ -205,13 +205,46 @@ namespace ProjectManager.Web.Controllers
         public IActionResult DeleteAppointment(int employeeId, int appointmentId)
         {
             DashboardDisplay dashboardDisplay = _unitOfWork.DashboardDisplays.GetByEmployeeIdAndAppointmentId(employeeId, appointmentId);
+            //EmployeesFeedViewModel model = new EmployeesFeedViewModel();
+            //model.ButtonClicked = buttonClicked;
 
             this.DeleteDashBoardTask(dashboardDisplay);
             _unitOfWork.Save();
             return RedirectToAction(nameof(Feed), new { employeeId = employeeId });
         }
 
+        public IActionResult AddTask(int employeeId ,int taskId ,  string buttonClicked)
+        {
+            //EmployeesFeedViewModel model = new EmployeesFeedViewModel();
+            //model.ButtonClicked = buttonClicked;
+            //model.Employee = new Employee();
+            //model.Employee.Id = employeeId;
+
+            CheckIfEmployeeTaskExists(employeeId, taskId);
+
+            //GetFilteredList(model, false);
+
+            //return View(model);
+            return RedirectToAction(nameof(Feed), new { employeeId = employeeId });
+        }
+
         #region Feed : Methods
+
+        public void GetFilteredList(EmployeesFeedViewModel model, bool priority)
+        {
+            if (model.ButtonClicked == "Project")
+            {
+                model.LoadProjectDashboardData(model.Employee.Id, _unitOfWork, "All", priority);
+            }
+            else if (model.ButtonClicked == "Assigned")
+            {
+                model.LoadDashboardData(model.Employee.Id, _unitOfWork);
+            }
+            else if (model.ButtonClicked == "General")
+            {
+                model.LoadProjectDashboardData(model.Employee.Id, _unitOfWork, "General", priority);
+            }
+        }
 
         public void CheckIfEmployeeTaskExists(int employeeId, int taskId)
         {
@@ -222,7 +255,7 @@ namespace ProjectManager.Web.Controllers
                 employeeTask = new EmployeeTask();
             }
 
-            if (CheckIfEmployeeTaskIsAlreadyExsisting(employeeTask))
+            if (CheckIfEmployeeTaskIsAlreadyExisting(employeeTask))
             {
                 employeeTask = GenerateEmployeetask(employeeId, taskId);
                 employeeTask.Picked = true;
@@ -254,7 +287,7 @@ namespace ProjectManager.Web.Controllers
             }
         }
 
-        private bool CheckIfEmployeeTaskIsAlreadyExsisting(EmployeeTask employeeTask)
+        private bool CheckIfEmployeeTaskIsAlreadyExisting(EmployeeTask employeeTask)
         {
             List<EmployeeTask> employeeTaskList = _unitOfWork.EmployeeTasks.GetAllByEmployeeId(employeeTask.EmployeeId);
 
@@ -268,53 +301,6 @@ namespace ProjectManager.Web.Controllers
 
             return true;
         }
-
-        public void GetFilteredList(EmployeesFeedViewModel model, bool priority)
-        {
-            if (model.ButtonClicked == "Project")
-            {
-                model.LoadProjectDashboardData(model.Employee.Id, _unitOfWork);
-
-                model = RemoveLowPriorityTasks(model, priority);
-            }
-            else if (model.ButtonClicked == "Assigned")
-            {
-                model.LoadDashboardData(model.Employee.Id, _unitOfWork);
-
-                model = RemoveLowPriorityTasks(model, priority);
-            }
-            else if (model.ButtonClicked == "General")
-            {
-                model.LoadGeneralDashboardData(model.Employee.Id, _unitOfWork);
-
-                model = RemoveLowPriorityTasks(model, priority);
-            }
-        }
-
-        public EmployeesFeedViewModel RemoveLowPriorityTasks(EmployeesFeedViewModel model, bool priority)
-        {
-            List<Task> checkTasks = new List<Task>();
-            checkTasks.AddRange(model.PoolTasks);
-
-            if (priority)
-            {
-                foreach (var obj in checkTasks)
-                {
-                    if (obj.Priority != Core.Enum.PriorityType.High)
-                    {
-                        model.PoolTasks.Remove(obj);
-                    }
-                }
-            }
-
-            return model;
-        }
-
-        //private static async DeleteErrorMessage()
-        //{
-        //Wenn die Methode nach dem Laden einige Sekunden await und dann eine bestimmte Aktion ausführt könnte 
-        //eine Fehlermeldung verschwinden oder immer wenn eine andere Aktion ausgewählt wird
-        //}
 
         #endregion
 

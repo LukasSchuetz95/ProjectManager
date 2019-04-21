@@ -33,7 +33,7 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
         public string ProjectFilter { get; set; }
         public string GeneralFilter { get; set; }
         public string PriorityFilter { get; set; }
-        public string AddTask { get; set; }
+        //public string AddTask { get; set; }
 
         public string ButtonClicked { get; set; }
         public string Search { get; set; }
@@ -55,46 +55,20 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
             FillPoolTaskList();
         }
 
-        private void FillPoolTaskList()
-        {
-            Task task = new Task();
-
-            foreach (var ele in this.EmployeeAssignedTasksList)
-            {
-                task.Id = ele.Task.Id;
-                task.TaskName = ele.Task.TaskName;
-                task.Information = ele.Task.Information;
-                task.Priority = ele.Task.Priority;
-
-                PoolTasks.Add(task);
-                task = new Task();
-            }
-        }
-
-        public void LoadProjectDashboardData(int employeeId, IUnitOfWork uow)
+        public void LoadProjectDashboardData(int employeeId, IUnitOfWork uow, string project, bool priority)
         {
             EmployeeQualifications = uow.EmployeeQualifications.GetQualificationsByEmployeeId(employeeId);
 
             EmployeeProjects = uow.EmployeeProjects.GetProjectsByEmployeeId(employeeId);
 
-            this.PoolTasks.AddRange(uow.Tasks.GetProjectTasksByEmployeeQualification(EmployeeQualifications, EmployeeProjects, uow, "All"));
+            this.PoolTasks.AddRange(uow.Tasks.GetProjectTasksByEmployeeQualification(EmployeeQualifications, EmployeeProjects, uow, project));           
 
             RemoveAssignedTasks(uow, employeeId);
 
             LoadDashboardDisplays(uow, employeeId);
-        }
 
-        public void LoadGeneralDashboardData(int employeeId, IUnitOfWork uow)
-        {
-            EmployeeQualifications = uow.EmployeeQualifications.GetQualificationsByEmployeeId(employeeId);
-
-            EmployeeProjects = uow.EmployeeProjects.GetProjectsByEmployeeId(employeeId);
-
-            this.PoolTasks.AddRange(uow.Tasks.GetProjectTasksByEmployeeQualification(EmployeeQualifications, EmployeeProjects, uow, "General"));
-
-            RemoveAssignedTasks(uow, employeeId);
-
-            LoadDashboardDisplays(uow, employeeId);
+            if (priority)
+                RemoveLowPriorityTasks();
         }
 
         #endregion      
@@ -125,6 +99,35 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
             }
         }
 
+        private void FillPoolTaskList()
+        {
+            Task task = new Task();
+
+            foreach (var ele in this.EmployeeAssignedTasksList)
+            {
+                task.Id = ele.Task.Id;
+                task.TaskName = ele.Task.TaskName;
+                task.Information = ele.Task.Information;
+                task.Priority = ele.Task.Priority;
+
+                PoolTasks.Add(task);
+                task = new Task();
+            }
+        }
+
+        public void RemoveLowPriorityTasks()
+        {
+            List<Task> checkTasks = new List<Task>();
+            checkTasks.AddRange(this.PoolTasks);
+
+                foreach (var obj in checkTasks)
+                {
+                    if (obj.Priority != Core.Enum.PriorityType.High)
+                    {
+                        PoolTasks.Remove(obj);
+                    }
+                }            
+        }
         #endregion
 
         #region View-Methods
@@ -143,7 +146,7 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
 
         public int CountHighPriorityTasks()
         {
-            return this.PoolTasks.Where(p => p.Priority == Core.Enum.PriorityType.High).Count();
+            return this.PoolTasks.Where(t => t.Priority == Core.Enum.PriorityType.High).Count();
         }
 
         #endregion

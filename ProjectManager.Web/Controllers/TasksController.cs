@@ -190,9 +190,6 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
-
-
-
         public IActionResult Details(int taskId)
         {
             TasksDetailsViewModel model = new TasksDetailsViewModel();

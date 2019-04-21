@@ -10,40 +10,35 @@
     <fieldset>
         <p>
             <label>Task Id:</label>
-            <label>@Model.EmployeeTask.TaskId</label>
+            <label>@Model.Task.Id</label>
         </p>
         <p>
             <label>Taskname:</label>
-            <label>@Model.EmployeeTask.Task.TaskName</label>
-        </p>
-        <p>
-            <label>Verantwortlicher:</label>
-            <label>@Model.EmployeeTask.Employee.Lastname</label>
-            <label>@Model.EmployeeTask.Employee.Firstname</label>
+            <label>@Model.Task.TaskName</label>
         </p>
 
         <p>
             <label>Von:</label>
-            <label>@Model.EmployeeTask.Task.Created</label>
+            <label>@Model.Task.Created</label>
         </p>
         <p>
             <label>Bis:</label>
-            <label>@Model.EmployeeTask.Task.Enddate</label>
+            <label>@Model.Task.Enddate</label>
         </p>
         <p>
             <label>Deadline:</label>
-            <label>@Model.EmployeeTask.Task.Deadline</label>
+            <label>@Model.Task.Deadline</label>
         </p>
         <p>
             <label>Status:</label>
-            <label>@Model.EmployeeTask.Task.Status</label>
+            <label>@Model.Task.Status</label>
         </p>
         <p>
             <label>Information:</label>
-            <label>@Model.EmployeeTask.Task.Information</label>
+            <label>@Model.Task.Information</label>
         </p>
     </fieldset>
 </form>
-<a asp-area="" asp-controller="Tasks" asp-action="Edit" asp-route-taskId ="@Model.EmployeeTask.TaskId" class="btn btn-primary"> Bearbeiten</a>
-<a asp-area="" asp-controller="Tasks" asp-action="Delete" asp-route-taskId="@Model.EmployeeTask.TaskId" class="btn btn-primary">Task Löschen</a> |
+<a asp-area="" asp-controller="Tasks" asp-action="Edit" asp-route-taskId ="@Model.Task.Id" class="btn btn-primary"> Bearbeiten</a>
+<a asp-area="" asp-controller="Tasks" asp-action="Delete" asp-route-taskId="@Model.Task.Id" class="btn btn-primary">Task Löschen</a> |
 @*<a asp-area="" asp-controller="Tasks" asp-action="List" class="btn btn-primary">Zurück</a>*@
