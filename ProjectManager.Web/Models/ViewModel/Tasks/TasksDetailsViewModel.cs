@@ -11,6 +11,7 @@ namespace ProjectManager.Web.Models.ViewModel
     {
         public EmployeeTask EmployeeTask { get; set; }
         public Core.Entities.Task Task { get; set; }
+        public Project Project { get; set; }
 
         public void LoadData(IUnitOfWork uow, int taskId)
         {

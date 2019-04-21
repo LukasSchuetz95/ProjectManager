@@ -5,32 +5,42 @@
 }
 
 <h2>Details</h2>
+div class="container">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2>Detail</h2>
+            </div>
 
-<form>
-    <fieldset>
-        <p>
-            <label>Name:</label>
-            <label>@Model.Appointment.AppoName</label>
-        </p>
-        <p>
-            <label>Typ:</label>
-            <label>@Model.Appointment.AppoType</label>
-           
-        </p>
+            <form>
+                <fieldset>
+                    <p>
+                        <label>Name:</label>
+                        <label>@Model.Appointment.AppoName</label>
+                    </p>
+                    <p>
+                        <label>Typ:</label>
+                        <label>@Model.Appointment.AppoType</label>
 
-        <p>
-            <label>Von:</label>
-            <label>@Model.Appointment.Startdate</label>
-        </p>
-        <p>
-            <label>Bis:</label>
-            <label>@Model.Appointment.Enddate</label>
-        </p>
-        <p>
-            <label>Information:</label>
-            <label>@Model.Appointment.Information</label>
-        </p>
-    </fieldset>
-</form>
+                    </p>
 
-<a asp-controller="EmployeeController" asp-action="Feed"  class="btn btn-primary"> Back to Dashboard</a>
+                    <p>
+                        <label>Von:</label>
+                        <label>@Model.Appointment.Startdate</label>
+                    </p>
+                    <p>
+                        <label>Bis:</label>
+                        <label>@Model.Appointment.Enddate</label>
+                    </p>
+                    <p>
+                        <label>Information:</label>
+                        <label>@Model.Appointment.Information</label>
+                    </p>
+                </fieldset>
+            </form>
+
+            <a asp-controller="EmployeeController" asp-action="Feed" class="btn btn-primary"> Back to Dashboard</a>
+        </div>
+    </div>
+</div>
