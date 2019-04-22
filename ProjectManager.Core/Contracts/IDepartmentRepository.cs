@@ -9,5 +9,6 @@ namespace ProjectManager.Core.Contracts
     {
         List<Department> GetAll();
         void Add(Department model);
+        Department GetById(int departmentId);
     }
 }

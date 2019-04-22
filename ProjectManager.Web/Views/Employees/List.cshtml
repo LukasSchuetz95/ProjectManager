@@ -16,66 +16,79 @@
     <link href="~/lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
 </head>
 <body>
-    <header>
-        <h3>Search for employees</h3>
-    </header>
-    <form asp-controller="Employees" asp-action="List" class="form-inline">
-        <div class="form-check form-check-inline">
-            <div>
-                <input asp-for="LastnameFilter" type="submit" value="filter lastname" class="btn btn-primary" style="width:159px" />
-                <span asp-validation-for="LastnameFilter" class="text-danger" />
+    <div class="container" style="width:875px">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Search for employees</h2>
+                    </div>
+                    <div class="panel-body">
+                        <form asp-controller="Employees" asp-action="List" class="form-inline">
+                            <div class="form-check form-check-inline">
+                                <div>
+                                    <input asp-for="LastnameFilter" type="submit" value="filter lastname" class="btn btn-primary" style="width:159px" />
+                                    <span asp-validation-for="LastnameFilter" class="text-danger" />
 
-                <input asp-for="FirstnameFilter" type="submit" value="filter firstname" class="btn btn-primary" style="width:159px" />
-                <span asp-validation-for="FirstnameFilter" class="text-danger" />
+                                    <input asp-for="FirstnameFilter" type="submit" value="filter firstname" class="btn btn-primary" style="width:159px" />
+                                    <span asp-validation-for="FirstnameFilter" class="text-danger" />
 
-                <input asp-for="JobFilter" type="submit" value="filter job" class="btn btn-primary" style="width:159px" />
-                <span asp-validation-for="JobFilter" class="text-danger" />
+                                    <input asp-for="JobFilter" type="submit" value="filter job" class="btn btn-primary" style="width:159px" />
+                                    <span asp-validation-for="JobFilter" class="text-danger" />
 
-                <input asp-for="DepartmentFilter" type="submit" value="filter department" class="btn btn-primary" style="width:159px" />
-                <span asp-validation-for="DepartmentFilter" class="text-danger" />
+                                    <input asp-for="DepartmentFilter" type="submit" value="filter department" class="btn btn-primary" style="width:159px" />
+                                    <span asp-validation-for="DepartmentFilter" class="text-danger" />
 
-                <select asp-for="Qualification.Id" asp-items="@Model.QualificationSelectList" class="form-control" style="width:159px"><option> </option></select>
+                                    <select asp-for="Qualification.Id" asp-items="@Model.QualificationSelectList" class="form-control" style="width:159px"><option> </option></select>
+                                </div>
+
+
+                                <input asp-for="Filter" value="@Model.Filter" class="form-control" style="width:812px" autofocus />
+                                <span asp-validation-for="Filter" class="text-danger"></span>
+
+                                <input asp-for="SwitchOrderLastName" value="@Model.SwitchOrderLastName" type="hidden" />
+                                <input asp-for="SwitchOrderFirstName" value="@Model.SwitchOrderFirstName" type="hidden" />
+                                <input asp-for="SwitchOrderJob" value="@Model.SwitchOrderJob" type="hidden" />
+                                <input asp-for="SwitchOrderDepartment" value="@Model.SwitchOrderDepartment" type="hidden" />
+                                <input asp-for="Filter" type="hidden" value="@Model.Filter" />
+                            </div>
+                            @*</form>*@
+
+                            @if (Model.Employees.Count == 0 || Model.Employees == null)
+                            {
+                                <h4>We couldn't find any data, please try again with different parameters, or reload the site!</h4>
+                            }
+                            else
+                            {
+                                <table class="table table-hover" style="width:812px">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Nachname</th>
+                                            <th>Vorname</th>
+                                            <th>Job</th>
+                                            <th>Abteilung</th>
+                                        </tr>
+                                    </thead>
+                                    @foreach (var employee in Model.Employees)
+                                    {
+                                        <tr title="Click here to see the dashboard of this employee!" onclick="location.href = '@(Url.Action("Feed", "Employees", new { employeeId = employee.Id}))'">
+                                            <td class="icon-bar" title="Click here to see the profil of this person"><a class="active" asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@employee.Id"><i class="fa fa-user" aria-hidden="true"></i></a></td>
+                                            <td>@employee.Lastname</td>
+                                            <td>@employee.Firstname</td>
+                                            <td>@employee.Job</td>
+                                            <td>@employee.Department.DeptName</td>
+                                        </tr>
+                                    }
+
+                                </table>
+                            }
+                        </form>
+                    </div>
+                </div>
             </div>
-
-
-            <input asp-for="Filter" value="@Model.Filter" class="form-control" style="width:812px" autofocus />
-            <span asp-validation-for="Filter" class="text-danger"></span>
-
-            <input asp-for="SwitchOrderLastName" value="@Model.SwitchOrderLastName" type="hidden" />
-            <input asp-for="SwitchOrderFirstName" value="@Model.SwitchOrderFirstName" type="hidden" />
-            <input asp-for="SwitchOrderJob" value="@Model.SwitchOrderJob" type="hidden" />
-            <input asp-for="SwitchOrderDepartment" value="@Model.SwitchOrderDepartment" type="hidden" />
-            <input asp-for="Filter" type="hidden" value="@Model.Filter" />
         </div>
-    </form>
-
-    @if (Model.Employees.Count == 0 || Model.Employees == null)
-    {
-        <h4>We couldn't find any data, please try again with different parameters, or reload the site!</h4>
-    }
-    else
-    {
-        <table class="table" style="width:812px">
-            <tr>
-                <th></th>
-                <th>Nachname</th>
-                <th>Vorname</th>
-                <th>Job</th>
-                <th>Abteilung</th>
-            </tr>
-            @foreach (var employee in Model.Employees)
-            {
-                <tr>
-                    <td class="icon-bar" title="Click here to see the profil of this person"><a class="active" asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@employee.Id"><i class="fa fa-user" aria-hidden="true"></i></a></td>
-                    <td>@employee.Lastname</td>
-                    <td>@employee.Firstname</td>
-                    <td>@employee.Job</td>
-                    <td>@employee.Department.DeptName</td>
-                </tr>
-            }
-
-        </table>
-    }
+    </div>
 </body>
 </html>
 

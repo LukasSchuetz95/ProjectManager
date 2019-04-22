@@ -16,190 +16,200 @@
 </head>
 <body>
     <form asp-controller="Employees" asp-action="Feed">
-        <div id="header">
-            <h1>The Dashboard of @Model.Employee.Firstname</h1>
-            <p>Your personal Overview</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h1>The Dashboard of @Model.Employee.Firstname @Model.Employee.Lastname</h1>
+                            <div>
+                                <p>Your personal overview</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="col-sm-6">
-            <table class="table" style="width:300px">
-                <tr>
-                    <th></th>
-                    <th>Taskname</th>
-                    <th>Information</th>
-                    <th></th>
-                    <th class="btn-primary" title="Click here to create an appointment!">
-                        <a class="btn btn-primary" asp-controller="Appointments" asp-action="Create" asp-route-employeeId="@Model.Employee.Id"></a>Create Appointment
-                    </th>
-                </tr>
-                @foreach (var fT in Model.DashboardTasks)
-                {
-                    <tr>
+    </form>
+    <div class="col-md-6">
+        <div class="panel panel-default" style="min-height: 1000px; width:550px">
+            <div class="panel-body panel-danger">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Taskname</th>
+                            <th style="width:100px">Information</th>
+                            <th> Startdate</th>
+                            <th title="Click here to create an appointment!" style="width:100px">
+                                <a class="btn btn-primary" asp-controller="Appointments" asp-action="Create" asp-route-employeeId="@Model.Employee.Id">Appointment</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    @foreach (var fT in Model.DashboardTasks)
+                    {
                         @if (fT.TaskId != 0)
                         {
-                            <td title="Click here to see Details from this task!">
-                                <a class="btn btn-primary" asp-controller="Tasks" asp-action="Details" asp-route-taskId="@fT.TaskId"></a>T
-                            </td>
-                        }
-                        else
-                        {
-                            <td class="btn-primary" title="Click here to see Details from this appointment!">
-                                <a class="btn btn-primary" asp-controller="Appointments" asp-action="Detail" asp-route-appointmentId="@fT.AppointmentId"></a>A
-                            </td>
-                        }
+                    <tr title="Click here to see the details from this task!" onclick="location.href = '@(Url.Action("Details", "Tasks", new { taskId = fT.TaskId}))'">
                         <td>@fT.Name</td>
                         <td>@fT.SpecificInformation</td>
                         <td>@fT.Startdatum</td>
-                        @if (fT.TaskId != 0)
-                        {
-                            <td class="btn-primary" title="Click here to finish or pass the task!">
-                                <a class="btn btn-primary" asp-controller="Employees" asp-action="FinishOrPass" asp-route-employeeId="@Model.Employee.Id" asp-route-taskId="@fT.TaskId"></a>Finish
-                            </td>
-                        }
-                        else
-                        {
-                            <td class="btn-primary" title="Click here to finish the appointment!">
-                                <a class="btn btn-primary" asp-controller="Employees" asp-action="DeleteAppointment" asp-route-employeeId="@Model.Employee.Id" asp-route-appointmentId="@fT.AppointmentId"></a>Finish
-                            </td>
-                        }
+                        <td title="Click here to finish or pass the task!">
+                            <a class="btn btn-primary" asp-controller="Employees" asp-action="FinishOrPass" asp-route-employeeId="@Model.Employee.Id" asp-route-taskId="@fT.TaskId">Finish</a>
+                        </td>
                     </tr>
-                }
-            </table>
-        </div>
-    </form>
-
-    <form asp-controller="Employees" asp-action="Feed">
-        <div>
-            @if (Model.ButtonClicked == "Assigned")
-            {
-                <input asp-for="Assigned" type="submit" value="Assigned Tasks" class="btn btn-success" style="width:370px" />
-                <span asp-validation-for="Assigned" class="text-danger"></span>
-            }
-            else
-            {
-                <input asp-for="Assigned" type="submit" value="Assigned Tasks" class="btn btn-primary" style="width:370px" />
-                <span asp-validation-for="Assigned" class="text-danger"></span>
-            }
-
-            <input type="hidden" asp-for="Employee.Id" />
-            <input type="hidden" asp-for="Employee.Firstname" />
-            <input type="hidden" value="Assigned" asp-for="ButtonClicked" />
-
-        </div>
-    </form>
-    <div class="col-sm-6">
-
-        <table class="table" style="width:300px">
-            <tr>
-                <th>
-                    <form asp-controller="Employees" asp-action="Feed">
-                        @if (Model.ButtonClicked == "Project")
-                        {
-                            <input asp-for="ProjectFilter" type="submit" value="Project" class="btn btn-success" style="width:100px" />
-                            <span asp-validation-for="ProjectFilter" class="text-danger"></span>
                         }
                         else
                         {
-                            <input asp-for="ProjectFilter" type="submit" value="Project" class="btn btn-primary" style="width:100px" />
-                            <span asp-validation-for="ProjectFilter" class="text-danger"></span>
-                        }
-
-                        <input type="hidden" asp-for="Employee.Id" />
-                        <input type="hidden" asp-for="Employee.Firstname" />
-                        <input type="hidden" value="Project" asp-for="ButtonClicked" />
-                    </form>
-
-                </th>
-                <th>
-                    <form asp-controller="Employees" asp-action="Feed">
-                        @if (Model.ButtonClicked == "General")
-                        {
-                            <input asp-for="GeneralFilter" type="submit" value="General" class="btn btn-success" style="width:100px" />
-                            <span asp-validation-for="GeneralFilter" class="text-danger"></span>
-                        }
-                        else
-                        {
-                            <input asp-for="GeneralFilter" type="submit" value="General" class="btn btn-primary" style="width:100px" />
-                            <span asp-validation-for="GeneralFilter" class="text-danger"></span>
-                        }
-
-                        <input type="hidden" asp-for="Employee.Id" />
-                        <input type="hidden" asp-for="Employee.Firstname" />
-                        <input type="hidden" value="General" asp-for="ButtonClicked" />
-                    </form>
-
-                </th>
-                <th>
-                    <form asp-controller="Employees" asp-action="Feed">
-                        @if (Model.CountHighPriorityTasks() == 0)
-                        {                            
-                            <input asp-for="PriorityFilter" type="submit" value="0" class="btn btn-primary" style="width:100px" />
-                            <span asp-validation-for="PriorityFilter" class="text-danger"></span>
-                        }
-                        else
-                        {
-                            <input asp-for="PriorityFilter" type="submit" value="@Model.CountHighPriorityTasks()" class="btn btn-danger" style="width:100px" />
-                            <span asp-validation-for="PriorityFilter" class="text-danger"></span>
-                        }
-                        <input type="hidden" asp-for="Employee.Id" />
-                        <input type="hidden" asp-for="Employee.Firstname" />
-                        <input type="hidden" value="@Model.ButtonClicked" asp-for="ButtonClicked" />
-                    </form>
-                </th>
-            </tr>
-        </table>
-
-        <div>
-                <form asp-controller="Employees" asp-action="Feed" class="form-inline">
-                    <input asp-for="SearchInput" class="form-control" style="width:268px" />
-                    <span asp-validation-for="SearchInput" class="text-danger"></span>
-
-                    <input asp-for="Search" type="submit" value="Search" class="btn btn-primary" style="width:75px" />
-                    <span asp-validation-for="Search" class="text-danger"></span>
-
-                    <input type="hidden" asp-for="Employee.Id" />
-                    <input type="hidden" asp-for="Employee.Firstname" />
-                    <input type="hidden" asp-for="ButtonClicked" />
-                </form>
-
-            <form asp-controller="Employees" asp-action="Feed">
-                <table class="table" style="width:300px">
-                    <tr>
-                        <th></th>
-                        <th>Taskname</th>
-                        <th>Priority</th>
-                        <th></th>
+                    <tr title="Click here to see the details from this appointment!" onclick="location.href = '@(Url.Action("Detail", "Appointments", new { appointmentId = fT.AppointmentId}))'">
+                        <td>@fT.Name</td>
+                        <td>@fT.SpecificInformation</td>
+                        <td>@fT.Startdatum</td>
+                        <td title="Click here to finish the appointment!">
+                            <a class="btn btn-primary" asp-controller="Employees" asp-action="DeleteAppointment" asp-route-employeeId="@Model.Employee.Id" asp-route-appointmentId="@fT.AppointmentId">Finish</a>
+                        </td>
                     </tr>
-                    @foreach (var pT in Model.PoolTasks)
-                    {
-                        @if (Model.IsTaskVisible(pT))
-                        {
-                            <tr>
-                                <td title="Click here to see Details from this task!">
-                                    <a class="btn btn-primary" asp-controller="Tasks" asp-action="Details" asp-route-taskId="@pT.Id"></a>T
-                                </td>
-                                <td>
-                                    @pT.TaskName
-                                </td>
-                                <td>@pT.Priority</td>
-                                <td>
-                                    <a title="Click here, to add this task to your dashboard" asp-controller="Employees" asp-action="AddTask" asp-route-employeeId="@Model.Employee.Id" asp-route-taskId="@pT.Id" asp-route-buttonClicked="@Model.ButtonClicked"><i class="fa fa-thumbtack" aria-hidden="true"></i></a>
-                                </td>
-                            </tr>
                         }
                     }
                 </table>
-
-                <input type="hidden" asp-for="Employee.Id" />
-                <input type="hidden" asp-for="Employee.Firstname" />
-                <input type="hidden" value="@Model.ButtonClicked" asp-for="ButtonClicked" />
-
-            </form>
+            </div>
         </div>
-
     </div>
 
+    <div class="container" style="width:870px">
+        <div class="col-md-6">
+            <div class="panel panel-default" style="max-height: 600px; min-height: 300px; overflow-y: scroll">
+                <div class="panel-heading">
+                    <form asp-controller="Employees" asp-action="Feed">
+                        <div>
+                            @if (Model.ButtonClicked == "Assigned")
+                            {
+                                <input asp-for="Assigned" type="submit" value="Assigned Tasks" class="btn btn-success" style="width:347px" />
+                                <span asp-validation-for="Assigned" class="text-danger"></span>
+                            }
+                            else
+                            {
+                                <input asp-for="Assigned" type="submit" value="Assigned Tasks" class="btn btn-primary" style="width:347px" />
+                                <span asp-validation-for="Assigned" class="text-danger"></span>
+                            }
 
+                            <input type="hidden" asp-for="Employee.Id" />
+                            <input type="hidden" asp-for="Employee.Firstname" />
+                            <input type="hidden" value="Assigned" asp-for="ButtonClicked" />
+
+                        </div>
+                    </form>
+
+                    <table class="table" style="width:300px">
+                        <tr>
+                            <th>
+                                <form asp-controller="Employees" asp-action="Feed">
+                                    @if (Model.ButtonClicked == "Project")
+                                    {
+                                        <input asp-for="ProjectFilter" type="submit" value="Project" class="btn btn-success" style="width:100px" />
+                                        <span asp-validation-for="ProjectFilter" class="text-danger"></span>
+                                    }
+                                    else
+                                    {
+                                        <input asp-for="ProjectFilter" type="submit" value="Project" class="btn btn-primary" style="width:100px" />
+                                        <span asp-validation-for="ProjectFilter" class="text-danger"></span>
+                                    }
+
+                                    <input type="hidden" asp-for="Employee.Id" />
+                                    <input type="hidden" asp-for="Employee.Firstname" />
+                                    <input type="hidden" value="Project" asp-for="ButtonClicked" />
+                                </form>
+
+                            </th>
+                            <th>
+                                <form asp-controller="Employees" asp-action="Feed">
+                                    @if (Model.ButtonClicked == "General")
+                                    {
+                                        <input asp-for="GeneralFilter" type="submit" value="General" class="btn btn-success" style="width:100px" />
+                                        <span asp-validation-for="GeneralFilter" class="text-danger"></span>
+                                    }
+                                    else
+                                    {
+                                        <input asp-for="GeneralFilter" type="submit" value="General" class="btn btn-primary" style="width:100px" />
+                                        <span asp-validation-for="GeneralFilter" class="text-danger"></span>
+                                    }
+
+                                    <input type="hidden" asp-for="Employee.Id" />
+                                    <input type="hidden" asp-for="Employee.Firstname" />
+                                    <input type="hidden" value="General" asp-for="ButtonClicked" />
+                                </form>
+
+                            </th>
+                            <th>
+                                <form asp-controller="Employees" asp-action="Feed">
+                                    @if (Model.CountHighPriorityTasks() == 0)
+                                    {
+                                        <input asp-for="PriorityFilter" type="submit" value="0" class="btn btn-primary" style="width:100px" />
+                                        <span asp-validation-for="PriorityFilter" class="text-danger"></span>
+                                    }
+                                    else
+                                    {
+                                        <input asp-for="PriorityFilter" type="submit" value="@Model.CountHighPriorityTasks()" class="btn btn-danger" style="width:100px" />
+                                        <span asp-validation-for="PriorityFilter" class="text-danger"></span>
+                                    }
+                                    <input type="hidden" asp-for="Employee.Id" />
+                                    <input type="hidden" asp-for="Employee.Firstname" />
+                                    <input type="hidden" value="@Model.ButtonClicked" asp-for="ButtonClicked" />
+                                </form>
+                            </th>
+                        </tr>
+                    </table>
+
+                    <div>
+                        <form asp-controller="Employees" asp-action="Feed" class="form-inline">
+                            <input asp-for="SearchInput" class="form-control" style="width:262px" />
+                            <span asp-validation-for="SearchInput" class="text-danger"></span>
+
+                            <input asp-for="Search" type="submit" value="Search" class="btn btn-primary" style="width:75px" />
+                            <span asp-validation-for="Search" class="text-danger"></span>
+
+                            <input type="hidden" asp-for="Employee.Id" />
+                            <input type="hidden" asp-for="Employee.Firstname" />
+                            <input type="hidden" asp-for="ButtonClicked" />
+                        </form>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form asp-controller="Employees" asp-action="Feed">
+                        <table class="table table-hover" style="width:350px">
+                            <thead>
+                                <tr>
+                                    <th>Taskname</th>
+                                    <th>Priority</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            @foreach (var pT in Model.PoolTasks)
+                            {
+                                @if (Model.IsTaskVisible(pT))
+                                {
+                                    <tr title="Click here to see the details of this task!" onclick="location.href = '@(Url.Action("Details", "Tasks", new { taskId = pT.Id}))'">
+                                        <td>
+                                            @pT.TaskName
+                                        </td>
+                                        <td>@pT.Priority</td>
+                                        <td>
+                                            <a title="Click here, to add this task to your dashboard" asp-controller="Employees" asp-action="AddTask" asp-route-employeeId="@Model.Employee.Id" asp-route-taskId="@pT.Id" asp-route-buttonClicked="@Model.ButtonClicked"><i class="fa fa-thumbtack" aria-hidden="true"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+
+                        <input type="hidden" asp-for="Employee.Id" />
+                        <input type="hidden" asp-for="Employee.Firstname" />
+                        <input type="hidden" value="@Model.ButtonClicked" asp-for="ButtonClicked" />
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 

@@ -9,40 +9,54 @@
 <head>
     <title></title>
     <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
 </head>
 <body>
-    <header>
-        <h3>Create Department</h3>
-    </header>
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-controller="Departments" asp-action="Create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Department.DeptName" class="control-label"></label>
-                    <input required="true" asp-for="Department.DeptName" class="form-control" />
-                    <span asp-validation-for="Department.DeptName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Department.DeptLocation" class="control-label"></label>
-                    <input required="true" asp-for="Department.DeptLocation" class="form-control" />
-                    <span asp-validation-for="Department.DeptLocation" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <div>
-                    <input type="submit" value="Create Department" class="btn btn-primary" style="width:200px" />                   
-                        @if (Model.Success == true)
-                        {
-                            <span>Saveing was successful!</span>
-                        }                      
+    <div class="container" style="width:500px">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Create department</h2>
                     </div>
-                    <div>
-                        <a asp-controller="Departments" asp-action="List" class="btn btn-success" style="width:200px">Back to profil</a>
-                    </div>
-                </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form asp-controller="Departments" asp-action="Create">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="Department.DeptName" class="control-label"></label>
+                                        <input required="true" asp-for="Department.DeptName" class="form-control" />
+                                        <span asp-validation-for="Department.DeptName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Department.DeptLocation" class="control-label"></label>
+                                        <input required="true" asp-for="Department.DeptLocation" class="form-control" />
+                                        <span asp-validation-for="Department.DeptLocation" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <input type="submit" value="Create Department" class="btn btn-primary" style="width:200px" />
+                                            @if (Model.Success == true)
+                                            {
+                                                <span>Saveing was successful!</span>
+                                            }
+                                        </div>
+                                        <div>
+                                            <a asp-controller="Departments" asp-action="List" class="btn btn-success" style="width:200px">Back to profil</a>
+                                        </div>
+                                    </div>
 
-            </form>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </div>   
 </body>
 </html>

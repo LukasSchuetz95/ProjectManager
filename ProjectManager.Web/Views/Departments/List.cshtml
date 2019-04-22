@@ -10,32 +10,44 @@
 <head>
     <title></title>
     <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
 </head>
 <body>
-    <header>
-        <h3>Departments</h3>
-    </header>
+    <div class="container" style="width:700px">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Departments</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div>
+                            <a asp-controller="Departments" asp-action="Create" class="btn btn-primary">Create a new Department</a>
+                        </div>
 
-    <div>
-        <a asp-controller="Departments" asp-action="Create" class="btn btn-primary">Neue Abteilung anlegen</a>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Departmentname</th>
+                                    <th>Departmentlocation</th>
+                                </tr>
+                            </thead>
+
+                            @foreach (var department in Model.DepartmentList)
+                            {
+                            <tr title="Click here to see the employees of this department" onclick="location.href = '@(Url.Action("Details", "Departments", new { departmentId = department.Id}))'">
+                                <td>@department.DeptName</td>
+                                <td>@department.DeptLocation</td>
+                            </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <table class="table">
-        <tr>
-            <th>Firmenname</th>
-            <th>Firmensitz</th>
-        </tr>
-
-        @foreach (var department in Model.DepartmentList)
-        {
-          <tr>
-              <td title="Klicken Sie hier um die Arbeiter dieses Standorts zu sehen">
-                  <a asp-controller="Departments" asp-action="Details" asp-route-departmentId="@department.Id">@department.DeptName</a>
-              </td>
-              <td title="Klicken Sie hier um die Arbeiter dieses Standorts zu sehen">
-                  <a asp-controller="Departments" asp-action="Details" asp-route-departmentId="@department.Id">@department.DeptLocation</a></td>
-          </tr>
-        }
-    </table>
 </body>
 </html>

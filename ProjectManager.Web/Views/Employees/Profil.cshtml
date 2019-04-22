@@ -4,92 +4,127 @@
     ViewData["Title"] = "Profil";
 }
 
-<form asp-action="Profil" asp-route-employeeId="@Model.Employee.Id">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="Employee.Id" />
-    <div>
-        <div class="form-group">
-            <dl class="dl-horizontal">
-                <dt>@Html.DisplayNameFor(m => m.Employee.Lastname)</dt>
-                <dd>@Model.Employee.Lastname</dd>
-            </dl>
-            <dl class="dl-horizontal">
-                <dt>@Html.DisplayNameFor(m => m.Employee.Firstname)</dt>
-                <dd>@Model.Employee.Firstname</dd>
-            </dl>
-            <dl class="dl-horizontal">
-                <dt>@Html.DisplayNameFor(m => m.Employee.Job)</dt>
-                <dd>@Model.Employee.Job</dd>
-            </dl>
-            <dl class="dl-horizontal">
-                <dt>@Html.DisplayNameFor(m => m.Employee.Status)</dt>
-                <dd>@Model.Employee.Status</dd>
-            </dl>
-            <dl class="dl-horizontal">
-                <dt>@Html.DisplayNameFor(m => m.Employee.Department.DeptName)</dt>
-                <dd>@Model.Employee.Department.DeptName</dd>
-            </dl>
-            <dl class="dl-horizontal">
-                <dt>@Html.DisplayNameFor(m => m.Employee.Department.DeptLocation)</dt>
-                <dd>@Model.Employee.Department.DeptLocation</dd>
-            </dl>
-            <dl class="dl-horizontal">
-                <dt>@Html.DisplayNameFor(m => m.Qualification)</dt>
-                <dd><select asp-items="@Model.QualificationSelectList" class="form-control" style="width:159px"></select></dd>
-            </dl>
-            <dl class="dl-horizontal">
-                <dt>@Html.DisplayNameFor(m => m.Employee.Birthdate)</dt>
-                <dd>@Model.Birthdate</dd>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
 
-                <dt>@Html.DisplayNameFor(m => m.Employee.StreetNameAndNr)</dt>
-                <dd>@Model.Employee.StreetNameAndNr</dd>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
+</head>
 
-                <dt>@Html.DisplayNameFor(m => m.Employee.ZipCode)</dt>
-                <dd>@Model.Employee.ZipCode</dd>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1>Profil</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="container-fluid">
+                        <form asp-action="Profil" asp-route-employeeId="@Model.Employee.Id">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Employee.Id" />
+                            <div>
+                                <div class="form-group">
+                                    <dl class="dl-horizontal">
+                                        <dt>@Html.DisplayNameFor(m => m.Employee.Lastname)</dt>
+                                        <dd>@Model.Employee.Lastname</dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt>@Html.DisplayNameFor(m => m.Employee.Firstname)</dt>
+                                        <dd>@Model.Employee.Firstname</dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt>@Html.DisplayNameFor(m => m.Employee.Job)</dt>
+                                        <dd>@Model.Employee.Job</dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt>@Html.DisplayNameFor(m => m.Employee.Status)</dt>
+                                        <dd>@Model.Employee.Status</dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt>@Html.DisplayNameFor(m => m.Employee.Department.DeptName)</dt>
+                                        <dd>@Model.Employee.Department.DeptName</dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt>@Html.DisplayNameFor(m => m.Employee.Department.DeptLocation)</dt>
+                                        <dd>@Model.Employee.Department.DeptLocation</dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt>Qualifications</dt>
+                                        <dd><select asp-items="@Model.QualificationSelectList" class="form-control" style="width:159px"></select></dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt>@Html.DisplayNameFor(m => m.Employee.Birthdate)</dt>
+                                        <dd>@Model.Birthdate</dd>
 
-                <dt>@Html.DisplayNameFor(m => m.Employee.Residence)</dt>
-                <dd>@Model.Employee.Residence</dd>
-            </dl>
-            <dl class="dl-horizontal">
-                <dt>@Html.DisplayNameFor(m => m.Employee.Phonenumber)</dt>
-                <dd>@Model.Employee.Phonenumber</dd>
-            </dl>
-            <dl class="dl-horizontal">
-                <dt>@Html.DisplayNameFor(m => m.Employee.HiringDate)</dt>
-                <dd>@Model.Hiringdate</dd>
-            </dl>
-        </div>
-        <div>
-            <a asp-controller="Employees" asp-action="Feed" asp-route-employeeId="@Model.Employee.Id" style="width:200px" class="btn btn-primary">Dashboard</a>
-            <a asp-controller="Employees" asp-action="EditProfil" asp-route-employeeId="@Model.Employee.Id" style="width:200px" class="btn btn-primary">Edit profil</a>
+                                        <dt>@Html.DisplayNameFor(m => m.Employee.StreetNameAndNr)</dt>
+                                        <dd>@Model.Employee.StreetNameAndNr</dd>
+
+                                        <dt>@Html.DisplayNameFor(m => m.Employee.ZipCode)</dt>
+                                        <dd>@Model.Employee.ZipCode</dd>
+
+                                        <dt>@Html.DisplayNameFor(m => m.Employee.Residence)</dt>
+                                        <dd>@Model.Employee.Residence</dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt>@Html.DisplayNameFor(m => m.Employee.Phonenumber)</dt>
+                                        <dd>@Model.Employee.Phonenumber</dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt>@Html.DisplayNameFor(m => m.Employee.HiringDate)</dt>
+                                        <dd>@Model.Hiringdate</dd>
+                                    </dl>
+                                </div>
+                                <div>
+                                    <a asp-controller="Employees" asp-action="Feed" asp-route-employeeId="@Model.Employee.Id" style="width:200px" class="btn btn-primary">Dashboard</a>
+                                    <a asp-controller="Employees" asp-action="EditProfil" asp-route-employeeId="@Model.Employee.Id" style="width:200px" class="btn btn-primary">Edit profil</a>
+                                </div>
+                            </div>                           
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    @*<div>
-        @using (Html.BeginForm("ProfilPicUpload", "Employees", FormMethod.Post,
-                           new { enctype = "multipart/form-data" }))
-        {
-            <label for="file">Upload Image:</label>
-            <input type="file" name="file" id="file" style="width: 100%;" />
-            <input type="submit" value="Upload" class="submit" />
-        }
-    </div>*@
-</form>
+</div>
 
-<table class="table" style="width:800px">
-    <tr>
-        <th>Projektname</th>
-        <th>Status</th>
-        <th>Startdatum</th>
-        <th>Deadline</th>
-    </tr>
-    @foreach (var ob in Model.ProjectOfEmployee)
-    {
-        <tr>
-            <td title="Hier geht es zu den Details des Projekts"><a asp-controller="Projects" asp-action="Details" asp-route-projectId="@ob.Project.Id">@ob.Project.ProjectName </a></td>
-            <td>@ob.Project.Status</td>
-            <td>@ob.Project.Startdate</td>
-            <td>@ob.Project.Deadline</td>
-        </tr>
-    }
-</table>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2>Projects of @Model.Employee.Firstname</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="container-fluid">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Projektname</th>
+                                    <th>Status</th>
+                                    <th>Startdatum</th>
+                                    <th>Deadline</th>
+                                </tr>
+                            </thead>
+                            @foreach (var ob in Model.ProjectOfEmployee)
+                            {
+                                <tr title="Click here to see the details of this project!" onclick="location.href = '@(Url.Action("Details", "Projects", new { projectId = ob.Project.Id}))'">
+                                    <td>@ob.Project.ProjectName</td>
+                                    <td>@ob.Project.Status</td>
+                                    <td>@ob.Project.Startdate</td>
+                                    <td>@ob.Project.Deadline</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 

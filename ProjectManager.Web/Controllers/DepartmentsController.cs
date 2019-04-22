@@ -32,6 +32,7 @@ namespace ProjectManager.Web.Controllers
         {
             DepartmentsViewModel model = new DepartmentsViewModel();
             model.EmployeeList = _unitOfWork.Employees.GetEmployeeByDepartmentId(departmentId);
+            model.Department = _unitOfWork.Departments.GetById(departmentId);
             return View(model);
         }
 

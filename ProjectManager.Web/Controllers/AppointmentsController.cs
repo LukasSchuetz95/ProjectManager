@@ -52,11 +52,13 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
-        public IActionResult Detail(int appId)
+        public IActionResult Detail(int appointmentId)
         {
             AppointmentDetailViewModel model = new AppointmentDetailViewModel();
-            model.LoadData(_unitOfWork, appId);
+            model.LoadData(_unitOfWork, appointmentId);
             return View(model);
+
+
         }
 
         #region Create Methoods

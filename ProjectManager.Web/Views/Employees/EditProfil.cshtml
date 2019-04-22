@@ -4,61 +4,81 @@
     ViewData["Title"] = "EditProfil";
 }
 
-<h2>EditProfil</h2>
-<hr />
+<head>
+    <title></title>
+    <meta charset="utf-8" />
 
-<form asp-action="EditProfil">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group">
-            <label asp-for="Employee.Profilepicture" class="control-label"></label>
-            <input asp-for="Employee.Profilepicture" type="image" class="form-control" style="width:400px" />
-            <span asp-validation-for="Employee.Profilepicture" class="text-danger"></span>
-            <button class="btn btn-primary">Browse</button>
-    </div>
-    <div class="form-group">
-        <label asp-for="Employee.StreetNameAndNr" class="control-label"></label>
-        <input asp-for="Employee.StreetNameAndNr" class="form-control" style="width:400px" />
-        <span asp-validation-for="Employee.StreetNameAndNr" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Employee.ZipCode" class="control-label"></label>
-        <input asp-for="Employee.ZipCode" class="form-control" style="width:400px" />
-        <span asp-validation-for="Employee.ZipCode" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Employee.Residence" class="control-label"></label>
-        <input asp-for="Employee.Residence" class="form-control" style="width:400px" />
-        <span asp-validation-for="Employee.Residence" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Employee.Phonenumber" class="control-label"></label>
-        <input asp-for="Employee.Phonenumber" class="form-control" style="width:400px" />
-        <span asp-validation-for="Employee.Phonenumber" class="text-danger"></span>
-    </div>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
+</head>
 
-    <input type="hidden" asp-for="Employee.Id" />
-    <input type="hidden" asp-for="Employee.Timestamp" />
-    <input type="hidden" asp-for="Employee.Department" />
-    <input type="hidden" asp-for="Employee.DepartmentId" />
-    <input type="hidden" asp-for="Employee.Firstname" />
-    <input type="hidden" asp-for="Employee.Lastname" />
-    <input type="hidden" asp-for="Employee.Job" />
-    <input type="hidden" asp-for="Employee.Status" />
-    <input type="hidden" asp-for="Employee.Profilepicture" />
-    <input type="hidden" asp-for="Employee.Birthdate" />
-    <input type="hidden" asp-for="Employee.HiringDate" />
+<div class="container" style="width:735px">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2>Edit profil of @Model.Employee.Firstname</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="container-fluid">
+                        <form asp-action="EditProfil">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Employee.Birthdate" class="control-label"></label>
+                                <input asp-for="Employee.Birthdate" class="form-control" style="width:400px" />
+                                <span asp-validation-for="Employee.Birthdate" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Employee.StreetNameAndNr" class="control-label"></label>
+                                <input asp-for="Employee.StreetNameAndNr" class="form-control" style="width:400px" />
+                                <span asp-validation-for="Employee.StreetNameAndNr" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Employee.ZipCode" class="control-label"></label>
+                                <input asp-for="Employee.ZipCode" class="form-control" style="width:400px" />
+                                <span asp-validation-for="Employee.ZipCode" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Employee.Residence" class="control-label"></label>
+                                <input asp-for="Employee.Residence" class="form-control" style="width:400px" />
+                                <span asp-validation-for="Employee.Residence" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Employee.Phonenumber" class="control-label"></label>
+                                <input asp-for="Employee.Phonenumber" class="form-control" style="width:400px" />
+                                <span asp-validation-for="Employee.Phonenumber" class="text-danger"></span>
+                            </div>
 
-    <div class="form-group">
-        <input type="submit" value="Save" class="btn btn-primary" style="width:200px" />
-        @if (Model.Success == true)
-        {
-            <span>Changes were successful!</span>
-        }
+                            <input type="hidden" asp-for="Employee.Id" />
+                            <input type="hidden" asp-for="Employee.Timestamp" />
+                            <input type="hidden" asp-for="Employee.Department" />
+                            <input type="hidden" asp-for="Employee.DepartmentId" />
+                            <input type="hidden" asp-for="Employee.Firstname" />
+                            <input type="hidden" asp-for="Employee.Lastname" />
+                            <input type="hidden" asp-for="Employee.Job" />
+                            <input type="hidden" asp-for="Employee.Status" />
+                            <input type="hidden" asp-for="Employee.Profilepicture" />
+                            <input type="hidden" asp-for="Employee.HiringDate" />
+
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-primary" style="width:200px" />
+                                @if (Model.Success == true)
+                                {
+                                    <span>Changes were successful!</span>
+                                }
+                            </div>
+                            <div>
+                                <a asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@Model.Employee.Id" class="btn btn-default" style="width:200px">Back to profil</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <a asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@Model.Employee.Id" class="btn btn-default" style="width:200px">Back to profil</a>
-    </div>
-</form>
+</div>
 
 
 

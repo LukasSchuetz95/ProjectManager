@@ -25,5 +25,10 @@ namespace ProjectManager.Persistence
         {
             _dbContext.Department.Add(model);
         }
+
+        public Department GetById(int departmentId)
+        {
+            return _dbContext.Department.Where(d => d.Id == departmentId).FirstOrDefault();
+        }
     }
 }
