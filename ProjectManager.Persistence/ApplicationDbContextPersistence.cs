@@ -1603,7 +1603,7 @@ namespace ProjectManager.Persistence
                     QualificationId = 1000,
                     EmployeeId = 1000,
                     Information = "Test",
-                    SkillLevel = SkillLevelType.Sehrgut,
+                //    SkillLevel = SkillLevelType.Sehrgut,
                 });
 
             modelBuilder.Entity<TaskQualification>().HasData(
@@ -1691,7 +1691,7 @@ namespace ProjectManager.Persistence
                     QualificationId = 1000,
                     EmployeeId = 2000,
                     Information = "Test",
-                    SkillLevel = SkillLevelType.Sehrgut,
+//SkillLevel = SkillLevelType.Sehrgut,
                 });
 
             #endregion

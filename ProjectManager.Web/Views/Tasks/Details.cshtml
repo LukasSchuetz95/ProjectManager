@@ -4,41 +4,82 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
 
-<form>
-    <fieldset>
-        <p>
-            <label>Task Id:</label>
-            <label>@Model.Task.Id</label>
-        </p>
-        <p>
-            <label>Taskname:</label>
-            <label>@Model.Task.TaskName</label>
-        </p>
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-        <p>
-            <label>Von:</label>
-            <label>@Model.Task.Created</label>
-        </p>
-        <p>
-            <label>Bis:</label>
-            <label>@Model.Task.Enddate</label>
-        </p>
-        <p>
-            <label>Deadline:</label>
-            <label>@Model.Task.Deadline</label>
-        </p>
-        <p>
-            <label>Status:</label>
-            <label>@Model.Task.Status</label>
-        </p>
-        <p>
-            <label>Information:</label>
-            <label>@Model.Task.Information</label>
-        </p>
-    </fieldset>
-</form>
-<a asp-area="" asp-controller="Tasks" asp-action="Edit" asp-route-taskId ="@Model.Task.Id" class="btn btn-primary"> Bearbeiten</a>
-<a asp-area="" asp-controller="Tasks" asp-action="Delete" asp-route-taskId="@Model.Task.Id" class="btn btn-primary">Task Löschen</a> |
-@*<a asp-area="" asp-controller="Tasks" asp-action="List" class="btn btn-primary">Zurück</a>*@
+</head>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2>Details</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="container-fluid">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td><dt>Task Id:</dt></td>
+                                    <td><dd>@Model.Task.Id</dd></td>
+                                </tr>
+                                <tr>
+                                    <td><dt>Taskname:</dt></td>
+                                    <td><dd>@Model.Task.TaskName</dd></td>
+                                </tr>
+                                <tr>
+                                    <td><dt>Projekt:</dt></td>
+                                    <td><dd>@Model.Task.Project.ProjectName</dd></td>
+                                </tr>
+                                <tr>
+                                    <td><dt>Verantwortlicher</dt></td>
+                                    @if (Model.EmployeeTask != null)
+                                    {
+                                        <td><dd>@Model.EmployeeTask.Employee.ToString()</dd></td>
+                                    }
+                                    else
+                                    {
+                                        <td><dt>Kein Mitarbeiter</dt></td>
+                                    }
+                                </tr>
+                                <tr>
+                                    <td><dt>Von:</dt></td>
+                                    <td><dd>@Model.Task.Created</dd></td>
+                                </tr>
+                                <tr>
+                                    <td><dt>Bis:</dt></td>
+                                    <td><dd>@Model.Task.Enddate</dd></td>
+                                </tr>
+                                <tr>
+                                    <td><dt>Deadline:</dt></td>
+                                    <td><dd>@Model.Task.Deadline</dd></td>
+                                </tr>
+                                <tr>
+                                    <td><dt>Status:</dt></td>
+                                    <td><dd>@Model.Task.Status</dd></td>
+                                </tr>
+                                <tr>
+                                    <td><dt>Information:</dt></td>
+                                    <td><dd>@Model.Task.Information</dd></td>
+                                </tr>
+               
+                            </tbody>
+
+                        </table>
+                        <div>
+                          
+                                    <a asp-area="" asp-controller="Tasks" asp-action="Edit" asp-route-taskId="@Model.Task.Id" asp-route-projectId="@Model.Task.ProjectId" class="btn btn-primary">Bearbeiten</a>
+                                    <a asp-area="" asp-controller="Tasks" asp-action="List"  class="btn btn-primary">Task List</a>
+                                    <a asp-area="" asp-controller="Projects" asp-action="Details" asp-route-projectId="@Model.Task.ProjectId" class="btn btn-primary">Zum Projekt</a>
+                                    <a asp-area="" asp-controller="Tasks" asp-action="Delete" asp-route-taskId="@Model.Task.Id" class="btn btn-primary">Task Löschen</a>
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

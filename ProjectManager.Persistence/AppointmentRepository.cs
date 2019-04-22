@@ -25,7 +25,7 @@ namespace ProjectManager.Persistence
 
         public List<Appointment> GetAll()
         {
-            throw new Exception();
+            return _dbContext.Appointment.ToList();
         }
 
         //public List<Appointment> GetByEmployee(int employeeId)
