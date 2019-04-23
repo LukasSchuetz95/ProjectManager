@@ -44,7 +44,7 @@
                             <tbody>
                                 @if (Model.FilterTaskName != null)
                                 {
-                                    @foreach (var task in Model.CompletedTasks)
+                                    @foreach (var task in Model.CompletedTasks.OrderByDescending(t => t.Deadline))
                                     {
                                         <tr>
                                             <td>@task.TaskName</td>
@@ -59,7 +59,7 @@
                                 }
                                 else
                                 {
-                                    @foreach (var task in Model.CompletedTasks)
+                                    @foreach (var task in Model.CompletedTasks.OrderByDescending(t => t.Deadline))
                                     {
                                         <tr>
                                             <td>@task.TaskName</td>

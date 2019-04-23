@@ -39,7 +39,7 @@
                         <tbody>
                             @if (Model.FilterTaskName != null)
                             {
-                                @foreach (var task in Model.UndefinedTasks)
+                                @foreach (var task in Model.UndefinedTasks.OrderByDescending(t => t.Deadline))
                                 {
                                     <tr>
                                         <td>@task.TaskName</td>
@@ -53,7 +53,7 @@
                             }
                             else
                             {
-                                @foreach (var task in Model.UndefinedTasks)
+                                @foreach (var task in Model.UndefinedTasks.OrderByDescending(t => t.Deadline))
                                 {
                                     <tr>
                                         <td>@task.TaskName</td>
@@ -73,3 +73,13 @@
         </div>
     </div>
 </div>
+
+
+@foreach (var task in Model.UndefinedTasks.OrderByDescending(t => t.Deadline))
+{
+    <tr>
+        <td>@task.TaskName</td>
+
+        <td title="Detail"><a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id"><i class="fas fa-info"></i></a></td>
+    </tr>
+}

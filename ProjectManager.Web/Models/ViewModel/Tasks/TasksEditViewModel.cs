@@ -15,7 +15,7 @@ namespace ProjectManager.Web.Models.ViewModel
         public SelectList Employees { get; set; }
 
         public Project Project { get; set; }
-        //public System.Threading.Tasks.Task Task { get; set; }
+
 
         public int ProjectId { get; set; }
 
