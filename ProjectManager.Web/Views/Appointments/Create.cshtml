@@ -43,6 +43,8 @@
                 </div>
                 <input type="hidden" value="@Model.Employee.Id" asp-for="Appointment.EmployeeId" />
                 <input type="hidden" value="@Model.Employee" asp-for="Appointment.Employee" />
+                <input type="hidden" value="@Model.ButtonClicked" asp-for="ButtonClicked" />
+                <input type="hidden" value="@Model.Priority" asp-for="Priority" />
             </form>
 
             <a asp-controller="Employees" asp-action="Feed" asp-route-employeeId="@Model.Employee.Id" class="btn btn-primary">Zurück</a>

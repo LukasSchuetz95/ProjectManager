@@ -151,6 +151,10 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
             return this.PoolTasks.Where(t => t.Priority == Core.Enum.PriorityType.High).Count();
         }
 
+        public bool IsPriorityButtonClicked()
+        {
+            return this.PriorityFilter != null;
+        }
         #endregion
     }
 }

@@ -21,26 +21,34 @@ namespace ProjectManager.Web.Controllers
             _unitOfWork = unitOfWork;
         }
 
- 
-
-        public IActionResult Create(int employeeId)
+        public IActionResult Create(int employeeId, string buttonClicked, bool priority)
         {
             AppointmentCreateViewModel model = new AppointmentCreateViewModel();
             model.LoadData(_unitOfWork, employeeId);
+            model.ButtonClicked = buttonClicked;
+            model.Priority = priority;
             return View(model);
         }
 
         [HttpPost]
         public IActionResult Create(AppointmentCreateViewModel model)
         {
+            string error = null;
+
             if (ModelState.IsValid)
             {
                 try
                 {
                     _unitOfWork.Appointments.Add(model.Appointment);
                     _unitOfWork.Save();
-                    CreateDashboardDisplay(model.Appointment, model.Appointment.EmployeeId);
-                    return RedirectToAction("Feed", "Employees", new { employeeId = model.Appointment.EmployeeId});
+
+                    return RedirectToAction("Feed", "Employees", new
+                    {
+                        employeeId = model.Appointment.EmployeeId,
+                        buttonClicked = model.ButtonClicked,
+                        priority = model.Priority,
+                        error = GenerateDashboardDisplay(model.Appointment, model.Appointment.EmployeeId)
+                    });
                 }
                 catch (ValidationException validationException)
                 {
@@ -57,36 +65,42 @@ namespace ProjectManager.Web.Controllers
             AppointmentDetailViewModel model = new AppointmentDetailViewModel();
             model.LoadData(_unitOfWork, appointmentId);
             return View(model);
-
-
         }
 
         #region Create Methoods
 
-        public void CreateDashboardDisplay( Appointment appointment, int employeeid)
+        public string GenerateDashboardDisplay(Appointment appointment, int employeeid)
         {
             DashboardDisplay dashboardDisplay = new DashboardDisplay();
             dashboardDisplay.Employee = _unitOfWork.Employees.GetById(employeeid);
             dashboardDisplay.EmployeeId = employeeid;
             dashboardDisplay.AppointmentId = appointment.Id;
-            dashboardDisplay.Duration = null;
+            dashboardDisplay.Duration = "From " + (appointment.Startdate).ToString("d") + " to " +(appointment.Enddate).ToString("d"); ;
             dashboardDisplay.Name = appointment.AppoName;
             dashboardDisplay.SpecificInformation = Convert.ToString(appointment.AppoType);
             dashboardDisplay.Startdatum = DateTime.Now;
-            CreateDashboardDisplay(dashboardDisplay);
+
+            if (!CreateDashboardDisplay(dashboardDisplay))
+            {
+                return "Error during the creation of the DashboardDisplay!";
+            }
+            else
+            {
+                return null;
+            }
         }
 
-        public void CreateDashboardDisplay(DashboardDisplay dashboardDisplay)
+        public bool CreateDashboardDisplay(DashboardDisplay dashboardDisplay)
         {
             try
             {
                 _unitOfWork.DashboardDisplays.Add(dashboardDisplay);
                 _unitOfWork.Save();
+                return true;
             }
-            catch (ValidationException validationException)
+            catch (ValidationException ex)
             {
-                ValidationResult valResult = validationException.ValidationResult;
-                ModelState.AddModelError(valResult.MemberNames.First(), valResult.ErrorMessage);
+                return false;
             }
         }
 

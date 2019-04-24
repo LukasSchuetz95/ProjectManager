@@ -13,6 +13,9 @@ namespace ProjectManager.Web.Models.ViewModel
         public Appointment Appointment { get; set; }
         public Employee Employee { get; set; }
 
+        public string ButtonClicked { get; set; }
+        public bool Priority { get; set; }
+
         public void LoadData(IUnitOfWork uow, int employeeId)
         {
             this.Employee = uow.Employees.GetById(employeeId);

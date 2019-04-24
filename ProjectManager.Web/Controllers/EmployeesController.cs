@@ -208,12 +208,15 @@ namespace ProjectManager.Web.Controllers
 
         public IActionResult DeleteAppointment(int employeeId, int appointmentId, string buttonClicked, string priorityButton)
         {
+            //error
             DashboardDisplay dashboardDisplay = _unitOfWork.DashboardDisplays.GetByEmployeeIdAndAppointmentId(employeeId, appointmentId);
 
             this.DeleteDashBoardTask(dashboardDisplay);
             _unitOfWork.Save();
 
-            return RedirectToAction(nameof(Feed), new { employeeId = employeeId, buttonClicked = buttonClicked, priority = IsPriorityButtonClicked(priorityButton) });
+            return RedirectToAction(nameof(Feed), new { employeeId = employeeId,
+                                                        buttonClicked = buttonClicked,
+                                                        priority = IsPriorityButtonClicked(priorityButton) });
         }
 
         public IActionResult AddTask(int employeeId ,int taskId , string buttonClicked, string priorityButton)
@@ -254,7 +257,10 @@ namespace ProjectManager.Web.Controllers
 
                 if (CreateEmployeeTask(employeeTask))
                 {
-                    ChangeTaskAndEmployeeTask(employeeTask);
+                    if (!SetUpForDashboardDisplay(employeeTask))
+                    {
+                        errorMessage = "Error during the creation of the DashboardDisplay!";
+                    }                  
                 }
                 else
                 {
@@ -267,7 +273,10 @@ namespace ProjectManager.Web.Controllers
 
                 if (UpdateEmployeeTask(employeeTask))
                 {
-                    ChangeTaskAndEmployeeTask(employeeTask);
+                    if (!SetUpForDashboardDisplay(employeeTask))
+                    {
+                        errorMessage = "Error during the creation of the DashboardDisplay!";
+                    }
                 }
                 else
                 {
@@ -442,30 +451,31 @@ namespace ProjectManager.Web.Controllers
             }
         }
 
-        private void UpdateTask(Task task)
+        private bool UpdateTask(Task task)
         {
             try
             {
                 _unitOfWork.Tasks.Update(task);
                 _unitOfWork.Save();
+                return true;
             }
             catch (ValidationException ex)
             {
-
+                return false;
             }
         }
 
-        public void CreateDashboardDisplay(DashboardDisplay dashboardDisplay)
+        public bool CreateDashboardDisplay(DashboardDisplay dashboardDisplay)
         {
             try
             {
                 _unitOfWork.DashboardDisplays.Add(dashboardDisplay);
                 _unitOfWork.Save();
+                return true;
             }
-            catch (ValidationException validationException)
+            catch (ValidationException ex)
             {
-                ValidationResult valResult = validationException.ValidationResult;
-                ModelState.AddModelError(valResult.MemberNames.First(), valResult.ErrorMessage);
+                return false;
             }
         }
 
@@ -483,14 +493,20 @@ namespace ProjectManager.Web.Controllers
             }
         }
 
-        private void ChangeTaskAndEmployeeTask(EmployeeTask employeeTask)
+        private bool SetUpForDashboardDisplay(EmployeeTask employeeTask)
         {
-            employeeTask.Task.Status = Core.Enum.TaskStatusType.Processing;
-            UpdateTask(employeeTask.Task);
-
             DashboardDisplay dashboardDisplay = GenerateDashboardTask(employeeTask);
-            dashboardDisplay = GenerateDashboardTask(employeeTask);
-            CreateDashboardDisplay(dashboardDisplay);
+       
+            if (CreateDashboardDisplay(dashboardDisplay))
+            {
+                employeeTask.Task.Status = Core.Enum.TaskStatusType.Processing;
+
+                return UpdateTask(employeeTask.Task);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         #endregion
@@ -500,11 +516,21 @@ namespace ProjectManager.Web.Controllers
         private DashboardDisplay GenerateDashboardTask(EmployeeTask employeeTask)
         {
             DashboardDisplay dashboardTask = new DashboardDisplay();
+            string endDate;
+
+            if (employeeTask.Task.Deadline == null)
+            {
+                endDate = " open end";
+            }
+            else
+            {
+                endDate = " End: " + ((DateTime)(employeeTask.Task.Deadline)).ToString("d");
+            }
 
             dashboardTask.Name = employeeTask.Task.TaskName;
             dashboardTask.Startdatum = DateTime.Now;
             dashboardTask.SpecificInformation = "Priority: " + Convert.ToString(employeeTask.Task.Priority);
-            dashboardTask.Duration = null;
+            dashboardTask.Duration = "Start: " + (dashboardTask.Startdatum).ToString("d") + endDate;
             dashboardTask.Employee = employeeTask.Employee;
             dashboardTask.EmployeeId = employeeTask.Employee.Id;
             dashboardTask.TaskId = employeeTask.Task.Id;

@@ -34,7 +34,7 @@ namespace ProjectManager.Persistence
 
         public EmployeeTask GetByEmployeeIdAndTaskId(int empId, int taskId)
         {
-            return _dbContext.EmployeeTask.SingleOrDefault(p => p.EmployeeId == empId && p.TaskId == taskId);
+            return _dbContext.EmployeeTask.Include(e=>e.Employee).Include(t => t.Task).SingleOrDefault(p => p.EmployeeId == empId && p.TaskId == taskId);
         }
 
         public EmployeeTask GetById(int empProId)

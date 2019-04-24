@@ -126,11 +126,36 @@ namespace ProjectManager.Persistence
             }
             else if (entity is EmployeeTask employeeTask)
             {
-                if (_dbContext.EmployeeTask.Any(d => (d.TaskId == employeeTask.TaskId) && (d.EmployeeId == employeeTask.EmployeeId) ))
+                if (_dbContext.EmployeeTask.Any(d => (d.TaskId == employeeTask.TaskId) &&
+                                                     (d.EmployeeId == employeeTask.EmployeeId) &&
+                                                     (d.Id != employeeTask.Id) ))
                 {
                     throw new ValidationException();
                 }
-                else if (employeeTask.Id < 1 || employeeTask == null)
+                else if (employeeTask == null)
+                {
+                    throw new ValidationException();
+                }
+            }
+            else if (entity is DashboardDisplay dashboardDisplay)
+            {
+                if (dashboardDisplay.TaskId == 0)
+                {
+                    if (_dbContext.DashboardDisplay.Any(d => ((d.EmployeeId == dashboardDisplay.EmployeeId &&
+                                                               d.AppointmentId == dashboardDisplay.AppointmentId))))
+                    {
+                        throw new ValidationException();
+                    }
+                }
+                else if (dashboardDisplay.AppointmentId == 0)
+                {
+                    if (_dbContext.DashboardDisplay.Any(d => (d.EmployeeId == dashboardDisplay.EmployeeId &&
+                                                              d.TaskId == dashboardDisplay.TaskId)))
+                    {
+                        throw new ValidationException();
+                    }
+                }                
+                else if (dashboardDisplay == null)
                 {
                     throw new ValidationException();
                 }
