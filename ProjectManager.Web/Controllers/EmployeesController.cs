@@ -151,11 +151,23 @@ namespace ProjectManager.Web.Controllers
         #endregion
 
         #region Dashboard
-        public IActionResult Feed(int employeeId)
+        public IActionResult Feed(int employeeId, string buttonClicked, bool priority, string error)
         {
             EmployeesFeedViewModel model = new EmployeesFeedViewModel();
 
-            model.LoadDashboardData(employeeId, _unitOfWork);
+            if (buttonClicked == null)
+            {
+                model.LoadDashboardData(employeeId, _unitOfWork);
+            }
+            else
+            {
+                model.Employee = _unitOfWork.Employees.GetById(employeeId);
+                model.ButtonClicked = buttonClicked;
+                GetFilteredList(model, priority);
+            }
+
+            if(error!=null)
+            HandleOccuredError(model, error);           
 
             if (model == null)
                 return NotFound();
@@ -168,7 +180,7 @@ namespace ProjectManager.Web.Controllers
         {
             if (model.ProjectFilter != null)
             {
-                model.LoadProjectDashboardData(model.Employee.Id, _unitOfWork, "All", false);
+                model.LoadProjectDashboardData(model.Employee.Id, _unitOfWork, "All", IsPriorityButtonClicked(model.PriorityFilter));
             }
             else if (model.Assigned != null)
             {
@@ -176,23 +188,15 @@ namespace ProjectManager.Web.Controllers
             }
             else if (model.GeneralFilter != null)
             {
-                model.LoadProjectDashboardData(model.Employee.Id, _unitOfWork, "General", false);
+                model.LoadProjectDashboardData(model.Employee.Id, _unitOfWork, "General", IsPriorityButtonClicked(model.PriorityFilter));
             }
             else if (model.PriorityFilter != null)
             {
-                GetFilteredList(model, true);
+                GetFilteredList(model, IsPriorityButtonClicked(model.PriorityFilter));
             }
-            //else if (model.AddTask != null)
-            //{
-            //    int taskId = Convert.ToInt32(model.AddTask);
-
-            //    CheckIfEmployeeTaskExists(model.Employee.Id, taskId);
-
-            //    GetFilteredList(model, false);
-            //}
             else if (model.Search != null)
             {
-                GetFilteredList(model, false);
+                GetFilteredList(model, IsPriorityButtonClicked(model.PriorityFilter));            
             }
             else
             {
@@ -202,30 +206,22 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
-        public IActionResult DeleteAppointment(int employeeId, int appointmentId)
+        public IActionResult DeleteAppointment(int employeeId, int appointmentId, string buttonClicked, string priorityButton)
         {
             DashboardDisplay dashboardDisplay = _unitOfWork.DashboardDisplays.GetByEmployeeIdAndAppointmentId(employeeId, appointmentId);
-            //EmployeesFeedViewModel model = new EmployeesFeedViewModel();
-            //model.ButtonClicked = buttonClicked;
 
             this.DeleteDashBoardTask(dashboardDisplay);
             _unitOfWork.Save();
-            return RedirectToAction(nameof(Feed), new { employeeId = employeeId });
+
+            return RedirectToAction(nameof(Feed), new { employeeId = employeeId, buttonClicked = buttonClicked, priority = IsPriorityButtonClicked(priorityButton) });
         }
 
-        public IActionResult AddTask(int employeeId ,int taskId ,  string buttonClicked)
+        public IActionResult AddTask(int employeeId ,int taskId , string buttonClicked, string priorityButton)
         {
-            //EmployeesFeedViewModel model = new EmployeesFeedViewModel();
-            //model.ButtonClicked = buttonClicked;
-            //model.Employee = new Employee();
-            //model.Employee.Id = employeeId;
-
-            CheckIfEmployeeTaskExists(employeeId, taskId);
-
-            //GetFilteredList(model, false);
-
-            //return View(model);
-            return RedirectToAction(nameof(Feed), new { employeeId = employeeId });
+            return RedirectToAction(nameof(Feed), new { employeeId = employeeId,
+                                                        buttonClicked = buttonClicked,
+                                                        priority = IsPriorityButtonClicked(priorityButton),
+                                                        error = CheckIfEmployeeTaskExists(employeeId, taskId)});
         }
 
         #region Feed : Methods
@@ -246,28 +242,23 @@ namespace ProjectManager.Web.Controllers
             }
         }
 
-        public void CheckIfEmployeeTaskExists(int employeeId, int taskId)
+        public string CheckIfEmployeeTaskExists(int employeeId, int taskId)
         {
-            EmployeeTask employeeTask = _unitOfWork.EmployeeTasks.GetByEmployeeIdAndTaskId(employeeId, taskId);
+            string errorMessage=null;
+            EmployeeTask employeeTask = new EmployeeTask();
+            employeeTask = _unitOfWork.EmployeeTasks.GetByEmployeeIdAndTaskId(employeeId, taskId);
 
             if (employeeTask == null)
             {
-                employeeTask = new EmployeeTask();
-            }
-
-            if (CheckIfEmployeeTaskIsAlreadyExisting(employeeTask))
-            {
-                employeeTask = GenerateEmployeetask(employeeId, taskId);
-                employeeTask.Picked = true;
+                employeeTask = GenerateEmployeetask(employeeId, taskId);               
 
                 if (CreateEmployeeTask(employeeTask))
                 {
-                    employeeTask.Task.Status = Core.Enum.TaskStatusType.Processing;
-                    UpdateTask(employeeTask.Task);
-
-                    DashboardDisplay dashboardDisplay = GenerateDashboardTask(employeeTask);
-                    dashboardDisplay = GenerateDashboardTask(employeeTask);
-                    CreateDashboardDisplay(dashboardDisplay);
+                    ChangeTaskAndEmployeeTask(employeeTask);
+                }
+                else
+                {
+                    errorMessage = "Error during the creation of the EmployeeTask!";
                 }
             }
             else
@@ -276,32 +267,27 @@ namespace ProjectManager.Web.Controllers
 
                 if (UpdateEmployeeTask(employeeTask))
                 {
-                    employeeTask.Task.Status = Core.Enum.TaskStatusType.Processing;
-                    UpdateTask(employeeTask.Task);
-
-                    DashboardDisplay dashboardDisplay = GenerateDashboardTask(employeeTask);
-                    dashboardDisplay = GenerateDashboardTask(employeeTask);
-                    CreateDashboardDisplay(dashboardDisplay);
-
+                    ChangeTaskAndEmployeeTask(employeeTask);
                 }
-            }
-        }
-
-        private bool CheckIfEmployeeTaskIsAlreadyExisting(EmployeeTask employeeTask)
-        {
-            List<EmployeeTask> employeeTaskList = _unitOfWork.EmployeeTasks.GetAllByEmployeeId(employeeTask.EmployeeId);
-
-            foreach (var eTL in employeeTaskList)
-            {
-                if (employeeTask.EmployeeId == eTL.EmployeeId && employeeTask.TaskId == eTL.TaskId)
+                else
                 {
-                    return false;
+                    errorMessage = "Error during the update of the EmployeeTask!";
                 }
             }
 
-            return true;
+            return errorMessage;
+        }       
+
+        private bool IsPriorityButtonClicked(string priority)
+        {
+            return priority != null;
         }
 
+        private void HandleOccuredError(EmployeesFeedViewModel model, string error)
+        {
+            model.Error = true;
+            model.Errormessage = error;
+        }
         #endregion
 
         #endregion
@@ -390,7 +376,6 @@ namespace ProjectManager.Web.Controllers
                 if (model.FinishConfirmed == true)
                 {
                     DashboardDisplay dashboardDisplay = _unitOfWork.DashboardDisplays.GetByEmployeeIdAndTaskId(employeeId, taskId);
-                    dashboardDisplay.Finished = true;
                     DeleteDashBoardTask(dashboardDisplay);
 
                     model.Task.Status = Core.Enum.TaskStatusType.Completed;
@@ -420,10 +405,23 @@ namespace ProjectManager.Web.Controllers
                 _unitOfWork.Save();
                 return true;
             }
-            catch (ValidationException validationException)
+            catch (ValidationException ex)
+            {                
+                return false;
+            }
+        }
+
+        private bool CreateEmployeeTask(EmployeeTask employeeTask)
+        {
+            try
             {
-                ValidationResult valResult = validationException.ValidationResult;
-                ModelState.AddModelError(valResult.MemberNames.First(), valResult.ErrorMessage);
+                _unitOfWork.EmployeeTasks.Add(employeeTask);
+                _unitOfWork.Save();
+                return true;
+
+            }
+            catch (ValidationException ex)
+            {
                 return false;
             }
         }
@@ -444,23 +442,6 @@ namespace ProjectManager.Web.Controllers
             }
         }
 
-        private bool CreateEmployeeTask(EmployeeTask employeeTask)
-        {
-            try
-            {
-                _unitOfWork.EmployeeTasks.Add(employeeTask);
-                _unitOfWork.Save();
-                return true;
-
-            }
-            catch (ValidationException validationException)
-            {
-                ValidationResult valResult = validationException.ValidationResult;
-                ModelState.AddModelError(valResult.MemberNames.First(), valResult.ErrorMessage);
-                return false;
-            }
-        }
-
         private void UpdateTask(Task task)
         {
             try
@@ -468,10 +449,9 @@ namespace ProjectManager.Web.Controllers
                 _unitOfWork.Tasks.Update(task);
                 _unitOfWork.Save();
             }
-            catch (ValidationException validationException)
+            catch (ValidationException ex)
             {
-                ValidationResult valResult = validationException.ValidationResult;
-                ModelState.AddModelError(valResult.MemberNames.First(), valResult.ErrorMessage);
+
             }
         }
 
@@ -503,6 +483,16 @@ namespace ProjectManager.Web.Controllers
             }
         }
 
+        private void ChangeTaskAndEmployeeTask(EmployeeTask employeeTask)
+        {
+            employeeTask.Task.Status = Core.Enum.TaskStatusType.Processing;
+            UpdateTask(employeeTask.Task);
+
+            DashboardDisplay dashboardDisplay = GenerateDashboardTask(employeeTask);
+            dashboardDisplay = GenerateDashboardTask(employeeTask);
+            CreateDashboardDisplay(dashboardDisplay);
+        }
+
         #endregion
 
         #region Generate
@@ -514,7 +504,7 @@ namespace ProjectManager.Web.Controllers
             dashboardTask.Name = employeeTask.Task.TaskName;
             dashboardTask.Startdatum = DateTime.Now;
             dashboardTask.SpecificInformation = "Priority: " + Convert.ToString(employeeTask.Task.Priority);
-            dashboardTask.Finished = false;
+            dashboardTask.Duration = null;
             dashboardTask.Employee = employeeTask.Employee;
             dashboardTask.EmployeeId = employeeTask.Employee.Id;
             dashboardTask.TaskId = employeeTask.Task.Id;
@@ -529,13 +519,14 @@ namespace ProjectManager.Web.Controllers
             employeeTask.Task = _unitOfWork.Tasks.GetById(taskId);
             employeeTask.TaskId = taskId;
             employeeTask.EmployeeId = employeeId;
+            employeeTask.Picked = true;
 
             return employeeTask;
         }
 
         #endregion
 
-                //public bool IsNullOrEmpty(string check)
+        //public bool IsNullOrEmpty(string check)
         //{
         //    return check != null || check.Trim() != "";
         //}

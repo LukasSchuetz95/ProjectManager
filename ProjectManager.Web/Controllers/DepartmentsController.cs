@@ -50,16 +50,15 @@ namespace ProjectManager.Web.Controllers
             {
                 try
                 {
+                    model.Save = true;
                     _unitOfWork.Departments.Add(model.Department);
                     _unitOfWork.Departments.Add(model.Department);
                     _unitOfWork.Save();
                     model.Success = true;
-                    //return RedirectToAction("Create", "Departments");
                 }
-                catch (ValidationException validationException)
-                {
-                    ValidationResult valResult = validationException.ValidationResult;
-                    ModelState.AddModelError(nameof(model) + "." + valResult.MemberNames.First(), valResult.ErrorMessage);
+                catch (ValidationException ex)
+                {                   
+                    model.Success = false;
                 }
             }
 

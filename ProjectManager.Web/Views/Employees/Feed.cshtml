@@ -26,6 +26,14 @@
                                 <p>Your personal overview</p>
                             </div>
                         </div>
+                        @if (Model.Error == true)
+                        {
+                            <div class="panel-danger">
+                                <div class="panel-heading">
+                                    <p>@Model.Errormessage</p>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -65,7 +73,10 @@
                         <td>@fT.SpecificInformation</td>
                         <td>@fT.Startdatum</td>
                         <td title="Click here to finish the appointment!">
-                            <a class="btn btn-primary" asp-controller="Employees" asp-action="DeleteAppointment" asp-route-employeeId="@Model.Employee.Id" asp-route-appointmentId="@fT.AppointmentId">Finish</a>
+                            <a class="btn btn-primary" asp-controller="Employees" asp-action="DeleteAppointment" asp-route-employeeId="@Model.Employee.Id" 
+                                                                                                                 asp-route-appointmentId="@fT.AppointmentId" 
+                                                                                                                 asp-route-buttonClicked="@Model.ButtonClicked"
+                                                                                                                 asp-route-priorityButton="@Model.PriorityFilter">Finish</a>
                         </td>
                     </tr>
                         }
@@ -194,7 +205,10 @@
                                         </td>
                                         <td>@pT.Priority</td>
                                         <td>
-                                            <a title="Click here, to add this task to your dashboard" asp-controller="Employees" asp-action="AddTask" asp-route-employeeId="@Model.Employee.Id" asp-route-taskId="@pT.Id" asp-route-buttonClicked="@Model.ButtonClicked"><i class="fa fa-thumbtack" aria-hidden="true"></i></a>
+                                            <a title="Click here, to add this task to your dashboard" asp-controller="Employees" asp-action="AddTask" asp-route-employeeId="@Model.Employee.Id" asp-route-taskId="@pT.Id" 
+                                                                                                                                                      asp-route-buttonClicked="@Model.ButtonClicked" 
+                                                                                                                                                      asp-route-priorityButton="@Model.PriorityFilter">
+                                            <i class="fa fa-thumbtack" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 }

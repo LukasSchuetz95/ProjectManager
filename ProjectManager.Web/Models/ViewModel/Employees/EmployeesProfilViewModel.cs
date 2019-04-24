@@ -10,7 +10,7 @@ namespace ProjectManager.Web.Models.ViewModel
 {
     public class EmployeesProfilViewModel
     {
-        #region
+        #region fields
 
         private List<Qualification> qualificationList = new List<Qualification>();
 

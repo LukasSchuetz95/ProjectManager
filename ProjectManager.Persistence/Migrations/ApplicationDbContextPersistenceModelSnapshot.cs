@@ -74,9 +74,9 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.Property<int>("AppointmentId");
 
-                    b.Property<int>("EmployeeId");
+                    b.Property<string>("Duration");
 
-                    b.Property<bool>("Finished");
+                    b.Property<int>("EmployeeId");
 
                     b.Property<string>("Name")
                         .IsRequired();

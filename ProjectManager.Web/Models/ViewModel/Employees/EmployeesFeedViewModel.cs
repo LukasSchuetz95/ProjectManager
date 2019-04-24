@@ -33,12 +33,14 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
         public string ProjectFilter { get; set; }
         public string GeneralFilter { get; set; }
         public string PriorityFilter { get; set; }
-        //public string AddTask { get; set; }
 
         public string ButtonClicked { get; set; }
         public string Search { get; set; }
         public string SearchInput { get; set; }
 
+
+        public bool Error { get; set; }
+        public string Errormessage { get; set; }
         #endregion
 
         #region Controller-Methods

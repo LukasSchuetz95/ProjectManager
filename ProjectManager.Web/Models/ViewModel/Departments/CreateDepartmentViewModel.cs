@@ -12,6 +12,7 @@ namespace ProjectManager.Web.Models.ViewModel.Departments
         public Department Department { get; set; }
 
         public bool Success { get; set; }
+        public bool Save { get; set; }
 
     }
 }

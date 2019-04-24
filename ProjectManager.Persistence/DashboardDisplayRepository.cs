@@ -14,6 +14,8 @@ namespace ProjectManager.Persistence
 
         private readonly ApplicationDbContextPersistence _dbContext;
 
+        #endregion
+
         public DashboardDisplayRepository(ApplicationDbContextPersistence dbContext)
         {
             _dbContext = dbContext;
@@ -36,7 +38,7 @@ namespace ProjectManager.Persistence
 
         public List<DashboardDisplay> GetByEmployeeId(int employeeId)
         {
-            return _dbContext.DashboardDisplay.Where(p => p.Employee.Id == employeeId && p.Finished == false).OrderBy(p=>p.Startdatum).ThenBy(p=>p.Name).ToList();
+            return _dbContext.DashboardDisplay.Where(p => p.Employee.Id == employeeId).OrderBy(p=>p.Startdatum).ThenBy(p=>p.Name).ToList();
         }
 
         public DashboardDisplay GetByEmployeeIdAndTaskId(int employeeId, int taskId)
@@ -49,6 +51,6 @@ namespace ProjectManager.Persistence
             return _dbContext.DashboardDisplay.Where(P => P.Employee.Id == employeeId && P.AppointmentId == appointmentId).FirstOrDefault();
         }
 
-        #endregion
+        
     }
 }

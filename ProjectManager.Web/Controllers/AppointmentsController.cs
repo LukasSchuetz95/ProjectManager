@@ -69,7 +69,7 @@ namespace ProjectManager.Web.Controllers
             dashboardDisplay.Employee = _unitOfWork.Employees.GetById(employeeid);
             dashboardDisplay.EmployeeId = employeeid;
             dashboardDisplay.AppointmentId = appointment.Id;
-            dashboardDisplay.Finished = false;
+            dashboardDisplay.Duration = null;
             dashboardDisplay.Name = appointment.AppoName;
             dashboardDisplay.SpecificInformation = Convert.ToString(appointment.AppoType);
             dashboardDisplay.Startdatum = DateTime.Now;

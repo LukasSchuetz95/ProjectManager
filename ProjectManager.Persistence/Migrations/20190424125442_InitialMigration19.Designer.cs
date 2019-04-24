@@ -10,8 +10,8 @@ using ProjectManager.Persistence;
 namespace ProjectManager.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContextPersistence))]
-    [Migration("20190420220639_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20190424125442_InitialMigration19")]
+    partial class InitialMigration19
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,9 +76,9 @@ namespace ProjectManager.Persistence.Migrations
 
                     b.Property<int>("AppointmentId");
 
-                    b.Property<int>("EmployeeId");
+                    b.Property<string>("Duration");
 
-                    b.Property<bool>("Finished");
+                    b.Property<int>("EmployeeId");
 
                     b.Property<string>("Name")
                         .IsRequired();

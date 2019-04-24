@@ -117,6 +117,25 @@ namespace ProjectManager.Persistence
                     throw new ValidationException($"There is already a Qualification with the Name: {1}" + qualification.QualificationName, null, nameof(Qualification.QualificationName));
                 }
             }
+            else if (entity is Department department)
+            {
+                if (_dbContext.Department.Any(d=> d.DeptName.ToUpper() == department.DeptName.ToUpper()))
+                {
+                    throw new ValidationException();
+                }
+            }
+            else if (entity is EmployeeTask employeeTask)
+            {
+                if (_dbContext.EmployeeTask.Any(d => (d.TaskId == employeeTask.TaskId) && (d.EmployeeId == employeeTask.EmployeeId) ))
+                {
+                    throw new ValidationException();
+                }
+                else if (employeeTask.Id < 1 || employeeTask == null)
+                {
+                    throw new ValidationException();
+                }
+            }
+
         }
 
     }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectManager.Persistence.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialMigration19 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -152,7 +152,7 @@ namespace ProjectManager.Persistence.Migrations
                     Name = table.Column<string>(nullable: false),
                     Startdatum = table.Column<DateTime>(nullable: false),
                     EmployeeId = table.Column<int>(nullable: false),
-                    Finished = table.Column<bool>(nullable: false),
+                    Duration = table.Column<string>(nullable: true),
                     SpecificInformation = table.Column<string>(nullable: true),
                     TaskId = table.Column<int>(nullable: false),
                     AppointmentId = table.Column<int>(nullable: false)
