@@ -97,7 +97,7 @@ namespace ProjectManager.Web.Controllers
                 _unitOfWork.DashboardDisplays.Add(dashboardDisplay);
                 _unitOfWork.Save();
                 return true;
-            }
+             }
             catch (ValidationException ex)
             {
                 return false;

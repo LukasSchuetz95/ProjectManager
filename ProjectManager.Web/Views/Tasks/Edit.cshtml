@@ -29,7 +29,7 @@
                             <select asp-for="Tasks.Status" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.TaskStatusType>()" class="form-control"></select>
                             <span asp-validation-for="Tasks.Status" class="text-danger"></span>
                         </div>
-                        @*Qualifikationen hinzufügen über eigene View*@
+
                         <div class="form-group">
                             <label asp-for="Tasks.Priority" class="control-label"></label>
                             <select asp-for="Tasks.Priority" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.PriorityType>()" class="form-control"></select>
@@ -40,13 +40,24 @@
                             <select asp-for="EmployeeTask.EmployeeId" asp-items="@Model.Employees" class="form-control"><option></option></select>
                             <span asp-validation-for="EmployeeTask.EmployeeId" class="text-danger"></span>
                         </div>
-                        @*<div class="form-group">
-                            <label class="control-label">Mitarbeiter</label>
-                            <select asp-for="EmployeeTask.Employee" asp-items="@Model.Employees" class="form-control"></select>
-                            <span asp-validation-for="EmployeeTask.Employee" class="text-danger"></span>*@
-                        @*</div>*@
 
-                        @*<input asp-for="Em.Id" type="hidden" />*@
+                        <div class="form-group">
+                            <label asp-for="Tasks.Created" class="control-label"></label>
+                            <input asp-for="Tasks.Created" type="date" class="form-control" />
+                            <span asp-validation-for="Tasks.Created" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Tasks.Enddate" class="control-label"></label>
+                            <input asp-for="Tasks.Enddate" type="date" class="form-control" />
+                            <span asp-validation-for="Tasks.Enddate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Tasks.Deadline" class="control-label"></label>
+                            <input asp-for="Tasks.Deadline" type="date" class="form-control" />
+                            <span asp-validation-for="Tasks.Deadline" class="text-danger"></span>
+                        </div>
+
+
                         <input type="hidden" asp-for="Tasks.Project" />
                         <input type="hidden" asp-for="Tasks.ProjectId" />
                         <input type="hidden" asp-for="Tasks.TaskName" />
@@ -61,13 +72,12 @@
                         <input type="hidden" asp-for="Tasks.Timestamp" />
                         <input type="hidden" asp-for="Tasks" />
 
-
                         <div class="form-group">
                             <input type="submit" value="Save" class="btn btn-success" />
                         </div>
                     </form>
 
-                    <a asp-area="" asp-controller="Tasks" asp-action="List" class="btn btn-primary">Zurück</a>
+                    <a asp-area="" asp-controller="Tasks" asp-action="List" class="btn btn-primary">Back</a>
                 </div>
             </div>
         </div>
