@@ -14,7 +14,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2>Offene Tasks</h2>
+                    <h2>Open Tasks</h2>
                 </div>
 
                 <div class="panel-body">
@@ -75,11 +75,3 @@
 </div>
 
 
-@foreach (var task in Model.UndefinedTasks.OrderByDescending(t => t.Deadline))
-{
-    <tr>
-        <td>@task.TaskName</td>
-
-        <td title="Detail"><a asp-controller="Tasks" asp-action="Details" asp-route-taskId="@task.Id"><i class="fas fa-info"></i></a></td>
-    </tr>
-}
