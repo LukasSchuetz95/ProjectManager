@@ -21,6 +21,23 @@
                 <div class="panel-heading">
                     <h2>Edit profil of @Model.Employee.Firstname</h2>
                 </div>
+                @if (Model.Success == true)
+                {
+                    <div class="panel-success">
+                        <div class="panel-heading">
+                            <h4>Changes were successful!</h4>
+                        </div>
+                    </div>
+                }
+
+                @if (Model.Error == true)
+                {
+                    <div class="panel-danger">
+                        <div class="panel-heading">
+                            <h4>There has been an error!</h4>
+                        </div>
+                    </div>
+                }
                 <div class="panel-body">
                     <div class="container-fluid">
                         <form asp-action="EditProfil">
@@ -64,10 +81,6 @@
 
                             <div class="form-group">
                                 <input type="submit" value="Save" class="btn btn-primary" style="width:200px" />
-                                @if (Model.Success == true)
-                                {
-                                    <span>Changes were successful!</span>
-                                }
                             </div>
                             <div>
                                 <a asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@Model.Employee.Id" class="btn btn-default" style="width:200px">Back to profil</a>

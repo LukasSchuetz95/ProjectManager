@@ -160,7 +160,6 @@ namespace ProjectManager.Persistence
                     throw new ValidationException();
                 }
             }
-
         }
 
     }

@@ -155,6 +155,7 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
         {
             return this.PriorityFilter != null;
         }
+
         #endregion
     }
 }

@@ -9,11 +9,22 @@ namespace ProjectManager.Web.Models
 {
     public class EmployeesEditProfilViewModel
     {
+        #region properties
+
         public Employee Employee { get; set; }
         public bool Success { get; set; }
+        public bool Error { get; set; }
+
+        #endregion
+
+        #region controller-methods
+
         public void LoadEditProfilData(IUnitOfWork unitOfWork, int employeeId)
         {
             Employee = unitOfWork.Employees.GetById(employeeId);
-        }        
+        }
+
+        #endregion
+              
     }
 }

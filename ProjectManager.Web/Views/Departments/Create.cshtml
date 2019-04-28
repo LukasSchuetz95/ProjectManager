@@ -22,41 +22,47 @@
                     <div class="panel-heading">
                         <h2>Create department</h2>
                     </div>
+                    @if (Model.Success == true)
+                    {
+                        <div class="panel-success">
+                            <div class="panel-heading">
+                                <h4>Saveing was successful!</h4>
+                            </div>
+                        </div>
+                    }
+
+                    @if (Model.Error == true)
+                    {
+                        <div class="panel-danger">
+                            <div class="panel-heading">
+                                <h4>The choosen name is already existing!</h4>
+                            </div>
+                        </div>
+                    }
                     <div class="panel-body">
                         <div class="row">
-                            
-                                <form asp-controller="Departments" asp-action="Create">
-                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                    <div class="form-group">
-                                        <label asp-for="Department.DeptName" class="control-label"></label>
-                                        <input required="true" asp-for="Department.DeptName" class="form-control" />
-                                        <span asp-validation-for="Department.DeptName" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="Department.DeptLocation" class="control-label"></label>
-                                        <input required="true" asp-for="Department.DeptLocation" class="form-control" />
-                                        <span asp-validation-for="Department.DeptLocation" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="submit" value="Create Department" class="btn btn-primary" style="width:200px" />
-                                        @if (Model.Save == true)
-                                        {
-                                            @if (Model.Success == true)
-                                            {
-                                                <span>Saveing was successful!</span>
-                                            }
-                                            else
-                                            {
-                                                <span>The choosen name is already existing!</span>
-                                            }
-                                        }
-                                    </div>
-                                    <div>
-                                        <a asp-controller="Departments" asp-action="List" class="btn btn-success" style="width:200px">Back to profil</a>
-                                    </div>
 
-                                </form>
-                            
+                            <form asp-controller="Departments" asp-action="Create">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="Department.DeptName" class="control-label"></label>
+                                    <input required="true" asp-for="Department.DeptName" class="form-control" />
+                                    <span asp-validation-for="Department.DeptName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Department.DeptLocation" class="control-label"></label>
+                                    <input required="true" asp-for="Department.DeptLocation" class="form-control" />
+                                    <span asp-validation-for="Department.DeptLocation" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Create Department" class="btn btn-primary" style="width:232px" />
+
+                                    <a asp-controller="Departments" asp-action="@Model.RouteString" asp-route-departmentId="@Model.RouteId" class="btn btn-success" style="width:232px">Back</a>
+                                </div>
+                                <input type="hidden" value="@Model.RouteString" asp-for="RouteString" />
+                                <input type="hidden" value="@Model.RouteId" asp-for="RouteId" />
+                            </form>
+
                         </div>
                     </div>
                 </div>

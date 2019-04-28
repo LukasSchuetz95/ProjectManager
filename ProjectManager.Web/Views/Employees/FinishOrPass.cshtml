@@ -17,18 +17,35 @@
                     <div class="panel-heading">
                         <h2>Finish or pass?</h2>
                     </div>
+                    @if (Model.FinishClicked == true)
+                    {
+                        <div class="panel-heading">
+                            <h4>Click again to confirm finishing this task!</h4>
+                        </div>
+                    }
+                    else if (Model.PassClicked == true)
+                    {
+                        <div class="panel-heading">
+                            <h4>Click again to confirm passing this task!</h4>
+                        </div>
+                    }
                     <div class="panel-body">
                         <form asp-controller="Employees" asp-action="FinishOrPass">
 
                             <div class="form-group">
                                 <div class="form-group">
                                     <label class="control-label">Taskname: </label>
-                                    <label asp-for="Task.TaskName" style="width:400px"></label>
+                                    <label>@Model.Task.TaskName</label>
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="Task.Priority" class="control-label"></label>
                                     <select asp-for="Task.Priority" asp-items="Html.GetEnumSelectList<ProjectManager.Core.Enum.PriorityType>()" class="form-control" style="width:400px"></select>
                                     <span asp-validation-for="Task.Priority" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Task.ValuedTime" class="control-label"></label>
+                                    <input asp-for="Task.ValuedTime" class="form-control" style="width:400px" />
+                                    <span asp-validation-for="Task.ValuedTime" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="Task.Information" class="control-label"></label>
@@ -49,31 +66,41 @@
                                         </dd>
                                     </dl>
                                 </div>
+                                <div class="form-group">
+                                    <span>Do you want to fix this task?</span>
+                                    <input title="If you fix this task, it appears on the dashboard of the choosen employee"
+                                           name="Fixedtask" asp-for="FixedTask" type="checkbox" value="true" />
+                                </div>
                             }
                             <div class="form-group">
-                                <input asp-for="Pass" type="submit" value="Pass" class="btn btn-primary" style="width:320px" />
-                                <span asp-validation-for="Pass" class="text-danger"></span>
+                                @if (Model.FinishClicked == true)
+                                {
+                                    <input asp-for="Abbruch" type="submit" value="Abort" class="btn btn-danger" style="width:320px" />
+                                    <span asp-validation-for="Abbruch" class="text-danger"></span>
+                                }
+                                else
+                                {
+                                    <input asp-for="Pass" type="submit" value="Pass" class="btn btn-primary" style="width:320px" />
+                                    <span asp-validation-for="Pass" class="text-danger"></span>
+                                }
 
                                 <input asp-for="Finish" type="submit" value="Finish" class="btn btn-primary" style="visibility:@Model.FinishButton();
                                                                                                     display:@Model.FinishButtonDisplay();
                                                                                                     width:320px" />
                                 <span asp-validation-for="Finish" class="text-danger"></span>
 
-                                <input asp-for="Abbruch" type="submit" value="Abort" class="btn btn-primary" style="visibility:@Model.AbortButton();  width:320px" />
+                                <input asp-for="Abbruch" type="submit" value="Abort" class="btn btn-danger" style="visibility:@Model.AbortButton();  width:320px" />
                                 <span asp-validation-for="Abbruch" class="text-danger"></span>
                             </div>
-                            <div>
-                                @if (Model.FinishClicked == true)
-                                {
-                                    <h4>Click again to confirm the delete!</h4>
-                                }
-                            </div>
                             <div class="form-group">
-                                <a asp-controller="Employees" asp-action="Feed" asp-route-employeeId="@Model.Employee.Id" class="btn btn-success">Back to Dashboard</a>
-                            </div>                            
+                                <a asp-controller="Employees" asp-action="Feed" asp-route-employeeId="@Model.Employee.Id"asp-route-buttonClicked="@Model.ButtonClicked" 
+                                                                                                                         asp-route-priority="@Model.Priority" class="btn btn-success">Back to Dashboard</a>
+                            </div>
 
                             <input type="hidden" value="@Model.Employee.Id" asp-for="Employee.Id" />
                             <input type="hidden" value="@Model.Task.Id" asp-for="Task.Id" />
+                            <input type="hidden" value="@Model.ButtonClicked" asp-for="ButtonClicked" />
+                            <input type="hidden" value="@Model.Priority" asp-for="Priority" />
                             @if (Model.PassClicked == true)
                             {
                                 <input type="hidden" value="true" asp-for="@Model.PassConfirmed" />
@@ -90,8 +117,6 @@
                             {
                                 <input type="hidden" value="false" asp-for="@Model.FinishConfirmed" />
                             }
-
-
                         </form>
                     </div>
                 </div>

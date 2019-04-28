@@ -24,8 +24,8 @@
                         <h2>Departments</h2>
                     </div>
                     <div class="panel-body">
-                        <div>
-                            <a asp-controller="Departments" asp-action="Create" class="btn btn-primary">Create a new Department</a>
+                        <div class="form-group">
+                            <a asp-controller="Departments" asp-action="Create" asp-route-routeString="List" class="btn btn-primary">Create a new Department</a>
                         </div>
 
                         <table class="table table-hover">
@@ -33,6 +33,8 @@
                                 <tr>
                                     <th>Departmentname</th>
                                     <th>Departmentlocation</th>
+                                    <th>Amount of employees</th>
+                                    <th></th>
                                 </tr>
                             </thead>
 
@@ -40,7 +42,9 @@
                             {
                             <tr title="Click here to see the employees of this department" onclick="location.href = '@(Url.Action("Details", "Departments", new { departmentId = department.Id}))'">
                                 <td>@department.DeptName</td>
-                                <td>@department.DeptLocation</td>
+                                <td>@department.DeptLocation</td> 
+                                <td>@Model.CountEmployeesOfThisDepartment(department, Model.UnitOfWork)</td>
+                                <td><a title="Click here to delete this department!"  asp-controller="Departments" asp-action="Delete" asp-route-departmentId="@department.Id"><i class="fa fa-trash-alt" aria-hidden="true"></i></a></td>
                             </tr>
                             }
                         </table>

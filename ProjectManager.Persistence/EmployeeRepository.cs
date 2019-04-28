@@ -94,7 +94,7 @@ namespace ProjectManager.Persistence
         public Employee GetById(int employeeId)
         {
 
-            return _dbContext.Employee.Where(p => p.Id == employeeId).FirstOrDefault();
+            return _dbContext.Employee.Include(p=>p.Department).Where(p => p.Id == employeeId).FirstOrDefault();
         }
 
         public List<Employee> GetAll()
@@ -116,7 +116,6 @@ namespace ProjectManager.Persistence
             await _dbContext.SaveChangesAsync();
         }
 
-        //Was wenn eine der Listen Null ist? Prüfungen einplanen
         public List<Employee> GetEmployeesByProjectAndQualifications(int taskId, int employeeId, IUnitOfWork uow)
         {
             List<Employee> employees = new List<Employee>();
@@ -149,7 +148,6 @@ namespace ProjectManager.Persistence
             return employees;
         }
 
-        //Methode testen
         private bool CheckIfEmployeeIsAlreadySaved(EmployeeProject employeeProject, List<Employee> employees)
         {
             if (employees.Count == 0)

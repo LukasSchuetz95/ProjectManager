@@ -10,5 +10,7 @@ namespace ProjectManager.Core.Contracts
         List<Department> GetAll();
         void Add(Department model);
         Department GetById(int departmentId);
+        void Delete(Department department);
+        List<Department> GetAllWithoutThisDepartmentId(int departmentId);
     }
 }

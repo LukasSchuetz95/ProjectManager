@@ -53,7 +53,13 @@
                     <ul class="nav navbar-nav">
                         <li><a asp-area="" asp-controller="Tasks" asp-action="List">Tasks</a></li>
                         <li><a asp-area="" asp-controller="Employees" asp-action="List">Employee</a></li>
-                        <li><a asp-area="" asp-controller="Departments" asp-action="List">Departments</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departments<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-area="" asp-controller="Departments" asp-action="List">List of departments</a></li>
+                                <li><a asp-area="" asp-controller="Departments" asp-action="Create">Create department</a></li>
+                            </ul>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Qualifications<span class="caret"></span></a>
                             <ul class="dropdown-menu">

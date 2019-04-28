@@ -26,9 +26,19 @@ namespace ProjectManager.Persistence
             _dbContext.Department.Add(model);
         }
 
+        public void Delete(Department model)
+        {
+            _dbContext.Department.Remove(model);
+        }
+
         public Department GetById(int departmentId)
         {
             return _dbContext.Department.Where(d => d.Id == departmentId).FirstOrDefault();
+        }
+
+        public List<Department> GetAllWithoutThisDepartmentId(int departmentId)
+        {
+            return _dbContext.Department.Where(p=>p.Id != departmentId).OrderBy(p => p.DeptName).ToList();
         }
     }
 }
