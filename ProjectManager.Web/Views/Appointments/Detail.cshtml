@@ -10,7 +10,7 @@
     <div class="col-lg-5">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h2>Detail</h2>
+                <h2>Appointment Detail</h2>
             </div>
 
             <form>
@@ -26,11 +26,11 @@
                     </p>
 
                     <p>
-                        <label>Von:</label>
+                        <label>From:</label>
                         <label>@Model.Appointment.Startdate</label>
                     </p>
                     <p>
-                        <label>Bis:</label>
+                        <label>To:</label>
                         <label>@Model.Appointment.Enddate</label>
                     </p>
                     <p>
@@ -40,7 +40,7 @@
                 </fieldset>
             </form>
 
-            <a asp-controller="EmployeeController" asp-action="Feed" class="btn btn-primary"> Back to Dashboard</a>
+            <a asp-controller="Employees" asp-action="Feed"  asp-route-employeeId="@Model.Appointment.EmployeeId" class="btn btn-primary"> Back to Dashboard</a>
         </div>
     </div>
 </div>

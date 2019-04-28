@@ -16,7 +16,7 @@
         <div class="col-lg-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2>Details</h2>
+                    <h2>Task Details</h2>
                 </div>
                 <div class="panel-body">
                     <div class="container-fluid">
@@ -31,26 +31,26 @@
                                     <td><dd>@Model.Task.TaskName</dd></td>
                                 </tr>
                                 <tr>
-                                    <td><dt>Projekt:</dt></td>
+                                    <td><dt>Project:</dt></td>
                                     <td><dd>@Model.Task.Project.ProjectName</dd></td>
                                 </tr>
                                 <tr>
-                                    <td><dt>Verantwortlicher</dt></td>
+                                    <td><dt>Emplyoee</dt></td>
                                     @if (Model.EmployeeTask != null)
                                     {
                                         <td><dd>@Model.EmployeeTask.Employee.ToString()</dd></td>
                                     }
                                     else
                                     {
-                                        <td><dt>Kein Mitarbeiter</dt></td>
+                                        <td><dt>No Employee</dt></td>
                                     }
                                 </tr>
                                 <tr>
-                                    <td><dt>Von:</dt></td>
+                                    <td><dt>From:</dt></td>
                                     <td><dd>@Model.Task.Created</dd></td>
                                 </tr>
                                 <tr>
-                                    <td><dt>Bis:</dt></td>
+                                    <td><dt>To:</dt></td>
                                     <td><dd>@Model.Task.Enddate</dd></td>
                                 </tr>
                                 <tr>
@@ -71,10 +71,10 @@
                         </table>
                         <div>
                           
-                                    <a asp-area="" asp-controller="Tasks" asp-action="Edit" asp-route-taskId="@Model.Task.Id" asp-route-projectId="@Model.Task.ProjectId" class="btn btn-primary">Bearbeiten</a>
+                                    <a asp-area="" asp-controller="Tasks" asp-action="Edit" asp-route-taskId="@Model.Task.Id" asp-route-projectId="@Model.Task.ProjectId" class="btn btn-primary">Edit</a>
                                     <a asp-area="" asp-controller="Tasks" asp-action="List"  class="btn btn-primary">Task List</a>
-                                    <a asp-area="" asp-controller="Projects" asp-action="Details" asp-route-projectId="@Model.Task.ProjectId" class="btn btn-primary">Zum Projekt</a>
-                                    <a asp-area="" asp-controller="Tasks" asp-action="Delete" asp-route-taskId="@Model.Task.Id" class="btn btn-primary">Task Löschen</a>
+                                    <a asp-area="" asp-controller="Projects" asp-action="Details" asp-route-projectId="@Model.Task.ProjectId" class="btn btn-primary"> Project</a>
+                                    <a asp-area="" asp-controller="Tasks" asp-action="Delete" asp-route-taskId="@Model.Task.Id" class="btn btn-primary"> Delete Task </a>
                          
                         </div>
                     </div>
