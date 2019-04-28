@@ -1,7 +1,4 @@
 ﻿@model ProjectManager.Web.Models.ViewModel.DepartmentsViewModel
-@{
-    ViewData["Title"] = "Details";
-}
 
 <!doctype html>
 
@@ -15,19 +12,29 @@
     <link href="~/lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
 </head>
 <body>
-    <form asp-controller="Departments" asp-action="Details" class="form-inline">
-        <div class="container" style="width:875px">
+    <form asp-controller="Departments" asp-action="ConfirmDelete">
+        <div class="container" style="width:700px">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h2>@Model.Department.DeptName</h2>
+                            <h2>Confirm the delete of @Model.Department.DeptName</h2>
                         </div>
+                        <div class="panel-heading">
+                            <label class="control-label">Choose a new department for your employees</label>
+                        </div>
+
                         <div class="panel-body">
-                            <table class="table table-hover">
+                            <div class="form-inline">
+                                <select asp-for="AssignDepartment.Id" asp-items="@Model.DepartmentSelectList" class="form-control" style="width:159px"></select>
+
+                                <input asp-for="Assign" type="submit" value="Assign" class="btn btn-primary" />
+                                <span asp-validation-for="Assign" class="text-danger" />
+                            </div>
+
+                            <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th></th>
                                         <th>Lastname</th>
                                         <th>Firstname</th>
                                         <th>Job</th>
@@ -35,25 +42,28 @@
                                 </thead>
                                 @foreach (var employee in Model.EmployeeList)
                                 {
-                                    <tr title="Click here to see the dashboard of this employee!" onclick="location.href = '@(Url.Action("Feed", "Employees", new { employeeId = employee.Id}))'">
-                                        <td class="icon-bar" title="Click here to see the profil of this person"><a class="active" asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@employee.Id"><i class="fa fa-user" aria-hidden="true"></i></a></td>
+                                    <tr>
                                         <td>@employee.Lastname</td>
                                         <td>@employee.Firstname</td>
                                         <td>@employee.Job</td>
                                     </tr>
                                 }
                             </table>
-
                             <div class="form-group">
-                                <a asp-controller="Departments" asp-action="List" class="btn btn-primary" style="width:200px">Back to the departmentlist</a>
-                            </div>
 
+                                <a title="Click here to crate a new department" style="width:200px" class="btn btn-primary" asp-controller="Departments" asp-action="Create" asp-route-routeString="ConfirmDelete"
+                                   asp-route-routeId="@Model.Department.Id">Create department</a>
+
+                                <a title="Click here to go back to the departmentlist" style="width:200px" class="btn btn-primary" asp-controller="Departments" asp-action="List">Back to list</a>
+                            </div>
                         </div>
+
+                        <input asp-for="Department.Id" value="@Model.Department.Id" type="hidden" />
+                        <input asp-for="Department.DeptName" value="@Model.Department.DeptName" type="hidden" />
                     </div>
                 </div>
             </div>
         </div>
-
     </form>
 </body>
 </html>

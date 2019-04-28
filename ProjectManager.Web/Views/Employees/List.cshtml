@@ -27,16 +27,16 @@
                         <form asp-controller="Employees" asp-action="List" class="form-inline">
                             <div class="form-check form-check-inline">
                                 <div>
-                                    <input asp-for="LastnameFilter" type="submit" value="filter lastname" class="btn btn-primary" style="width:159px" />
+                                    <input title="Click here to search for lastname!" asp-for="LastnameFilter" type="submit" value="Lastname" class="btn btn-primary" style="width:159px" />
                                     <span asp-validation-for="LastnameFilter" class="text-danger" />
 
-                                    <input asp-for="FirstnameFilter" type="submit" value="filter firstname" class="btn btn-primary" style="width:159px" />
+                                    <input title="Click here to search for firstname!" asp-for="FirstnameFilter" type="submit" value="Firstname" class="btn btn-primary" style="width:159px" />
                                     <span asp-validation-for="FirstnameFilter" class="text-danger" />
 
-                                    <input asp-for="JobFilter" type="submit" value="filter job" class="btn btn-primary" style="width:159px" />
+                                    <input title="Click here to search for job!" asp-for="JobFilter" type="submit" value="Job" class="btn btn-primary" style="width:159px" />
                                     <span asp-validation-for="JobFilter" class="text-danger" />
 
-                                    <input asp-for="DepartmentFilter" type="submit" value="filter department" class="btn btn-primary" style="width:159px" />
+                                    <input title="Click here to search for department!" asp-for="DepartmentFilter" type="submit" value="Department" class="btn btn-primary" style="width:159px" />
                                     <span asp-validation-for="DepartmentFilter" class="text-danger" />
 
                                     <select asp-for="Qualification.Id" asp-items="@Model.QualificationSelectList" class="form-control" style="width:159px"><option> </option></select>

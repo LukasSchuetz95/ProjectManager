@@ -14,7 +14,6 @@ namespace ProjectManager.Web.Models.ViewModel
 
         #region Properties
         public List<Employee> Employees { get; set; }
-        [Display(Name = "LookingForEmployee")]
 
         public Qualification Qualification { get; set; }
         public List<Qualification> QualificationList { get; set; }
@@ -37,7 +36,7 @@ namespace ProjectManager.Web.Models.ViewModel
 
         public void LoadData(IUnitOfWork uow)
         {
-            this.Employees = uow.Employees.GetAll();
+            Employees = uow.Employees.GetAll();
             LoadSelectList(uow);
             SetSwitchesTrue();
         }
@@ -46,51 +45,51 @@ namespace ProjectManager.Web.Models.ViewModel
         {
             if (order == 1)
             {
-                this.SwitchOrderFirstName = false;
-                this.SwitchOrderJob = false;
-                this.SwitchOrderDepartment = false;
+                SwitchOrderFirstName = false;
+                SwitchOrderJob = false;
+                SwitchOrderDepartment = false;
 
-                this.SwitchOrderLastName = this.SwitchFilter(this.SwitchOrderLastName);
+                SwitchOrderLastName = SwitchFilter(SwitchOrderLastName);
 
                 LoadSelectList(uow);
-                this.Employees = uow.Employees.GetEmployeeByLastname(this.Filter, this.SwitchOrderLastName);
-                this.GetEmployeesWithMatchingQualification(uow, this.Qualification);
+                Employees = uow.Employees.GetEmployeeByLastname(Filter, SwitchOrderLastName);
+                GetEmployeesWithMatchingQualification(uow, Qualification);
             }
             else if (order == 2)
             {
-                this.SwitchOrderLastName = false;
-                this.SwitchOrderJob = false;
-                this.SwitchOrderDepartment = false;
+                SwitchOrderLastName = false;
+                SwitchOrderJob = false;
+                SwitchOrderDepartment = false;
 
-                this.SwitchOrderFirstName = this.SwitchFilter(this.SwitchOrderFirstName);
+                SwitchOrderFirstName = SwitchFilter(SwitchOrderFirstName);
 
                 LoadSelectList(uow);
-                this.Employees = uow.Employees.GetEmployeeByFirstname(this.Filter, this.SwitchOrderFirstName);
-                this.GetEmployeesWithMatchingQualification(uow, this.Qualification);
+                Employees = uow.Employees.GetEmployeeByFirstname(Filter, SwitchOrderFirstName);
+                GetEmployeesWithMatchingQualification(uow, Qualification);
             }
             else if (order == 3)
             {
-                this.SwitchOrderFirstName = false;
-                this.SwitchOrderLastName = false;
-                this.SwitchOrderDepartment = false;
+                SwitchOrderFirstName = false;
+                SwitchOrderLastName = false;
+                SwitchOrderDepartment = false;
 
-                this.SwitchOrderJob = this.SwitchFilter(this.SwitchOrderJob);
+                SwitchOrderJob = SwitchFilter(SwitchOrderJob);
 
                 LoadSelectList(uow);
-                this.Employees = uow.Employees.GetEmployeeByJob(this.Filter, this.SwitchOrderJob);
-                this.GetEmployeesWithMatchingQualification(uow, this.Qualification);
+                Employees = uow.Employees.GetEmployeeByJob(Filter, SwitchOrderJob);
+                GetEmployeesWithMatchingQualification(uow, Qualification);
             }
             else if (order == 4)
             {
-                this.SwitchOrderFirstName = false;
-                this.SwitchOrderJob = false;
-                this.SwitchOrderLastName = false;
+                SwitchOrderFirstName = false;
+                SwitchOrderJob = false;
+                SwitchOrderLastName = false;
 
-                this.SwitchOrderDepartment = this.SwitchFilter(this.SwitchOrderDepartment);
+                SwitchOrderDepartment = SwitchFilter(SwitchOrderDepartment);
 
                 LoadSelectList(uow);
-                this.Employees = uow.Employees.GetEmployeeByDeparmentName(this.Filter, this.SwitchOrderDepartment);
-                this.GetEmployeesWithMatchingQualification(uow, this.Qualification);
+                Employees = uow.Employees.GetEmployeeByDeparmentName(Filter, SwitchOrderDepartment);
+                GetEmployeesWithMatchingQualification(uow, Qualification);
             }
         }
 
@@ -99,10 +98,10 @@ namespace ProjectManager.Web.Models.ViewModel
         #region Model-methods
         private void SetSwitchesTrue()
         {
-            this.SwitchOrderLastName = true;
-            this.SwitchOrderFirstName = true;
-            this.SwitchOrderJob = true;
-            this.SwitchOrderDepartment = true;
+            SwitchOrderLastName = true;
+            SwitchOrderFirstName = true;
+            SwitchOrderJob = true;
+            SwitchOrderDepartment = true;
         }
 
         private bool SwitchFilter(bool switchOrder)
@@ -119,8 +118,8 @@ namespace ProjectManager.Web.Models.ViewModel
 
         public void LoadSelectList(IUnitOfWork uow)
         {
-            this.QualificationList = uow.Qualifications.GetAll();
-            this.QualificationSelectList = new SelectList(this.QualificationList, nameof(Qualification.Id), nameof(Qualification.QualificationName));
+            QualificationList = uow.Qualifications.GetAll();
+            QualificationSelectList = new SelectList(QualificationList, nameof(Qualification.Id), nameof(Qualification.QualificationName));
         }
 
         private void GetEmployeesWithMatchingQualification(IUnitOfWork uow, Qualification qualification)
@@ -128,7 +127,7 @@ namespace ProjectManager.Web.Models.ViewModel
             if (qualification.Id != 0)
             {
                 List<Employee> tempEmployeeList = this.Employees;
-                this.Employees = new List<Employee>();
+                Employees = new List<Employee>();
                 List<EmployeeQualification> employeeQualifications = uow.EmployeeQualifications.GetEmployeesByQualifications(qualification.Id);
 
                 foreach (var tEL in tempEmployeeList)
@@ -137,7 +136,7 @@ namespace ProjectManager.Web.Models.ViewModel
                     {
                         if (tEL.Id == eQ.Employee.Id)
                         {
-                            this.Employees.Add(tEL);
+                            Employees.Add(tEL);
                         }
                     }
                 }

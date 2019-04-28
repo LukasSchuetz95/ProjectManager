@@ -25,6 +25,11 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
         public bool PassConfirmed { get; set; }
         public bool FinishConfirmed { get; set; }
 
+        public bool FixedTask { get; set; }
+
+        public string ButtonClicked { get; set; }
+        public bool Priority { get; set; }
+
         public void LoadData(IUnitOfWork uow, int employeeId, int taskId)
         {
             Task = uow.Tasks.GetById(taskId);
@@ -75,7 +80,6 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
                 return "";
             }
         }
-
         #endregion
     }
 }
