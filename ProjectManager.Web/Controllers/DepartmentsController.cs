@@ -36,6 +36,8 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        #region Delete
+
         public IActionResult Delete(int departmentId)
         {
             DepartmentsViewModel model = new DepartmentsViewModel();
@@ -91,6 +93,10 @@ namespace ProjectManager.Web.Controllers
             }
         }
 
+        #endregion
+
+        #region Create
+
         public IActionResult Create(string routeString, int routeId)
         {
             CreateDepartmentViewModel model = new CreateDepartmentViewModel();
@@ -118,5 +124,7 @@ namespace ProjectManager.Web.Controllers
 
             return View(model);
         }
+
+        #endregion
     }
 }
