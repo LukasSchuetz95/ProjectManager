@@ -10,8 +10,6 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
 {
     public class EmployeesFinishOrPassViewModel
     {
-        #region Properties
-
         public Core.Entities.Task Task { get; set; }
         public Employee Employee { get; set; }
         public Employee RecipientEmployee { get; set; }
@@ -32,10 +30,6 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
         public string ButtonClicked { get; set; }
         public bool Priority { get; set; }
 
-        #endregion
-
-        #region Controller-Methods
-
         public void LoadData(IUnitOfWork uow, int employeeId, int taskId)
         {
             Task = uow.Tasks.GetById(taskId);
@@ -49,9 +43,7 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
             EmployeeSelectList = new SelectList(employeeList, nameof(Employee.Id), nameof(Employee.Firstname));
         }
 
-        #endregion
-
-        #region View-Methods
+        #region ViewMethods
 
         public string FinishButton()
         {

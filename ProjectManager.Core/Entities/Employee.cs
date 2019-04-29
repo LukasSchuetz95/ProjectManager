@@ -11,7 +11,6 @@ namespace ProjectManager.Core.Entities
     public class Employee : EntityObject
     {
         [ForeignKey(nameof(DepartmentId))]
-        [Display(Name = "Department")]
         public Department Department { get; set; }
         public int DepartmentId { get; set; }
 

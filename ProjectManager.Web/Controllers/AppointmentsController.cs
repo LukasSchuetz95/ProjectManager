@@ -72,19 +72,10 @@ namespace ProjectManager.Web.Controllers
         public string GenerateDashboardDisplay(Appointment appointment, int employeeid)
         {
             DashboardDisplay dashboardDisplay = new DashboardDisplay();
-
-            if (appointment.Startdate.ToString("d") == appointment.Enddate.ToString("d"))
-            {
-                dashboardDisplay.Duration = (appointment.Startdate).ToString("d");
-            }
-            else
-            {
-                dashboardDisplay.Duration = "From " + (appointment.Startdate).ToString("d") + " to " + (appointment.Enddate).ToString("d"); 
-            }
-          
             dashboardDisplay.Employee = _unitOfWork.Employees.GetById(employeeid);
             dashboardDisplay.EmployeeId = employeeid;
             dashboardDisplay.AppointmentId = appointment.Id;
+            dashboardDisplay.Duration = "From " + (appointment.Startdate).ToString("d") + " to " +(appointment.Enddate).ToString("d"); ;
             dashboardDisplay.Name = appointment.AppoName;
             dashboardDisplay.SpecificInformation = Convert.ToString(appointment.AppoType);
             dashboardDisplay.Startdatum = DateTime.Now;

@@ -16,6 +16,8 @@ namespace ProjectManager.Web.Models.ViewModel
 
         public EmployeeTask EmployeeTask { get; set; }
 
+        // public List<Employee> EmplyoeeNotInProject { get; set; }
+
         public List<Employee> EmplyoeeNotInTask { get; set; }
 
         public Core.Entities.Task Task { get; set; }
@@ -29,6 +31,13 @@ namespace ProjectManager.Web.Models.ViewModel
             EmployeeProject = unitOfWork.EmployeeProjects.GetById(projectId);
 
             EmployeeInTask = unitOfWork.EmployeeTasks.GetById(taskId);
+
+            // EmplyoeeNotInProject = unitOfWork.EmployeeTasks.GetAllWithProjectID(projectId, taskId);
+
+            //EmplyoeeNotInProject = unitOfWork.EmployeeProjects.GetEmployeByProjectId;
+            ////List<EmployeeProject> employees = unitOfWork.EmployeeProjects.GetAllByProjectId(projectId);
+            ////Employees = new SelectList(employees, nameof(Employee.Id), nameof(Employee));
+            //Task = unitOfWork.Tasks.Tas
 
             Employees = unitOfWork.EmployeeProjects.GetAllByProjectId(projectId);
 
