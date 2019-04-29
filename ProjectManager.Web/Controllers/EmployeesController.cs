@@ -108,8 +108,13 @@ namespace ProjectManager.Web.Controllers
             else
             {
                 model.Error = true;
+                return View(model);
             }
-            return View(model);
+
+            return RedirectToAction(nameof(EditProfil), new
+            {
+                employeeId = model.Employee.Id
+            });
         }
         #endregion
 

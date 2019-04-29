@@ -23,6 +23,9 @@
                         <div class="panel-heading">
                             <h2>@Model.Department.DeptName</h2>
                         </div>
+                        <div class="panel-heading">
+                            <h4>Location:  @Model.Department.DeptLocation</h4>
+                        </div>
                         <div class="panel-body">
                             <table class="table table-hover">
                                 <thead>
@@ -36,7 +39,7 @@
                                 @foreach (var employee in Model.EmployeeList)
                                 {
                                     <tr title="Click here to see the dashboard of this employee!" onclick="location.href = '@(Url.Action("Feed", "Employees", new { employeeId = employee.Id}))'">
-                                        <td class="icon-bar" title="Click here to see the profil of this person"><a class="active" asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@employee.Id"><i class="fa fa-user" aria-hidden="true"></i></a></td>
+                                        <td class="icon-bar" title="Click here to see the profil of this employee"><a class="active" asp-controller="Employees" asp-action="Profil" asp-route-employeeId="@employee.Id"><i class="fa fa-user" aria-hidden="true"></i></a></td>
                                         <td>@employee.Lastname</td>
                                         <td>@employee.Firstname</td>
                                         <td>@employee.Job</td>
