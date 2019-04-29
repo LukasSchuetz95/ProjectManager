@@ -33,43 +33,42 @@
                         <h3>Project members</h3>
                     </div>
                     <div class="panel-body panel-danger">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Status</th>
-                                        <th>Job</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var emp in Model.EmployeesInProject)
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Status</th>
+                                    <th>Job</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var emp in Model.EmployeesInProject)
+                                {
+                                    @if (emp.Projectmanager == true)
                                     {
-                                        @if (emp.Projectmanager == true)
-                                        {
-                                            <tr>
-                                                <td>@emp.Employee.ToString()</td>
-                                                <td>@emp.Employee.Status</td>
-                                                <td>@emp.Employee.Job</td>
-                                                <td title="Project Manager" class="text-center"><i class="fas fa-user-tie"></i></td>
-                                            </tr>
-                                        }
-                                        else
-                                        {
-                                            <tr>
-                                                <td>@emp.Employee.ToString()</td>
-                                                <td>@emp.Employee.Status</td>
-                                                <td>@emp.Employee.Job</td>
-                                                <td>
-                                                    <form asp-action="Delete" asp-route-empProId="@emp.Id">
-                                                        <input type="submit" value="Delete" class="btn btn-danger center-block" />
-                                                    </form>
-                                                    @*<a asp-controller="Projects" asp-action="Edit" >Entfernen</a>*@
-                                                </td>
-                                            </tr>
-                                        }
+                                        <tr>
+                                            <td>@emp.Employee.ToString()</td>
+                                            <td>@emp.Employee.Status</td>
+                                            <td>@emp.Employee.Job</td>
+                                            <td title="Project Manager" class="text-center"><i class="fas fa-user-tie"></i></td>
+                                        </tr>
                                     }
-                                </tbody>
-                            </table>
+                                    else
+                                    {
+                                        <tr>
+                                            <td>@emp.Employee.ToString()</td>
+                                            <td>@emp.Employee.Status</td>
+                                            <td>@emp.Employee.Job</td>
+                                            <td>
+                                                <form asp-action="Delete" asp-route-empProId="@emp.Id">
+                                                    <input type="submit" value="Delete" class="btn btn-danger center-block" />
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -98,9 +97,6 @@
                                             <form asp-action="Create" asp-controller="EmployeeProjects" asp-route-employeeId="@emp.Id" asp-route-projectId="@Model.EmployeeProject.ProjectId">
                                                 <input type="submit" value="Add" class="btn btn-success center-block" />
                                             </form>
-                                            @*<div class="form-group">
-                                    <input type="submit" value="Mitarbeiter hinzufügen" class="btn btn-success" />
-                                </div>*@
                                         </td>
                                     </tr>
                                 }

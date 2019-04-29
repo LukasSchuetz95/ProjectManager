@@ -16,7 +16,6 @@ namespace ProjectManager.Web.Controllers
     public class ProjectsController : Controller
     {
         IUnitOfWork _unitOfWork;
-        private UserManager<ApplicationUser> _userManager;
 
         public ProjectsController(IUnitOfWork unitofwork)
         {
@@ -34,14 +33,6 @@ namespace ProjectManager.Web.Controllers
         [HttpPost]
         public IActionResult List(ProjectsListViewModel model)
         {
-            //var user = await GetCurrentUserAsync();
-
-            //var EmployeeId = (int)user?.EmployeeId;
-
-            //model.Projects = _unitOfWork.EmployeeProjects.GetProjectsByEmployeeId(EmployeeId);
-
-            //Muss noch async gemacht werden
-
             model.Projects = _unitOfWork.Projects.GetProjectByName(model.FilterProjectName);
             return View(model);
         }
@@ -69,10 +60,19 @@ namespace ProjectManager.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                _unitOfWork.Projects.Update(model.Project);
-                _unitOfWork.EmployeeProjects.Update(employeeProject);
-                _unitOfWork.Save();
-                return RedirectToAction(nameof(List));
+                try
+                {
+                    _unitOfWork.Projects.Update(model.Project);
+                    _unitOfWork.EmployeeProjects.Update(employeeProject);
+                    _unitOfWork.Save();
+                    return RedirectToAction(nameof(List));
+                }
+                catch (ValidationException validationException)
+                {
+                    ValidationResult valResult = validationException.ValidationResult;
+                    ModelState.AddModelError(nameof(model) + "." + valResult.MemberNames.First(), valResult.ErrorMessage);
+                }
+                
             }
 
             return View(model);
@@ -147,8 +147,6 @@ namespace ProjectManager.Web.Controllers
             _unitOfWork.Save();
             return RedirectToAction(nameof(List));
         }
-
-        //private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
     }
 }

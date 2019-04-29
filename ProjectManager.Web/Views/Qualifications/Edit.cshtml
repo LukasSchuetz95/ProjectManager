@@ -17,25 +17,26 @@
                     <h2>Edit</h2>
                 </div>
                 <div class="panel-body">
-                            <form asp-action="Edit">
-                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                <div class="row">
-                                    <div class="col-md-4"></div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label asp-for="QualificationName" class="control-label"></label>
-                                            <input asp-for="QualificationName" class="form-control" />
-                                            <span asp-validation-for="QualificationName" class="text-danger"></span>
-                                        </div>
-                                        <input type="hidden" asp-for="Timestamp" />
-                                        <input type="hidden" asp-for="Id" />
-                                        <div class="pager">
-                                            <a asp-controller="Qualifications" asp-action="List" class="btn btn-default"><i class="fas fa-chevron-left"></i> Overview</a>
-                                            <input type="submit" value="Save" class="btn btn-success" />
-                                        </div>
-                                    </div>
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="QualificationName" class="control-label"></label>
+                                    <input asp-for="QualificationName" class="form-control" />
+                                    <img src="~/favicon.ico" />
+                                    <span asp-validation-for="QualificationName" class="text-danger"></span>
                                 </div>
-                            </form>
+                                <input type="hidden" asp-for="Timestamp" />
+                                <input type="hidden" asp-for="Id" />
+                                <div class="pager">
+                                    <a asp-controller="Qualifications" asp-action="List" class="btn btn-default"><i class="fas fa-chevron-left"></i> Overview</a>
+                                    <input type="submit" value="Save" class="btn btn-success" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
