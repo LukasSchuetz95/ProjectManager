@@ -103,13 +103,17 @@ namespace ProjectManager.Web.Controllers
             {
                 _unitOfWork.Employees.Update(model.Employee);
                 _unitOfWork.Save();
-                model.Success = true;
+                return RedirectToAction(nameof(Profil), new
+                {
+                    employeeId = model.Employee.Id
+                });
             }
             else
             {
                 model.Error = true;
+                model.LoadEditProfilData(_unitOfWork, model.Employee.Id);
+                return View(model);
             }
-            return View(model);
         }
         #endregion
 

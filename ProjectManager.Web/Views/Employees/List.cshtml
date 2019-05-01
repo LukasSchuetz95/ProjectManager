@@ -39,7 +39,7 @@
                                     <input title="Click here to search for department!" asp-for="DepartmentFilter" type="submit" value="Department" class="btn btn-primary" style="width:159px" />
                                     <span asp-validation-for="DepartmentFilter" class="text-danger" />
 
-                                    <select asp-for="Qualification.Id" asp-items="@Model.QualificationSelectList" class="form-control" style="width:159px"><option> </option></select>
+                                    <select asp-for="Qualification.Id" asp-items="@Model.QualificationSelectList" class="form-control" style="width:159px"><option>Qualification</option></select>
                                 </div>
 
 
@@ -52,7 +52,6 @@
                                 <input asp-for="SwitchOrderDepartment" value="@Model.SwitchOrderDepartment" type="hidden" />
                                 <input asp-for="Filter" type="hidden" value="@Model.Filter" />
                             </div>
-                            @*</form>*@
 
                             @if (Model.Employees.Count == 0 || Model.Employees == null)
                             {
