@@ -37,11 +37,21 @@ namespace ProjectManager.Persistence
             return _dbContext.EmployeeTask.Include(e=>e.Employee).Include(t => t.Task).SingleOrDefault(p => p.EmployeeId == empId && p.TaskId == taskId);
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="empProId"></param>
+        /// <returns></returns>
         public EmployeeTask GetById(int empProId)
         {
             return _dbContext.EmployeeTask.Where(p => p.Id == empProId).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         public EmployeeTask GetByProjectId(int projectId)
         {
             return _dbContext.EmployeeTask.SingleOrDefault(e => e.Task.ProjectId == projectId);

@@ -33,7 +33,7 @@ namespace ProjectManager.Web.Data
                 await roleManager.CreateAsync(new ApplicationRole(role2));
             }
 
-            if (await userManager.FindByNameAsync("lukas.schuetz1@gmail.com") == null)
+            if (await userManager.FindByNameAsync("admin@admin.com") == null)
             {
                 //Employee employee = new Employee
                 //{
@@ -59,8 +59,8 @@ namespace ProjectManager.Web.Data
 
                 var user = new ApplicationUser
                 {
-                    UserName = "lukas.schuetz1@gmail.com",
-                    Email = "lukas.schuetz1@gmail.com",
+                    UserName = "admin@admin.com",
+                    Email = "admin@admin.com",
                     EmployeeId = 1
                 };
 

@@ -18,6 +18,10 @@ namespace ProjectManager.Persistence
             _dbContext = dbContext;
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <returns></returns>
         public List<EmployeeQualification> GetAllProjectManagers()
         {
             return _dbContext.EmployeeQualification.Include(e => e.Employee).Include(q => q.Qualification).Where(e => e.Qualification.QualificationName == "Project Manager").ToList();
@@ -33,6 +37,11 @@ namespace ProjectManager.Persistence
             return _dbContext.EmployeeQualification.Include(p => p.Employee).Include(p => p.Qualification).Where(p=>p.QualificationId == qualificationId).ToList();
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         public List<EmployeeQualification> GetAllProjectManagersAndProjectMembers(int projectId)
         {
             List<EmployeeQualification> projectManagers = _dbContext.EmployeeQualification.Include(e => e.Employee).Include(q => q.Qualification).

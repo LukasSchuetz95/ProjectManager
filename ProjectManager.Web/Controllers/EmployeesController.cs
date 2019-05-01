@@ -19,7 +19,8 @@ namespace ProjectManager.Web.Controllers
         #region fields
 
         IUnitOfWork _unitOfWork;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private UserManager<ApplicationUser> _userManager;
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         #endregion
 
@@ -118,11 +119,18 @@ namespace ProjectManager.Web.Controllers
         #endregion
 
         #region Dashboard
-        public IActionResult Feed(int employeeId, string buttonClicked, bool priority, string error)
+        public async Task<ActionResult> Feed(int employeeId, string buttonClicked, bool priority, string error)
         {
             EmployeesFeedViewModel model = new EmployeesFeedViewModel();
+            var user = await GetCurrentUserAsync();
 
-            if (buttonClicked == null)
+            var EmployeeId = (int)user?.EmployeeId;
+
+            if(employeeId == 0)
+            {
+                model.LoadDashboardData(EmployeeId, _unitOfWork);
+            }
+            else if (buttonClicked == null)
             {
                 model.LoadDashboardData(employeeId, _unitOfWork);
             }

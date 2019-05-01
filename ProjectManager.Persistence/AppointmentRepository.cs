@@ -28,11 +28,6 @@ namespace ProjectManager.Persistence
             return _dbContext.Appointment.ToList();
         }
 
-        //public List<Appointment> GetByEmployee(int employeeId)
-        //{
-        //    return _dbContext.Appointment.Where(app => app.EmployeeId == employeeId).OrderBy(ord => ord.Startdate).ToList();
-        //}
-
         public Appointment GetById(int appId)
         {
             return _dbContext.Appointment.Where(app => app.Id == appId).FirstOrDefault();

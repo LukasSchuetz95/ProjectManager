@@ -110,6 +110,11 @@ namespace ProjectManager.Persistence
             return empList;
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
         public async System.Threading.Tasks.Task AddAsync(Employee employee)
         {
             await _dbContext.Employee.AddAsync(employee);

@@ -28,7 +28,6 @@ namespace ProjectManager.Web.Controllers
         /// <returns></returns>
         public IActionResult List()
         {
-            
             ProjectsListViewModel model = new ProjectsListViewModel();
             model.LoadData(_unitOfWork);
             return View(model);
