@@ -32,16 +32,30 @@ namespace ProjectManager.Persistence
             return _dbContext.Project.OrderBy(p => p.ProjectName).ToList();
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <returns></returns>
         public List<Project> GetAllStatuses()
         {
             return _dbContext.Project.OrderBy(p => p.Status).ToList();
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         public Project GetById(int projectId)
         {
             return _dbContext.Project.Where(p => p.Id == projectId).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public List<Project> GetProjectByName(string filter)
         {
             IQueryable<Project> query = _dbContext.Project.OrderBy(p => p.ProjectName);
@@ -56,6 +70,10 @@ namespace ProjectManager.Persistence
             }
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="project"></param>
         public void Update(Project project)
         {
             _dbContext.Project.Update(project);

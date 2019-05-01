@@ -112,9 +112,12 @@ namespace ProjectManager.Persistence
         {
             if(entity is Qualification qualification)
             {
-                if(_dbContext.Qualification.Any(q => (q.QualificationName == qualification.QualificationName) && (q.Id != qualification.Id)))
+                if(_dbContext.Qualification.Any(q => (q.QualificationName.ToUpper() == qualification.QualificationName.ToUpper()) && (q.Id != qualification.Id)))
                 {
-                    throw new ValidationException($"There is already a Qualification with the Name: {1}" + qualification.QualificationName, null, nameof(Qualification.QualificationName));
+                    throw new ValidationException(new ValidationResult($"There is already a Qualification with the Name: {qualification.QualificationName}", 
+                        new List<string>() { nameof(qualification.QualificationName) }), null, null);
+                    //throw new ValidationException($"There is already a Qualification with the Name: {1}" + qualification.QualificationName, null, nameof(Qualification.QualificationName));
+                    //throw new ValidationException();
                 }
             }
             else if (entity is Department department)

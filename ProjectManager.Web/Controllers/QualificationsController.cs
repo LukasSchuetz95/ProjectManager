@@ -75,7 +75,7 @@ namespace ProjectManager.Web.Controllers
                 catch (ValidationException validationException)
                 {
                     ValidationResult valResult = validationException.ValidationResult;
-                    ModelState.AddModelError(nameof(model) + "." + valResult.MemberNames.First(), valResult.ErrorMessage);
+                    ModelState.AddModelError(nameof(model.QualificationName) + "." + valResult.MemberNames.First(), valResult.ErrorMessage);
                 }
             }
 

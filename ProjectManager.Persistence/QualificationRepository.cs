@@ -26,16 +26,30 @@ namespace ProjectManager.Persistence
             _dbContext.Qualification.Remove(model);
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <returns></returns>
         public List<Qualification> GetAll()
         {
             return _dbContext.Qualification.OrderBy(q => q.QualificationName).ToList();
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="qualId"></param>
+        /// <returns></returns>
         public Qualification GetById(int qualId)
         {
             return _dbContext.Qualification.SingleOrDefault(q => q.Id == qualId);
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public List<Qualification> GetQualificationByName(string filter)
         {
             IQueryable<Qualification> query = _dbContext.Qualification.OrderBy(q => q.QualificationName);
@@ -50,6 +64,10 @@ namespace ProjectManager.Persistence
             }
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="model"></param>
         public void Update(Qualification model)
         {
             _dbContext.Qualification.Update(model);

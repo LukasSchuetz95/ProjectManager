@@ -33,16 +33,27 @@ namespace ProjectManager.Persistence
             return _dbContext.Task.Include(ord => ord.Project).OrderBy(ord => ord.Project).ToList();
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         public List<Task> GetAllTasksForProjectWithCompletedStatus(int projectId)
         {
             return _dbContext.Task.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Completed)).ToList();
         }
 
+        
         public List<Task> GetAllTasksForProjectWithCompletedStatus()
         {
             return _dbContext.Task.Where(p=> p.Status == TaskStatusType.Completed).ToList();
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         public List<Task> GetAllTasksForProjectWithProcessingStatus(int projectId)
         {
             return _dbContext.Task.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Processing)).ToList();
@@ -53,6 +64,11 @@ namespace ProjectManager.Persistence
             return _dbContext.Task.Where(p => p.Status == TaskStatusType.Processing).ToList();
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         public List<Task> GetAllTasksForProjectWithUndefinedStatus(int projectId)
         {
             return _dbContext.Task.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Open)).ToList();
