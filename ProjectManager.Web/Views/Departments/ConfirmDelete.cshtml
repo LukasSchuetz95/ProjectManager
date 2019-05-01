@@ -27,7 +27,6 @@
                         <div class="panel-body">
                             <div class="form-inline">
                                 <select asp-for="AssignDepartment.Id" asp-items="@Model.DepartmentSelectList" class="form-control" style="width:159px"></select>
-
                                 <input asp-for="Assign" type="submit" value="Assign" class="btn btn-primary" />
                                 <span asp-validation-for="Assign" class="text-danger" />
                             </div>

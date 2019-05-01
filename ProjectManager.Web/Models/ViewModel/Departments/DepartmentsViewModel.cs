@@ -63,7 +63,7 @@ namespace ProjectManager.Web.Models.ViewModel
         #region properties
 
         public Department AssignDepartment { get; set; }
-        public SelectList DepartmentSelectList { get; private set; }
+        public SelectList DepartmentSelectList { get; set; }
         public string Assign { get; set; }
         public string Change { get; set; }
         public string ChoosenDepartment { get; set; }
