@@ -113,43 +113,6 @@ namespace ProjectManager.Web.Controllers
         }
         #endregion
 
-        #region Create
-
-        /// <summary>
-        /// Created by Lukas Schütz
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public IActionResult CreateEmployee(EmployeesCreateEmployeeViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    model.Employee.DepartmentId = 1;
-                    _unitOfWork.Employees.Add(model.Employee);
-                    _unitOfWork.Save();
-                    return RedirectToAction("List", "Employees");
-
-                    //model.EmployeeProject.Projectmanager = true;
-                    //_unitOfWork.Projects.Add(model.EmployeeProject.Project);
-                    //_unitOfWork.EmployeeProjects.Add(model.EmployeeProject);
-                    //_unitOfWork.Save();
-                    //return RedirectToAction("Create", "EmployeeProjects", new { projectId = model.EmployeeProject.ProjectId });
-                }
-                catch (ValidationException validationException)
-                {
-                    ValidationResult valResult = validationException.ValidationResult;
-                    ModelState.AddModelError(nameof(model) + "." + valResult.MemberNames.First(), valResult.ErrorMessage);
-                }
-            }
-
-            return View(model);
-        }
-
-        #endregion
-
         #region Dashboard
         public IActionResult Feed(int employeeId, string buttonClicked, bool priority, string error)
         {

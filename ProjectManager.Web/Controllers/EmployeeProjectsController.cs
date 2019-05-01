@@ -20,6 +20,12 @@ namespace ProjectManager.Web.Controllers
             _unitOfWork = unitOfWork;
         }
 
+
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         [Authorize(Roles = "Admin")]
         public IActionResult Create(int projectId)
         {
@@ -28,6 +34,12 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="employeeId"></param>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult Create(int employeeId, int projectId)
@@ -53,6 +65,11 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="empProId"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult Delete(int empProId)

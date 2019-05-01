@@ -22,6 +22,10 @@ namespace ProjectManager.Web.Controllers
             _unitOfWork = unitofwork;
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <returns></returns>
         public IActionResult List()
         {
             
@@ -30,6 +34,11 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult List(ProjectsListViewModel model)
         {
@@ -37,6 +46,11 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         [Authorize(Roles = "Admin")]
         public IActionResult Edit(int projectId)
         {
@@ -46,6 +60,11 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult Edit(ProjectsEditViewModel model)
@@ -78,6 +97,10 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <returns></returns>
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
@@ -86,6 +109,11 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult Create(ProjectsCreateViewModel model)
@@ -112,7 +140,11 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
-
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         public IActionResult Details(int projectId)
         {
             ProjectsDetailsViewModel model = new ProjectsDetailsViewModel();
@@ -120,6 +152,11 @@ namespace ProjectManager.Web.Controllers
             return View(model);   
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         [Authorize(Roles = "Admin")]
         public IActionResult Delete(int projectId)
         {
@@ -133,6 +170,11 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult DeleteConfirm(int projectId)

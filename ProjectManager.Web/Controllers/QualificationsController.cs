@@ -20,6 +20,10 @@ namespace ProjectManager.Web.Controllers
             _unitOfWork = unitofwork;
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <returns></returns>
         [Authorize(Roles = "Admin")]
         public IActionResult List()
         {
@@ -28,6 +32,11 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult List(QualificationsListViewModel model)
@@ -36,12 +45,21 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <returns></returns>
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult Create(Qualification model)
@@ -64,6 +82,11 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="qualId"></param>
+        /// <returns></returns>
         [Authorize(Roles = "Admin")]
         public IActionResult Edit(int qualId)
         {
@@ -73,6 +96,11 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult Edit(Qualification model)
@@ -87,6 +115,11 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="qualId"></param>
+        /// <returns></returns>
         [Authorize(Roles = "Admin")]
         public IActionResult Delete(int qualId)
         {
@@ -100,6 +133,11 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Lukas Schütz Created
+        /// </summary>
+        /// <param name="qualId"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult DeleteConfirm(int qualId)
