@@ -40,20 +40,5 @@ namespace ProjectManager.Core.Entities
         public string ValuedTime { get; set; }
 
         public DateTime? Deadline { get; set; }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            if ((this.Created != null) && (this.Enddate != null))
-            {
-                if (this.Created > this.Enddate)
-                {
-                    yield return new ValidationResult("Start date has to be before end date !", new List<string>() { nameof(this.Created), nameof(this.Enddate) });
-                }
-                if (this.Created > DateTime.Now)
-                {
-                    yield return new ValidationResult("Start date has to be before the current date !", new List<string>() { nameof(this.Created) });
-                }
-            }
-        }
     }
 }
