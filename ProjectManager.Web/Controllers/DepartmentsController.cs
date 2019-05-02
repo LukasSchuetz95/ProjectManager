@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProjectManager.Core.Contracts;
 using ProjectManager.Core.Entities;
@@ -44,6 +45,7 @@ namespace ProjectManager.Web.Controllers
 
         #region Delete, ConfirmDelete
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int departmentId)
         {
             DepartmentsViewModel model = new DepartmentsViewModel();
@@ -59,6 +61,7 @@ namespace ProjectManager.Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult ConfirmDelete(int departmentId)
         {
             DepartmentsViewModel model = new DepartmentsViewModel();
@@ -66,6 +69,7 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult ConfirmDelete(DepartmentsViewModel model)
         {
@@ -107,6 +111,7 @@ namespace ProjectManager.Web.Controllers
 
         #region Create
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(string routeString, int routeId)
         {
             CreateDepartmentViewModel model = new CreateDepartmentViewModel();
@@ -114,6 +119,7 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Create(CreateDepartmentViewModel model)
         {

@@ -40,8 +40,14 @@ namespace ProjectManager.Web.Models.ViewModel
         {
             Employee = uow.Employees.GetById(employeeId);
 
-            Hiringdate = (((DateTime)this.Employee.HiringDate).Date.ToString("d"));
-            Birthdate = (((DateTime)this.Employee.Birthdate).Date.ToString("d"));
+            if (Employee.HiringDate != null )
+            {
+                Hiringdate = (((DateTime)this.Employee.HiringDate).Date.ToString("d"));
+            }
+            if (Employee.Birthdate != null)
+            {
+                Birthdate = (((DateTime)this.Employee.Birthdate).Date.ToString("d"));
+            }
 
             uow.Departments.GetAll();
 
