@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ProjectManager.Core.Entities
 {
-    public class Task : EntityObject, IValidatableObject
+    public class Task : EntityObject
     {
 
         [ForeignKey(nameof(ProjectId))]
@@ -24,7 +24,6 @@ namespace ProjectManager.Core.Entities
 
         public TaskStatusType Status { get; set; }
 
-        //[Required(ErrorMessage = "Dieses Feld wird benötigt")]
         [Display(Name = "Fixed Task")]
         public bool FixedTask { get; set; }
 
@@ -41,20 +40,5 @@ namespace ProjectManager.Core.Entities
         public string ValuedTime { get; set; }
 
         public DateTime? Deadline { get; set; }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            if ((this.Created != null) && (this.Enddate != null))
-            {
-                if (this.Created > this.Enddate)
-                {
-                    yield return new ValidationResult("Start date has to be before end date !", new List<string>() { nameof(this.Created), nameof(this.Enddate) });
-                }
-                if (this.Created > DateTime.Now)
-                {
-                    yield return new ValidationResult("Start date has to be before the current date !", new List<string>() { nameof(this.Created) });
-                }
-            }
-        }
     }
 }

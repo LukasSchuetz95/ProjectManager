@@ -116,8 +116,6 @@ namespace ProjectManager.Persistence
                 {
                     throw new ValidationException(new ValidationResult($"There is already a Qualification with the Name: {qualification.QualificationName}", 
                         new List<string>() { nameof(qualification.QualificationName) }), null, null);
-                    //throw new ValidationException($"There is already a Qualification with the Name: {1}" + qualification.QualificationName, null, nameof(Qualification.QualificationName));
-                    //throw new ValidationException();
                 }
             }
             else if (entity is Department department)
