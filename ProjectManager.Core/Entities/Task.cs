@@ -24,7 +24,6 @@ namespace ProjectManager.Core.Entities
 
         public TaskStatusType Status { get; set; }
 
-        //[Required(ErrorMessage = "Dieses Feld wird benötigt")]
         [Display(Name = "Fixed Task")]
         public bool FixedTask { get; set; }
 

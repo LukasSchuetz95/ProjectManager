@@ -16,7 +16,6 @@ namespace ProjectManager.Core.Entities
 
         public string Information { get; set; }
 
-        //[Required(ErrorMessage = "Dieses Feld wird benötigt")]
         [Display(Name = "From")]
         [DataType(DataType.Date)]
         public DateTime? Startdate { get; set; }
@@ -35,20 +34,5 @@ namespace ProjectManager.Core.Entities
         {
             return Status.ToString();
         }
-
-        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        //{
-        //    if((this.Startdate!=null) && (this.Enddate!=null))
-        //    {
-        //        if(this.Startdate > this.Enddate)
-        //        {
-        //            yield return new ValidationResult("Start date has to be before end date !", new List<string>() { nameof(this.Startdate), nameof(this.Enddate) });
-        //        }
-        //        if (this.Startdate >= DateTime.Now)
-        //        {
-        //            yield return new ValidationResult("Start date has to be before the current date !", new List<string>() { nameof(this.Startdate) });
-        //        }
-        //    }
-        //}
     }
 }

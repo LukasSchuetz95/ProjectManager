@@ -75,11 +75,12 @@ namespace ProjectManager.Web.Controllers
                 catch (ValidationException validationException)
                 {
                     ValidationResult valResult = validationException.ValidationResult;
-                    ModelState.AddModelError(nameof(model.QualificationName) + "." + valResult.MemberNames.First(), valResult.ErrorMessage);
+                    ModelState.AddModelError(nameof(model.QualificationName) + "." + valResult.MemberNames.First(), valResult.ToString());
+                    return View(model);
                 }
             }
 
-            return View(model);
+            return View();
         }
 
         /// <summary>
@@ -107,9 +108,18 @@ namespace ProjectManager.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Qualifications.Update(model);
-                _unitOfWork.Save();
-                return RedirectToAction(nameof(List));
+                try
+                {
+                    _unitOfWork.Qualifications.Update(model);
+                    _unitOfWork.Save();
+                    return RedirectToAction(nameof(List));
+                }
+                catch (ValidationException validationException)
+                {
+                    ValidationResult valResult = validationException.ValidationResult;
+                    ModelState.AddModelError(nameof(model.QualificationName) + "." + valResult.MemberNames.First(), valResult.ToString());
+                    return View(model);
+                } 
             }
 
             return View(model);
