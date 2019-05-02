@@ -30,6 +30,11 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Manuel Mairinger Created
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Create(AppointmentCreateViewModel model)
         {

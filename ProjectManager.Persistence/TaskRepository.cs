@@ -28,6 +28,11 @@ namespace ProjectManager.Persistence
             _dbContext.Task.Remove(model);
         }
 
+        /// <summary>
+        /// Manuel Mairinger Created
+        /// </summary>
+        /// <returns></returns>
+
         public List<Task> GetAll()
         {
             return _dbContext.Task.Include(ord => ord.Project).OrderBy(ord => ord.Project).ToList();
@@ -43,7 +48,12 @@ namespace ProjectManager.Persistence
             return _dbContext.Task.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Completed)).ToList();
         }
 
-        
+
+        /// <summary>
+        /// Manuel Mairinger Created
+        /// </summary>
+        /// <returns></returns>
+
         public List<Task> GetAllTasksForProjectWithCompletedStatus()
         {
             return _dbContext.Task.Where(p=> p.Status == TaskStatusType.Completed).ToList();
@@ -59,6 +69,11 @@ namespace ProjectManager.Persistence
             return _dbContext.Task.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Processing)).ToList();
         }
 
+
+        /// <summary>
+        /// Manuel Mairinger Created
+        /// </summary>
+        /// <returns></returns>
         public List<Task> GetAllTasksForProjectWithProcessingStatus()
         {
             return _dbContext.Task.Where(p => p.Status == TaskStatusType.Processing).ToList();
@@ -74,16 +89,34 @@ namespace ProjectManager.Persistence
             return _dbContext.Task.Where(p => (p.ProjectId == projectId) && (p.Status == TaskStatusType.Open)).ToList();
         }
 
+
+        /// <summary>
+        /// Manuel Mairinger Created
+        /// </summary>
+        /// <returns></returns>
         public List<Task> GetAllTasksForProjectWithUndefinedStatus()
         {
             return _dbContext.Task.Where(p => p.Status == TaskStatusType.Open).ToList();
         }
 
+
+        /// <summary>
+        /// Manuel Mairinger Created
+        /// </summary>
+        /// <param name="tasikId"></param>
+        /// <returns></returns>
         public Task GetById(int tasikId)
         {
             return _dbContext.Task.Where(t => t.Id == tasikId).FirstOrDefault();
         }
 
+
+        /// <summary>
+        /// Manuel Mairinger Created
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
         public List<Task> GetTaskByName(string filter, TaskStatusType status)
         {
      
@@ -102,6 +135,12 @@ namespace ProjectManager.Persistence
 
         }
 
+
+        /// <summary>
+        /// Manuel Mairinger Created
+        /// </summary>
+        /// <param name="filterTaskName"></param>
+        /// <returns></returns>
         public List<Task> GetTaskByName(string filterTaskName)
         {
             IQueryable<Task> query = _dbContext.Task.OrderBy(p => p.TaskName);

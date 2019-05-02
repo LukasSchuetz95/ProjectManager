@@ -43,6 +43,13 @@ namespace ProjectManager.Web.Controllers
 
         }
 
+
+        /// <summary>
+        /// Manuel Mairinger Created
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+
         [HttpPost]
         public IActionResult FinishList(TasksListViewModel model)
         {
@@ -53,9 +60,7 @@ namespace ProjectManager.Web.Controllers
             return View(model);
 
         }
-        //Open,
-        //Processing,
-        //Completed,
+      
 
         public IActionResult OpenList()
         {
@@ -64,6 +69,13 @@ namespace ProjectManager.Web.Controllers
             return View(model);
 
         }
+
+
+        /// <summary>
+        /// Manuel Mairinger Created
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
 
         [HttpPost]
         public IActionResult OpenList(TasksListViewModel model)
@@ -85,8 +97,16 @@ namespace ProjectManager.Web.Controllers
 
         }
 
+
+        /// <summary>
+        /// Manuel Mairinger Created
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+
         [HttpPost]
         public IActionResult InProgressList(TasksListViewModel model)
+
         {
             TaskStatusType processing = new TaskStatusType();
             processing = TaskStatusType.Processing;
@@ -96,6 +116,12 @@ namespace ProjectManager.Web.Controllers
 
         }
 
+
+        /// <summary>
+        /// Manuel Mairinger Created
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
 
         public IActionResult Create(int projectId)
         {
@@ -114,6 +140,13 @@ namespace ProjectManager.Web.Controllers
             model.Project = _unitOfWork.Projects.GetById(model.ProjectId);
             return View(model);
         }
+
+
+        /// <summary>
+        /// Manuel Mairinger Created
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
 
         [HttpPost]
         public IActionResult Create(TasksCreateViewModel model)
@@ -145,6 +178,13 @@ namespace ProjectManager.Web.Controllers
             model.LoadData(_unitOfWork, taskId, projectId);
             return View(model);
         }
+
+
+        /// <summary>
+        /// Manuel Mairinger Created
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
 
         [HttpPost]
         public IActionResult Edit(TasksEditViewModel model)

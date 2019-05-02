@@ -28,6 +28,12 @@ namespace ProjectManager.Persistence
             return _dbContext.Appointment.ToList();
         }
 
+
+        /// <summary>
+        /// Manuel Mairinger Created
+        /// </summary>
+        /// <param name="appId"></param>
+        /// <returns></returns>
         public Appointment GetById(int appId)
         {
             return _dbContext.Appointment.Where(app => app.Id == appId).FirstOrDefault();

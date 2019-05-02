@@ -19,7 +19,15 @@ namespace ProjectManager.Web.Controllers
             _unitOfWork = unitOfWork;
         }
 
-     
+
+        /// <summary>
+        /// Manuel Mairinger Created
+        /// </summary>
+        /// <param name="taskId"></param>
+        /// <param name="projectId"></param>
+        /// <param name="emptaskId"></param>
+        /// <returns></returns>
+
         public IActionResult Create(int taskId, int projectId, int emptaskId)
         {
             EmployeeTasksCreateViewModel model = new EmployeeTasksCreateViewModel();
@@ -28,6 +36,12 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+
+        /// <summary>
+        /// Manuel Mairinger Created
+        /// </summary>
+        /// <param name="taskId"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Create( int taskId)
         {
@@ -52,6 +66,12 @@ namespace ProjectManager.Web.Controllers
             return View(model);
         }
 
+
+        /// <summary>
+        /// Manuel Mairinger Created
+        /// </summary>
+        /// <param name="empTaskId"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Delete(int empTaskId)
         {
