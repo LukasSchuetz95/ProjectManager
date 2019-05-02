@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ProjectManager.Core.Entities
 {
-    public class Task : EntityObject, IValidatableObject
+    public class Task : EntityObject
     {
 
         [ForeignKey(nameof(ProjectId))]

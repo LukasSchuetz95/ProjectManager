@@ -18,17 +18,5 @@ namespace ProjectManager.Web.Data
             : base(options)
         {
         }
-
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<TUser>(b =>
-        //    {
-        //        // Each User can have many UserClaims
-        //        b.HasMany<TUserClaim>()
-        //         .WithOne()
-        //         .HasForeignKey(uc => uc.UserId)
-        //         .IsRequired();
-        //    });
-        //}
     }
 }

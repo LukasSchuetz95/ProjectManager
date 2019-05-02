@@ -102,7 +102,6 @@ namespace ProjectManager.Web
             });
 
             SeedData.Initialize(context, userManager, roleManager).Wait();
-            //app.UseKendo(env);
         }
     }
 }
