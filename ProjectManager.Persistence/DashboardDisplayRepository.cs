@@ -8,6 +8,12 @@ using System.Text;
 
 namespace ProjectManager.Persistence
 {
+    /// <summary>
+    /// Created by Thomas Baurnberger
+    /// </summary>
+    /// <param name="EmployeeQualifications"></param>
+    /// <param name="uow"></param>
+    /// <returns></returns>
     class DashboardDisplayRepository : IDashboardDisplayRepository
     {
         #region DbKontext

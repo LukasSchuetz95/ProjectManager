@@ -48,12 +48,16 @@
                             <th>Name</th>
                             <th style="width:100px">Information</th>
                             <th>Time</th>
-                            <th title="Click here to create an appointment!" style="width:50px">
-                                <a class="btn btn-primary" asp-controller="Appointments" asp-action="Create" asp-route-employeeId="@Model.Employee.Id"
-                                                                                                             asp-route-buttonClicked="@Model.ButtonClicked"
-                                                                                                             asp-route-priority="@Model.IsPriorityButtonClicked()">
-                                    <i class="far fa-calendar-plus" aria-hidden="true"></i></a>
-                            </th>
+                            @if (Model.IsUserMe == true)
+                            {
+                                <th title="Click here to create an appointment!" style="width:50px">
+                                    <a class="btn btn-primary" asp-controller="Appointments" asp-action="Create" asp-route-employeeId="@Model.Employee.Id"
+                                       asp-route-buttonClicked="@Model.ButtonClicked"
+                                       asp-route-priority="@Model.IsPriorityButtonClicked()">
+                                        <i class="far fa-calendar-plus" aria-hidden="true"></i>
+                                    </a>
+                                </th>
+                            }
                         </tr>
                     </thead>
                     @foreach (var fT in Model.DashboardTasks)
@@ -64,13 +68,17 @@
                         <td>@fT.Name</td>
                         <td>@fT.SpecificInformation</td>
                         <td>@fT.Duration</td>
-                        <td title="Click here to finish or pass the task!">
-                            <a class="btn btn-primary" asp-controller="Employees" asp-action="FinishOrPass" asp-route-employeeId="@Model.Employee.Id" asp-route-taskId="@fT.TaskId" 
-                                                                                                            asp-route-buttonClicked="@Model.ButtonClicked"
-                                                                                                            asp-route-priority="@Model.IsPriorityButtonClicked()" >
-                             <i class="fas fa-check-circle" aria-hidden="true"></i></a>
-                        </td>
-                    </tr>
+                        @if (Model.IsUserMe == true)
+                        {
+                            <td title="Click here to finish or pass the task!">
+                                <a class="btn btn-primary" asp-controller="Employees" asp-action="FinishOrPass" asp-route-employeeId="@Model.Employee.Id" asp-route-taskId="@fT.TaskId"
+                                   asp-route-buttonClicked="@Model.ButtonClicked"
+                                   asp-route-priority="@Model.IsPriorityButtonClicked()">
+                                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        }
+                        </tr>
                         }
                         else
                         {
@@ -78,14 +86,18 @@
                         <td>@fT.Name</td>
                         <td>@fT.SpecificInformation</td>
                         <td>@fT.Duration</td>
-                        <td title="Click here to finish the appointment!">
-                            <a class="btn btn-primary" asp-controller="Employees" asp-action="DeleteAppointment" asp-route-employeeId="@Model.Employee.Id" 
-                                                                                                                 asp-route-appointmentId="@fT.AppointmentId" 
-                                                                                                                 asp-route-buttonClicked="@Model.ButtonClicked"
-                                                                                                                 asp-route-priorityButton="@Model.PriorityFilter">
-                            <i class="far fa-check-circle" aria-hidden="true"></i></a>
-                        </td>
-                    </tr>
+                        @if (Model.IsUserMe == true)
+                        {
+                            <td title="Click here to finish the appointment!">
+                                <a class="btn btn-primary" asp-controller="Employees" asp-action="DeleteAppointment" asp-route-employeeId="@Model.Employee.Id"
+                                   asp-route-appointmentId="@fT.AppointmentId"
+                                   asp-route-buttonClicked="@Model.ButtonClicked"
+                                   asp-route-priorityButton="@Model.PriorityFilter">
+                                    <i class="far fa-check-circle" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        }
+                        </tr>
                         }
                     }
                 </table>
@@ -113,6 +125,7 @@
                             <input type="hidden" asp-for="Employee.Id" />
                             <input type="hidden" asp-for="Employee.Firstname" />
                             <input type="hidden" value="Assigned" asp-for="ButtonClicked" />
+                            <input type="hidden" value="@Model.IsUserMe" asp-for="IsUserMe" />
 
                         </div>
                     </form>
@@ -135,6 +148,7 @@
                                     <input type="hidden" asp-for="Employee.Id" />
                                     <input type="hidden" asp-for="Employee.Firstname" />
                                     <input type="hidden" value="Project" asp-for="ButtonClicked" />
+                                    <input type="hidden" value="@Model.IsUserMe" asp-for="IsUserMe" />
                                 </form>
 
                             </th>
@@ -154,6 +168,7 @@
                                     <input type="hidden" asp-for="Employee.Id" />
                                     <input type="hidden" asp-for="Employee.Firstname" />
                                     <input type="hidden" value="General" asp-for="ButtonClicked" />
+                                    <input type="hidden" value="@Model.IsUserMe" asp-for="IsUserMe" />
                                 </form>
 
                             </th>
@@ -172,6 +187,7 @@
                                     <input type="hidden" asp-for="Employee.Id" />
                                     <input type="hidden" asp-for="Employee.Firstname" />
                                     <input type="hidden" value="@Model.ButtonClicked" asp-for="ButtonClicked" />
+                                    <input type="hidden" value="@Model.IsUserMe" asp-for="IsUserMe" />
                                 </form>
                             </th>
                         </tr>
@@ -188,6 +204,7 @@
                             <input type="hidden" asp-for="Employee.Id" />
                             <input type="hidden" asp-for="Employee.Firstname" />
                             <input type="hidden" asp-for="ButtonClicked" />
+                            <input type="hidden" value="@Model.IsUserMe" asp-for="IsUserMe" />
                         </form>
                     </div>
                 </div>
@@ -206,18 +223,22 @@
                             {
                                 @if (Model.IsTaskVisible(pT))
                                 {
-                                    <tr title="Click here to see the details of this task!" onclick="location.href = '@(Url.Action("Details", "Tasks", new { taskId = pT.Id}))'">
-                                        <td>
-                                            @pT.TaskName
-                                        </td>
-                                        <td>@pT.Priority</td>
-                                        <td>
-                                            <a title="Click here, to add this task to your dashboard" asp-controller="Employees" asp-action="AddTask" asp-route-employeeId="@Model.Employee.Id" asp-route-taskId="@pT.Id" 
-                                                                                                                                                      asp-route-buttonClicked="@Model.ButtonClicked" 
-                                                                                                                                                      asp-route-priorityButton="@Model.PriorityFilter">
-                                            <i class="fa fa-thumbtack" aria-hidden="true"></i></a>
-                                        </td>
-                                    </tr>
+                            <tr title="Click here to see the details of this task!" onclick="location.href = '@(Url.Action("Details", "Tasks", new { taskId = pT.Id}))'">
+                                <td>
+                                    @pT.TaskName
+                                </td>
+                                <td>@pT.Priority</td>
+                                @if (Model.IsUserMe == true)
+                                {
+                                    <td>
+                                        <a title="Click here, to add this task to your dashboard" asp-controller="Employees" asp-action="AddTask" asp-route-employeeId="@Model.Employee.Id" asp-route-taskId="@pT.Id"
+                                           asp-route-buttonClicked="@Model.ButtonClicked"
+                                           asp-route-priorityButton="@Model.PriorityFilter">
+                                            <i class="fa fa-thumbtack" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                }
+                                </tr>
                                 }
                             }
                         </table>

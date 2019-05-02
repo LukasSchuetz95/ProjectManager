@@ -165,6 +165,12 @@ namespace ProjectManager.Persistence
 
         #region Dashboard
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         public List<Task> GetProjectTasksByEmployeeQualification(List<EmployeeQualification> EmployeeQualifications,
                                                                  List<EmployeeProject> EmployeeProjects,
                                                                  IUnitOfWork uow, string project)
@@ -181,16 +187,34 @@ namespace ProjectManager.Persistence
             return poolTasks = GetMatchingTasks(taskQualifications, projectTasks);
         }
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         public List<Task> GetByGeneralProjectId(int projectId)
         {
             return _dbContext.Task.Where(p => p.ProjectId == projectId && p.Project.ProjectName == "General" && p.Status == TaskStatusType.Open).OrderBy(p => p.TaskName).ToList();
         }
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         public List<Task> GetByProjectIdWithoutGeneralTasks(int projectId)
         {
             return _dbContext.Task.Where(p => p.ProjectId == projectId && p.Project.ProjectName != "General" && p.Status == TaskStatusType.Open).OrderBy(p => p.TaskName).ToList();
         }
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         private List<TaskQualification> GetAllQualifications(List<EmployeeQualification> EmployeeQualifications, IUnitOfWork uow)
         {
             List<TaskQualification> taskQualifications = new List<TaskQualification>();
@@ -203,6 +227,12 @@ namespace ProjectManager.Persistence
             return taskQualifications;
         }
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         private List<Task> GetAllProjectTasks(List<EmployeeProject> EmployeeProjects, IUnitOfWork uow, string project)
         {
             List<Task> tasks = new List<Task>();
@@ -226,6 +256,12 @@ namespace ProjectManager.Persistence
 
         }
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         private List<Task> GetMatchingTasks(List<TaskQualification> taskQualifications, List<Task> projectTasks)
         {
             List<Task> poolTasks = new List<Task>();

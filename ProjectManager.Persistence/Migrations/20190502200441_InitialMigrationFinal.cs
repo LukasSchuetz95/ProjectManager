@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectManager.Persistence.Migrations
 {
-    public partial class InitialMigration19 : Migration
+    public partial class InitialMigrationFinal : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -336,10 +336,10 @@ namespace ProjectManager.Persistence.Migrations
                     { 10, new DateTime(1990, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Todd", new DateTime(2010, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Sharvez", "0660/ 4878 444", null, "Hollywoo", 1, "Beachstreet", null, "0000" },
                     { 5, new DateTime(1950, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Rick", new DateTime(2017, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web-Developer", "Sanchez", "039454646453", null, "Interdimensional", 0, "streetytreetstreet", null, "4020" },
                     { 6, new DateTime(1990, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "Jack", new DateTime(2017, 12, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web-Developer", "Peralta", "6784352363465", null, "Department 99", 2, "Brooklyn street", null, "4020" },
-                    { 3, new DateTime(1990, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Manuel", new DateTime(2010, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Mairinger", "0660/ 4878 444", null, "Irgendwo", 2, "Weiss i ned", null, "4020" },
-                    { 2000, new DateTime(1997, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Testine", new DateTime(2012, 10, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Testakulär", "066498234435", null, "Wels", 0, "Testreet", null, "8998" },
-                    { 1000, new DateTime(1996, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Testamon", new DateTime(2010, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Testa", "0000000000", null, "Wels", 0, "Manstreet", null, "4540" },
-                    { 2, new DateTime(1994, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Thomas", new DateTime(2012, 9, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web-Developer", "Baurnberger", "0660/ 4878 333", null, "Kematen am Innbach", 0, "See 44", null, "4633" },
+                    { 3, new DateTime(1990, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Lyanna", new DateTime(2010, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Mormont", "0660/ 4878 444", null, "Irgendwo", 2, "Weiss i ned", null, "4020" },
+                    { 2000, new DateTime(1997, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Manuel", new DateTime(2012, 10, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Mairinger", "066498234435", null, "Wels", 0, "Testreet", null, "8998" },
+                    { 1000, new DateTime(1996, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Thomas", new DateTime(2010, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Baurnberger", "0000000000", null, "Wels", 0, "Manstreet", null, "4540" },
+                    { 2, new DateTime(1994, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "John", new DateTime(2012, 9, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "Web-Developer", "Snow", "0660/ 4878 333", null, "Kematen am Innbach", 0, "See 44", null, "4633" },
                     { 4, new DateTime(1960, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Bojack", new DateTime(2014, 7, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "Horseman", "0676/9876534", null, "Hollywoo", 0, "Beachstreet 5", null, "4020" }
                 });
 

@@ -75,19 +75,32 @@ namespace ProjectManager.Web.Controllers
 
         #region Profil
 
-        public IActionResult Profil(int employeeId)
+        public async Task<ActionResult> Profil(int employeeId)
         {
             EmployeesProfilViewModel model = new EmployeesProfilViewModel();
-            model.LoadProfilData(_unitOfWork, employeeId);
+
+            var user = await GetCurrentUserAsync();
+
+            var UserId = (int)user?.EmployeeId;
+
+            if (employeeId == 0)
+            {
+                model.IsUserMe = true;
+                model.LoadProfilData(_unitOfWork, UserId);
+            }
+            else
+            {
+                model.IsUserMe = CheckIfUserIsMe(UserId, employeeId);
+                model.LoadProfilData(_unitOfWork, employeeId);
+            }
+
             if (model.Employee == null)
                 return NotFound();
-
-            var userid = _userManager.GetUserId(HttpContext.User);
 
             return View(model);
         }
 
-    public IActionResult EditProfil(int employeeId)
+        public IActionResult EditProfil(int employeeId)
         {
             EmployeesEditProfilViewModel model = new EmployeesEditProfilViewModel();
             model.LoadEditProfilData(_unitOfWork, employeeId);
@@ -124,25 +137,28 @@ namespace ProjectManager.Web.Controllers
             EmployeesFeedViewModel model = new EmployeesFeedViewModel();
             var user = await GetCurrentUserAsync();
 
-            var EmployeeId = (int)user?.EmployeeId;
+            var UserId = (int)user?.EmployeeId;
 
-            if(employeeId == 0)
+            if (employeeId == 0)
             {
-                model.LoadDashboardData(EmployeeId, _unitOfWork);
+                model.IsUserMe = true;
+                model.LoadDashboardData(UserId, _unitOfWork);
             }
             else if (buttonClicked == null)
             {
+                model.IsUserMe = CheckIfUserIsMe(UserId, employeeId);
                 model.LoadDashboardData(employeeId, _unitOfWork);
             }
             else
             {
+                model.IsUserMe = CheckIfUserIsMe(UserId, employeeId);
                 model.Employee = _unitOfWork.Employees.GetById(employeeId);
                 model.ButtonClicked = buttonClicked;
                 GetFilteredList(model, priority);
             }
 
-            if(error!=null)
-            HandleOccuredError(model, error);           
+            if (error != null)
+                HandleOccuredError(model, error);
 
             if (model == null)
                 return NotFound();
@@ -171,7 +187,7 @@ namespace ProjectManager.Web.Controllers
             }
             else if (model.Search != null)
             {
-                GetFilteredList(model, IsPriorityButtonClicked(model.PriorityFilter));            
+                GetFilteredList(model, IsPriorityButtonClicked(model.PriorityFilter));
             }
             else
             {
@@ -188,17 +204,23 @@ namespace ProjectManager.Web.Controllers
             this.DeleteDashBoardTask(dashboardDisplay);
             _unitOfWork.Save();
 
-            return RedirectToAction(nameof(Feed), new { employeeId = employeeId,
-                                                        buttonClicked = buttonClicked,
-                                                        priority = IsPriorityButtonClicked(priorityButton) });
+            return RedirectToAction(nameof(Feed), new
+            {
+                employeeId = employeeId,
+                buttonClicked = buttonClicked,
+                priority = IsPriorityButtonClicked(priorityButton)
+            });
         }
 
-        public IActionResult AddTask(int employeeId ,int taskId , string buttonClicked, string priorityButton)
-        { 
-            return RedirectToAction(nameof(Feed), new { employeeId = employeeId,
-                                                        buttonClicked = buttonClicked,
-                                                        priority = IsPriorityButtonClicked(priorityButton),
-                                                        error = CheckIfEmployeeTaskExists(employeeId, taskId)});
+        public IActionResult AddTask(int employeeId, int taskId, string buttonClicked, string priorityButton)
+        {
+            return RedirectToAction(nameof(Feed), new
+            {
+                employeeId = employeeId,
+                buttonClicked = buttonClicked,
+                priority = IsPriorityButtonClicked(priorityButton),
+                error = CheckIfEmployeeTaskExists(employeeId, taskId)
+            });
         }
 
         #region Feed : Methods
@@ -221,20 +243,20 @@ namespace ProjectManager.Web.Controllers
 
         public string CheckIfEmployeeTaskExists(int employeeId, int taskId)
         {
-            string errorMessage=null;
+            string errorMessage = null;
             EmployeeTask employeeTask = new EmployeeTask();
             employeeTask = _unitOfWork.EmployeeTasks.GetByEmployeeIdAndTaskId(employeeId, taskId);
 
             if (employeeTask == null)
             {
-                employeeTask = GenerateEmployeetask(employeeId, taskId);               
+                employeeTask = GenerateEmployeetask(employeeId, taskId);
 
                 if (CreateEmployeeTask(employeeTask))
                 {
                     if (!SetUpForDashboardDisplay(employeeTask))
                     {
                         errorMessage = "Error during the creation of the DashboardDisplay!";
-                    }                  
+                    }
                 }
                 else
                 {
@@ -259,7 +281,7 @@ namespace ProjectManager.Web.Controllers
             }
 
             return errorMessage;
-        }       
+        }
 
         private bool IsPriorityButtonClicked(string priority)
         {
@@ -281,20 +303,20 @@ namespace ProjectManager.Web.Controllers
         {
             EmployeesFinishOrPassViewModel model = new EmployeesFinishOrPassViewModel();
             model.LoadData(_unitOfWork, employeeId, taskId);
-            model.ButtonClicked=buttonClicked;
+            model.ButtonClicked = buttonClicked;
             model.Priority = priority;
             return View(model);
         }
 
         [HttpPost]
         public IActionResult FinishOrPass(EmployeesFinishOrPassViewModel model)
-        { 
+        {
             if (!CheckButtons(_unitOfWork, model.Employee.Id, model.Task.Id, model))
             {
                 return NotFound();
             }
 
-            if ((model.Finish == "Finish" && model.FinishConfirmed == true) || (model.Pass == "Pass" && model.PassConfirmed==true))
+            if ((model.Finish == "Finish" && model.FinishConfirmed == true) || (model.Pass == "Pass" && model.PassConfirmed == true))
             {
                 return RedirectToAction(nameof(Feed), new
                 {
@@ -342,10 +364,10 @@ namespace ProjectManager.Web.Controllers
                             else
                             {
                                 recipientEmployeeTask.Picked = false;
-                                UpdateEmployeeTask(recipientEmployeeTask);                             
+                                UpdateEmployeeTask(recipientEmployeeTask);
                             }
 
-                            recipientEmployeeTask.Task.Status = Core.Enum.TaskStatusType.Open;                           
+                            recipientEmployeeTask.Task.Status = Core.Enum.TaskStatusType.Open;
                         }
                         else
                         {
@@ -358,14 +380,14 @@ namespace ProjectManager.Web.Controllers
                             else
                             {
                                 recipientEmployeeTask.Picked = true;
-                                UpdateEmployeeTask(recipientEmployeeTask);                                
+                                UpdateEmployeeTask(recipientEmployeeTask);
                             }
 
                             DashboardDisplay recipientDashboardDisplay = GenerateDashboardTask(recipientEmployeeTask);
                             CreateDashboardDisplay(recipientDashboardDisplay);
                         }
 
-                        recipientEmployeeTask.Task.Information =  model.Task.Information;
+                        recipientEmployeeTask.Task.Information = model.Task.Information;
                         recipientEmployeeTask.Task.Priority = model.Task.Priority;
                         recipientEmployeeTask.Task.ValuedTime = model.Task.ValuedTime;
                         UpdateTask(recipientEmployeeTask.Task);
@@ -416,7 +438,7 @@ namespace ProjectManager.Web.Controllers
                 return true;
             }
             catch (ValidationException ex)
-            {                
+            {
                 return false;
             }
         }
@@ -479,7 +501,7 @@ namespace ProjectManager.Web.Controllers
         private bool SetUpForDashboardDisplay(EmployeeTask employeeTask)
         {
             DashboardDisplay dashboardDisplay = GenerateDashboardTask(employeeTask);
-       
+
             if (CreateDashboardDisplay(dashboardDisplay))
             {
                 employeeTask.Task.Status = Core.Enum.TaskStatusType.Processing;
@@ -531,6 +553,15 @@ namespace ProjectManager.Web.Controllers
             employeeTask.Picked = true;
 
             return employeeTask;
+        }
+
+        #endregion
+
+        #region User
+
+        public bool CheckIfUserIsMe(int empIdUser, int empIdParam)
+        {
+            return empIdUser == empIdParam;
         }
 
         #endregion

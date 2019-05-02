@@ -14,13 +14,17 @@ namespace ProjectManager.Web.Controllers
     public class DepartmentsController : Controller
     {
         #region unitOfWork
+
         IUnitOfWork _unitOfWork;
 
         public DepartmentsController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
+
         #endregion
+
+        #region List, Details
 
         public IActionResult List()
         {
@@ -35,6 +39,10 @@ namespace ProjectManager.Web.Controllers
             model.LoadDeatilsData(departmentId, _unitOfWork);
             return View(model);
         }
+
+        #endregion
+
+        #region Delete, ConfirmDelete
 
         public IActionResult Delete(int departmentId)
         {
@@ -78,6 +86,8 @@ namespace ProjectManager.Web.Controllers
             return RedirectToAction(nameof(List));
         }
 
+        #region Delete, ConfirmDelete - Methods
+
         private void DeleteDepartment(Department department)
         {
             try
@@ -90,6 +100,12 @@ namespace ProjectManager.Web.Controllers
 
             }
         }
+
+        #endregion
+
+        #endregion
+
+        #region Create
 
         public IActionResult Create(string routeString, int routeId)
         {
@@ -118,5 +134,9 @@ namespace ProjectManager.Web.Controllers
 
             return View(model);
         }
+
+        #endregion
+
+
     }
 }

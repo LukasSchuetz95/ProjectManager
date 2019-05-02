@@ -22,11 +22,18 @@ namespace ProjectManager.Persistence
         {
             _dbContext.Employee.Add(employee);
         }
+
         public void Update(Employee employee)
         {
             _dbContext.Employee.Update(employee);
         }
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         public List<Employee> GetEmployeeByLastname(string filter, bool order)
         {
             IQueryable<Employee> query;
@@ -43,6 +50,12 @@ namespace ProjectManager.Persistence
             return ReturnListWithFilter(query, filter, 1);
         }
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         public List<Employee> GetEmployeeByFirstname(string filter, bool order)
         {
             IQueryable<Employee> query;
@@ -59,6 +72,12 @@ namespace ProjectManager.Persistence
             return ReturnListWithFilter(query, filter, 2);
         }
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         public List<Employee> GetEmployeeByJob(string filter, bool order)
         {
             IQueryable<Employee> query;
@@ -75,6 +94,12 @@ namespace ProjectManager.Persistence
             return ReturnListWithFilter(query, filter, 3);
         }
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         public List<Employee> GetEmployeeByDeparmentName(string filter, bool order)
         {
             IQueryable<Employee> query;
@@ -91,6 +116,12 @@ namespace ProjectManager.Persistence
             return ReturnListWithFilter(query, filter, 4);
         }
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         public Employee GetById(int employeeId)
         {
 
@@ -103,6 +134,12 @@ namespace ProjectManager.Persistence
                                                                 OrderBy(e => e.Lastname).ThenBy(e => e.Firstname).ToList();
         }
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         public List<Employee> GetEmployeeByDepartmentId(int id)
         {
             List<Employee> empList = _dbContext.Employee.Where(e => e.DepartmentId == id).OrderBy(e => e.Lastname).ThenBy(e => e.Firstname).ToList();
@@ -121,6 +158,12 @@ namespace ProjectManager.Persistence
             await _dbContext.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         public List<Employee> GetEmployeesByProjectAndQualifications(int taskId, int employeeId, IUnitOfWork uow)
         {
             List<Employee> employees = new List<Employee>();
@@ -153,6 +196,12 @@ namespace ProjectManager.Persistence
             return employees;
         }
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         private bool CheckIfEmployeeIsAlreadySaved(EmployeeProject employeeProject, List<Employee> employees)
         {
             if (employees.Count == 0)
@@ -175,6 +224,12 @@ namespace ProjectManager.Persistence
 
         #region Methods
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         private List<Employee> ReturnListWithFilter(IQueryable<Employee> query, string filter, int list)
         {
             if (filter == null || filter.Trim() == "")

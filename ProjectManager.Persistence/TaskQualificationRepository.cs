@@ -17,12 +17,23 @@ namespace ProjectManager.Persistence
             _dbContext = dbContext;
         }
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         public List<TaskQualification> GetByQualificationId(int qualificationId)
         {
             return _dbContext.TaskQualification.Include(p => p.Qualification).Include(p => p.Task).
                    Where(p => p.QualificationId == qualificationId).ToList();
         }
-
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         public List<TaskQualification> GetQualificationsByTaskId(int taskId)
         {
             return _dbContext.TaskQualification.Include(p=>p.Qualification).Include(p=>p.Task).

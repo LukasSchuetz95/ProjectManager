@@ -47,7 +47,7 @@
                 <input type="hidden" value="@Model.Priority" asp-for="Priority" />
             </form>
 
-            <a asp-controller="Employees" asp-action="Feed" asp-route-employeeId="@Model.Employee.Id" class="btn btn-primary">Back</a>
+            <a asp-controller="Employees" asp-action="Feed" asp-route-employeeId="@Model.Employee.Id" asp-route-buttonClicked ="@Model.ButtonClicked" asp-route-priority="@Model.Priority" class="btn btn-primary">Back</a>
         </div>
     </div>
 </div>

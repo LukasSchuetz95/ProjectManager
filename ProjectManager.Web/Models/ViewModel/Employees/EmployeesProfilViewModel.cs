@@ -26,11 +26,12 @@ namespace ProjectManager.Web.Models.ViewModel
         public string Birthdate { get; set; }
 
 
-        public List<EmployeeProject> ProjectOfEmployee { get; set; } 
+        public List<EmployeeProject> ProjectOfEmployee { get; set; }
 
         public List<EmployeeQualification> EmployeeQualifications { get; set; }
-        public List<Qualification> QualificationList { get=> qualificationList; private set=> qualificationList=value; }
+        public List<Qualification> QualificationList { get => qualificationList; private set => qualificationList = value; }
         public SelectList QualificationSelectList { get; set; }
+        public bool IsUserMe { get; set; }
 
         #endregion
 
@@ -62,7 +63,7 @@ namespace ProjectManager.Web.Models.ViewModel
                 QualificationList.Add(obj.Qualification);
             }
 
-        } 
+        }
 
         #endregion
     }

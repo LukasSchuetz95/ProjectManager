@@ -97,6 +97,12 @@ namespace ProjectManager.Persistence
             _dbContext.EmployeeTask.Update(model);
         }
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         public List<EmployeeTask> GetAllByEmployeeId(int Id)
         {
             return _dbContext.EmployeeTask.Include(e => e.Employee).Include(t => t.Task).
@@ -105,6 +111,12 @@ namespace ProjectManager.Persistence
                    OrderBy(et => et.Task.TaskName).ToList();
         }
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         public List<EmployeeTask> GetTasksWithHighPriority(int Id)
         {
             return _dbContext.EmployeeTask.Include(e => e.Employee).Include(e => e.Task).
@@ -114,9 +126,15 @@ namespace ProjectManager.Persistence
                    et.PassedTask.Id != Id).ToList();
         }
 
+        /// <summary>
+        /// Created by Thomas Baurnberger
+        /// </summary>
+        /// <param name="EmployeeQualifications"></param>
+        /// <param name="uow"></param>
+        /// <returns></returns>
         public List<EmployeeTask> GetAllExceptFromEmployeeId(int employeeId)
         {
-            return _dbContext.EmployeeTask.Include(e => e.Employee).Include(e => e.Task).Where(p => p.EmployeeId != employeeId).ToList();
+            return _dbContext.EmployeeTask.Include(e => e.Employee).Include(e => e.Task).Where(p => p.EmployeeId != employeeId && p.Picked == true).ToList();
         }
 
 

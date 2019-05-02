@@ -38,6 +38,8 @@ namespace ProjectManager.Web.Models.ViewModel.Employees
         public string Search { get; set; }
         public string SearchInput { get; set; }
 
+        public bool IsUserMe { get; set; }
+
 
         public bool Error { get; set; }
         public string Errormessage { get; set; }

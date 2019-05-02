@@ -80,8 +80,8 @@ namespace ProjectManager.Persistence
                 new Employee
                 {
                     Id = 2,
-                    Firstname = "Thomas",
-                    Lastname = "Baurnberger",
+                    Firstname = "John",
+                    Lastname = "Snow",
                     Birthdate = new DateTime(1994, 11, 22),
                     HiringDate = new DateTime(2012, 9, 27),
                     Phonenumber = "0660/ 4878 333",
@@ -97,8 +97,8 @@ namespace ProjectManager.Persistence
                 new Employee
                 {
                     Id = 3,
-                    Firstname = "Manuel",
-                    Lastname = "Mairinger",
+                    Firstname = "Lyanna",
+                    Lastname = "Mormont",
                     Birthdate = new DateTime(1990, 10, 5),
                     HiringDate = new DateTime(2010, 2, 12),
                     Phonenumber = "0660/ 4878 444",
@@ -1472,8 +1472,8 @@ namespace ProjectManager.Persistence
                 new Employee
                 {
                     Id = 1000,
-                    Firstname = "Testamon",
-                    Lastname = "Testa",
+                    Firstname = "Thomas",
+                    Lastname = "Baurnberger",
                     Birthdate = new DateTime(1996, 5, 27),
                     HiringDate = new DateTime(2010, 12, 24),
                     Phonenumber = "0000000000",
@@ -1653,8 +1653,8 @@ namespace ProjectManager.Persistence
                 new Employee
                 {
                     Id = 2000,
-                    Firstname = "Testine",
-                    Lastname = "Testakulär",
+                    Firstname = "Manuel",
+                    Lastname = "Mairinger",
                     Birthdate = new DateTime(1997, 6, 12),
                     HiringDate = new DateTime(2012, 10, 19),
                     Phonenumber = "066498234435",

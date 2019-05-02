@@ -80,7 +80,10 @@
                                 </div>
                                 <div>
                                     <a asp-controller="Employees" asp-action="Feed" asp-route-employeeId="@Model.Employee.Id" style="width:200px" class="btn btn-primary">Dashboard</a>
-                                    <a asp-controller="Employees" asp-action="EditProfil" asp-route-employeeId="@Model.Employee.Id" style="width:200px" class="btn btn-primary">Edit</a>
+                                    @if (Model.IsUserMe == true)
+                                    {
+                                        <a asp-controller="Employees" asp-action="EditProfil" asp-route-employeeId="@Model.Employee.Id" style="width:200px" class="btn btn-primary">Edit</a>
+                                    }
                                 </div>
                             </div>                           
                         </form>
